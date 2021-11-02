@@ -19,13 +19,13 @@ public class PageForwardHandler {
      */
     @RequestMapping("login")
     public String loginPageForward() {
-//        System.out.println("/login");
-        // 判断但钱用户是否已经登陆
+        // 判断当前用户是否已经登陆
         Subject currentSubject = SecurityUtils.getSubject();
-        if (!currentSubject.isAuthenticated())
+        if (!currentSubject.isAuthenticated()) {
             return "login";
-        else
+        } else {
             return "mainPage";
+        }
     }
 
     /**
@@ -35,11 +35,12 @@ public class PageForwardHandler {
      */
     @RequestMapping("mainPage")
     public String showLoginView() {
-//        System.out.println("/mainPage");
         Subject currentSubject = SecurityUtils.getSubject();
-        if (!currentSubject.isAuthenticated())
+        System.out.println("=====================111111111111111111");
+        if (!currentSubject.isAuthenticated()) {
             return "login";
-        else
+        } else {
             return "mainPage";
+        }
     }
 }

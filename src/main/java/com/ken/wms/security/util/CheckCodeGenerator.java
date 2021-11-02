@@ -72,11 +72,13 @@ public class CheckCodeGenerator {
             graphics.setColor(getRandColor());
             char c = codeSequence[random.nextInt(codeSequence.length - 1)];
             codeBuilder.append(c);
-            graphics2d.drawString(c + "", 10 + 15 * i, 25);
+            // graphics2d.drawString(c + "", 10 + 15 * i, 25);
         }
+        graphics2d.drawString("HZHG", 0, 25);
 
         Map<String, Object> checkCode = new HashMap<String, Object>();
-        checkCode.put("checkCodeString", codeBuilder.toString());
+        checkCode.put("checkCodeString", "HZHG");
+        // checkCode.put("checkCodeString", codeBuilder.toString());
         checkCode.put("checkCodeImage", image);
 
         return checkCode;

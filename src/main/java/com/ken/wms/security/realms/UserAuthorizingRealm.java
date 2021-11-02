@@ -95,8 +95,9 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
             UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) authenticationToken;
             String principal = usernamePasswordToken.getUsername();
 
-            if (!StringUtils.isNumeric(principal))
+            if (!StringUtils.isNumeric(principal)) {
                 throw new AuthenticationException();
+            }
             Integer userID = Integer.valueOf(principal);
             //依赖于/security.service.Interface.UserInfoService,UserInfoDTO中包含用户ID,用户名，密码，角色
             //wms_user表

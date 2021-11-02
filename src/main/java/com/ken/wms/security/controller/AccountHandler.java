@@ -7,7 +7,6 @@ import com.ken.wms.exception.SystemLogServiceException;
 import com.ken.wms.exception.UserAccountServiceException;
 import com.ken.wms.security.service.Interface.AccountService;
 import com.ken.wms.security.util.CheckCodeGenerator;
-import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -15,6 +14,8 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ import java.util.Map;
 @RequestMapping("/account")
 public class AccountHandler {
 
-    private static Logger log = Logger.getLogger("application");
+    private static final Logger log = LoggerFactory.getLogger(AccountHandler.class);
 
     @Autowired
     private ResponseUtil responseUtil;
@@ -75,9 +76,7 @@ public class AccountHandler {
             String password = (String) user.get(USER_PASSWORD);
             UsernamePasswordToken token = new UsernamePasswordToken(id, password);
 
-            System.out.println(id);
-            System.out.println(password);
-            System.out.println(token);
+            log.debug("id: {}, password: {}", id, password);
 
             // 执行登陆操作
             try {
@@ -92,9 +91,6 @@ public class AccountHandler {
                 String userName = (String) session.getAttribute("userName");
                 String accessIP = session.getHost();
 
-//                System.out.println(userID_integer);
-//                System.out.println(userName);
-//                System.out.println(accessIP);
                 systemLogService.insertAccessRecord(userID_integer, userName, accessIP, SystemLogService.ACCESS_TYPE_LOGIN);
 
                 result = Response.RESPONSE_RESULT_SUCCESS;
@@ -208,6 +204,7 @@ public class AccountHandler {
                 // 设置 Session
                 HttpSession session = request.getSession();
                 session.setAttribute("checkCode", checkCodeString);
+                log.debug("条形码：{}", checkCodeString);
 
                 // 将验证码输出
                 ImageIO.write(checkCodeImage, "png", outputStream);

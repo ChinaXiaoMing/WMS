@@ -211,7 +211,7 @@
                             $('#checkCode').val("");
                         } else {
                             // 页面跳转
-                            window.location.href = "/mainPage";
+                            window.location.href = "${pageContext.request.contextPath}/mainPage";
                         }
                     },
                     error: function (data) {
