@@ -50,11 +50,7 @@ public class SystemLogServiceImpl implements SystemLogService {
         accessRecordDO.setAccessType(accessType);
 
         // 持久化 AccessRecordDO 对象到数据库
-        try {
-            accessRecordMapper.insertAccessRecord(accessRecordDO);
-        } catch (PersistenceException e) {
-            throw new SystemLogServiceException(e, "Fail to persist AccessRecordDO Object");
-        }
+        accessRecordMapper.insertAccessRecord(accessRecordDO);
     }
 
     /**
@@ -91,16 +87,18 @@ public class SystemLogServiceImpl implements SystemLogService {
         boolean isPagination = true;
 
         // 检查是否需要分页查询
-        if (offset < 0 || limit < 0)
+        if (offset < 0 || limit < 0) {
             isPagination = false;
+        }
 
         // 转换 Date 对象
         Date startDate = null;
         Date endDate = null;
         Date newEndDate = null;
         try {
-            if (StringUtils.isNotEmpty(startDateStr))
+            if (StringUtils.isNotEmpty(startDateStr)) {
                 startDate = dateFormatSimple.parse(startDateStr);
+            }
             if (StringUtils.isNotEmpty(endDateStr)) {
                 endDate = dateFormatSimple.parse(endDateStr);
                 newEndDate = new Date(endDate.getTime() + (24 * 60 * 60 * 1000) - 1);
@@ -206,16 +204,18 @@ public class SystemLogServiceImpl implements SystemLogService {
         boolean isPaginarion = true;
 
         // 检查是否需要分页
-        if (offset < 0 && limit < 0)
+        if (offset < 0 && limit < 0) {
             isPaginarion = false;
+        }
 
         // Date 转换
         Date startDate = null;
         Date endDate = null;
         Date newEndDate = null;
         try {
-            if (StringUtils.isNotEmpty(startDateStr))
+            if (StringUtils.isNotEmpty(startDateStr)) {
                 startDate = dateFormatSimple.parse(startDateStr);
+            }
             if (StringUtils.isNotEmpty(endDateStr)) {
                 endDate = dateFormatSimple.parse(endDateStr);
                 newEndDate = new Date(endDate.getTime() + (24 * 60 * 60 * 1000) - 1);
@@ -236,8 +236,9 @@ public class SystemLogServiceImpl implements SystemLogService {
                 }
             } else {
                 userOperationRecordDOS = userOperationRecordMapper.selectUserOperationRecord(userID, startDate, endDate);
-                if (userOperationRecordDOS != null)
+                if (userOperationRecordDOS != null) {
                     userOperationRecordDOS.forEach(userOperationRecordDO -> userOperationRecordDTOS.add(convertUserOperationRecordDOToUserOperationRecordDTO(userOperationRecordDO)));
+                }
             }
         } catch (PersistenceException e) {
             throw new SystemLogServiceException(e);

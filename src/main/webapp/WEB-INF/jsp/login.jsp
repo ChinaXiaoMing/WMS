@@ -32,10 +32,10 @@
                     <form id="login_form" class="form-horizontal" style="">
 
                         <div class="form-group">
-                            <label class="control-label col-md-4 col-sm-4">用户ID：</label>
+                            <label class="control-label col-md-4 col-sm-4">用户名：</label>
                             <div class="col-md-7 col-sm-7">
-                                <input type="text" id="userID" class="form-control"
-                                       placeholder="用户ID" name="userID"/>
+                                <input type="text" id="username" class="form-control"
+                                       placeholder="用户名" name="username"/>
                             </div>
                         </div>
 
@@ -108,9 +108,10 @@
     }
 
     // 登陆信息加密模块
-    function infoEncrypt(userID, password, checkCode) {
+    function infoEncrypt(username, password, checkCode) {
         var str1 = $.md5(password);
-        var str2 = $.md5(str1 + userID);
+        var str2 = $.md5(str1 + username);
+        console.log(str2);
         var str3 = $.md5(str2 + checkCode.toUpperCase());
         return str3;
     }
@@ -130,8 +131,8 @@
                         notEmpty: {
                             message: '用户名不能为空'
                         }, regexp: {
-                            regexp: '[0-9]+',
-                            message: '只允许输入数字'
+                            regexp: '[A-Za-z0-9]+',
+                            message: '只允许输入字母或数字'
                         },
                         callback: {}
                     }
@@ -163,15 +164,15 @@
                 var bv = $form.data('bootstrapValidator');
 
                 // 发送数据到后端 进行验证
-                var userID = $('#userID').val();
+                var username = $('#username').val();
                 var password = $('#password').val();
                 var checkCode = $('#checkCode').val();
 
                 // 加密
-                password = infoEncrypt(userID, password, checkCode)
+                password = infoEncrypt(username, password, checkCode)
 
                 var data = {
-                    "id": userID,
+                    "username": username,
                     "password": password,
                 }
                 //JSON.stringify(data)序列化
@@ -190,7 +191,7 @@
                             var field;
                             if (response.msg == "unknownAccount") {
                                 errorMessage = "用户名错误";
-                                field = "userID";
+                                field = "username";
                             }
                             else if (response.msg == "incorrectCredentials") {
                                 errorMessage = "密码或验证码错误";

@@ -173,8 +173,9 @@ public class UserInfoServiceImpl implements UserInfoService {
      */
     @Override
     public boolean insertUserInfo(UserInfoDTO userInfoDTO) throws UserInfoServiceException {
-        if (userInfoDTO == null)
+        if (userInfoDTO == null) {
             return false;
+        }
 
         // 检查数据是否有效
         Integer userID = userInfoDTO.getUserID();

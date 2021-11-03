@@ -18,7 +18,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
@@ -48,7 +53,7 @@ public class AccountHandler {
     private SystemLogService systemLogService;
 
     private static final String USER_ID = "id";
-    private static final String USER_NAME = "userName";
+    private static final String USER_NAME = "username";
     private static final String USER_PASSWORD = "password";
 
     /**
@@ -59,9 +64,9 @@ public class AccountHandler {
      */
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public
     @ResponseBody
-    Map<String, Object> login(@RequestBody Map<String, Object> user) {
+    @Transactional
+    public Map<String, Object> login(@RequestBody Map<String, Object> user) {
         // 初始化 Response
         Response response = responseUtil.newResponseInstance();
         String result = Response.RESPONSE_RESULT_ERROR;
@@ -72,26 +77,27 @@ public class AccountHandler {
 
         // 判断用户是否已经登陆
         if (currentUser != null && !currentUser.isAuthenticated()) {
-            String id = (String) user.get(USER_ID);
+            String username = (String) user.get(USER_NAME);
             String password = (String) user.get(USER_PASSWORD);
-            UsernamePasswordToken token = new UsernamePasswordToken(id, password);
+            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 
-            log.debug("id: {}, password: {}", id, password);
+            log.debug("前端用户名: {}, 前端加密密码: {}", username, password);
 
             // 执行登陆操作
             try {
                 //会调用realms/UserAuthorizingRealm中的doGetAuthenticationInfo方法
                 currentUser.login(token);
+                log.debug("登录成功");
 
                 // 设置登陆状态并记录
                 Session session = currentUser.getSession();
                 session.setAttribute("isAuthenticate", "true");
 
-                Integer userID_integer = (Integer) session.getAttribute("userID");
+                Integer userId = (Integer) session.getAttribute("userID");
                 String userName = (String) session.getAttribute("userName");
-                String accessIP = session.getHost();
+                String accessIp = session.getHost();
 
-                systemLogService.insertAccessRecord(userID_integer, userName, accessIP, SystemLogService.ACCESS_TYPE_LOGIN);
+                systemLogService.insertAccessRecord(userId, userName, accessIp, SystemLogService.ACCESS_TYPE_LOGIN);
 
                 result = Response.RESPONSE_RESULT_SUCCESS;
             } catch (UnknownAccountException e) {
@@ -185,8 +191,6 @@ public class AccountHandler {
     @RequestMapping(value = "checkCode/{time}", method = RequestMethod.GET)
     public void getCheckCode(@PathVariable("time") String time, HttpServletResponse response, HttpServletRequest request) {
 
-//        System.out.println(time);
-
         BufferedImage checkCodeImage = null;
         String checkCodeString = null;
 
@@ -204,7 +208,6 @@ public class AccountHandler {
                 // 设置 Session
                 HttpSession session = request.getSession();
                 session.setAttribute("checkCode", checkCodeString);
-                log.debug("条形码：{}", checkCodeString);
 
                 // 将验证码输出
                 ImageIO.write(checkCodeImage, "png", outputStream);

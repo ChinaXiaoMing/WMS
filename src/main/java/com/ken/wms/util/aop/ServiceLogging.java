@@ -1,8 +1,11 @@
 package com.ken.wms.util.aop;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.aspectj.lang.JoinPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Collections;
 
 
 /**
@@ -45,7 +48,9 @@ public class ServiceLogging {
             builder.append("Invoked Method:").append(methodName);
             builder.append("\targs：");
             for (Object arg : args) {
-                builder.append(arg.toString());
+                if (arg != null) {
+                    builder.append(arg);
+                }
             }
             methodInvokeLogger.debug(builder.toString());
         }

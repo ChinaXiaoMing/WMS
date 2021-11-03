@@ -189,8 +189,9 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
 
                     // 获取插入数据后返回的用户ID
                     Integer userID = repositoryAdmin.getId();
-                    if (userID == null)
+                    if (userID == null) {
                         return false;
+                    }
 
                     // 为仓库管理员创建账户
                     UserInfoDTO userInfo = new UserInfoDTO();
