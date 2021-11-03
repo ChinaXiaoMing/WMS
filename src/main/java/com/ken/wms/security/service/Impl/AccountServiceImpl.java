@@ -59,13 +59,13 @@ public class AccountServiceImpl implements AccountService {
 
             // 原密码正确性验证
             String password;
-            password = encryptingModel.MD5(oldPassword + userID);
+            password = encryptingModel.MD5(oldPassword + user.getUserName());
             if (!password.equals(user.getPassword())) {
                 throw new UserAccountServiceException(UserAccountServiceException.PASSWORD_ERROR);
             }
 
             // 获得新的密码并加密
-            password = encryptingModel.MD5(newPassword + userID);
+            password = encryptingModel.MD5(newPassword + user.getUserName());
             // 验证成功后更新数据库
             user.setPassword(password);
             userInfoService.updateUserInfo(user);

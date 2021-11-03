@@ -11,6 +11,10 @@ public class Storage {
     private String goodsType;// 货物类型
     private Double goodsValue;// 货物价值
     private Integer repositoryID;// 仓库ID
+    /**
+     * 仓库名称
+     */
+    private String repoName;
     private Long number;// 库存数量
 
     public Integer getGoodsID() {
@@ -59,6 +63,14 @@ public class Storage {
 
     public void setRepositoryID(Integer repositoryID) {
         this.repositoryID = repositoryID;
+    }
+
+    public String getRepoName() {
+        return repoName;
+    }
+
+    public void setRepoName(String repoName) {
+        this.repoName = repoName;
     }
 
     public Long getNumber() {

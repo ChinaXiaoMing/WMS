@@ -13,6 +13,7 @@
         <result property="goodsType" column="goodsType"/>
         <result property="goodsValue" column="goodsValue"/>
         <result property="repositoryID" column="repositoryID"/>
+        <result property="repoName" column="repoName"/>
         <result property="number" column="number"/>
         <!--
         <association property="goodsInfo" javaType="com.ken.Goods" resultMap="goods"/>
@@ -32,6 +33,7 @@
     <select id="selectAllAndRepositoryID" resultMap="storage">
         select
         r.REPO_ID as repositoryID,
+        r.REPO_NAME as repoName,
         s.RECORD_NUMBER as number,
         g.GOOD_ID as goodsID,
         g.GOOD_NAME as goodsName,
@@ -51,6 +53,7 @@
     <select id="selectByGoodsIDAndRepositoryID" resultMap="storage">
         select
         r.REPO_ID as repositoryID,
+        r.REPO_NAME as repoName,
         s.RECORD_NUMBER as number,
         g.GOOD_ID as goodsID,
         g.GOOD_NAME as goodsName,

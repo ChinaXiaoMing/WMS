@@ -75,14 +75,16 @@ public class StorageManageServiceImpl implements StorageManageService {
                 if (storageList != null) {
                     PageInfo<Storage> pageInfo = new PageInfo<>(storageList);
                     total = pageInfo.getTotal();
-                } else
+                } else {
                     storageList = new ArrayList<>();
+                }
             } else {
                 storageList = storageMapper.selectAllAndRepositoryID(repositoryID);
-                if (storageList != null)
+                if (storageList != null) {
                     total = storageList.size();
-                else
+                } else {
                     storageList = new ArrayList<>();
+                }
             }
         } catch (PersistenceException e) {
             throw new StorageManageServiceException(e);

@@ -5,7 +5,14 @@ package com.ken.wms.domain;
  */
 public class Repository {
 
-    private Integer id;// 仓库ID
+    /**
+     * 仓库id
+     */
+    private Integer id;
+    /**
+     * 仓库名称
+     */
+    private String name;
     private String address;// 仓库地址
     private String status;// 仓库状态
     private String area;// 仓库面积
@@ -19,6 +26,14 @@ public class Repository {
 
     public void setAdminID(Integer adminID) {
         this.adminID = adminID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getArea() {
@@ -71,8 +86,15 @@ public class Repository {
 
     @Override
     public String toString() {
-        return "Repository [id=" + id + ", address=" + address + ", status=" + status + ", area=" + area + ", desc="
-                + desc + ", adminID=" + adminID + ", adminName=" + adminName + "]";
+        return "Repository{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", status='" + status + '\'' +
+                ", area='" + area + '\'' +
+                ", desc='" + desc + '\'' +
+                ", adminID=" + adminID +
+                ", adminName='" + adminName + '\'' +
+                '}';
     }
-
 }

@@ -115,12 +115,9 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
 
 
                 // 结合验证码对密码进行处理
-                String checkCode = (String) session.getAttribute("checkCode");
                 String password = userInfoDTO.getPassword();
-                if (checkCode != null && password != null) {
-                    checkCode = checkCode.toUpperCase();
-                    credentials = encryptingModel.MD5(password + checkCode);
-                }
+                // 固定验证码为HZHG
+                credentials = encryptingModel.MD5(password + "HZHG");
             }
             //比对账号密码
             //principal前端传来userid

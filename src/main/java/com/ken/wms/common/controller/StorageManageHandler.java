@@ -5,7 +5,6 @@ import com.ken.wms.common.service.Interface.StorageManageService;
 import com.ken.wms.common.util.Response;
 import com.ken.wms.common.util.ResponseUtil;
 import com.ken.wms.domain.Storage;
-import com.ken.wms.exception.StockRecordManageServiceException;
 import com.ken.wms.exception.StorageManageServiceException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,23 +71,26 @@ public class StorageManageHandler {
                     if (StringUtils.isNumeric(repositoryBelong)) {
                         Integer repositoryID = Integer.valueOf(repositoryBelong);
                         queryResult = storageManageService.selectByGoodsID(goodsID, repositoryID, offset, limit);
-                    } else
+                    } else {
                         queryResult = storageManageService.selectByGoodsID(goodsID, null, offset, limit);
+                    }
                 }
                 break;
             case SEARCH_BY_GOODS_TYPE:
                 if (StringUtils.isNumeric(repositoryBelong)) {
                     Integer repositoryID = Integer.valueOf(repositoryBelong);
                     queryResult = storageManageService.selectByGoodsType(keyword, repositoryID, offset, limit);
-                } else
+                } else {
                     queryResult = storageManageService.selectByGoodsType(keyword, null, offset, limit);
+                }
                 break;
             case SEARCH_BY_GOODS_NAME:
                 if (StringUtils.isNumeric(repositoryBelong)) {
                     Integer repositoryID = Integer.valueOf(repositoryBelong);
                     queryResult = storageManageService.selectByGoodsName(keyword, repositoryID, offset, limit);
-                } else
+                } else {
                     queryResult = storageManageService.selectByGoodsName(keyword, null, offset, limit);
+                }
                 break;
             default:
                 // do other thing
@@ -160,11 +162,7 @@ public class StorageManageHandler {
 
         HttpSession session = request.getSession();
         Integer repositoryID = (Integer) session.getAttribute("repositoryBelong");
-//        System.out.println(1);
-//        System.out.println(repositoryID);
         if (repositoryID != null) {
-//            System.out.println("2");
-//            System.out.println(repositoryID);
             Map<String, Object> queryResult = query(searchType, keyword, repositoryID.toString(), offset, limit);
             if (queryResult != null) {
                 rows = (List<Storage>) queryResult.get("data");
@@ -172,8 +170,9 @@ public class StorageManageHandler {
             }
         }
 
-        if (rows == null)
+        if (rows == null) {
             rows = new ArrayList<>();
+        }
 
         // 设置 Response
         responseContent.setCustomerInfo("rows", rows);
@@ -199,12 +198,15 @@ public class StorageManageHandler {
         String repositoryID = (String) params.get("repositoryID");
         String number = (String) params.get("number");
 
-        if (StringUtils.isBlank(goodsID) || !StringUtils.isNumeric(goodsID))
+        if (StringUtils.isBlank(goodsID) || !StringUtils.isNumeric(goodsID)) {
             isAvailable = false;
-        if (StringUtils.isBlank(repositoryID) || !StringUtils.isNumeric(repositoryID))
+        }
+        if (StringUtils.isBlank(repositoryID) || !StringUtils.isNumeric(repositoryID)) {
             isAvailable = false;
-        if (StringUtils.isBlank(number) || !StringUtils.isNumeric(number))
+        }
+        if (StringUtils.isBlank(number) || !StringUtils.isNumeric(number)) {
             isAvailable = false;
+        }
 
         if (isAvailable) {
             isSuccess = storageManageService.addNewStorage(Integer.valueOf(goodsID), Integer.valueOf(repositoryID),
@@ -234,12 +236,15 @@ public class StorageManageHandler {
         String repositoryID = (String) params.get("repositoryID");
         String number = (String) params.get("number");
 
-        if (StringUtils.isBlank(goodsID) || !StringUtils.isNumeric(goodsID))
+        if (StringUtils.isBlank(goodsID) || !StringUtils.isNumeric(goodsID)) {
             isAvailable = false;
-        if (StringUtils.isBlank(repositoryID) || !StringUtils.isNumeric(repositoryID))
+        }
+        if (StringUtils.isBlank(repositoryID) || !StringUtils.isNumeric(repositoryID)) {
             isAvailable = false;
-        if (StringUtils.isBlank(number) || !StringUtils.isNumeric(number))
+        }
+        if (StringUtils.isBlank(number) || !StringUtils.isNumeric(number)) {
             isAvailable = false;
+        }
 
         if (isAvailable) {
             result = storageManageService.updateStorage(Integer.valueOf(goodsID), Integer.valueOf(repositoryID),
@@ -269,10 +274,12 @@ public class StorageManageHandler {
         String result = Response.RESPONSE_RESULT_ERROR;
         boolean isAvailable = true;
 
-        if (StringUtils.isBlank(goodsID) || !StringUtils.isNumeric(goodsID))
+        if (StringUtils.isBlank(goodsID) || !StringUtils.isNumeric(goodsID)) {
             isAvailable = false;
-        if (StringUtils.isBlank(repositoryID) || !StringUtils.isNumeric(repositoryID))
+        }
+        if (StringUtils.isBlank(repositoryID) || !StringUtils.isNumeric(repositoryID)) {
             isAvailable = false;
+        }
 
         if (isAvailable) {
             result = storageManageService.deleteStorage(Integer.valueOf(goodsID), Integer.valueOf(repositoryID))
@@ -337,13 +344,15 @@ public class StorageManageHandler {
 
         HttpSession session = request.getSession();
         Integer sessionRepositoryBelong = (Integer) session.getAttribute("repositoryBelong");
-        if (sessionRepositoryBelong != null && !sessionRepositoryBelong.equals("none"))
+        if (sessionRepositoryBelong != null && !sessionRepositoryBelong.equals("none")) {
             repositoryBelong = sessionRepositoryBelong.toString();
+        }
 
         List<Storage> storageList = null;
         Map<String, Object> queryResult = query(searchType, keyword, repositoryBelong, -1, -1);
-        if (queryResult != null)
+        if (queryResult != null) {
             storageList = (List<Storage>) queryResult.get("data");
+        }
 
         File file = storageManageService.exportStorage(storageList);
         if (file != null) {

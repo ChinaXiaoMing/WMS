@@ -64,7 +64,7 @@
             success: function (response) {
                 //组装option
                 $.each(response.rows, function (index, elem) {
-                    $('#search_input_repository').append("<option value='" + elem.id + "'>" + elem.id + "号仓库</option>");
+                    $('#search_input_repository').append("<option value='" + elem.id + "'>" + elem.name + "</option>");
                 })
             },
             error: function (response) {
@@ -124,8 +124,8 @@
                             visible: false
                         },
                         {
-                            field: 'repositoryID',
-                            title: '仓库ID'
+                            field: 'repoName',
+                            title: '仓库名称'
                         },
                         {
                             field: 'number',
@@ -182,8 +182,8 @@
 
         // load info
         $('#storage_form_edit').bootstrapValidator("resetForm", true);
-        $('#storage_goodsID_edit').text(row.goodsID);
-        $('#storage_repositoryID_edit').text(row.repositoryID);
+        $('#storage_goodsName_edit').text(row.goodsName);
+        $('#storage_repositoryID_edit').text(row.repoName);
         $('#storage_number_edit').val(row.number);
     }
 
@@ -201,14 +201,14 @@
                 storage_goodsID: {
                     validators: {
                         notEmpty: {
-                            message: '货物ID不能为空'
+                            message: '货物描述不能为空'
                         }
                     }
                 },
                 storage_repositoryID: {
                     validators: {
                         notEmpty: {
-                            message: '仓库ID不能为空'
+                            message: '仓库名称不能为空'
                         }
                     }
                 },
@@ -235,8 +235,8 @@
                 }
 
                 var data = {
-                    goodsID: $('#storage_goodsID_edit').text(),
-                    repositoryID: $('#storage_repositoryID_edit').text(),
+                    goodsName: $('#storage_goodsName_edit').text(),
+                    repoName: $('#storage_repositoryID_edit').text(),
                     number: $('#storage_number_edit').val(),
                 }
 
@@ -591,7 +591,7 @@
                         <form class="form-horizontal" role="form" id="storage_form"
                               style="margin-top: 25px">
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物ID：</span>
+                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物描述：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="storage_goodsID"
@@ -599,7 +599,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>仓库ID：</span>
+                                <label for="" class="control-label col-md-4 col-sm-4"> <span>仓库名称：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="storage_repositoryID"
@@ -893,14 +893,14 @@
                         <form class="form-horizontal" role="form" id="storage_form_edit"
                               style="margin-top: 25px">
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物ID：</span>
+                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物描述：</span>
                                 </label>
                                 <div class="col-md-4 col-sm-4">
-                                    <p id="storage_goodsID_edit" class="form-control-static"></p>
+                                    <p id="storage_goodsName_edit" class="form-control-static"></p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>仓库ID：</span>
+                                <label for="" class="control-label col-md-4 col-sm-4"> <span>仓库名称：</span>
                                 </label>
                                 <div class="col-md-4 col-sm-4">
                                     <p id="storage_repositoryID_edit" class="form-control-static"></p>
