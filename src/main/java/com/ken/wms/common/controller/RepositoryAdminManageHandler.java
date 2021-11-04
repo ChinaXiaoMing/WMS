@@ -85,9 +85,8 @@ public class RepositoryAdminManageHandler {
      */
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "getRepositoryAdminList", method = RequestMethod.GET)
-    public
     @ResponseBody
-    Map<String, Object> getRepositoryAdmin(@RequestParam("searchType") String searchType,
+    public Map<String, Object> getRepositoryAdmin(@RequestParam("searchType") String searchType,
                                            @RequestParam("keyWord") String keyWord, @RequestParam("offset") int offset,
                                            @RequestParam("limit") int limit) throws RepositoryAdminManageServiceException {
         // 初始化 Response

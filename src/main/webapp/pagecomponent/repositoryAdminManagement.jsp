@@ -76,27 +76,17 @@
                             title: '仓库管理员ID'
                             //sortable: true
                         },
+                      {
+                        field: 'username',
+                        title: '仓库管理员用户名'
+                      },
                         {
                             field: 'name',
                             title: '仓库管理员姓名'
                         },
                         {
-                            field: 'sex',
-                            title: '性别'
-                        },
-                        {
                             field: 'tel',
                             title: '联系电话',
-                            visible: false
-                        },
-                        {
-                            field: 'address',
-                            title: '地址',
-                            visible: false
-                        },
-                        {
-                            field: 'birth',
-                            title: '出生日期',
                             visible: false
                         },
                         {
@@ -155,11 +145,9 @@
 
         // load info
         $('#repositoryAdmin_form_edit').bootstrapValidator("resetForm", true);
+      $('#repositoryAdmin_username_edit').val(row.username);
         $('#repositoryAdmin_name_edit').val(row.name);
-        $('#repositoryAdmin_sex_edit').val(row.sex);
         $('#repositoryAdmin_tel_edit').val(row.tel);
-        $('#repositoryAdmin_address_edit').val(row.address);
-        $('#repositoryAdmin_birth_edit').val(row.birth);
         $('#repositoryAdmin_repoID_edit').text("");
 
         // 加载未分配仓库信息
@@ -178,7 +166,7 @@
                 data = response.data;
                 unassignRepoCache = data;
                 $.each(data, function (index, element) {
-                    $('#repositoryAdmin_repoID_edit').append("<option value='" + element.id + "'>" + element.id + "</option>");
+                    $('#repositoryAdmin_repoID_edit').append("<option value='" + element.id + "'>" + element.name + "</option>");
                 })
             }
         });
@@ -224,22 +212,7 @@
                             message: '仓库管理员联系电话不能为空'
                         }
                     }
-                },
-                repositoryAdmin_address: {
-                    validators: {
-                        notEmpty: {
-                            message: '仓库管理员联系地址不能为空'
-                        }
-                    }
-                },
-                repositoryAdmin_birth: {
-                    validators: {
-                        notEmpty: {
-                            message: '仓库管理员出身日期不能为空'
-                        }
-                    }
                 }
-
             }
         })
     }
@@ -258,10 +231,7 @@
                 var data = {
                     id: selectID,
                     name: $('#repositoryAdmin_name_edit').val(),
-                    sex: $('#repositoryAdmin_sex_edit').val(),
                     tel: $('#repositoryAdmin_tel_edit').val(),
-                    address: $('#repositoryAdmin_address_edit').val(),
-                    birth: $('#repositoryAdmin_birth_edit').val(),
                     repositoryBelongID: $('#repositoryAdmin_repoID_edit').val()
                 }
 
@@ -349,11 +319,9 @@
 
         $('#add_modal_submit').click(function () {
             var data = {
+                username: $('#repositoryAdmin_username').val(),
                 name: $('#repositoryAdmin_name').val(),
-                tel: $('#repositoryAdmin_tel').val(),
-                sex: $('#repositoryAdmin_sex').val(),
-                address: $('#repositoryAdmin_address').val(),
-                birth: $('#repositoryAdmin_birth').val()
+                tel: $('#repositoryAdmin_tel').val()
             }
             // ajax
             $.ajax({
@@ -368,7 +336,7 @@
                     var type;
                     if (response.result == "success") {
                         type = "success";
-                        msg = "仓库管理员添加成功<br><p>(注意：仓库管理员的系统初始密码为该ID)</p>";
+                        msg = "仓库管理员添加成功<br><p>(注意：仓库管理员的系统初始密码为123456)</p>";
                     } else if (response.result == "error") {
                         type = "error";
                         msg = "仓库管理员添加失败";
@@ -523,10 +491,6 @@
         $('#submit').addClass("hide");
         $('#confirm').addClass("hide");
 
-        //$('#file').wrap('<form>').closest('form').get(0).reset();
-        //$('#file').unwrap();
-        //var control = $('#file');
-        //control.replaceWith( control = control.clone( true ) );
         $('#file').on("change", function () {
             $('#previous').addClass("hide");
             $('#next').addClass("hide");
@@ -586,35 +550,6 @@
                     </div>
                 </div>
             </div>
-            <!--
-            <div class="col-md-2">
-                <div class="btn-group">
-                    <button class="btn btn-default dropdown-toggle"
-                        data-toggle="dropdown">
-                        <span id="search_type">查询方式</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="javascript:void(0)" class="dropOption">仓库管理员ID</a></li>
-                        <li><a href="javascript:void(0)" class="dropOption">仓库管理员姓名</a></li>
-                        <li><a href="javascript:void(0)" class="dropOption">仓库ID</a></li>
-                        <li><a href="javascript:void(0)" class="dropOption">所有</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div>
-                    <div class="col-md-3">
-                        <input id="search_input" type="text" class="form-control"
-                            placeholder="查询仓库管理员信息">
-                    </div>
-                    <div class="col-md-2">
-                        <button id="search_button" class="btn btn-success">
-                            <span class="glyphicon glyphicon-search"></span> <span>查询</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-             -->
         </div>
 
         <div class="row" style="margin-top: 25px">
@@ -650,7 +585,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">添加仓库管理员信息</h4>
+                <h4 class="modal-title">添加仓库管理员信息</h4>
             </div>
             <div class="modal-body">
                 <!-- 模态框的内容 -->
@@ -660,7 +595,17 @@
                         <form class="form-horizontal" role="form" id="repositoryAdmin_form"
                               style="margin-top: 25px">
                             <div class="form-group">
-                                <label for="" class="control-label col-md-5 col-sm-5"> <span>仓库管理员姓名：</span>
+                                <label for="repositoryAdmin_username" class="control-label col-md-5 col-sm-5">
+                                    <span>仓库管理员用户名：</span>
+                                </label>
+                                <div class="col-md-7 col-sm-7">
+                                    <input type="text" class="form-control" id="repositoryAdmin_username"
+                                           name="repositoryAdmin_username" placeholder="仓库管理员用户名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="repositoryAdmin_name" class="control-label col-md-5 col-sm-5">
+                                    <span>仓库管理员姓名：</span>
                                 </label>
                                 <div class="col-md-7 col-sm-7">
                                     <input type="text" class="form-control" id="repositoryAdmin_name"
@@ -668,38 +613,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-5 col-sm-5"> <span>仓库管理员性别:</span>
-                                </label>
-                                <div class="col-md-5 col-sm-5">
-                                    <select name="" class="form-control" id="repositoryAdmin_sex">
-                                        <option value="男">男性</option>
-                                        <option value="女">女性</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="control-label col-md-5 col-sm-5"> <span>联系电话：</span>
+                                <label for="repositoryAdmin_tel" class="control-label col-md-5 col-sm-5">
+                                    <span>联系电话：</span>
                                 </label>
                                 <div class="col-md-7 col-sm-7">
                                     <input type="text" class="form-control" id="repositoryAdmin_tel"
                                            name="repositoryAdmin_tel" placeholder="联系电话">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="control-label col-md-5 col-sm-5"> <span>联系地址：</span>
-                                </label>
-                                <div class="col-md-7 col-sm-7">
-                                    <input type="text" class="form-control" id="repositoryAdmin_address"
-                                           name="repositoryAdmin_address" placeholder="联系地址">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="BirthDate" class="control-label col-md-5 col-sm-5">
-                                    <span>出生日期:</span>
-                                </label>
-                                <div class="col-md-7 col-sm-7">
-                                    <input class="form_date form-control" value="" id="repositoryAdmin_birth"
-                                           name="repositoryAdmin_birth" placeholder="出生日期">
                                 </div>
                             </div>
                         </form>
@@ -729,7 +648,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">导入仓库管理员信息</h4>
+                <h4 class="modal-title">导入仓库管理员信息</h4>
             </div>
             <div class="modal-body">
                 <div id="step1">
@@ -774,7 +693,7 @@
                                 <div style="margin-top: 30px; margin-buttom: 15px">
 									<span class="btn btn-info btn-file"> <span> <span
                                             class="glyphicon glyphicon-upload"></span> <span>上传文件</span>
-									</span> 
+									</span>
 									<form id="import_file_upload"><input type="file" id="file" name="file"></form>
 									</span>
                                 </div>
@@ -856,7 +775,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">导出客户信息</h4>
+                <h4 class="modal-title">导出客户信息</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -891,7 +810,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">信息</h4>
+                <h4 class="modal-title">信息</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -970,7 +889,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">编辑仓库管理员信息</h4>
+                <h4 class="modal-title">编辑仓库管理员信息</h4>
             </div>
             <div class="modal-body">
                 <!-- 模态框的内容 -->
@@ -980,7 +899,17 @@
                         <form class="form-horizontal" role="form" id="repositoryAdmin_form_edit"
                               style="margin-top: 25px">
                             <div class="form-group">
-                                <label for="" class="control-label col-md-5 col-sm-5"> <span>仓库管理员姓名：</span>
+                                <label for="repositoryAdmin_username_edit" class="control-label col-md-5 col-sm-5">
+                                    <span>仓库管理员用户名：</span>
+                                </label>
+                                <div class="col-md-7 col-sm-7">
+                                    <input type="text" class="form-control" id="repositoryAdmin_username_edit"
+                                           name="repositoryAdmin_name" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="repositoryAdmin_name_edit" class="control-label col-md-5 col-sm-5">
+                                    <span>仓库管理员姓名：</span>
                                 </label>
                                 <div class="col-md-7 col-sm-7">
                                     <input type="text" class="form-control" id="repositoryAdmin_name_edit"
@@ -988,17 +917,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-5 col-sm-5"> <span>仓库管理员性别:</span>
-                                </label>
-                                <div class="col-md-5 col-sm-5">
-                                    <select name="" class="form-control" id="repositoryAdmin_sex_edit">
-                                        <option value="男">男性</option>
-                                        <option value="女">女性</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="control-label col-md-5 col-sm-5"> <span>联系电话：</span>
+                                <label for="repositoryAdmin_tel_edit" class="control-label col-md-5 col-sm-5">
+                                    <span>联系电话：</span>
                                 </label>
                                 <div class="col-md-7 col-sm-7">
                                     <input type="text" class="form-control" id="repositoryAdmin_tel_edit"
@@ -1006,24 +926,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-5 col-sm-5"> <span>联系地址：</span>
-                                </label>
-                                <div class="col-md-7 col-sm-7">
-                                    <input type="text" class="form-control" id="repositoryAdmin_address_edit"
-                                           name="repositoryAdmin_address" placeholder="联系地址">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="BirthDate" class="control-label col-md-5 col-sm-5">
-                                    <span>出生日期:</span>
-                                </label>
-                                <div class="col-md-7 col-sm-7">
-                                    <input class="form_date form-control" value="" id="repositoryAdmin_birth_edit"
-                                           name="repositoryAdmin_birth" placeholder="出生日期">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="control-label col-md-5 col-sm-5"> <span>所属仓库ID：</span>
+                                <label for="repositoryAdmin_repoID_edit" class="control-label col-md-5 col-sm-5">
+                                    <span>所属仓库：</span>
                                 </label>
                                 <div class="col-md-7 col-sm-7">
                                     <select name="" class="form-control" id="repositoryAdmin_repoID_edit">

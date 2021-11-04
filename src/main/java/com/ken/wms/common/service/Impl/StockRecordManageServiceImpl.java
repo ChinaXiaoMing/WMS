@@ -1,5 +1,6 @@
 package com.ken.wms.common.service.Impl;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ken.wms.common.service.Interface.StockRecordManageService;
@@ -11,6 +12,8 @@ import com.ken.wms.exception.StorageManageServiceException;
 import com.ken.wms.util.aop.UserOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.exceptions.PersistenceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,8 @@ import java.util.*;
 
 @Service
 public class StockRecordManageServiceImpl implements StockRecordManageService {
+
+    private final Logger log = LoggerFactory.getLogger(StockRecordManageServiceImpl.class);
 
     @Autowired
     private SupplierMapper supplierMapper;
@@ -51,15 +56,18 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
     public boolean stockInOperation(Integer supplierID, Integer goodsID, Integer repositoryID, long number, String personInCharge) throws StockRecordManageServiceException {
 
         // ID对应的记录是否存在
-        if (!(supplierValidate(supplierID) && goodsValidate(goodsID) && repositoryValidate(repositoryID)))
+        if (!(supplierValidate(supplierID) && goodsValidate(goodsID) && repositoryValidate(repositoryID))) {
             return false;
+        }
 
-        if (personInCharge == null)
+        if (personInCharge == null) {
             return false;
+        }
 
         // 检查入库数量有效性
-        if (number < 0)
+        if (number < 0) {
             return false;
+        }
 
         try {
             // 更新库存记录
@@ -98,12 +106,14 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
     public boolean stockOutOperation(Integer customerID, Integer goodsID, Integer repositoryID, long number, String personInCharge) throws StockRecordManageServiceException {
 
         // 检查ID对应的记录是否存在
-        if (!(customerValidate(customerID) && goodsValidate(goodsID) && repositoryValidate(repositoryID)))
+        if (!(customerValidate(customerID) && goodsValidate(goodsID) && repositoryValidate(repositoryID))) {
             return false;
+        }
 
         // 检查出库数量范围是否有效
-        if (number < 0)
+        if (number < 0) {
             return false;
+        }
 
         try {
             // 更新库存信息
@@ -155,14 +165,16 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
      */
     @SuppressWarnings("unchecked")
     @Override
-    public Map<String, Object> selectStockRecord(Integer repositoryID, String startDateStr, String endDateStr, String searchType, int offset, int limit) throws StockRecordManageServiceException {
+    public Map<String, Object> selectStockRecord(Integer repositoryID, String startDateStr, String endDateStr,
+                                                 String searchType, int offset, int limit) throws StockRecordManageServiceException {
         // 初始化结果集
         Map<String, Object> resultSet = new HashMap<>();
         long total = 0;
 
         // 检查传入参数
-        if (repositoryID == null || searchType == null)
+        if (repositoryID == null || searchType == null) {
             throw new StockRecordManageServiceException("exception");
+        }
 
         // 转换 Date 对象
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -170,8 +182,9 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
         Date endDate = null;
         Date newEndDate = null;
         try {
-            if (StringUtils.isNotEmpty(startDateStr))
+            if (StringUtils.isNotEmpty(startDateStr)) {
                 startDate = dateFormat.parse(startDateStr);
+            }
             if (StringUtils.isNotEmpty(endDateStr)) {
                 endDate = dateFormat.parse(endDateStr);
                 newEndDate = new Date(endDate.getTime() + (24 * 60 * 60 * 1000) - 1);
@@ -242,10 +255,12 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
             }
         }
 
-        if (stockInRecordDOS != null)
+        if (stockInRecordDOS != null) {
             stockInRecordDOS.forEach(stockInDO -> stockRecordDTOS.add(stockInRecordConvertToStockRecordDTO(stockInDO)));
-        if (stockOutRecordDOS != null)
+        }
+        if (stockOutRecordDOS != null) {
             stockOutRecordDOS.forEach(stockOutDO -> stockRecordDTOS.add(stockOutDoConvertToStockRecordDTO(stockOutDO)));
+        }
 
         resultSet.put("data", stockRecordDTOS);
         resultSet.put("total", total);
@@ -269,24 +284,29 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
         boolean isPagination = true;
 
         // 检查是否需要分页查询
-        if (offset < 0 || limit < 0)
+        if (offset < 0 || limit < 0) {
             isPagination = false;
+        }
 
         // 查询记录
         try {
             if (isPagination) {
                 PageHelper.offsetPage(offset, limit);
+                // 入库记录查询
                 stockInRecords = stockinMapper.selectByRepositoryIDAndDate(repositoryID, startDate, endDate);
-                if (stockInRecords != null)
+                if (stockInRecords != null) {
                     stockInTotal = new PageInfo<>(stockInRecords).getTotal();
-                else
+                } else {
                     stockInRecords = new ArrayList<>(10);
+                }
             } else {
+                // 入库记录查询
                 stockInRecords = stockinMapper.selectByRepositoryIDAndDate(repositoryID, startDate, endDate);
-                if (stockInRecords != null)
+                if (stockInRecords != null) {
                     stockInTotal = stockInRecords.size();
-                else
+                } else {
                     stockInRecords = new ArrayList<>(10);
+                }
             }
         } catch (PersistenceException e) {
             throw new StockRecordManageServiceException(e);
@@ -322,16 +342,18 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
             if (isPagination) {
                 PageHelper.offsetPage(offset, limit);
                 stockOutRecords = stockOutMapper.selectByRepositoryIDAndDate(repositoryID, startDate, endDate);
-                if (stockOutRecords != null)
+                if (stockOutRecords != null) {
                     stockOutRecordTotal = new PageInfo<>(stockOutRecords).getTotal();
-                else
+                } else {
                     stockOutRecords = new ArrayList<>(10);
+                }
             } else {
                 stockOutRecords = stockOutMapper.selectByRepositoryIDAndDate(repositoryID, startDate, endDate);
-                if (stockOutRecords != null)
+                if (stockOutRecords != null) {
                     stockOutRecordTotal = stockOutRecords.size();
-                else
+                } else {
                     stockOutRecords = new ArrayList<>(10);
+                }
             }
         } catch (PersistenceException e) {
             throw new StockRecordManageServiceException(e);
@@ -342,7 +364,7 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
         return result;
     }
 
-    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-hh-mm");
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * 将 StockInDO 转换为 StockRecordDTO
@@ -359,6 +381,7 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
         stockRecordDTO.setTime(dateFormat.format(stockInDO.getTime()));
         stockRecordDTO.setRepositoryID(stockInDO.getRepositoryID());
         stockRecordDTO.setPersonInCharge(stockInDO.getPersonInCharge());
+        stockRecordDTO.setRepoName(stockInDO.getRepoName());
         stockRecordDTO.setType("入库");
         return stockRecordDTO;
     }
@@ -378,6 +401,7 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
         stockRecordDTO.setTime(dateFormat.format(stockOutDO.getTime()));
         stockRecordDTO.setRepositoryID(stockOutDO.getRepositoryID());
         stockRecordDTO.setPersonInCharge(stockOutDO.getPersonInCharge());
+        stockRecordDTO.setRepoName(stockOutDO.getRepoName());
         stockRecordDTO.setType("出库");
         return stockRecordDTO;
     }

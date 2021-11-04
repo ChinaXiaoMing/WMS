@@ -1,6 +1,9 @@
 package com.ken.wms.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -34,9 +37,14 @@ public class StockInDO {
     private String goodName;
 
     /**
-     * 入库仓库ID
+     * 出/入库仓库ID
      */
     private Integer repositoryID;
+
+    /**
+     * 出/入库仓库名称
+     */
+    private String repoName;
 
     /**
      * 入库数量
@@ -125,11 +133,27 @@ public class StockInDO {
         this.personInCharge = personInCharge;
     }
 
-    @Override
-    public String toString() {
-        return "StockInDO [id=" + id + ", supplierID=" + supplierID + ", supplierName=" + supplierName + ", goodID="
-                + goodID + ", goodName=" + goodName + ", repositoryID=" + repositoryID + ", number=" + number
-                + ", time=" + time + ", personInCharge=" + personInCharge + "]";
+    public String getRepoName() {
+        return repoName;
     }
 
+    public void setRepoName(String repoName) {
+        this.repoName = repoName;
+    }
+
+    @Override
+    public String toString() {
+        return "StockInDO{" +
+                "id=" + id +
+                ", supplierID=" + supplierID +
+                ", supplierName='" + supplierName + '\'' +
+                ", goodID=" + goodID +
+                ", goodName='" + goodName + '\'' +
+                ", repositoryID=" + repositoryID +
+                ", repoName='" + repoName + '\'' +
+                ", number=" + number +
+                ", time=" + time +
+                ", personInCharge='" + personInCharge + '\'' +
+                '}';
+    }
 }

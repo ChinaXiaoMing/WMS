@@ -196,8 +196,9 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
                     // 为仓库管理员创建账户
                     UserInfoDTO userInfo = new UserInfoDTO();
                     userInfo.setUserID(userID);
-                    userInfo.setUserName(repositoryAdmin.getName());
-                    userInfo.setPassword(repositoryAdmin.getId().toString());
+                    userInfo.setUserName(repositoryAdmin.getUsername());
+                    // 设置初始密码为123456
+                    userInfo.setPassword("123456");
                     userInfo.setRole(new ArrayList<>(Collections.singletonList("commonsAdmin")));
 
                     // 添加新创建的仓库管理员账户信息
@@ -224,14 +225,16 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
         if (repositoryAdmin != null) {
             try {
                 // 检查属性
-                if (!repositoryAdminCheck(repositoryAdmin))
+                if (!repositoryAdminCheck(repositoryAdmin)) {
                     return false;
+                }
 
                 // 若有指派的仓库则检查
                 if (repositoryAdmin.getRepositoryBelongID() != null) {
                     RepositoryAdmin rAdminFromDB = repositoryAdminMapper.selectByRepositoryID(repositoryAdmin.getRepositoryBelongID());
-                    if (rAdminFromDB != null && !Objects.equals(rAdminFromDB.getId(), repositoryAdmin.getId()))
+                    if (rAdminFromDB != null && !Objects.equals(rAdminFromDB.getId(), repositoryAdmin.getId())) {
                         return false;
+                    }
                 }
 
                 // 更新
@@ -241,8 +244,9 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
             } catch (PersistenceException e) {
                 throw new RepositoryAdminManageServiceException(e);
             }
-        } else
+        } else {
             return false;
+        }
 
     }
 
@@ -368,8 +372,8 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
      */
     private boolean repositoryAdminCheck(RepositoryAdmin repositoryAdmin) {
 
-        return repositoryAdmin.getName() != null && repositoryAdmin.getSex() != null && repositoryAdmin.getTel() != null
-                && repositoryAdmin.getBirth() != null && repositoryAdmin.getBirth() != null;
+        return repositoryAdmin.getName() != null && repositoryAdmin.getTel() != null &&
+                repositoryAdmin.getUsername() != null;
     }
 
     /**

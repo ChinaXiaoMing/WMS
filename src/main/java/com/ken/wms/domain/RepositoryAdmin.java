@@ -7,13 +7,38 @@ import java.sql.Date;
  */
 public class RepositoryAdmin {
 
-    private Integer id;// 仓库管理员ID
-    private String name;// 姓名
-    private String sex;// 性别
-    private String tel;// 联系电话
-    private String address;// 地址
-    private Date birth;// 出生日期
-    private Integer repositoryBelongID;// 所属仓库ID
+    /**
+     * 仓库管理员ID
+     */
+    private Integer id;
+    /**
+     * 仓库管理员用户名
+     */
+    private String username;
+    /**
+     * 姓名
+     */
+    private String name;
+    /**
+     * 姓名
+     */
+    private String sex;
+    /**
+     * 联系电话
+     */
+    private String tel;
+    /**
+     * 地址
+     */
+    private String address;
+    /**
+     * 出生日期
+     */
+    private Date birth;
+    /**
+     * 所属仓库ID
+     */
+    private Integer repositoryBelongID;
 
 
     public Integer getRepositoryBelongID() {
@@ -30,6 +55,14 @@ public class RepositoryAdmin {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {

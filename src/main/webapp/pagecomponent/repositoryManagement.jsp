@@ -186,13 +186,6 @@
                             message: '仓库状态不能为空'
                         }
                     }
-                },
-                repository_area: {
-                    validators: {
-                        notEmpty: {
-                            message: '仓库面积不能为空'
-                        }
-                    }
                 }
             }
         })
@@ -292,7 +285,6 @@
                 name: $('#repository_name').val(),
                 address: $('#repository_address').val(),
                 status: $('#repository_status').val(),
-                area: $('#repository_area').val(),
                 desc: $('#repository_desc').val(),
             }
             // ajax
@@ -320,7 +312,6 @@
                     $('#repository_name').val("");
                     $('#repository_address').val("");
                     $('#repository_ststus').val("");
-                    $('#repository_area').val("");
                     $('#repository_desc').val("");
                     $('#repository_form').bootstrapValidator("resetForm", true);
                 },
@@ -556,7 +547,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">添加仓库信息</h4>
+                <h4 class="modal-title">添加仓库信息</h4>
             </div>
             <div class="modal-body">
                 <!-- 模态框的内容 -->
@@ -566,7 +557,8 @@
                         <form class="form-horizontal" role="form" id="repository_form"
                               style="margin-top: 25px">
                             <div class="form-group">
-                                <label for="repository_name" class="control-label col-md-4 col-sm-4"> <span>仓库名称：</span>
+                                <label for="repository_name" class="control-label col-md-4 col-sm-4">
+                                    <span>仓库名称：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="repository_name"
@@ -574,7 +566,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>仓库地址：</span>
+                                <label for="repository_address" class="control-label col-md-4 col-sm-4">
+                                    <span>仓库地址：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="repository_address"
@@ -582,15 +575,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>仓库面积：</span>
-                                </label>
-                                <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" id="repository_area"
-                                           name="repository_area" placeholder="仓库面积">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>仓库状态：</span>
+                                <label for="repository_status" class="control-label col-md-4 col-sm-4">
+                                    <span>仓库状态：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="repository_status"
@@ -598,7 +584,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>仓库描述：</span>
+                                <label for="repository_desc" class="control-label col-md-4 col-sm-4">
+                                    <span>仓库描述：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
 									<textarea class="form-control" id="repository_desc"
@@ -633,7 +620,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">导入仓库信息</h4>
+                <h4 class="modal-title">导入仓库信息</h4>
             </div>
             <div class="modal-body">
                 <div id="step1">
@@ -758,7 +745,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">导出仓库信息</h4>
+                <h4 class="modal-title">导出仓库信息</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -794,7 +781,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">信息</h4>
+                <h4 class="modal-title">信息</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -837,7 +824,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">警告</h4>
+                <h4 class="modal-title">警告</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -896,15 +883,6 @@
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="repository_address_edit"
                                            name="repository_address" placeholder="仓库地址">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>仓库面积：</span>
-                                </label>
-                                <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control"
-                                           id="repository_area_edit" name="repository_area"
-                                           placeholder="仓库面积">
                                 </div>
                             </div>
                             <div class="form-group">

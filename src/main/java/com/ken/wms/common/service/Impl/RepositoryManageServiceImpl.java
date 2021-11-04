@@ -4,8 +4,16 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ken.wms.common.service.Interface.RepositoryService;
 import com.ken.wms.common.util.ExcelUtil;
-import com.ken.wms.dao.*;
-import com.ken.wms.domain.*;
+import com.ken.wms.dao.RepositoryAdminMapper;
+import com.ken.wms.dao.RepositoryMapper;
+import com.ken.wms.dao.StockInMapper;
+import com.ken.wms.dao.StockOutMapper;
+import com.ken.wms.dao.StorageMapper;
+import com.ken.wms.domain.Repository;
+import com.ken.wms.domain.RepositoryAdmin;
+import com.ken.wms.domain.StockInDO;
+import com.ken.wms.domain.StockOutDO;
+import com.ken.wms.domain.Storage;
 import com.ken.wms.exception.RepositoryManageServiceException;
 import com.ken.wms.util.aop.UserOperation;
 import org.apache.ibatis.exceptions.PersistenceException;
@@ -97,14 +105,16 @@ public class RepositoryManageServiceImpl implements RepositoryService {
                 if (repositories != null) {
                     PageInfo<Repository> pageInfo = new PageInfo<>(repositories);
                     total = pageInfo.getTotal();
-                } else
+                } else {
                     repositories = new ArrayList<>();
+                }
             } else {
                 repositories = repositoryMapper.selectByAddress(address);
-                if (repositories != null)
+                if (repositories != null) {
                     total = repositories.size();
-                else
+                } else {
                     repositories = new ArrayList<>();
+                }
             }
         } catch (PersistenceException e) {
             throw new RepositoryManageServiceException(e);
@@ -153,14 +163,16 @@ public class RepositoryManageServiceImpl implements RepositoryService {
                 if (repositories != null) {
                     PageInfo<Repository> pageInfo = new PageInfo<>(repositories);
                     total = pageInfo.getTotal();
-                } else
+                } else {
                     repositories = new ArrayList<>();
+                }
             } else {
                 repositories = repositoryMapper.selectAll();
-                if (repositories != null)
+                if (repositories != null) {
                     total = repositories.size();
-                else
+                } else {
                     repositories = new ArrayList<>();
+                }
             }
         } catch (PersistenceException e) {
             throw new RepositoryManageServiceException(e);
@@ -188,7 +200,7 @@ public class RepositoryManageServiceImpl implements RepositoryService {
      * @return 若仓库信息满足要求则返回true，否则返回false
      */
     private boolean repositoryCheck(Repository repository) {
-        return repository.getAddress() != null && repository.getStatus() != null && repository.getArea() != null;
+        return repository.getAddress() != null && repository.getStatus() != null && repository.getName() != null;
     }
 
     /**
@@ -205,8 +217,9 @@ public class RepositoryManageServiceImpl implements RepositoryService {
         if (repository != null) {
             try {
                 // 有效性验证
-                if (repositoryCheck(repository))
+                if (repositoryCheck(repository)) {
                     repositoryMapper.insert(repository);
+                }
                 if (repository.getId() != null) {
                     return true;
                 }
@@ -257,23 +270,27 @@ public class RepositoryManageServiceImpl implements RepositoryService {
         try {
             // 检查是否存在出库记录
             List<StockOutDO> stockOutDOList = stockOutMapper.selectByRepositoryID(repositoryId);
-            if (stockOutDOList != null && !stockOutDOList.isEmpty())
+            if (stockOutDOList != null && !stockOutDOList.isEmpty()) {
                 return false;
+            }
 
             // 检查是否存在入库记录
             List<StockInDO> stockInDOList = stockInMapper.selectByRepositoryID(repositoryId);
-            if (stockInDOList != null && !stockInDOList.isEmpty())
+            if (stockInDOList != null && !stockInDOList.isEmpty()) {
                 return false;
+            }
 
             // 检查是否存在库存记录
             List<Storage> storageRecords = storageMapper.selectAllAndRepositoryID(repositoryId);
-            if (storageRecords != null && !storageRecords.isEmpty())
+            if (storageRecords != null && !storageRecords.isEmpty()) {
                 return false;
+            }
 
             // 检查是否已指派仓库管理员
             RepositoryAdmin repositoryAdmin = repositoryAdminMapper.selectByRepositoryID(repositoryId);
-            if (repositoryAdmin != null)
+            if (repositoryAdmin != null) {
                 return false;
+            }
 
             // 删除记录
             repositoryMapper.deleteByID(repositoryId);
@@ -309,15 +326,17 @@ public class RepositoryManageServiceImpl implements RepositoryService {
             List<Repository> availableList = new ArrayList<>();
             for (Object object : repositories) {
                 repository = (Repository) object;
-                if (repository.getAddress() != null && repository.getStatus() != null && repository.getArea() != null)
+                if (repository.getAddress() != null && repository.getStatus() != null && repository.getArea() != null) {
                     availableList.add(repository);
+                }
             }
 
             // 保存到数据库
             try {
                 available = availableList.size();
-                if (available > 0)
+                if (available > 0) {
                     repositoryMapper.insertbatch(availableList);
+                }
             } catch (PersistenceException e) {
                 throw new RepositoryManageServiceException(e);
             }
@@ -337,8 +356,9 @@ public class RepositoryManageServiceImpl implements RepositoryService {
     @UserOperation(value = "导出仓库信息")
     @Override
     public File exportRepository(List<Repository> repositories) {
-        if (repositories == null)
+        if (repositories == null) {
             return null;
+        }
 
         // 导出为文件
         return excelUtil.excelWriter(Repository.class, repositories);
@@ -362,10 +382,11 @@ public class RepositoryManageServiceImpl implements RepositoryService {
         } catch (PersistenceException e) {
             throw new RepositoryManageServiceException(e);
         }
-        if (repositories != null)
+        if (repositories != null) {
             total = repositories.size();
-        else
+        } else {
             repositories = new ArrayList<>();
+        }
 
         resultSet.put("data", repositories);
         resultSet.put("total", total);

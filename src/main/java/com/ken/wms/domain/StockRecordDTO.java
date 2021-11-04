@@ -31,6 +31,11 @@ public class StockRecordDTO {
     private Integer repositoryID;
 
     /**
+     * 出/入库仓库名称
+     */
+    private String repoName;
+
+    /**
      * 出库或入库数量
      */
     private long number;
@@ -108,6 +113,14 @@ public class StockRecordDTO {
 
     public void setPersonInCharge(String personInCharge) {
         this.personInCharge = personInCharge;
+    }
+
+    public String getRepoName() {
+        return repoName;
+    }
+
+    public void setRepoName(String repoName) {
+        this.repoName = repoName;
     }
 
     @Override

@@ -112,9 +112,8 @@ public class RepositoryManageHandler {
      */
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "getUnassignRepository", method = RequestMethod.GET)
-    public
     @ResponseBody
-    Map<String, Object> getUnassignRepository() throws RepositoryManageServiceException {
+    public Map<String, Object> getUnassignRepository() throws RepositoryManageServiceException {
         // 初始化结果集
         Map<String, Object> resultSet = new HashMap<>();
         List<Repository> data;

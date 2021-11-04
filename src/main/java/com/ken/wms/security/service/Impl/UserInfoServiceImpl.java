@@ -181,13 +181,14 @@ public class UserInfoServiceImpl implements UserInfoService {
         Integer userID = userInfoDTO.getUserID();
         String userName = userInfoDTO.getUserName();
         String password = userInfoDTO.getPassword();
-        if (userName == null || password == null)
+        if (userName == null || password == null) {
             return false;
+        }
 
         try {
             // 对密码进行加密
             String tempStr = encryptingModel.MD5(password);
-            String encryptPassword = encryptingModel.MD5(tempStr + userID.toString());
+            String encryptPassword = encryptingModel.MD5(tempStr + userName);
 
             // 创建用户信息数据实体
             UserInfoDO userInfoDO = new UserInfoDO();

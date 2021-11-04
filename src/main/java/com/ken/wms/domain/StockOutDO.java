@@ -1,6 +1,8 @@
 package com.ken.wms.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
@@ -39,6 +41,11 @@ public class StockOutDO {
     private Integer repositoryID;
 
     /**
+     * 出/入库仓库名称
+     */
+    private String repoName;
+
+    /**
      * 商品出库数量
      */
     private long number;
@@ -46,12 +53,13 @@ public class StockOutDO {
     /**
      * 出库日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date time;
 
     /**
      * 出库经手人
      */
-    private String personInCharge;// 经手人
+    private String personInCharge;
 
     public Integer getRepositoryID() {
         return repositoryID;
@@ -123,6 +131,14 @@ public class StockOutDO {
 
     public void setPersonInCharge(String personInCharge) {
         this.personInCharge = personInCharge;
+    }
+
+    public String getRepoName() {
+        return repoName;
+    }
+
+    public void setRepoName(String repoName) {
+        this.repoName = repoName;
     }
 
     @Override

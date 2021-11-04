@@ -135,11 +135,13 @@ public class StockRecordManageHandler {
                 rows = (List<StockRecordDTO>) queryResult.get("data");
                 total = (long) queryResult.get("total");
             }
-        } else
+        } else {
             responseContent.setResponseMsg("Request argument error");
+        }
 
-        if (rows == null)
+        if (rows == null) {
             rows = new ArrayList<>(0);
+        }
 
         responseContent.setCustomerInfo("rows", rows);
         responseContent.setResponseTotal(total);
