@@ -42,5 +42,6 @@
                 <![CDATA[and ACCESS_TIME <= #{endDate}]]>
             </if>
         </where>
+        order by ACCESS_TIME desc
     </select>
 </mapper>

@@ -7,72 +7,65 @@
 
     <resultMap type="com.ken.wms.domain.Goods" id="goods">
         <id property="id" column="GOOD_ID"/>
+        <result property="goodCode" column="GOOD_CODE"/>
         <result property="name" column="GOOD_NAME"/>
         <result property="type" column="GOOD_RYPE"/>
         <result property="size" column="GOOD_SIZE"/>
         <result property="value" column="GOOD_VALUE"/>
+        <result property="carNumber" column="GOOD_CAR_NUMBER"/>
+        <result property="goodImportance" column="GOOD_IMPORTANCE"/>
+        <result property="goodImage" column="GOOD_IMAGE"/>
     </resultMap>
+
+    <sql id="baseColumn">
+        GOOD_ID, GOOD_CODE, GOOD_NAME, GOOD_RYPE, GOOD_SIZE, GOOD_VALUE, GOOD_CAR_NUMBER, GOOD_IMPORTANCE, GOOD_IMAGE
+    </sql>
 
     <select id="selectAll" resultMap="goods">
         select
-        g.GOOD_ID,
-        g.GOOD_NAME,
-        g.GOOD_RYPE,
-        g.GOOD_SIZE,
-        g.GOOD_VALUE
+        <include refid="baseColumn"/>
         from
-        wms_goods g
+        wms_goods
     </select>
 
     <select id="selectById" resultMap="goods">
         select
-        g.GOOD_ID,
-        g.GOOD_NAME,
-        g.GOOD_RYPE,
-        g.GOOD_SIZE,
-        g.GOOD_VALUE
+        <include refid="baseColumn"/>
         from
-        wms_goods g
+        wms_goods
         where
-        g.GOOD_ID = #{id}
+        GOOD_ID = #{id}
     </select>
 
     <select id="selectByName" resultMap="goods">
         select
-        g.GOOD_ID,
-        g.GOOD_NAME,
-        g.GOOD_RYPE,
-        g.GOOD_SIZE,
-        g.GOOD_VALUE
+        <include refid="baseColumn"/>
         from
-        wms_goods g
+        wms_goods
         where
-        g.GOOD_NAME = #{goodsName}
+        GOOD_NAME = #{goodsName}
     </select>
 
     <select id="selectApproximateByName" resultMap="goods">
         select
-        g.GOOD_ID,
-        g.GOOD_NAME,
-        g.GOOD_RYPE,
-        g.GOOD_SIZE,
-        g.GOOD_VALUE
+        <include refid="baseColumn"/>
         from
-        wms_goods g
+        wms_goods
         where
-        g.GOOD_NAME like concat(concat('%',#{goodsName}),'%')
+        GOOD_NAME like concat(concat('%',#{goodsName}),'%')
     </select>
 
     <insert id="insert">
-        insert into wms_goods(GOOD_NAME,GOOD_RYPE,GOOD_SIZE,GOOD_VALUE)
-        values (#{name},#{type},#{size},#{value})
+        insert into wms_goods(GOOD_CODE, GOOD_NAME, GOOD_RYPE, GOOD_SIZE, GOOD_VALUE, GOOD_CAR_NUMBER, GOOD_IMPORTANCE, GOOD_IMAGE)
+        values (#{goodCode}, #{name}, #{type}, #{size}, #{value}, #{carNumber}, #{goodImportance}, #{goodImage})
     </insert>
 
     <insert id="insertBatch">
-        insert into wms_goods(GOOD_NAME,GOOD_RYPE,GOOD_SIZE,GOOD_VALUE)
+        insert into wms_goods(GOOD_CODE, GOOD_NAME, GOOD_RYPE, GOOD_SIZE, GOOD_VALUE, GOOD_CAR_NUMBER, GOOD_IMPORTANCE, GOOD_IMAGE)
         values
         <foreach collection="list" item="goods" separator=",">
-            (#{goods.name},#{goods.type},#{goods.size},#{goods.value})
+            (#{goods.goodCode},#{goods.name},#{goods.type},#{goods.size},#{goods.value}, #{goods.carNumber},
+             #{goods.goodImportance}, #{goods.goodImage})
         </foreach>
     </insert>
 
@@ -80,10 +73,14 @@
         update
         wms_goods
         set
+        GOOD_CODE = #{goodCode},
         GOOD_NAME = #{name},
         GOOD_RYPE = #{type},
         GOOD_SIZE = #{size},
-        GOOD_VALUE = #{value}
+        GOOD_VALUE = #{value},
+        GOOD_CAR_NUMBER = #{carNumber},
+        GOOD_IMPORTANCE = #{goodImportance},
+        GOOD_IMAGE = #{goodImage}
         where
         GOOD_ID = #{id}
     </update>

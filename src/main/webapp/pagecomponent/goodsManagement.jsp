@@ -73,20 +73,36 @@
                             //sortable: true
                         },
                         {
+                            field: 'goodCode',
+                            title: '物料编码'
+                        },
+                        {
                             field: 'name',
-                            title: '货物名称'
+                            title: '物料描述'
                         },
                         {
                             field: 'type',
-                            title: '货物类型'
+                            title: '物料属性'
                         },
                         {
                             field: 'size',
-                            title: '货物尺寸'
+                            title: '单位'
                         },
                         {
-                            field: 'value',
-                            title: '货物价值',
+                            field: 'carNumber',
+                            title: '车号',
+                        },
+                        {
+                            field: 'goodImportance',
+                            title: '重要性',
+                        },
+                        {
+                            field: 'goodImage',
+                            title: '物资照片',
+                            formatter: function (value, row, index) {
+                                var preview = '<button class="btn btn-info btn-sm edit"><span>预览</span></button>';
+                                return preview;
+                            }
                         },
                         {
                             field: 'operation',
@@ -99,13 +115,11 @@
                             },
                             events: {
                                 // 操作列中编辑按钮的动作
-                                'click .edit': function (e, value,
-                                                         row, index) {
+                                'click .edit': function (e, value, row, index) {
                                     selectID = row.id;
                                     rowEditOperation(row);
                                 },
-                                'click .delete': function (e,
-                                                           value, row, index) {
+                                'click .delete': function (e, value, row, index) {
                                     selectID = row.id;
                                     $('#deleteWarning_modal').modal(
                                         'show');
@@ -138,10 +152,13 @@
 
         // load info
         $('#goods_form_edit').bootstrapValidator("resetForm", true);
+        $('#goods_code_edit').val(row.goodCode);
         $('#goods_name_edit').val(row.name);
         $('#goods_type_edit').val(row.type);
         $('#goods_size_edit').val(row.size);
-        $('#goods_value_edit').val(row.value);
+        $('#goods_car_number_edit').val(row.carNumber);
+        $('#goods_importance_edit').val(row.goodImportance);
+        $('#goods_image_edit').val(row.goodImage);
     }
 
     // 添加供应商模态框数据校验
@@ -155,17 +172,17 @@
             },
             excluded: [':disabled'],
             fields: {
-                goods_name: {
+                goods_code: {
                     validators: {
                         notEmpty: {
-                            message: '货物名称不能为空'
+                            message: '物料编号不能为空'
                         }
                     }
                 },
-                goods_value: {
+                goods_name: {
                     validators: {
                         notEmpty: {
-                            message: '货物价值不能为空'
+                            message: '物料描述不能为空'
                         }
                     }
                 }
@@ -186,10 +203,13 @@
 
                 var data = {
                     id: selectID,
+                    goodCode: $('#goods_code_edit').val(),
                     name: $('#goods_name_edit').val(),
                     type: $('#goods_type_edit').val(),
                     size: $('#goods_size_edit').val(),
-                    value: $('#goods_value_edit').val(),
+                    carNumber: $('#goods_car_number_edit').val(),
+                    goodImportance: $('#goods_importance_edit').val(),
+                    goodImage: $('#goods_image_edit').val()
                 }
 
                 // ajax
@@ -262,10 +282,13 @@
 
         $('#add_modal_submit').click(function () {
             var data = {
+                goodCode: $('#goods_code').val(),
                 name: $('#goods_name').val(),
                 type: $('#goods_type').val(),
                 size: $('#goods_size').val(),
-                value: $('#goods_value').val(),
+                carNumber: $('#goods_car_number').val(),
+                goodImportance: $('#goods_importance').val(),
+                goodImage: $('#goods_image').val()
             }
             // ajax
             $.ajax({
@@ -289,10 +312,13 @@
                     tableRefresh();
 
                     // reset
+                    $('#goods_code').val("");
                     $('#goods_name').val("");
                     $('#goods_type').val("");
                     $('#goods_size').val("");
-                    $('#goods_value').val("");
+                    $('#goods_car_number').val("");
+                    $('#goods_importance').val("");
+                    $('#goods_image').val("");
                     $('#goods_form').bootstrapValidator("resetForm", true);
                 },
                 error: function (response) {
@@ -527,7 +553,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">添加货物信息</h4>
+                <h4 class="modal-title">添加货物信息</h4>
             </div>
             <div class="modal-body">
                 <!-- 模态框的内容 -->
@@ -537,35 +563,66 @@
                         <form class="form-horizontal" role="form" id="goods_form"
                               style="margin-top: 25px">
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物名称：</span>
+                                <label for="goods_code" class="control-label col-md-4 col-sm-4">
+                                    <span>物料编码：</span>
+                                </label>
+                                <div class="col-md-8 col-sm-8">
+                                    <input type="text" class="form-control" id="goods_code"
+                                           name="goods_code" placeholder="物料编码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="goods_name" class="control-label col-md-4 col-sm-4">
+                                    <span>物料描述：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="goods_name"
-                                           name="goods_name" placeholder="货物名称">
+                                           name="goods_name" placeholder="物料描述">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物类型：</span>
-                                </label>
-                                <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" id="goods_type"
-                                           name="goods_type" placeholder="货物类型">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物尺寸：</span>
+                                <label for="goods_size" class="control-label col-md-4 col-sm-4">
+                                    <span>单位：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="goods_size"
-                                           name="goods_size" placeholder="货物尺寸">
+                                           name="goods_size" placeholder="单位">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物价值：</span>
+                                <label for="goods_car_number" class="control-label col-md-4 col-sm-4">
+                                    <span>车号：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" id="goods_value"
-                                           name="goods_value" placeholder="货物价值">
+                                    <input type="text" class="form-control" id="goods_car_number"
+                                           name="goods_car_number" placeholder="车号">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="goods_type" class="control-label col-md-4 col-sm-4">
+                                    <span>物料属性：</span>
+                                </label>
+                                <div class="col-md-8 col-sm-8">
+                                    <input type="text" class="form-control" id="goods_type"
+                                           name="goods_type" placeholder="物料属性">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="goods_importance" class="control-label col-md-4 col-sm-4">
+                                    <span>重要性：</span>
+                                </label>
+                                <div class="col-md-8 col-sm-8">
+                                    <input type="text" class="form-control" id="goods_importance"
+                                           name="goods_importance" placeholder="重要性">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="goods_image" class="control-label col-md-4 col-sm-4">
+                                    <span>物资照片：</span>
+                                </label>
+                                <div class="col-md-8 col-sm-8">
+                                    <input type="text" class="form-control" id="goods_image"
+                                           name="goods_image" placeholder="物资照片">
                                 </div>
                             </div>
                         </form>
@@ -595,7 +652,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">导入货物信息</h4>
+                <h4 class="modal-title">导入货物信息</h4>
             </div>
             <div class="modal-body">
                 <div id="step1">
@@ -722,7 +779,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">导出货物信息</h4>
+                <h4 class="modal-title">导出货物信息</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -757,7 +814,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">信息</h4>
+                <h4 class="modal-title">信息</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -800,7 +857,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">警告</h4>
+                <h4 class="modal-title">警告</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -846,37 +903,66 @@
                         <form class="form-horizontal" role="form" id="goods_form_edit"
                               style="margin-top: 25px">
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物名称：</span>
+                                <label for="goods_code_edit" class="control-label col-md-4 col-sm-4">
+                                    <span>物料编码：</span>
+                                </label>
+                                <div class="col-md-8 col-sm-8">
+                                    <input type="text" class="form-control" id="goods_code_edit"
+                                           name="goods_code" placeholder="物料编码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="goods_name_edit" class="control-label col-md-4 col-sm-4">
+                                    <span>物料描述：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="goods_name_edit"
-                                           name="goods_name" placeholder="货物名称">
+                                           name="goods_name" placeholder="物料描述">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物类型：</span>
-                                </label>
-                                <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control"
-                                           id="goods_type_edit" name="goods_type"
-                                           placeholder="货物类型">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物尺寸：</span>
+                                <label for="goods_size_edit" class="control-label col-md-4 col-sm-4">
+                                    <span>单位：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="goods_size_edit"
-                                           name="goods_size" placeholder="货物尺寸">
+                                           name="goods_size" placeholder="单位">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物价值：</span>
+                                <label for="goods_car_number_edit" class="control-label col-md-4 col-sm-4">
+                                    <span>车号：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control"
-                                           id="goods_value_edit" name="goods_value"
-                                           placeholder="货物价值">
+                                    <input type="text" class="form-control" id="goods_car_number_edit"
+                                           name="goods_car_number" placeholder="车号">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="goods_type_edit" class="control-label col-md-4 col-sm-4">
+                                    <span>物料属性：</span>
+                                </label>
+                                <div class="col-md-8 col-sm-8">
+                                    <input type="text" class="form-control" id="goods_type_edit"
+                                           name="goods_type" placeholder="物料属性">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="goods_importance_edit" class="control-label col-md-4 col-sm-4">
+                                    <span>重要性：</span>
+                                </label>
+                                <div class="col-md-8 col-sm-8">
+                                    <input type="text" class="form-control" id="goods_importance_edit"
+                                           name="goods_importance" placeholder="重要性">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="goods_image_edit" class="control-label col-md-4 col-sm-4">
+                                    <span>物资照片：</span>
+                                </label>
+                                <div class="col-md-8 col-sm-8">
+                                    <input type="text" class="form-control" id="goods_image_edit"
+                                           name="goods_image" placeholder="物资照片">
                                 </div>
                             </div>
                         </form>

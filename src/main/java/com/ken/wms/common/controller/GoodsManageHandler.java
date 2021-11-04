@@ -4,9 +4,10 @@ import com.ken.wms.common.service.Interface.GoodsManageService;
 import com.ken.wms.common.util.Response;
 import com.ken.wms.common.util.ResponseUtil;
 import com.ken.wms.domain.Goods;
-import com.ken.wms.domain.Supplier;
 import com.ken.wms.exception.GoodsManageServiceException;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,8 @@ import java.util.Map;
 @RequestMapping(value = "/**/goodsManage")
 @Controller
 public class GoodsManageHandler {
+
+    private final Logger log = LoggerFactory.getLogger(GoodsManageHandler.class);
 
     @Autowired
     private GoodsManageService goodsManageService;
@@ -50,8 +53,9 @@ public class GoodsManageHandler {
 
         switch (searchType) {
             case SEARCH_BY_ID:
-                if (StringUtils.isNumeric(keyWord))
+                if (StringUtils.isNumeric(keyWord)) {
                     queryResult = goodsManageService.selectById(Integer.valueOf(keyWord));
+                }
                 break;
             case SEARCH_BY_NAME:
                 queryResult = goodsManageService.selectByName(keyWord);
@@ -60,7 +64,6 @@ public class GoodsManageHandler {
                 queryResult = goodsManageService.selectAll(offset, limit);
                 break;
             default:
-                // do other thing
                 break;
         }
 
@@ -85,14 +88,14 @@ public class GoodsManageHandler {
                                      @RequestParam("keyWord") String keyWord) throws GoodsManageServiceException {
         // 初始化 Response
         Response responseContent = responseUtil.newResponseInstance();
-        List<Supplier> rows = null;
+        List<Goods> rows = null;
         long total = 0;
 
         // 查询
         Map<String, Object> queryResult = query(searchType, keyWord, offset, limit);
 
         if (queryResult != null) {
-            rows = (List<Supplier>) queryResult.get("data");
+            rows = (List<Goods>) queryResult.get("data");
             total = (long) queryResult.get("total");
         }
 

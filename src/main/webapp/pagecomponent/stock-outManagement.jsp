@@ -223,7 +223,7 @@
             },
             success: function (response) {
                 $.each(response.rows, function (index, elem) {
-                    $('#repository_selector').append("<option value='" + elem.id + "'>" + elem.id + "号仓库</option>");
+                    $('#repository_selector').append("<option value='" + elem.id + "'>" + elem.name + "</option>");
                 });
             },
             error: function (response) {
@@ -524,11 +524,9 @@
                     <div class="col-md-10 col-sm-11">
                         <form action="" class="form-inline">
                             <div class="form-group">
-                                <label for="" class="form-label">出库仓库：</label>
-                                <!--
-                                <input type="text" class="form-control" placeholder="仓库编号">
-                            -->
+                                <label for="repository_selector" class="form-label">出库仓库：</label>
                                 <select name="" id="repository_selector" class="form-control">
+                                    <option value="">请选择仓库</option>
                                 </select>
                             </div>
                         </form>

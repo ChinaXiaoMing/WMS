@@ -252,7 +252,7 @@ public class SystemLogServiceImpl implements SystemLogService {
     /**
      * Date 具体格式
      */
-    private DateFormat dateFormatDetail = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+    private DateFormat dateFormatDetail = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     private DateFormat dateFormatSimple = new SimpleDateFormat("yyyy-MM-dd");
 

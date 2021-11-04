@@ -102,14 +102,16 @@ public class GoodsManageServiceImpl implements GoodsManageService {
                 if (goodsList != null) {
                     PageInfo<Goods> pageInfo = new PageInfo<>(goodsList);
                     total = pageInfo.getTotal();
-                } else
+                } else {
                     goodsList = new ArrayList<>();
+                }
             } else {
                 goodsList = goodsMapper.selectApproximateByName(goodsName);
-                if (goodsList != null)
+                if (goodsList != null) {
                     total = goodsList.size();
-                else
+                } else {
                     goodsList = new ArrayList<>();
+                }
             }
         } catch (PersistenceException e) {
             throw new GoodsManageServiceException(e);
@@ -158,14 +160,16 @@ public class GoodsManageServiceImpl implements GoodsManageService {
                 if (goodsList != null) {
                     PageInfo<Goods> pageInfo = new PageInfo<>(goodsList);
                     total = pageInfo.getTotal();
-                } else
+                } else {
                     goodsList = new ArrayList<>();
+                }
             } else {
                 goodsList = goodsMapper.selectAll();
-                if (goodsList != null)
+                if (goodsList != null) {
                     total = goodsList.size();
-                else
+                } else {
                     goodsList = new ArrayList<>();
+                }
             }
         } catch (PersistenceException e) {
             throw new GoodsManageServiceException(e);
@@ -194,7 +198,7 @@ public class GoodsManageServiceImpl implements GoodsManageService {
      */
     private boolean goodsCheck(Goods goods) {
         if (goods != null) {
-            if (goods.getName() != null && goods.getValue() != null) {
+            if (goods.getName() != null && goods.getGoodCode() != null) {
                 return true;
             }
         }

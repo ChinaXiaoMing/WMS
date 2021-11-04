@@ -65,18 +65,21 @@ public class SystemLogHandler {
         if (startDateFormatCheck && endDateFormatCheck && userIDCheck) {
             // 转到 Service 执行查询
             Integer userID = -1;
-            if (StringUtils.isNumeric(userIDStr))
+            if (StringUtils.isNumeric(userIDStr)) {
                 userID = Integer.valueOf(userIDStr);
+            }
             Map<String, Object> queryResult = systemLogService.selectAccessRecord(userID, accessType, startDateStr, endDateStr, offset, limit);
             if (queryResult != null) {
                 rows = (List<AccessRecordDO>) queryResult.get("data");
                 total = (long) queryResult.get("total");
             }
-        } else
+        } else {
             response.setResponseMsg("Request Argument Error");
+        }
 
-        if (rows == null)
+        if (rows == null) {
             rows = new ArrayList<>(0);
+        }
 
         // 返回 Response
         response.setCustomerInfo("rows", rows);
@@ -117,18 +120,21 @@ public class SystemLogHandler {
         if (startDateFormatCheck && endDateFormatCheck && userIDCheck) {
             // 转到 Service 进行查询
             Integer userID = -1;
-            if (StringUtils.isNumeric(userIDStr))
+            if (StringUtils.isNumeric(userIDStr)) {
                 userID = Integer.valueOf(userIDStr);
+            }
             Map<String, Object> queryResult = systemLogService.selectUserOperationRecord(userID, startDateStr, endDateStr, offset, limit);
             if (queryResult != null) {
                 rows = (List<UserOperationRecordDTO>) queryResult.get("data");
                 total = (long) queryResult.get("total");
             }
-        } else
+        } else {
             response.setResponseMsg("Request argument error");
+        }
 
-        if (rows == null)
+        if (rows == null) {
             rows = new ArrayList<>(0);
+        }
 
         response.setCustomerInfo("rows", rows);
         response.setResponseTotal(total);

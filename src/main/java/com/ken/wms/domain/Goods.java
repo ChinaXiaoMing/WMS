@@ -5,11 +5,42 @@ package com.ken.wms.domain;
  */
 public class Goods {
 
-    private Integer id;// 货物ID
-    private String name;// 货物名
-    private String type;// 货物类型
-    private String size;// 货物规格
-    private Double value;// 货物价值
+    /**
+     * 货物ID
+     */
+    private Integer id;
+    /**
+     * 物料编号
+     */
+    private String goodCode;
+    /**
+     * 物料描述
+     */
+    private String name;
+    /**
+     * 货物类型
+     */
+    private String type;
+    /**
+     * 单位
+     */
+    private String size;
+    /**
+     * 货物价值
+     */
+    private Double value;
+    /**
+     * 车号
+     */
+    private String carNumber;
+    /**
+     * 货物重要性
+     */
+    private String goodImportance;
+    /**
+     * 货物照片
+     */
+    private String goodImage;
 
     public Integer getId() {
         return id;
@@ -51,9 +82,51 @@ public class Goods {
         this.value = value;
     }
 
+    public String getGoodCode() {
+        return goodCode;
+    }
+
+    public void setGoodCode(String goodCode) {
+        this.goodCode = goodCode;
+    }
+
+    public String getCarNumber() {
+        return carNumber;
+    }
+
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
+    }
+
+    public String getGoodImportance() {
+        return goodImportance;
+    }
+
+    public void setGoodImportance(String goodImportance) {
+        this.goodImportance = goodImportance;
+    }
+
+    public String getGoodImage() {
+        return goodImage;
+    }
+
+    public void setGoodImage(String goodImage) {
+        this.goodImage = goodImage;
+    }
+
     @Override
     public String toString() {
-        return "Goods [id=" + id + ", name=" + name + ", type=" + type + ", size=" + size + ", value=" + value + "]";
+        return "Goods{" +
+                "id=" + id +
+                ", goodCode='" + goodCode + '\'' +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", size='" + size + '\'' +
+                ", value=" + value +
+                ", carNumber='" + carNumber + '\'' +
+                ", goodImportance='" + goodImportance + '\'' +
+                ", goodImage='" + goodImage + '\'' +
+                '}';
     }
 
 }

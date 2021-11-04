@@ -106,22 +106,28 @@
                             //sortable: true
                         },
                         {
-                            field: 'goodsName',
-                            title: '货物名称'
+                            field: 'goodCode',
+                            title: '物料编号'
                         },
                         {
-                            field: 'goodsType',
-                            title: '货物类型'
+                            field: 'goodsName',
+                            title: '物料描述'
                         },
                         {
                             field: 'goodsSize',
-                            title: '货物尺寸',
-                            visible: false
+                            title: '单位'
                         },
                         {
-                            field: 'goodsValue',
-                            title: '货物价值',
-                            visible: false
+                            field: 'carNumber',
+                            title: '车号'
+                        },
+                        {
+                            field: 'goodImportance',
+                            title: '重要性'
+                        },
+                        {
+                            field: 'goodsType',
+                            title: '物料属性'
                         },
                         {
                             field: 'repoName',
@@ -130,6 +136,10 @@
                         {
                             field: 'number',
                             title: '库存数量'
+                        },
+                        {
+                            field: 'goodImage',
+                            title: '物资照片'
                         },
                         {
                             field: 'operation',
@@ -201,7 +211,7 @@
                 storage_goodsID: {
                     validators: {
                         notEmpty: {
-                            message: '货物描述不能为空'
+                            message: '物料描述不能为空'
                         }
                     }
                 },
@@ -428,7 +438,6 @@
         })
 
         $('#confirm').click(function () {
-            // modal dissmiss
             importModalReset();
         })
     }
@@ -581,7 +590,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">添加库存记录</h4>
+                <h4 class="modal-title">添加库存记录</h4>
             </div>
             <div class="modal-body">
                 <!-- 添加库存信息模态框的内容 -->
@@ -591,23 +600,26 @@
                         <form class="form-horizontal" role="form" id="storage_form"
                               style="margin-top: 25px">
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物描述：</span>
+                                <label for="storage_goodsID" class="control-label col-md-4 col-sm-4">
+                                    <span>物料描述：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="storage_goodsID"
-                                           name="storage_goodsID" placeholder="货物ID">
+                                           name="storage_goodsID" placeholder="物料描述">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>仓库名称：</span>
+                                <label for="storage_repositoryID" class="control-label col-md-4 col-sm-4">
+                                    <span>仓库名称：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="storage_repositoryID"
-                                           name="storage_repositoryID" placeholder="仓库ID">
+                                           name="storage_repositoryID" placeholder="仓库名称">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>数量：</span>
+                                <label for="storage_number" class="control-label col-md-4 col-sm-4">
+                                    <span>数量：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="storage_number"
@@ -641,7 +653,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">导入库存信息</h4>
+                <h4 class="modal-title">导入库存信息</h4>
             </div>
             <div class="modal-body">
                 <div id="step1">
@@ -707,11 +719,6 @@
                                     <span class="sr-only">请稍后...</span>
                                 </div>
                             </div>
-                            <!--
-                            <div style="text-align: center">
-                                <h4 id="import_info"></h4>
-                            </div>
-                             -->
                         </div>
                         <div class="col-md-1 col-sm-1"></div>
                     </div>
@@ -769,7 +776,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">导出库存信息</h4>
+                <h4 class="modal-title">导出库存信息</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -804,7 +811,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">信息</h4>
+                <h4 class="modal-title">信息</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -847,7 +854,7 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">警告</h4>
+                <h4 class="modal-title">警告</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -893,21 +900,24 @@
                         <form class="form-horizontal" role="form" id="storage_form_edit"
                               style="margin-top: 25px">
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>货物描述：</span>
+                                <label for="storage_goodsName_edit" class="control-label col-md-4 col-sm-4">
+                                    <span>货物描述：</span>
                                 </label>
                                 <div class="col-md-4 col-sm-4">
                                     <p id="storage_goodsName_edit" class="form-control-static"></p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>仓库名称：</span>
+                                <label for="storage_repositoryID_edit" class="control-label col-md-4 col-sm-4">
+                                    <span>仓库名称：</span>
                                 </label>
                                 <div class="col-md-4 col-sm-4">
                                     <p id="storage_repositoryID_edit" class="form-control-static"></p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-md-4 col-sm-4"> <span>数量：</span>
+                                <label for="storage_number_edit" class="control-label col-md-4 col-sm-4">
+                                    <span>数量：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="storage_number_edit"

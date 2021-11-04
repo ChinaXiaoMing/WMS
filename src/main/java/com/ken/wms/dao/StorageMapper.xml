@@ -8,10 +8,13 @@
     <!-- 结果映射 -->
     <resultMap type="com.ken.wms.domain.Storage" id="storage">
         <id property="goodsID" column="goodsID"/>
+        <result property="goodCode" column="goodCode"/>
         <result property="goodsName" column="goodsName"/>
         <result property="goodsSize" column="goodsSize"/>
         <result property="goodsType" column="goodsType"/>
-        <result property="goodsValue" column="goodsValue"/>
+        <result property="carNumber" column="carNumber"/>
+        <result property="goodImportance" column="goodImportance"/>
+        <result property="goodImage" column="goodImage"/>
         <result property="repositoryID" column="repositoryID"/>
         <result property="repoName" column="repoName"/>
         <result property="number" column="number"/>
@@ -20,26 +23,19 @@
          -->
     </resultMap>
 
-    <!--
-    <resultMap type="com.ken.Goods" id="goods">
-        <id property="id" column="goodsID"/>
-        <result property="name" column="goodsName"/>
-        <result property="size" column="goodsSize"/>
-        <result property="type" column="goodsType"/>
-        <result property="value" column="goodsValue"/>
-    </resultMap>
-     -->
-
     <select id="selectAllAndRepositoryID" resultMap="storage">
         select
         r.REPO_ID as repositoryID,
         r.REPO_NAME as repoName,
         s.RECORD_NUMBER as number,
         g.GOOD_ID as goodsID,
+        g.GOOD_CODE as goodCode,
         g.GOOD_NAME as goodsName,
         g.GOOD_RYPE as goodsType,
         g.GOOD_SIZE as goodsSize,
-        g.GOOD_VALUE as goodsValue
+        g.GOOD_CAR_NUMBER as carNumber,
+        g.GOOD_IMPORTANCE as goodImportance,
+        g.GOOD_IMAGE as goodImage
         from
         wms_record_storage s,wms_respository r, wms_goods g
         where
@@ -56,10 +52,13 @@
         r.REPO_NAME as repoName,
         s.RECORD_NUMBER as number,
         g.GOOD_ID as goodsID,
+        g.GOOD_CODE as goodCode,
         g.GOOD_NAME as goodsName,
         g.GOOD_RYPE as goodsType,
         g.GOOD_SIZE as goodsSize,
-        g.GOOD_VALUE as goodsValue
+        g.GOOD_CAR_NUMBER as carNumber,
+        g.GOOD_IMPORTANCE as goodImportance,
+        g.GOOD_IMAGE as goodImage
         from
         wms_record_storage s,wms_respository r, wms_goods g
         where
@@ -76,10 +75,13 @@
         r.REPO_ID as repositoryID,
         s.RECORD_NUMBER as number,
         g.GOOD_ID as goodsID,
+        g.GOOD_CODE as goodCode,
         g.GOOD_NAME as goodsName,
         g.GOOD_RYPE as goodsType,
         g.GOOD_SIZE as goodsSize,
-        g.GOOD_VALUE as goodsValue
+        g.GOOD_CAR_NUMBER as carNumber,
+        g.GOOD_IMPORTANCE as goodImportance,
+        g.GOOD_IMAGE as goodImage
         from
         wms_record_storage s,wms_respository r, wms_goods g
         where
@@ -96,10 +98,13 @@
         r.REPO_ID as repositoryID,
         s.RECORD_NUMBER as number,
         g.GOOD_ID as goodsID,
+        g.GOOD_CODE as goodCode,
         g.GOOD_NAME as goodsName,
         g.GOOD_RYPE as goodsType,
         g.GOOD_SIZE as goodsSize,
-        g.GOOD_VALUE as goodsValue
+        g.GOOD_CAR_NUMBER as carNumber,
+        g.GOOD_IMPORTANCE as goodImportance,
+        g.GOOD_IMAGE as goodImage
         from
         wms_record_storage s,wms_respository r, wms_goods g
         where
