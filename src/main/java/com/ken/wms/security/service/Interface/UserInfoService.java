@@ -62,4 +62,13 @@ public interface UserInfoService {
      * @return 返回一个保存有用户角色的 Set，若该用户没有任何角色，则返回一个不包含任何元素的 Set
      */
     Set<String> getUserRoles(Integer userID) throws UserInfoServiceException;
+
+    /**
+     * 检查是否为超级管理员
+     *
+     * @param userId 用户id
+     * @return 是否为超级管理员
+     */
+    Boolean checkIsAdmin(Integer userId);
+
 }

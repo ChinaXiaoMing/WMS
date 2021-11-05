@@ -7,6 +7,8 @@ import com.ken.wms.common.util.ResponseUtil;
 import com.ken.wms.domain.Storage;
 import com.ken.wms.exception.StorageManageServiceException;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +31,8 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/**/storageManage")
 public class StorageManageHandler {
+
+    private final Logger log = LoggerFactory.getLogger(StorageManageHandler.class);
 
     @Autowired
     private StorageManageService storageManageService;
@@ -128,8 +132,9 @@ public class StorageManageHandler {
         if (queryResult != null) {
             rows = (List<Storage>) queryResult.get("data");
             total = (long) queryResult.get("total");
-        } else
+        } else {
             rows = new ArrayList<>();
+        }
 
         // 设置 Response
         responseContent.setCustomerInfo("rows", rows);
@@ -343,9 +348,10 @@ public class StorageManageHandler {
         String fileName = "storageRecord.xlsx";
 
         HttpSession session = request.getSession();
-        Integer sessionRepositoryBelong = (Integer) session.getAttribute("repositoryBelong");
-        if (sessionRepositoryBelong != null && !sessionRepositoryBelong.equals("none")) {
-            repositoryBelong = sessionRepositoryBelong.toString();
+        String sessionRepositoryBelong = (String) session.getAttribute("repositoryBelong");
+        log.info("前端仓库ID: {}, session仓库ID：{}", repositoryBelong, sessionRepositoryBelong);
+        if (!"none".equals(sessionRepositoryBelong) && !"all".equals(sessionRepositoryBelong)) {
+            repositoryBelong = sessionRepositoryBelong;
         }
 
         List<Storage> storageList = null;

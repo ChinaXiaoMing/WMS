@@ -24,8 +24,9 @@ public class FileSourceHandler {
     public void fileDownload(@PathVariable("fileName") String fileName, HttpServletRequest request,
                              HttpServletResponse response) throws IOException {
 
-        if (fileName == null)
+        if (fileName == null) {
             return;
+        }
 
         // 获取文件
         ServletContext context = request.getServletContext();

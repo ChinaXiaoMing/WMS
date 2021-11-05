@@ -100,8 +100,18 @@
                             field: 'goodImage',
                             title: '物资照片',
                             formatter: function (value, row, index) {
-                                var preview = '<button class="btn btn-info btn-sm edit"><span>预览</span></button>';
+                                var preview;
+                                if (row.goodImage) {
+                                  preview = '<button class="btn btn-info btn-sm preview" id="preview"><span>预览</span></button>';
+                                } else {
+                                  preview = '没有物资照片';
+                                }
                                 return preview;
+                            },
+                            events: {
+                              "click .preview": function (e, value, row, index) {
+                                preview(row);
+                              }
                             }
                         },
                         {
@@ -159,6 +169,12 @@
         $('#goods_car_number_edit').val(row.carNumber);
         $('#goods_importance_edit').val(row.goodImportance);
         $('#goods_image_edit').val(row.goodImage);
+    }
+
+    // 物资照片预览
+    function preview(row) {
+      // 显示预览窗口
+      $('#preview_modal').modal("show");
     }
 
     // 添加供应商模态框数据校验
@@ -460,10 +476,6 @@
         $('#submit').addClass("hide");
         $('#confirm').addClass("hide");
 
-        //$('#file').wrap('<form>').closest('form').get(0).reset();
-        //$('#file').unwrap();
-        //var control = $('#file');
-        //control.replaceWith( control = control.clone( true ) );
         $('#file').on("change", function () {
             $('#previous').addClass("hide");
             $('#next').addClass("hide");
@@ -617,12 +629,16 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="goods_image" class="control-label col-md-4 col-sm-4">
+                                <label for="file_upload_form" class="control-label col-md-4 col-sm-4">
                                     <span>物资照片：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" id="goods_image"
-                                           name="goods_image" placeholder="物资照片">
+                                    <span class="btn btn-info btn-file-upload">
+                                        <span>
+                                            <span>上传照片</span>
+                                        </span>
+									    <form id="file_upload_form"><input type="file" id="good_image_upload_add" name="file"></form>
+									</span>
                                 </div>
                             </div>
                         </form>
@@ -697,7 +713,7 @@
                                 <div style="margin-top: 30px; margin-buttom: 15px">
 									<span class="btn btn-info btn-file"> <span> <span
                                             class="glyphicon glyphicon-upload"></span> <span>上传文件</span>
-									</span> 
+									</span>
 									<form id="import_file_upload"><input type="file" id="file" name="file"></form>
 									</span>
                                 </div>
@@ -717,11 +733,6 @@
                                     <span class="sr-only">请稍后...</span>
                                 </div>
                             </div>
-                            <!--
-                            <div style="text-align: center">
-                                <h4 id="import_info"></h4>
-                            </div>
-                             -->
                         </div>
                         <div class="col-md-1 col-sm-1"></div>
                     </div>
@@ -800,6 +811,30 @@
                 <button class="btn btn-success" type="button" id="export_goods_download">
                     <span>确认下载</span>
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 预览图片模态框 -->
+<div class="modal fade" id="preview_modal" table-index="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal"
+                        aria-hidden="true">&times;
+                </button>
+                <h4 class="modal-title">物资照片</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3" style="text-align: center;">
+                        <img src="media/icons/warning-icon.png" alt=""
+                             style="width: 70px; height: 70px; margin-top: 20px;">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -957,12 +992,17 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="goods_image_edit" class="control-label col-md-4 col-sm-4">
+                                <label for="file_upload" class="control-label col-md-4 col-sm-4">
                                     <span>物资照片：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" id="goods_image_edit"
-                                           name="goods_image" placeholder="物资照片">
+									<span class="btn btn-info btn-file-upload">
+                                        <span>
+                                            <span class="glyphicon glyphicon-upload"></span>
+                                            <span>上传照片</span>
+									    </span>
+									    <form id="file_upload"><input type="file" id="good_image_upload" name="good_image"></form>
+									</span>
                                 </div>
                             </div>
                         </form>

@@ -13,4 +13,12 @@
         where
         ROLE_NAME = #{roleName}
     </select>
+    <select id="getRoleNameByUserId" resultType="java.lang.String">
+        select ROLE_NAME from wms_roles t1
+        left join wms_user_role t2
+        on t1.ROLE_ID = t2.ROLE_ID
+        where t2.USER_ID = #{userId}
+    </select>
+
+
 </mapper>

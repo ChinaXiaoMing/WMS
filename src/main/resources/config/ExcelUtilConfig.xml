@@ -53,20 +53,32 @@
             <value>货物ID</value>
         </property>
         <property>
-            <field>name</field>
-            <value>货物名称</value>
+            <field>goodCode</field>
+            <value>物料编号</value>
         </property>
         <property>
-            <field>type</field>
-            <value>货物类型</value>
+            <field>name</field>
+            <value>物料描述</value>
         </property>
         <property>
             <field>size</field>
-            <value>货物规格</value>
+            <value>单位</value>
         </property>
         <property>
-            <field>value</field>
-            <value>货物价值</value>
+            <field>carNumber</field>
+            <value>车号</value>
+        </property>
+        <property>
+            <field>goodImportance</field>
+            <value>重要性</value>
+        </property>
+        <property>
+            <field>type</field>
+            <value>物料属性</value>
+        </property>
+        <property>
+            <field>goodImage</field>
+            <value>物资照片</value>
         </property>
     </entity>
 
@@ -76,16 +88,16 @@
             <value>仓库ID</value>
         </property>
         <property>
+            <field>name</field>
+            <value>仓库名称</value>
+        </property>
+        <property>
             <field>address</field>
             <value>仓库地址</value>
         </property>
         <property>
             <field>status</field>
             <value>仓库状态</value>
-        </property>
-        <property>
-            <field>area</field>
-            <value>仓库面积</value>
         </property>
         <property>
             <field>desc</field>
@@ -137,28 +149,40 @@
             <value>货物ID</value>
         </property>
         <property>
+            <field>goodCode</field>
+            <value>物料编码</value>
+        </property>
+        <property>
             <field>goodsName</field>
-            <value>货物名称</value>
+            <value>物料描述</value>
         </property>
         <property>
             <field>goodsSize</field>
-            <value>货物规格</value>
+            <value>单位</value>
+        </property>
+        <property>
+            <field>carNumber</field>
+            <value>车号</value>
+        </property>
+        <property>
+            <field>goodImportance</field>
+            <value>重要性</value>
         </property>
         <property>
             <field>goodsType</field>
-            <value>货物类型</value>
+            <value>物料属性</value>
         </property>
         <property>
-            <field>goodsValue</field>
-            <value>货物价值</value>
-        </property>
-        <property>
-            <field>repositoryID</field>
-            <value>仓库ID</value>
+            <field>repoName</field>
+            <value>仓库名称</value>
         </property>
         <property>
             <field>number</field>
             <value>库存数量</value>
+        </property>
+        <property>
+            <field>goodImage</field>
+            <value>物资照片</value>
         </property>
     </entity>
 </configuration>

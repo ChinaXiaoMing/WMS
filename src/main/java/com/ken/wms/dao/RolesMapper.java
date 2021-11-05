@@ -16,4 +16,12 @@ public interface RolesMapper {
      */
     Integer getRoleID(String roleName);
 
+    /**
+     * 根据用户ID获取角色名称
+     *
+     * @param userId 用户id
+     * @return 角色名称
+     */
+    String getRoleNameByUserId(Integer userId);
+
 }

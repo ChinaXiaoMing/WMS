@@ -7,6 +7,8 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.configuration2.tree.ImmutableNode;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -22,12 +24,18 @@ import java.util.*;
  */
 public class ExcelUtil {
 
-    // 默认配置文件名
+    private final Logger log = LoggerFactory.getLogger(ExcelUtil.class);
+
+    /**
+     * 默认配置文件名
+     */
     private static final String DEFAULT_FILE_NAME = "ExcelUtilConfig.xml";
 
     private XMLConfiguration xmlConfig;
 
-    // 实体类与Excel的映射关系
+    /**
+     * 实体类与Excel的映射关系
+     */
     private Map<String, MappingInfo> excelMappingInfo;
 
     public ExcelUtil() {
@@ -44,8 +52,8 @@ public class ExcelUtil {
      * @throws ConfigurationException
      */
     private void init(String fileLocation) {
-        // 创建对象的 excelMappingInfo 映射
-        excelMappingInfo = new HashMap<>();
+        // 创建对象的 excelMappingInfo 映射,排序
+        excelMappingInfo = new LinkedHashMap<>();
 
         Configurations configs = new Configurations();
         try {
@@ -100,8 +108,9 @@ public class ExcelUtil {
      * @return 包含若干个目标对象实例的 List
      */
     public List<Object> excelReader(Class<? extends Object> classType, MultipartFile file) {
-        if (file == null)
+        if (file == null) {
             return null;
+        }
 
         // 初始化存放读取结果的 List
         List<Object> content = new ArrayList<>();
@@ -109,8 +118,9 @@ public class ExcelUtil {
         // 获取类名和映射信息
         String className = classType.getName();
         MappingInfo mappingInfo = excelMappingInfo.get(className);
-        if (mappingInfo == null)
+        if (mappingInfo == null) {
             return null;
+        }
 
         // 读取 Excel 文件
         try (Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
@@ -121,8 +131,9 @@ public class ExcelUtil {
             Iterator<Cell> cellIterator;
 
             // 读取第一行表头信息
-            if (!rowIterator.hasNext())
+            if (!rowIterator.hasNext()) {
                 return null;
+            }
             List<String> methodList = new ArrayList<>();// setter 方法列表
             List<Class<?>> fieldTypeList = new ArrayList<>();// 目标对象属性类型列表
             row = rowIterator.next();
@@ -153,7 +164,9 @@ public class ExcelUtil {
 
                     // 获取单元格的值，并设置对象中对应的属性
                     Object value = getCellValue(fieldType, cell);
-                    if (value == null) continue;
+                    if (value == null) {
+                        continue;
+                    }
                     setField(elem, methodName, value);
                 }
                 // 放入结果
@@ -192,14 +205,16 @@ public class ExcelUtil {
      */
     public File excelWriter(Class<? extends Object> classType, List<?> elems) {
 
-        if (classType == null || elems == null)
+        if (classType == null || elems == null) {
             return null;
+        }
 
         // 获取类名和映射信息
         String className = classType.getName();
         MappingInfo mappingInfo = excelMappingInfo.get(className);
-        if (mappingInfo == null)
+        if (mappingInfo == null) {
             return null;
+        }
 
         File excel = null;
         try {
@@ -211,8 +226,9 @@ public class ExcelUtil {
             List<String> methodList = new ArrayList<>();
             List<String> valuesList = new ArrayList<>();
             Set<String> fields = mappingInfo.fieldsMap.keySet();
-            if (fields == null)
+            if (fields == null) {
                 return null;
+            }
             for (String field : fields) {
                 fieldList.add(field);
                 methodList.add(getGetterMethodName(field));
@@ -276,8 +292,9 @@ public class ExcelUtil {
      * @return 单元格中的值
      */
     private Object getCellValue(Class<?> fieldType, Cell cell) {
-        if (cell == null)
+        if (cell == null) {
             return null;
+        }
 
         int cellType = cell.getCellType();
         Object value = null;
@@ -288,7 +305,7 @@ public class ExcelUtil {
         } else if (cellType == Cell.CELL_TYPE_NUMERIC) {
             if (fieldType.equals(String.class)) {
                 value = new DecimalFormat("0").format(cell.getNumericCellValue());
-            } else if (fieldType.equals(Date.class)) {// && HSSFDateUtil.isCellDateFormatted(cell)
+            } else if (fieldType.equals(Date.class)) {
                 value = new Date(cell.getDateCellValue().getTime());
             } else if (fieldType.equals(Long.class)) {
                 Double v = cell.getNumericCellValue();
@@ -320,8 +337,9 @@ public class ExcelUtil {
      * @param cell  单元格
      */
     private void setCellValue(Object value, Workbook workbook, Cell cell) {
-        if (cell == null || value == null)
+        if (cell == null || value == null) {
             return;
+        }
 
         Class<?> valueClassType = value.getClass();
         if (valueClassType.equals(String.class)) {
@@ -417,8 +435,8 @@ public class ExcelUtil {
      */
     private class MappingInfo {
         private String className;
-        private Map<String, String> fieldsMap = new HashMap<>();
-        private Map<String, String> valuesMap = new HashMap<>();
+        private Map<String, String> fieldsMap = new LinkedHashMap<>();
+        private Map<String, String> valuesMap = new LinkedHashMap<>();
 
         @SuppressWarnings("unused")
         public String getClassName() {

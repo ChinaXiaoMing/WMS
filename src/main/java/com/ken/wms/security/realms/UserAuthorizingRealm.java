@@ -109,10 +109,17 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
                 // 设置部分用户信息到 Session
                 session.setAttribute("userID", userInfoDTO.getUserID());
                 session.setAttribute("userName", userInfoDTO.getUserName());
-                //获取该用户的所属仓库
-                List<RepositoryAdmin> repositoryAdmin = (List<RepositoryAdmin>) repositoryAdminManageService.selectByID(userInfoDTO.getUserID()).get("data");
-                session.setAttribute("repositoryBelong", (repositoryAdmin.isEmpty()) ? "none" : repositoryAdmin.get(0).getRepositoryBelongID());
-
+                // 超级管理员，设置全部仓库
+                if (userInfoService.checkIsAdmin(userInfoDTO.getUserID())) {
+                    log.info("超级管理员设置全部仓库");
+                    session.setAttribute("repositoryBelong", "all");
+                } else {
+                    //普通仓库管理员，设置所属仓库
+                    List<RepositoryAdmin> repositoryAdmin = (List<RepositoryAdmin>) repositoryAdminManageService
+                            .selectByID(userInfoDTO.getUserID()).get("data");
+                    session.setAttribute("repositoryBelong", (repositoryAdmin.isEmpty()) ? "none" :
+                            repositoryAdmin.get(0).getRepositoryBelongID());
+                }
 
                 // 结合验证码对密码进行处理
                 String password = userInfoDTO.getPassword();

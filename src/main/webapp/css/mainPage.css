@@ -27,6 +27,26 @@ a:link {
     display: block;
 }
 
+.btn-file-upload {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file-upload input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
 td, th {
     text-align: center;
 }

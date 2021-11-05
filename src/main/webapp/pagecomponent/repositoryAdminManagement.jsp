@@ -267,7 +267,6 @@
             $.each(unassignRepoCache, function (index, element) {
                 if (element.id == repositoryID) {
                     $('#repository_address').text(element.address);
-                    $('#repository_area').text(element.area);
                     $('#repository_status').text(element.status);
                     $('#repositoryInfo').removeClass('hide');
                 }
@@ -345,11 +344,9 @@
                     tableRefresh();
 
                     // reset
+                    $('#repositoryAdmin_username').val("");
                     $('#repositoryAdmin_name').val("");
-                    $('#repositoryAdmin_sex').val("男");
                     $('#repositoryAdmin_tel').val("");
-                    $('#repositoryAdmin_address').val("");
-                    $('#repositoryAdmin_birth').val("");
                     $('#repositoryAdmin_form').bootstrapValidator("resetForm", true);
                 },
                 error: function (response) {
@@ -930,7 +927,7 @@
                                     <span>所属仓库：</span>
                                 </label>
                                 <div class="col-md-7 col-sm-7">
-                                    <select name="" class="form-control" id="repositoryAdmin_repoID_edit">
+                                    <select name="" class="selectpicker form-control" multiple id="repositoryAdmin_repoID_edit">
                                         <option value=""></option>
                                     </select>
                                 </div>

@@ -44,8 +44,9 @@ public class UserInfoServiceImpl implements UserInfoService {
      */
     @Override
     public UserInfoDTO getUserInfo(Integer userID) throws UserInfoServiceException {
-        if (userID == null)
+        if (userID == null) {
             return null;
+        }
 
         try {
             // 获取用户信息,dao.UserInfoMapper;
@@ -67,8 +68,9 @@ public class UserInfoServiceImpl implements UserInfoService {
      */
     @Override
     public UserInfoDTO getUserInfo(String userName) throws UserInfoServiceException {
-        if (userName == null)
+        if (userName == null) {
             return null;
+        }
 
         try {
             // 获取用户信息
@@ -77,8 +79,9 @@ public class UserInfoServiceImpl implements UserInfoService {
             if (userInfoDO != null) {
                 List<RoleDO> roles = userPermissionMapper.selectUserRole(userInfoDO.getUserID());
                 return assembleUserInfo(userInfoDO, roles);
-            } else
+            } else {
                 return null;
+            }
         } catch (PersistenceException e) {
             throw new UserInfoServiceException(e);
         }
@@ -151,8 +154,9 @@ public class UserInfoServiceImpl implements UserInfoService {
      */
     @Override
     public void deleteUserInfo(Integer userID) throws UserInfoServiceException {
-        if (userID == null)
+        if (userID == null) {
             return;
+        }
 
         try {
             // 删除用户角色信息
@@ -206,10 +210,11 @@ public class UserInfoServiceImpl implements UserInfoService {
             // 持久化用户角色信息
             for (String role : roles) {
                 roleID = rolesMapper.getRoleID(role);
-                if (roleID != null)
+                if (roleID != null) {
                     userPermissionMapper.insert(userID, roleID);
-                else
+                } else {
                     throw new UserInfoServiceException("The role of userInfo unavailable");
+                }
             }
 
             return true;
@@ -258,6 +263,17 @@ public class UserInfoServiceImpl implements UserInfoService {
         } else {
             return new HashSet<>();
         }
+    }
+
+    /**
+     * 检查是否为超级管理员
+     *
+     * @param userId 用户id
+     * @return 是否为超级管理员
+     */
+    @Override
+    public Boolean checkIsAdmin(Integer userId) {
+        return "systemAdmin".equals(rolesMapper.getRoleNameByUserId(userId));
     }
 
 }

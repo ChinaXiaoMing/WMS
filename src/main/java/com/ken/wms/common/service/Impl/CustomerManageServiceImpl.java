@@ -96,14 +96,16 @@ public class CustomerManageServiceImpl implements CustomerManageService {
                 if (customers != null) {
                     PageInfo<Customer> pageInfo = new PageInfo<>(customers);
                     total = pageInfo.getTotal();
-                } else
+                } else {
                     customers = new ArrayList<>();
+                }
             } else {
                 customers = customerMapper.selectApproximateByName(customerName);
-                if (customers != null)
+                if (customers != null) {
                     total = customers.size();
-                else
+                } else {
                     customers = new ArrayList<>();
+                }
             }
         } catch (PersistenceException e) {
             throw new CustomerManageServiceException(e);
@@ -141,8 +143,9 @@ public class CustomerManageServiceImpl implements CustomerManageService {
         boolean isPagination = true;
 
         // validate
-        if (offset < 0 || limit < 0)
+        if (offset < 0 || limit < 0) {
             isPagination = false;
+        }
 
         // query
         try {
@@ -152,14 +155,16 @@ public class CustomerManageServiceImpl implements CustomerManageService {
                 if (customers != null) {
                     PageInfo<Customer> pageInfo = new PageInfo<>(customers);
                     total = pageInfo.getTotal();
-                } else
+                } else {
                     customers = new ArrayList<>();
+                }
             } else {
                 customers = customerMapper.selectAll();
-                if (customers != null)
+                if (customers != null) {
                     total = customers.size();
-                else
+                } else {
                     customers = new ArrayList<>();
+                }
             }
         } catch (PersistenceException e) {
             throw new CustomerManageServiceException(e);
@@ -328,8 +333,9 @@ public class CustomerManageServiceImpl implements CustomerManageService {
     @UserOperation(value = "导出客户信息")
     @Override
     public File exportCustomer(List<Customer> customers) {
-        if (customers == null)
+        if (customers == null) {
             return null;
+        }
 
         return excelUtil.excelWriter(Customer.class, customers);
     }
