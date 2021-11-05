@@ -63,6 +63,22 @@
         r.REPO_ID = #{repositoryID}
     </select>
 
+    <select id="selectByRepoName" resultMap="repository">
+        select
+            r.REPO_ID,
+            r.REPO_NAME,
+            r.REPO_ADDRESS,
+            r.REPO_STATUS,
+            r.REPO_AREA,
+            r.REPO_DESC,
+            ra.REPO_ADMIN_NAME
+        from
+            wms_respository r left join wms_repo_admin ra on(r.REPO_ID = ra.REPO_ADMIN_REPOID)
+        where
+            r.REPO_NAME = #{repoName}
+        limit 1
+    </select>
+
     <select id="selectByAddress" resultMap="repository">
         select
         r.REPO_ID,

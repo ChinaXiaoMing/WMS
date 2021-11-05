@@ -80,8 +80,9 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
         boolean isPagination = true;
 
         // validate
-        if (offset < 0 || limit < 0)
+        if (offset < 0 || limit < 0) {
             isPagination = false;
+        }
 
         // query
         if (isPagination) {
@@ -90,14 +91,16 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
             if (repositoryAdmins != null) {
                 PageInfo<RepositoryAdmin> pageInfo = new PageInfo<>(repositoryAdmins);
                 total = pageInfo.getTotal();
-            } else
+            } else {
                 repositoryAdmins = new ArrayList<>();
+            }
         } else {
             repositoryAdmins = repositoryAdminMapper.selectByName(name);
-            if (repositoryAdmins != null)
+            if (repositoryAdmins != null) {
                 total = repositoryAdmins.size();
-            else
+            } else {
                 repositoryAdmins = new ArrayList<>();
+            }
         }
 
         resultSet.put("data", repositoryAdmins);
@@ -132,8 +135,9 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
         boolean isPagination = true;
 
         // validate
-        if (offset < 0 || limit < 0)
+        if (offset < 0 || limit < 0) {
             isPagination = false;
+        }
 
         // query
         try {
@@ -143,14 +147,16 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
                 if (repositoryAdmins != null) {
                     PageInfo<RepositoryAdmin> pageInfo = new PageInfo<>(repositoryAdmins);
                     total = pageInfo.getTotal();
-                } else
+                } else {
                     repositoryAdmins = new ArrayList<>();
+                }
             } else {
                 repositoryAdmins = repositoryAdminMapper.selectAll();
-                if (repositoryAdmins != null)
+                if (repositoryAdmins != null) {
                     total = repositoryAdmins.size();
-                else
+                } else {
                     repositoryAdmins = new ArrayList<>();
+                }
             }
         } catch (PersistenceException e) {
             throw new RepositoryAdminManageServiceException(e);
@@ -272,8 +278,9 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
                 userInfoService.deleteUserInfo(repositoryAdminID);
 
                 return true;
-            } else
+            } else {
                 return false;
+            }
         } catch (PersistenceException | UserInfoServiceException e) {
             throw new RepositoryAdminManageServiceException(e);
         }
@@ -295,8 +302,9 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
             if (repositoryAdmin != null) {
                 repositoryAdmin.setRepositoryBelongID(repositoryID);
                 return updateRepositoryAdmin(repositoryAdmin);
-            } else
+            } else {
                 return false;
+            }
         } catch (PersistenceException e) {
             throw new RepositoryAdminManageServiceException(e);
         }
@@ -327,16 +335,30 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
             List<RepositoryAdmin> availableList = new ArrayList<>();
             for (Object object : repositoryAdmins) {
                 repositoryAdmin = (RepositoryAdmin) object;
-                if (repositoryAdminCheck(repositoryAdmin))
+                if (repositoryAdminCheck(repositoryAdmin)) {
                     availableList.add(repositoryAdmin);
+                }
             }
 
             try {
                 // 保存到数据库
                 available = availableList.size();
-                if (available > 0)
-                    repositoryAdminMapper.insertBatch(availableList);
-            } catch (PersistenceException e) {
+                if (available > 0) {
+                    for (RepositoryAdmin repoAdmin : availableList) {
+                        repositoryAdminMapper.insert(repoAdmin);
+                        // 为仓库管理员创建账户
+                        UserInfoDTO userInfo = new UserInfoDTO();
+                        userInfo.setUserID(repoAdmin.getId());
+                        userInfo.setUserName(repoAdmin.getUsername());
+                        // 设置初始密码为123456
+                        userInfo.setPassword("123456");
+                        userInfo.setRole(new ArrayList<>(Collections.singletonList("commonsAdmin")));
+
+                        // 添加新创建的仓库管理员账户信息
+                        userInfoService.insertUserInfo(userInfo);
+                    }
+                }
+            } catch (PersistenceException | UserInfoServiceException e) {
                 throw new RepositoryAdminManageServiceException(e);
             }
         }

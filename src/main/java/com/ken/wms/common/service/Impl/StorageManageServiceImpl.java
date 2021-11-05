@@ -13,6 +13,8 @@ import com.ken.wms.domain.Storage;
 import com.ken.wms.exception.StorageManageServiceException;
 import com.ken.wms.util.aop.UserOperation;
 import org.apache.ibatis.exceptions.PersistenceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +30,8 @@ import java.util.Map;
  */
 @Service
 public class StorageManageServiceImpl implements StorageManageService {
+
+    private final Logger log = LoggerFactory.getLogger(StorageManageServiceImpl.class);
 
     @Autowired
     private StorageMapper storageMapper;
@@ -410,22 +414,25 @@ public class StorageManageServiceImpl implements StorageManageService {
 
                     // validate
                     goods = goodsMapper.selectById(storage.getGoodsID());
-                    repository = repositoryMapper.selectByID(storage.getRepositoryID());
+                    repository = repositoryMapper.selectByRepoName(storage.getRepoName());
+                    log.info("导入仓库信息：{}", repository);
                     if (goods == null) {
                         isAvailable = false;
                     }
                     if (repository == null) {
                         isAvailable = false;
+                    } else {
+                        List<Storage> temp = storageMapper.selectByGoodsIDAndRepositoryID(storage.getGoodsID(), repository.getId());
+                        if (!(temp != null && temp.isEmpty())) {
+                            isAvailable = false;
+                        }
                     }
                     if (storage.getNumber() < 0) {
                         isAvailable = false;
                     }
-                    List<Storage> temp = storageMapper.selectByGoodsIDAndRepositoryID(storage.getGoodsID(), storage.getRepositoryID());
-                    if (!(temp != null && temp.isEmpty())) {
-                        isAvailable = false;
-                    }
 
                     if (isAvailable) {
+                        storage.setRepositoryID(repository.getId());
                         availableList.add(storage);
                     }
                 }

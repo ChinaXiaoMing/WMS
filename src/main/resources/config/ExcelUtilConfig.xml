@@ -54,7 +54,7 @@
         </property>
         <property>
             <field>goodCode</field>
-            <value>物料编号</value>
+            <value>物料编码</value>
         </property>
         <property>
             <field>name</field>
@@ -104,10 +104,6 @@
             <value>仓库描述</value>
         </property>
         <property>
-            <field>adminID</field>
-            <value>仓库管理员ID</value>
-        </property>
-        <property>
             <field>adminName</field>
             <value>仓库管理员名字</value>
         </property>
@@ -116,27 +112,19 @@
     <entity class="com.ken.wms.domain.RepositoryAdmin">
         <property>
             <field>id</field>
-            <value>ID</value>
+            <value>仓库管理员ID</value>
+        </property>
+        <property>
+            <field>username</field>
+            <value>仓库管理员用户名</value>
         </property>
         <property>
             <field>name</field>
-            <value>姓名</value>
-        </property>
-        <property>
-            <field>sex</field>
-            <value>性别</value>
+            <value>仓库管理员姓名</value>
         </property>
         <property>
             <field>tel</field>
             <value>联系电话</value>
-        </property>
-        <property>
-            <field>address</field>
-            <value>联系地址</value>
-        </property>
-        <property>
-            <field>birth</field>
-            <value>出生日期</value>
         </property>
         <property>
             <field>repositoryBelongID</field>

@@ -56,15 +56,17 @@ public class RepositoryAdminManageHandler {
                 queryResult = repositoryAdminManageService.selectAll(offset, limit);
                 break;
             case SEARCH_BY_ID:
-                if (StringUtils.isNumeric(keyWord))
+                if (StringUtils.isNumeric(keyWord)) {
                     queryResult = repositoryAdminManageService.selectByID(Integer.valueOf(keyWord));
+                }
                 break;
             case SEARCH_BY_NAME:
                 queryResult = repositoryAdminManageService.selectByName(offset, limit, keyWord);
                 break;
             case SEARCH_BY_REPOSITORY_ID:
-                if (StringUtils.isNumeric(keyWord))
+                if (StringUtils.isNumeric(keyWord)) {
                     queryResult = repositoryAdminManageService.selectByRepositoryID(Integer.valueOf(keyWord));
+                }
                 break;
             default:
                 // do other things
@@ -152,8 +154,9 @@ public class RepositoryAdminManageHandler {
         Map<String, Object> queryResult = repositoryAdminManageService.selectByID(repositoryAdminID);
         if (queryResult != null) {
             repositoryAdminList = (List<RepositoryAdmin>) queryResult.get("data");
-            if (repositoryAdminList != null && repositoryAdminList.size() > 0)
+            if (repositoryAdminList != null && repositoryAdminList.size() > 0) {
                 repositoryAdmin = repositoryAdminList.get(0);
+            }
             result = Response.RESPONSE_RESULT_SUCCESS;
         }
 
@@ -262,10 +265,11 @@ public class RepositoryAdminManageHandler {
         List<RepositoryAdmin> repositoryAdmins;
         Map<String, Object> queryResult = query(keyWord, searchType, -1, -1);
 
-        if (queryResult != null)
+        if (queryResult != null) {
             repositoryAdmins = (List<RepositoryAdmin>) queryResult.get("data");
-        else
+        } else {
             repositoryAdmins = new ArrayList<>();
+        }
 
         // 生成文件
         File file = repositoryAdminManageService.exportRepositoryAdmin(repositoryAdmins);

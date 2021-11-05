@@ -10,6 +10,8 @@ import com.ken.wms.exception.UserInfoServiceException;
 import com.ken.wms.security.service.Interface.UserInfoService;
 import com.ken.wms.security.util.EncryptingModel;
 import org.apache.ibatis.exceptions.PersistenceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ import java.util.Set;
  */
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
+
+    private final Logger log = LoggerFactory.getLogger(UserInfoServiceImpl.class);
 
     @Autowired
     private UserInfoMapper userInfoMapper;
@@ -182,7 +186,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
 
         // 检查数据是否有效
-        Integer userID = userInfoDTO.getUserID();
+        Integer userId = userInfoDTO.getUserID();
         String userName = userInfoDTO.getUserName();
         String password = userInfoDTO.getPassword();
         if (userName == null || password == null) {
@@ -196,12 +200,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 
             // 创建用户信息数据实体
             UserInfoDO userInfoDO = new UserInfoDO();
-            userInfoDO.setUserID(userID);
+            userInfoDO.setUserID(userId);
             userInfoDO.setUserName(userName);
             userInfoDO.setPassword(encryptPassword);
 
             // 持久化用户信息
             userInfoMapper.insert(userInfoDO);
+            log.info("创建的用户信息：{}", userInfoDO);
 
             // 获取用户角色信息
             List<String> roles = userInfoDTO.getRole();
@@ -211,7 +216,7 @@ public class UserInfoServiceImpl implements UserInfoService {
             for (String role : roles) {
                 roleID = rolesMapper.getRoleID(role);
                 if (roleID != null) {
-                    userPermissionMapper.insert(userID, roleID);
+                    userPermissionMapper.insert(userId, roleID);
                 } else {
                     throw new UserInfoServiceException("The role of userInfo unavailable");
                 }

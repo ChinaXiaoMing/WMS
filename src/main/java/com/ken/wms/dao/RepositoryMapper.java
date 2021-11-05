@@ -33,6 +33,14 @@ public interface RepositoryMapper {
     Repository selectByID(Integer repositoryID);
 
     /**
+     * 根据仓库名称获取仓库信息
+     *
+     * @param repoName 仓库名称
+     * @return 返回指定的Repository
+     */
+    Repository selectByRepoName(String repoName);
+
+    /**
      * 选择指定 repository Address 的 repository 记录
      *
      * @param address 仓库地址
