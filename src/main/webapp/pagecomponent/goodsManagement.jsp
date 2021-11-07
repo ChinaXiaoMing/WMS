@@ -175,6 +175,44 @@
     function preview(row) {
       // 显示预览窗口
       $('#preview_modal').modal("show");
+      console.log("/upload/" + row.goodImage);
+      $('#preview_image').attr("src", "/upload/" + row.goodImage);
+    }
+
+    // 上传物资照片_新增
+    function uploadImage() {
+        // ajax
+        $.ajaxFileUpload({
+            url: "commons/fileSource/upload",
+            secureuri: false,
+            dataType: 'json',
+            fileElementId: "good_image_upload_add",
+            success: function (data, status) {
+                console.log(data);
+                $('#goods_image').val(data.fileName);
+            },
+            error: function (data) {
+                console.log("物资照片上传失败！");
+            }
+        })
+    }
+
+    // 上传物资照片_编辑
+    function uploadImageEdit() {
+        // ajax
+        $.ajaxFileUpload({
+            url: "commons/fileSource/upload",
+            secureuri: false,
+            dataType: 'json',
+            fileElementId: "good_image_upload_edit",
+            success: function (data, status) {
+                console.log(data);
+                $('#goods_image_edit').val(data.fileName);
+            },
+            error: function (data) {
+                console.log("物资照片上传失败！");
+            }
+        })
     }
 
     // 添加供应商模态框数据校验
@@ -637,10 +675,12 @@
                                         <span>
                                             <span>上传照片</span>
                                         </span>
-									    <form id="file_upload_form"><input type="file" id="good_image_upload_add" name="file"></form>
+									    <form id="file_upload_form"><input type="file" id="good_image_upload_add"
+                                                                           name="file" onchange="uploadImage()"></form>
 									</span>
                                 </div>
                             </div>
+                            <input type="hidden" id="goods_image" />
                         </form>
                     </div>
                     <div class="col-md-1 col-sm-1"></div>
@@ -830,9 +870,8 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-3 col-sm-3" style="text-align: center;">
-                        <img src="media/icons/warning-icon.png" alt=""
-                             style="width: 70px; height: 70px; margin-top: 20px;">
+                    <div style="text-align: center;">
+                        <img src="" alt="" id="preview_image" style="width: 98%">
                     </div>
                 </div>
             </div>
@@ -1001,10 +1040,12 @@
                                             <span class="glyphicon glyphicon-upload"></span>
                                             <span>上传照片</span>
 									    </span>
-									    <form id="file_upload"><input type="file" id="good_image_upload" name="good_image"></form>
+									    <form id="file_upload"><input type="file" id="good_image_upload_edit"
+                                                                      name="file" onchange="uploadImageEdit()"></form>
 									</span>
                                 </div>
                             </div>
+                            <input type="hidden" id="goods_image_edit" />
                         </form>
                     </div>
                     <div class="col-md-1 col-sm-1"></div>

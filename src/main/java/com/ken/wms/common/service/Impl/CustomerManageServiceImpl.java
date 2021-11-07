@@ -85,8 +85,9 @@ public class CustomerManageServiceImpl implements CustomerManageService {
         boolean isPagination = true;
 
         // validate
-        if (offset < 0 || limit < 0)
+        if (offset < 0 || limit < 0) {
             isPagination = false;
+        }
 
         // query
         try {
@@ -304,8 +305,9 @@ public class CustomerManageServiceImpl implements CustomerManageService {
                 for (Object object : customers) {
                     customer = (Customer) object;
                     if (customerCheck(customer)) {
-                        if (customerMapper.selectByName(customer.getName()) == null)
+                        if (customerMapper.selectByName(customer.getName()) == null) {
                             availableList.add(customer);
+                        }
                     }
                 }
 

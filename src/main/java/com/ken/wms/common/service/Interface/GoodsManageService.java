@@ -97,4 +97,13 @@ public interface GoodsManageService {
      * @return excel 文件
      */
     File exportGoods(List<Goods> goods);
+
+    /**
+     * 根据文件名删除文件
+     *
+     * @param fileName 文件名称
+     * @return 是否删除
+     */
+    Boolean deleteFileByName(String fileName);
+
 }

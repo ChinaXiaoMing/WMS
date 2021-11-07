@@ -15,6 +15,7 @@ import com.ken.wms.domain.StockOutDO;
 import com.ken.wms.domain.Storage;
 import com.ken.wms.exception.GoodsManageServiceException;
 import com.ken.wms.util.aop.UserOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -242,12 +243,15 @@ public class GoodsManageServiceImpl implements GoodsManageService {
 
         try {
             // 更新记录
-            if (goods != null) {
-                // 检验
-                if (goodsCheck(goods)) {
-                    goodsMapper.update(goods);
-                    return true;
+            if (goodsCheck(goods)) {
+                Goods oldGoods = goodsMapper.selectById(goods.getId());
+                // 删除旧的物资照片
+                if (oldGoods != null && StringUtils.isNotEmpty(goods.getGoodImage())
+                        && !goods.getGoodImage().equals(oldGoods.getGoodImage())) {
+                    deleteFileByName(oldGoods.getGoodImage());
                 }
+                goodsMapper.update(goods);
+                return true;
             }
             return false;
         } catch (PersistenceException e) {
@@ -282,6 +286,12 @@ public class GoodsManageServiceImpl implements GoodsManageService {
             List<Storage> storageRecord = storageMapper.selectByGoodsIDAndRepositoryID(goodsId, null);
             if (storageRecord != null && !storageRecord.isEmpty()) {
                 return false;
+            }
+
+            Goods goods = goodsMapper.selectById(goodsId);
+            // 删除物资照片
+            if (goods != null && StringUtils.isNotEmpty(goods.getGoodImage())) {
+                deleteFileByName(goods.getGoodImage());
             }
 
             // 删除货物记录
@@ -345,10 +355,25 @@ public class GoodsManageServiceImpl implements GoodsManageService {
     @UserOperation(value = "导出货物信息")
     @Override
     public File exportGoods(List<Goods> goods) {
-        if (goods == null)
+        if (goods == null) {
             return null;
+        }
 
         return excelUtil.excelWriter(Goods.class, goods);
+    }
+
+    @Override
+    public Boolean deleteFileByName(String fileName) {
+        String filePath;
+        // window系统
+        if (System.getProperty("os.name").contains("Windows")) {
+            filePath = "C:\\upload";
+        } else {
+            filePath ="/home/upload";
+        }
+        String allPathFile = filePath + File.separator + fileName;
+        File dest = new File(allPathFile);
+        return dest.delete();
     }
 
 }

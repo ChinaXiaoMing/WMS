@@ -223,8 +223,9 @@ public class CustomerManageHandler {
         // 读取文件内容
         int total = 0;
         int available = 0;
-        if (file == null)
+        if (file == null) {
             result = Response.RESPONSE_RESULT_ERROR;
+        }
         Map<String, Object> importInfo = customerManageService.importCustomer(file);
         if (importInfo != null) {
             total = (int) importInfo.get("total");
