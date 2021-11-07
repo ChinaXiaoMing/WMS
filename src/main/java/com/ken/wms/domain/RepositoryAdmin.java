@@ -36,17 +36,16 @@ public class RepositoryAdmin {
      */
     private Date birth;
     /**
-     * 所属仓库ID
+     * 所属仓库id(多仓库id用逗号隔开)
      */
-    private Integer repositoryBelongID;
+    private String repoId;
 
-
-    public Integer getRepositoryBelongID() {
-        return repositoryBelongID;
+    public String getRepoId() {
+        return repoId;
     }
 
-    public void setRepositoryBelongID(Integer repositoryBelongID) {
-        this.repositoryBelongID = repositoryBelongID;
+    public void setRepoId(String repoId) {
+        this.repoId = repoId;
     }
 
     public Integer getId() {
@@ -107,8 +106,15 @@ public class RepositoryAdmin {
 
     @Override
     public String toString() {
-        return "RepositoryAdmin [id=" + id + ", name=" + name + ", sex=" + sex + ", tel=" + tel + ", address=" + address
-                + ", birth=" + birth + ", repositoryBelongID=" + repositoryBelongID + "]";
+        return "RepositoryAdmin{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", tel='" + tel + '\'' +
+                ", address='" + address + '\'' +
+                ", birth=" + birth +
+                ", repoId='" + repoId + '\'' +
+                '}';
     }
-
 }

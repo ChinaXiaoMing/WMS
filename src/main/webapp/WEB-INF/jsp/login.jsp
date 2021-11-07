@@ -76,6 +76,8 @@
         src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/js/jquery.md5.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/js/bootstrap-select.min.js"></script>
 
 <script>
     $(function () {

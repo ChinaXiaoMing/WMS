@@ -17,7 +17,7 @@
         editRepositoryAdminAction();
         deleteRepositoryAdminAction();
         importRepositoryAdminAction();
-        exportRepositoryAdminAction()
+        exportRepositoryAdminAction();
     })
 
     // 下拉框選擇動作
@@ -145,18 +145,24 @@
 
         // load info
         $('#repositoryAdmin_form_edit').bootstrapValidator("resetForm", true);
-      $('#repositoryAdmin_username_edit').val(row.username);
+        $('#repositoryAdmin_username_edit').val(row.username);
         $('#repositoryAdmin_name_edit').val(row.name);
         $('#repositoryAdmin_tel_edit').val(row.tel);
-        $('#repositoryAdmin_repoID_edit').text("");
+        $('#repositoryAdmin_repoID_edit').find("option").remove();
+        console.log($('#repositoryAdmin_repoID_edit').find("option").val());
 
         // 加载未分配仓库信息
         if (row.repositoryBelongID != null) {
-            $('#repositoryAdmin_repoID_edit').append("<option value='" + row.repositoryBelongID + "'>" + row.repositoryBelongID + "</option>");
+            $('.selectpicker').append("<option selected value='" + row.repositoryBelongID + "'>" + row.repositoryBelongID + "</option>");
         }
-        $('#repositoryAdmin_repoID_edit').append("<option value=''>不指派</option>");
+        unassignRepository();
+        // $('.selectpicker').append("<option value=''>不指派</option>");
 
-        $('#repositoryInfo').removeClass('hide').addClass('hide');
+        // $('#repositoryInfo').removeClass('hide').addClass('hide');
+        //$(".selectpicker").selectpicker();
+    }
+
+    function unassignRepository() {
         $.ajax({
             type: 'GET',
             url: 'repositoryManage/getUnassignRepository',
@@ -164,12 +170,18 @@
             contentTypr: 'application/json',
             success: function (response) {
                 data = response.data;
-                unassignRepoCache = data;
+                // unassignRepoCache = data;
                 $.each(data, function (index, element) {
-                    $('#repositoryAdmin_repoID_edit').append("<option value='" + element.id + "'>" + element.name + "</option>");
+                    $('.selectpicker').append("<option value='" + element.id + "'>" + element.name + "</option>");
                 })
+                $(".selectpicker").selectpicker();
+                $(".selectpicker").selectpicker("refresh");
             }
         });
+    }
+
+    function buttonCancel() {
+
     }
 
     // 日期选择器初始化
@@ -234,6 +246,7 @@
                     tel: $('#repositoryAdmin_tel_edit').val(),
                     repositoryBelongID: $('#repositoryAdmin_repoID_edit').val()
                 }
+                console.log(data.repositoryBelongID);
 
                 // ajax
                 $.ajax({
@@ -261,18 +274,18 @@
                 });
             });
 
-        $('#repositoryAdmin_repoID_edit').change(function () {
-            var repositoryID = $(this).val();
-            $('#repositoryInfo').removeClass('hide').addClass('hide');
-            $.each(unassignRepoCache, function (index, element) {
-                if (element.id == repositoryID) {
-                    $('#repository_address').text(element.address);
-                    $('#repository_status').text(element.status);
-                    $('#repositoryInfo').removeClass('hide');
-                }
-            })
-
-        })
+        // $('#repositoryAdmin_repoID_edit').change(function () {
+        //     var repositoryID = $(this).val();
+        //     $('#repositoryInfo').removeClass('hide').addClass('hide');
+        //     $.each(unassignRepoCache, function (index, element) {
+        //         if (element.id == repositoryID) {
+        //             $('#repository_address').text(element.address);
+        //             $('#repository_status').text(element.status);
+        //             $('#repositoryInfo').removeClass('hide');
+        //         }
+        //     })
+        //
+        // })
     }
 
     // 刪除仓库管理员信息
@@ -710,11 +723,6 @@
                                     <span class="sr-only">请稍后...</span>
                                 </div>
                             </div>
-                            <!--
-                            <div style="text-align: center">
-                                <h4 id="import_info"></h4>
-                            </div>
-                             -->
                         </div>
                         <div class="col-md-1 col-sm-1"></div>
                     </div>
@@ -927,7 +935,8 @@
                                     <span>所属仓库：</span>
                                 </label>
                                 <div class="col-md-7 col-sm-7">
-                                    <select name="" class="selectpicker form-control" multiple id="repositoryAdmin_repoID_edit">
+                                    <select name="" class="form-control selectpicker" title="请选择所属仓库" multiple
+                                            id="repositoryAdmin_repoID_edit">
                                         <option value=""></option>
                                     </select>
                                 </div>
@@ -946,7 +955,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-default" type="button" data-dismiss="modal">
+                <button class="btn btn-default" type="button" data-dismiss="modal" onclick="buttonCancel()">
                     <span>取消</span>
                 </button>
                 <button class="btn btn-success" type="button" id="edit_modal_submit">

@@ -11,6 +11,7 @@ import com.ken.wms.exception.RepositoryAdminManageServiceException;
 import com.ken.wms.exception.UserInfoServiceException;
 import com.ken.wms.security.service.Interface.UserInfoService;
 import com.ken.wms.util.aop.UserOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -236,10 +237,13 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
                 }
 
                 // 若有指派的仓库则检查
-                if (repositoryAdmin.getRepositoryBelongID() != null) {
-                    RepositoryAdmin rAdminFromDB = repositoryAdminMapper.selectByRepositoryID(repositoryAdmin.getRepositoryBelongID());
-                    if (rAdminFromDB != null && !Objects.equals(rAdminFromDB.getId(), repositoryAdmin.getId())) {
-                        return false;
+                if (StringUtils.isNotEmpty(repositoryAdmin.getRepoId())) {
+                    String[] repoId = repositoryAdmin.getRepoId().split(",");
+                    for (String s : repoId) {
+                        RepositoryAdmin rAdminFromDB = repositoryAdminMapper.selectByRepositoryID(Integer.valueOf(s));
+                        if (rAdminFromDB != null && !Objects.equals(rAdminFromDB.getId(), repositoryAdmin.getId())) {
+                            return false;
+                        }
                     }
                 }
 
@@ -269,7 +273,7 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
         try {
             // 判断是否已指派仓库
             RepositoryAdmin repositoryAdmin = repositoryAdminMapper.selectByID(repositoryAdminID);
-            if (repositoryAdmin != null && repositoryAdmin.getRepositoryBelongID() == null) {
+            if (repositoryAdmin != null && StringUtils.isNotEmpty(repositoryAdmin.getRepoId())) {
 
                 // 删除仓库管理员信息
                 repositoryAdminMapper.deleteByID(repositoryAdminID);
@@ -300,7 +304,7 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
         try {
             RepositoryAdmin repositoryAdmin = repositoryAdminMapper.selectByID(repositoryAdminID);
             if (repositoryAdmin != null) {
-                repositoryAdmin.setRepositoryBelongID(repositoryID);
+                repositoryAdmin.setRepoId(repositoryID.toString());
                 return updateRepositoryAdmin(repositoryAdmin);
             } else {
                 return false;

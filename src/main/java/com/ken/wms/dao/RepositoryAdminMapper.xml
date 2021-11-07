@@ -13,7 +13,7 @@
         <result property="tel" column="REPO_ADMIN_TEL"/>
         <result property="address" column="REPO_ADMIN_ADDRESS"/>
         <result property="birth" column="REPO_ADMIN_BIRTH"/>
-        <result property="repositoryBelongID" column="REPO_ADMIN_REPOID"/>
+        <result property="repoId" column="REPO_ADMIN_REPOID"/>
     </resultMap>
 
     <select id="selectAll" resultMap="repositoryAdmin">
