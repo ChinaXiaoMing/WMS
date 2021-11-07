@@ -118,7 +118,7 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
                     List<RepositoryAdmin> repositoryAdmin = (List<RepositoryAdmin>) repositoryAdminManageService
                             .selectByID(userInfoDTO.getUserID()).get("data");
                     session.setAttribute("repositoryBelong", (repositoryAdmin.isEmpty()) ? "none" :
-                            repositoryAdmin.get(0).getRepositoryBelongID());
+                            repositoryAdmin.get(0).getRepoId());
                 }
 
                 // 结合验证码对密码进行处理

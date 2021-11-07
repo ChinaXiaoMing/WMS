@@ -21,10 +21,7 @@
         REPO_ADMIN_ID,
         REPO_ADMIN_USERNAME,
         REPO_ADMIN_NAME,
-        REPO_ADMIN_SEX,
         REPO_ADMIN_TEL,
-        REPO_ADMIN_ADDRESS,
-        REPO_ADMIN_BIRTH,
         REPO_ADMIN_REPOID
         from
         wms_repo_admin
@@ -35,11 +32,7 @@
         REPO_ADMIN_ID,
         REPO_ADMIN_USERNAME,
         REPO_ADMIN_NAME,
-        REPO_ADMIN_SEX,
-        REPO_ADMIN_TEL,
-        REPO_ADMIN_ADDRESS,
-        REPO_ADMIN_BIRTH,
-        REPO_ADMIN_REPOID
+        REPO_ADMIN_TEL
         from
         wms_repo_admin
         where
@@ -51,11 +44,7 @@
         REPO_ADMIN_ID,
         REPO_ADMIN_USERNAME,
         REPO_ADMIN_NAME,
-        REPO_ADMIN_SEX,
-        REPO_ADMIN_TEL,
-        REPO_ADMIN_ADDRESS,
-        REPO_ADMIN_BIRTH,
-        REPO_ADMIN_REPOID
+        REPO_ADMIN_TEL
         from
         wms_repo_admin
         where
@@ -67,10 +56,7 @@
         REPO_ADMIN_ID,
         REPO_ADMIN_USERNAME,
         REPO_ADMIN_NAME,
-        REPO_ADMIN_SEX,
         REPO_ADMIN_TEL,
-        REPO_ADMIN_ADDRESS,
-        REPO_ADMIN_BIRTH,
         REPO_ADMIN_REPOID
         from
         wms_repo_admin
@@ -80,16 +66,16 @@
 
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into
-        wms_repo_admin(REPO_ADMIN_USERNAME,REPO_ADMIN_NAME,REPO_ADMIN_SEX,REPO_ADMIN_TEL,REPO_ADMIN_ADDRESS,REPO_ADMIN_BIRTH,REPO_ADMIN_REPOID)
-        values(#{username},#{name},#{sex},#{tel},#{address},#{birth},#{repositoryBelongID})
+        wms_repo_admin(REPO_ADMIN_USERNAME,REPO_ADMIN_NAME,REPO_ADMIN_TEL)
+        values(#{username},#{name},#{tel})
     </insert>
 
     <insert id="insertBatch">
         insert into
-        wms_repo_admin(REPO_ADMIN_USERNAME,REPO_ADMIN_NAME,REPO_ADMIN_SEX,REPO_ADMIN_TEL,REPO_ADMIN_ADDRESS,REPO_ADMIN_BIRTH,REPO_ADMIN_REPOID)
+        wms_repo_admin(REPO_ADMIN_USERNAME,REPO_ADMIN_NAME,REPO_ADMIN_TEL)
         values
         <foreach collection="list" item="repositoryAdmin" separator=",">
-            (#{repositoryAdmin.username},#{repositoryAdmin.name},#{repositoryAdmin.sex},#{repositoryAdmin.tel},#{repositoryAdmin.address},#{repositoryAdmin.birth},#{repositoryAdmin.repositoryBelongID})
+            (#{repositoryAdmin.username},#{repositoryAdmin.name},#{repositoryAdmin.tel})
         </foreach>
     </insert>
 
@@ -97,13 +83,10 @@
         update
         wms_repo_admin
         set
-        REPO_ADMIN_USERNAME = #{username}
+        REPO_ADMIN_USERNAME = #{username},
         REPO_ADMIN_NAME = #{name},
-        REPO_ADMIN_SEX = #{sex},
         REPO_ADMIN_TEL = #{tel},
-        REPO_ADMIN_ADDRESS = #{address},
-        REPO_ADMIN_BIRTH = #{birth},
-        REPO_ADMIN_REPOID = #{repositoryBelongID}
+        REPO_ADMIN_REPOID = #{repoId}
         where
         REPO_ADMIN_ID = #{id}
     </update>

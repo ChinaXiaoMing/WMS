@@ -235,17 +235,7 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
                 if (!repositoryAdminCheck(repositoryAdmin)) {
                     return false;
                 }
-
-                // 若有指派的仓库则检查
-                if (StringUtils.isNotEmpty(repositoryAdmin.getRepoId())) {
-                    String[] repoId = repositoryAdmin.getRepoId().split(",");
-                    for (String s : repoId) {
-                        RepositoryAdmin rAdminFromDB = repositoryAdminMapper.selectByRepositoryID(Integer.valueOf(s));
-                        if (rAdminFromDB != null && !Objects.equals(rAdminFromDB.getId(), repositoryAdmin.getId())) {
-                            return false;
-                        }
-                    }
-                }
+                repositoryAdmin.setRepoId(StringUtils.join(repositoryAdmin.getRepoIdList(), ","));
 
                 // 更新
                 repositoryAdminMapper.update(repositoryAdmin);

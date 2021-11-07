@@ -1,6 +1,7 @@
 package com.ken.wms.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 /**
  * 仓库管理员信息
@@ -35,10 +36,16 @@ public class RepositoryAdmin {
      * 出生日期
      */
     private Date birth;
+
     /**
      * 所属仓库id(多仓库id用逗号隔开)
      */
     private String repoId;
+
+    /**
+     * 所属仓库id(多仓库id用逗号隔开)
+     */
+    private List<Integer> repoIdList;
 
     public String getRepoId() {
         return repoId;
@@ -46,6 +53,14 @@ public class RepositoryAdmin {
 
     public void setRepoId(String repoId) {
         this.repoId = repoId;
+    }
+
+    public List<Integer> getRepoIdList() {
+        return repoIdList;
+    }
+
+    public void setRepoIdList(List<Integer> repoIdList) {
+        this.repoIdList = repoIdList;
     }
 
     public Integer getId() {
@@ -114,7 +129,7 @@ public class RepositoryAdmin {
                 ", tel='" + tel + '\'' +
                 ", address='" + address + '\'' +
                 ", birth=" + birth +
-                ", repoId='" + repoId + '\'' +
+                ", repoIdList=" + repoIdList +
                 '}';
     }
 }

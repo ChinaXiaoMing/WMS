@@ -90,8 +90,8 @@
                             visible: false
                         },
                         {
-                            field: "repositoryBelongID",
-                            title: "所属仓库ID"
+                            field: "repoId",
+                            title: "所属仓库"
                         },
                         {
                             field: 'operation',
@@ -149,11 +149,10 @@
         $('#repositoryAdmin_name_edit').val(row.name);
         $('#repositoryAdmin_tel_edit').val(row.tel);
         $('#repositoryAdmin_repoID_edit').find("option").remove();
-        console.log($('#repositoryAdmin_repoID_edit').find("option").val());
 
         // 加载未分配仓库信息
-        if (row.repositoryBelongID != null) {
-            $('.selectpicker').append("<option selected value='" + row.repositoryBelongID + "'>" + row.repositoryBelongID + "</option>");
+        if (row.repoId != null) {
+            $('.selectpicker').append("<option selected value='" + row.repoId + "'>" + row.repoId + "</option>");
         }
         unassignRepository();
         // $('.selectpicker').append("<option value=''>不指派</option>");
@@ -239,14 +238,13 @@
                     .isValid()) {
                     return;
                 }
-
+                console.log($('#repositoryAdmin_repoID_edit').val());
                 var data = {
                     id: selectID,
                     name: $('#repositoryAdmin_name_edit').val(),
                     tel: $('#repositoryAdmin_tel_edit').val(),
-                    repositoryBelongID: $('#repositoryAdmin_repoID_edit').val()
+                    repoIdList: $('#repositoryAdmin_repoID_edit').val()
                 }
-                console.log(data.repositoryBelongID);
 
                 // ajax
                 $.ajax({
