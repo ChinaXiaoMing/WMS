@@ -64,7 +64,19 @@
         REPO_ADMIN_REPOID = #{repositoryID}
     </select>
 
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+  <select id="selectRepositoryAdminByUserName" resultMap="repositoryAdmin">
+      select
+          REPO_ADMIN_ID,
+          REPO_ADMIN_USERNAME,
+          REPO_ADMIN_NAME,
+          REPO_ADMIN_TEL
+      from
+          wms_repo_admin
+      where
+          REPO_ADMIN_USERNAME = #{username}
+  </select>
+
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into
         wms_repo_admin(REPO_ADMIN_USERNAME,REPO_ADMIN_NAME,REPO_ADMIN_TEL)
         values(#{username},#{name},#{tel})

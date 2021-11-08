@@ -249,10 +249,9 @@
     function editGoodsAction() {
         $('#edit_modal_submit').click(
             function () {
-                $('#goods_form_edit').data('bootstrapValidator')
-                    .validate();
-                if (!$('#goods_form_edit').data('bootstrapValidator')
-                    .isValid()) {
+                // 表单参数效验
+                $('#goods_form_edit').bootstrapValidator('validate');
+                if (!$('#goods_form_edit').data('bootstrapValidator').isValid()) {
                     return;
                 }
 
@@ -336,6 +335,12 @@
         });
 
         $('#add_modal_submit').click(function () {
+            // 表单参数效验
+            $('#goods_form').bootstrapValidator('validate');
+            if (!$('#goods_form').data('bootstrapValidator').isValid()) {
+                return;
+            }
+
             var data = {
                 goodCode: $('#goods_code').val(),
                 name: $('#goods_name').val(),

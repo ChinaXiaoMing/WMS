@@ -114,4 +114,13 @@ public interface RepositoryAdminManageService {
      * @return Excel 文件
      */
     File exportRepositoryAdmin(List<RepositoryAdmin> repositoryAdmins);
+
+    /**
+     * 检查用户名的唯一性
+     *
+     * @param username 用户名
+     * @return boolean 是否唯一
+     */
+    boolean checkUsername(String username);
+
 }

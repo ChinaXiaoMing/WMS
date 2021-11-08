@@ -231,6 +231,18 @@
             },
             excluded: [':disabled'],
             fields: {
+                repositoryAdmin_username: {
+                    validators: {
+                        notEmpty: {
+                            message: '仓库管理员用户名不能为空'
+                        },
+                        remote: {
+                            url: 'repositoryAdminManage/checkUserName',
+                            message: '该用户名已存在',
+                            delay: 1000
+                        }
+                    }
+                },
                 repositoryAdmin_name: {
                     validators: {
                         notEmpty: {
@@ -350,6 +362,11 @@
         });
 
         $('#add_modal_submit').click(function () {
+            // 表单参数效验
+            $('#repositoryAdmin_form').bootstrapValidator('validate');
+            if (!$('#repositoryAdmin_form').data('bootstrapValidator').isValid()) {
+                return;
+            }
             var data = {
                 username: $('#repositoryAdmin_username').val(),
                 name: $('#repositoryAdmin_name').val(),
@@ -929,7 +946,7 @@
                                 </label>
                                 <div class="col-md-7 col-sm-7">
                                     <input type="text" class="form-control" id="repositoryAdmin_username_edit"
-                                           name="repositoryAdmin_name" disabled="disabled">
+                                           name="repositoryAdmin_username" disabled="disabled">
                                 </div>
                             </div>
                             <div class="form-group">

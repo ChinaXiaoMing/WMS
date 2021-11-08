@@ -70,4 +70,13 @@ public interface RepositoryAdminMapper {
      * @param id 仓库管理员 ID
      */
     void deleteByID(Integer id);
+
+    /**
+     * 根据用户名查询仓库管理员信息
+     *
+     * @param username 用户名
+     * @return 仓库管理员信息
+     */
+    RepositoryAdmin selectRepositoryAdminByUserName(String username);
+
 }

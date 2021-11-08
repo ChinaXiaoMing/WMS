@@ -1,5 +1,7 @@
 package com.ken.wms.common.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ken.wms.common.service.Interface.RepositoryAdminManageService;
 import com.ken.wms.common.util.Response;
 import com.ken.wms.common.util.ResponseUtil;
@@ -17,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -292,4 +295,27 @@ public class RepositoryAdminManageHandler {
             outputStream.close();
         }
     }
+
+    /**
+     * 检查用户名是否存在
+     *
+     * @param username 用户名
+     * @return 是否存在
+     */
+    @RequestMapping(value = "checkUserName", method = RequestMethod.POST)
+    @ResponseBody
+    public String checkUserName(String username) {
+        String result = "";
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("valid", repositoryAdminManageService.checkUsername(username));
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            result = mapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
 }

@@ -463,4 +463,15 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
         }
     }
 
+    /**
+     * 检查用户名唯一性
+     *
+     * @param username 用户名
+     * @return boolean 是否唯一
+     */
+    @Override
+    public boolean checkUsername(String username) {
+        return repositoryAdminMapper.selectRepositoryAdminByUserName(username) == null;
+    }
+
 }
