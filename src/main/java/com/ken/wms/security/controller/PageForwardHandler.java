@@ -36,7 +36,6 @@ public class PageForwardHandler {
     @RequestMapping("mainPage")
     public String showLoginView() {
         Subject currentSubject = SecurityUtils.getSubject();
-        System.out.println("=====================111111111111111111");
         if (!currentSubject.isAuthenticated()) {
             return "login";
         } else {

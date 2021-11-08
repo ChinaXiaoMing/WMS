@@ -99,7 +99,6 @@
             error: function (response) {
             }
         });
-        $('#search_input_repository').append("<option value='all'>请选择仓库</option>");
     }
 
     // 搜索动作
@@ -166,9 +165,23 @@
                             field: 'number',
                             title: '库存数量'
                         },
-                        {
-                            field: 'goodImage',
-                            title: '物资照片'
+                      {
+                        field: 'goodImage',
+                        title: '物资照片',
+                        formatter: function (value, row, index) {
+                          var preview;
+                          if (row.goodImage) {
+                            preview = '<button class="btn btn-info btn-sm preview" id="preview"><span>预览</span></button>';
+                          } else {
+                            preview = '没有物资照片';
+                          }
+                          return preview;
+                        },
+                            events: {
+                              "click .preview": function (e, value, row, index) {
+                                preview(row);
+                              }
+                            }
                         },
                         {
                             field: 'operation',
@@ -213,6 +226,14 @@
         $('#storageList').bootstrapTable('refresh', {
             query: {}
         });
+    }
+
+    // 物资照片预览
+    function preview(row) {
+      // 显示预览窗口
+      $('#image_preview_modal').modal("show");
+      console.log("/upload/" + row.goodImage);
+      $('#preview_image').attr("src", "/upload/" + row.goodImage);
     }
 
     // 行编辑操作模态框展示与数据填充
@@ -607,6 +628,28 @@
     </div>
 </div>
 
+<!-- 预览图片模态框 -->
+<div class="modal fade" id="image_preview_modal" table-index="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal"
+                        aria-hidden="true">&times;
+                </button>
+                <h4 class="modal-title">物资照片</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div style="text-align: center;">
+                        <img src="" alt="" id="preview_image" style="width: 98%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- 添加库存信息模态框 -->
 <div id="add_modal" class="modal fade" table-index="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true"
@@ -728,7 +771,7 @@
                                 <div style="margin-top: 30px; margin-buttom: 15px">
 									<span class="btn btn-info btn-file"> <span> <span
                                             class="glyphicon glyphicon-upload"></span> <span>上传文件</span>
-									</span> 
+									</span>
 									<form id="import_file_upload"><input type="file" id="file" name="file"></form>
 									</span>
                                 </div>

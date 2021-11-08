@@ -124,8 +124,9 @@ public class RepositoryManageHandler {
         if (queryResult != null) {
             data = (List<Repository>) queryResult.get("data");
             total = (long) queryResult.get("total");
-        } else
+        } else {
             data = new ArrayList<>();
+        }
 
         resultSet.put("data", data);
         resultSet.put("total", total);
@@ -174,8 +175,9 @@ public class RepositoryManageHandler {
         Map<String, Object> queryResult = repositoryService.selectById(repositoryID);
         if (queryResult != null) {
             repositoryList = (List<Repository>) queryResult.get("data");
-            if (repositoryList != null && repositoryList.size() > 0)
+            if (repositoryList != null && repositoryList.size() > 0) {
                 repository = repositoryList.get(0);
+            }
             result = Response.RESPONSE_RESULT_SUCCESS;
         }
 
@@ -283,10 +285,11 @@ public class RepositoryManageHandler {
 
         Map<String, Object> queryResult = query(searchType, keyWord, -1, -1);
 
-        if (queryResult != null)
+        if (queryResult != null) {
             repositories = (List<Repository>) queryResult.get("data");
-        else
+        } else {
             repositories = new ArrayList<>();
+        }
 
         // 生成文件
         File file = repositoryService.exportRepository(repositories);

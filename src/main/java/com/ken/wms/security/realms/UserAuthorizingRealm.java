@@ -1,16 +1,18 @@
 package com.ken.wms.security.realms;
 
-import com.ken.wms.common.service.Interface.RepositoryAdminManageService;
-import com.ken.wms.common.service.Interface.SystemLogService;
-import com.ken.wms.domain.RepositoryAdmin;
+import com.ken.wms.dao.RepositoryMapper;
+import com.ken.wms.domain.Repository;
 import com.ken.wms.domain.UserInfoDTO;
-import com.ken.wms.exception.RepositoryAdminManageServiceException;
 import com.ken.wms.exception.UserInfoServiceException;
 import com.ken.wms.security.service.Interface.UserInfoService;
 import com.ken.wms.security.util.EncryptingModel;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -22,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,9 +41,7 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
     @Autowired
     private EncryptingModel encryptingModel;
     @Autowired
-    private RepositoryAdminManageService repositoryAdminManageService;
-    @Autowired
-    private SystemLogService systemLogService;
+    private RepositoryMapper repositoryMapper;
 
     /**
      * 对用户进行角色授权
@@ -115,10 +116,18 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
                     session.setAttribute("repositoryBelong", "all");
                 } else {
                     //普通仓库管理员，设置所属仓库
-                    List<RepositoryAdmin> repositoryAdmin = (List<RepositoryAdmin>) repositoryAdminManageService
-                            .selectByID(userInfoDTO.getUserID()).get("data");
-                    session.setAttribute("repositoryBelong", (repositoryAdmin.isEmpty()) ? "none" :
-                            repositoryAdmin.get(0).getRepoId());
+                    List<Repository> repositoryList = repositoryMapper.selectByRepoAdminId(userInfoDTO.getUserID());
+                    if (CollectionUtils.isEmpty(repositoryList)) {
+                        // 没有所属仓库
+                        session.setAttribute("repositoryBelong", "none");
+                    } else {
+                        session.setAttribute("repositoryBelong", "some");
+                        List<Integer> repoIdList = new ArrayList<>();
+                        for (Repository repository : repositoryList) {
+                            repoIdList.add(repository.getId());
+                        }
+                        session.setAttribute("repositoryIdList", repoIdList);
+                    }
                 }
 
                 // 结合验证码对密码进行处理
@@ -132,7 +141,7 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
             //realmName为com.ken.wms.security.realms.UserAuthorizingRealm_0
             return new SimpleAuthenticationInfo(username, credentials, realmName);
 
-        } catch (UserInfoServiceException | RepositoryAdminManageServiceException | NoSuchAlgorithmException e) {
+        } catch (UserInfoServiceException | NoSuchAlgorithmException e) {
             throw new AuthenticationException();
         }
     }

@@ -5,20 +5,30 @@ import com.github.pagehelper.PageInfo;
 import com.ken.wms.common.service.Interface.RepositoryAdminManageService;
 import com.ken.wms.common.util.ExcelUtil;
 import com.ken.wms.dao.RepositoryAdminMapper;
+import com.ken.wms.dao.RepositoryMapper;
+import com.ken.wms.domain.Repository;
 import com.ken.wms.domain.RepositoryAdmin;
 import com.ken.wms.domain.UserInfoDTO;
 import com.ken.wms.exception.RepositoryAdminManageServiceException;
 import com.ken.wms.exception.UserInfoServiceException;
 import com.ken.wms.security.service.Interface.UserInfoService;
 import com.ken.wms.util.aop.UserOperation;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.exceptions.PersistenceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 仓库管理员管理 service 实现类
@@ -26,12 +36,16 @@ import java.util.*;
 @Service
 public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageService {
 
+    private final Logger log = LoggerFactory.getLogger(RepositoryAdminManageServiceImpl.class);
+
     @Autowired
     private RepositoryAdminMapper repositoryAdminMapper;
     @Autowired
     private ExcelUtil excelUtil;
     @Autowired
     private UserInfoService userInfoService;
+    @Autowired
+    private RepositoryMapper repositoryMapper;
 
     /**
      * 返回指定repository id 的仓库管理员记录
@@ -146,6 +160,7 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
                 PageHelper.offsetPage(offset, limit);
                 repositoryAdmins = repositoryAdminMapper.selectAll();
                 if (repositoryAdmins != null) {
+                    setRepository(repositoryAdmins);
                     PageInfo<RepositoryAdmin> pageInfo = new PageInfo<>(repositoryAdmins);
                     total = pageInfo.getTotal();
                 } else {
@@ -154,6 +169,7 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
             } else {
                 repositoryAdmins = repositoryAdminMapper.selectAll();
                 if (repositoryAdmins != null) {
+                    setRepository(repositoryAdmins);
                     total = repositoryAdmins.size();
                 } else {
                     repositoryAdmins = new ArrayList<>();
@@ -226,19 +242,34 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
      * @return 返回一个boolean值，值为true代表更新成功，否则代表失败
      */
     @UserOperation(value = "修改仓库管理员信息")
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean updateRepositoryAdmin(RepositoryAdmin repositoryAdmin) throws RepositoryAdminManageServiceException {
 
+        log.info("更新仓库管理员信息：{}", repositoryAdmin);
         if (repositoryAdmin != null) {
             try {
                 // 检查属性
                 if (!repositoryAdminCheck(repositoryAdmin)) {
                     return false;
                 }
+
                 repositoryAdmin.setRepoId(StringUtils.join(repositoryAdmin.getRepoIdList(), ","));
 
-                // 更新
+                // 更新仓库管理员信息
                 repositoryAdminMapper.update(repositoryAdmin);
+                repositoryMapper.updateAdminID(repositoryAdmin.getId());
+                // 查询是否存在待分配的仓库ID计划，存在则更新仓库信息，设置仓库管理员ID
+                List<Integer> repoIdList = repositoryAdmin.getRepoIdList();
+                if (CollectionUtils.isNotEmpty(repoIdList)) {
+                    for (Integer repoId : repoIdList) {
+                        Repository repository = repositoryMapper.selectByID(repoId);
+                        // 设置仓库管理员ID
+                        repository.setAdminID(repositoryAdmin.getId());
+                        // 更新仓库信息
+                        repositoryMapper.update(repository);
+                    }
+                 }
 
                 return true;
             } catch (PersistenceException e) {
@@ -262,8 +293,8 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
 
         try {
             // 判断是否已指派仓库
-            RepositoryAdmin repositoryAdmin = repositoryAdminMapper.selectByID(repositoryAdminID);
-            if (repositoryAdmin != null && StringUtils.isNotEmpty(repositoryAdmin.getRepoId())) {
+            List<Repository> repositoryList = repositoryMapper.selectByRepoAdminId(repositoryAdminID);
+            if (CollectionUtils.isEmpty(repositoryList)) {
 
                 // 删除仓库管理员信息
                 repositoryAdminMapper.deleteByID(repositoryAdminID);
@@ -273,6 +304,7 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
 
                 return true;
             } else {
+                log.error("删除仓库管理员信息失败，该仓库管理员存在指派仓库");
                 return false;
             }
         } catch (PersistenceException | UserInfoServiceException e) {
@@ -292,10 +324,11 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
     public boolean assignRepository(Integer repositoryAdminID, Integer repositoryID) throws RepositoryAdminManageServiceException {
 
         try {
-            RepositoryAdmin repositoryAdmin = repositoryAdminMapper.selectByID(repositoryAdminID);
-            if (repositoryAdmin != null) {
-                repositoryAdmin.setRepoId(repositoryID.toString());
-                return updateRepositoryAdmin(repositoryAdmin);
+            Repository repository = repositoryMapper.selectByID(repositoryID);
+            if (repository != null) {
+                repository.setAdminID(repositoryAdminID);
+                repositoryMapper.update(repository);
+                return true;
             } else {
                 return false;
             }
@@ -422,4 +455,12 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
         resultSet.put("total", total);
         return resultSet;
     }
+
+    private void setRepository(List<RepositoryAdmin> repositoryAdminList) {
+        for (RepositoryAdmin repositoryAdmin: repositoryAdminList) {
+            List<Repository> repositoryList = repositoryMapper.selectByRepoAdminId(repositoryAdmin.getId());
+            repositoryAdmin.setRepositoryList(repositoryList);
+        }
+    }
+
 }

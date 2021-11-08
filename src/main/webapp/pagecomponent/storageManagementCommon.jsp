@@ -26,10 +26,10 @@
             } else if (type == "货物ID") {
                 $("#search_input_type").removeAttr("readOnly");
                 search_type_storage = "searchByGoodsID";
-            } else if (type == "货物名称") {
+            } else if (type == "物料描述") {
                 $("#search_input_type").removeAttr("readOnly");
                 search_type_storage = "searchByGoodsName";
-            } else if (type = "货物类型") {
+            } else if (type = "物料属性") {
                 $("#search_input_type").removeAttr("readOnly");
                 search_type_storage = "searchByGoodsType";
             } else {
@@ -192,8 +192,8 @@
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="javascript:void(0)" class="dropOption">货物ID</a></li>
-                        <li><a href="javascript:void(0)" class="dropOption">货物名称</a></li>
-                        <li><a href="javascript:void(0)" class="dropOption">货物类型</a></li>
+                        <li><a href="javascript:void(0)" class="dropOption">物料描述</a></li>
+                        <li><a href="javascript:void(0)" class="dropOption">物料属性</a></li>
                         <li><a href="javascript:void(0)" class="dropOption">所有</a></li>
                     </ul>
                 </div>

@@ -47,6 +47,11 @@ public class RepositoryAdmin {
      */
     private List<Integer> repoIdList;
 
+    /**
+     * 所属仓库信息列表
+     */
+    private List<Repository> repositoryList;
+
     public String getRepoId() {
         return repoId;
     }
@@ -119,6 +124,14 @@ public class RepositoryAdmin {
         this.birth = birth;
     }
 
+    public List<Repository> getRepositoryList() {
+        return repositoryList;
+    }
+
+    public void setRepositoryList(List<Repository> repositoryList) {
+        this.repositoryList = repositoryList;
+    }
+
     @Override
     public String toString() {
         return "RepositoryAdmin{" +
@@ -129,7 +142,9 @@ public class RepositoryAdmin {
                 ", tel='" + tel + '\'' +
                 ", address='" + address + '\'' +
                 ", birth=" + birth +
+                ", repoId='" + repoId + '\'' +
                 ", repoIdList=" + repoIdList +
+                ", repositoryList=" + repositoryList +
                 '}';
     }
 }

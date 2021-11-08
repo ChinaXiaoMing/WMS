@@ -13,6 +13,7 @@
         <result property="area" column="REPO_AREA"/>
         <result property="desc" column="REPO_DESC"/>
         <result property="adminName" column="REPO_ADMIN_NAME"/>
+        <result property="adminID" column="REPO_ADMIN_ID"/>
     </resultMap>
 
     <select id="selectAll" resultMap="repository">
@@ -23,9 +24,10 @@
         r.REPO_STATUS,
         r.REPO_AREA,
         r.REPO_DESC,
+        r.REPO_ADMIN_ID,
         ra.REPO_ADMIN_NAME
         from
-        wms_respository r left join wms_repo_admin ra on(r.REPO_ID = ra.REPO_ADMIN_REPOID)
+        wms_respository r left join wms_repo_admin ra on(r.REPO_ADMIN_ID = ra.REPO_ADMIN_ID)
     </select>
 
     <select id="selectUnassign" resultMap="repository">
@@ -38,14 +40,7 @@
         r.REPO_DESC
         from
         wms_respository r
-        where not exists
-        (
-        select *
-        from
-        wms_repo_admin ra
-        where
-        ra.REPO_ADMIN_REPOID = r.REPO_ID
-        )
+        where ISNULL(r.REPO_ADMIN_ID)
     </select>
 
     <select id="selectByID" resultMap="repository">
@@ -58,7 +53,7 @@
         r.REPO_DESC,
         ra.REPO_ADMIN_NAME
         from
-        wms_respository r left join wms_repo_admin ra on(r.REPO_ID = ra.REPO_ADMIN_REPOID)
+        wms_respository r left join wms_repo_admin ra on(r.REPO_ADMIN_ID = ra.REPO_ADMIN_ID)
         where
         r.REPO_ID = #{repositoryID}
     </select>
@@ -69,11 +64,10 @@
             r.REPO_NAME,
             r.REPO_ADDRESS,
             r.REPO_STATUS,
-            r.REPO_AREA,
             r.REPO_DESC,
             ra.REPO_ADMIN_NAME
         from
-            wms_respository r left join wms_repo_admin ra on(r.REPO_ID = ra.REPO_ADMIN_REPOID)
+            wms_respository r left join wms_repo_admin ra on(r.REPO_ADMIN_ID = ra.REPO_ADMIN_ID)
         where
             r.REPO_NAME = #{repoName}
         limit 1
@@ -85,25 +79,35 @@
         r.REPO_NAME,
         r.REPO_ADDRESS,
         r.REPO_STATUS,
-        r.REPO_AREA,
         r.REPO_DESC,
         ra.REPO_ADMIN_NAME
         from
-        wms_respository r left join wms_repo_admin ra on(r.REPO_ID = ra.REPO_ADMIN_REPOID)
+        wms_respository r left join wms_repo_admin ra on(r.REPO_ADMIN_ID = ra.REPO_ADMIN_ID)
         where
         r.REPO_ADDRESS like concat(concat("%",#{address},"%"))
     </select>
 
+    <select id="selectByRepoAdminId" resultMap="repository">
+        select
+            r.REPO_ID,
+            r.REPO_NAME,
+            r.REPO_ADDRESS,
+            r.REPO_STATUS,
+            r.REPO_DESC
+        from wms_respository r
+        where r.REPO_ADMIN_ID = #{adminID}
+    </select>
+
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into wms_respository(REPO_NAME,REPO_ADDRESS,REPO_STATUS,REPO_AREA,REPO_DESC)
-        values(#{name}, #{address}, #{status}, #{area}, #{desc})
+        insert into wms_respository(REPO_NAME,REPO_ADDRESS,REPO_STATUS,REPO_DESC)
+        values(#{name}, #{address}, #{status}, #{desc})
     </insert>
 
     <insert id="insertbatch">
-        insert into wms_respository(REPO_NAME,REPO_ADDRESS,REPO_STATUS,REPO_AREA,REPO_DESC)
+        insert into wms_respository(REPO_NAME,REPO_ADDRESS,REPO_STATUS,REPO_DESC)
         values
         <foreach collection="list" item="repository" separator=",">
-            (#{repository.name},#{repository.address},#{repository.status},#{repository.area},#{repository.desc})
+            (#{repository.name},#{repository.address},#{repository.status},#{repository.desc})
         </foreach>
     </insert>
 
@@ -114,10 +118,18 @@
         REPO_NAME = #{name},
         REPO_ADDRESS = #{address},
         REPO_STATUS = #{status},
-        REPO_AREA = #{area},
-        REPO_desc = #{desc}
+        REPO_DESC = #{desc},
+        REPO_ADMIN_ID = #{adminID}
         where
         REPO_ID = #{id}
+    </update>
+    <update id="updateAdminID">
+        update
+            wms_respository
+        set
+            REPO_ADMIN_ID = null
+        where
+            REPO_ADMIN_ID = #{repoId}
     </update>
 
     <delete id="deleteByID">

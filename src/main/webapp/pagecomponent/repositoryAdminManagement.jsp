@@ -34,7 +34,7 @@
             } else if (type == "仓库管理员姓名") {
                 $("#search_input").removeAttr("readOnly");
                 search_type_repositoryAdmin = "searchByName";
-            } else if (type == "仓库ID") {
+            } else if (type == "仓库名称") {
                 $("#search_input").removeAttr("readOnly");
                 search_type_repositoryAdmin = "searchByRepositoryID";
             } else {
@@ -90,8 +90,26 @@
                             visible: false
                         },
                         {
-                            field: "repoId",
-                            title: "所属仓库"
+                            field: "repositoryList",
+                            title: "所属仓库",
+                            formatter: function (value, row, index) {
+                                if (value.length === 1) {
+                                  return value[0].name;
+                                } else if (value.length > 1) {
+                                  let name = '';
+                                  for (let i = 0; i < value.length; i++) {
+                                    if (i !== value.length - 1) {
+                                      name = name + value[i].name + ',';
+                                    } else {
+                                      name = name + value[i].name;
+                                    }
+                                  }
+                                  console.log(name);
+                                  return name;
+                                } else {
+                                  return '-';
+                                }
+                            }
                         },
                         {
                             field: 'operation',
@@ -151,8 +169,11 @@
         $('#repositoryAdmin_repoID_edit').find("option").remove();
 
         // 加载未分配仓库信息
-        if (row.repoId != null) {
-            $('.selectpicker').append("<option selected value='" + row.repoId + "'>" + row.repoId + "</option>");
+        if (row.repositoryList != null && row.repositoryList.length > 0) {
+          console.log(row.repositoryList);
+          $.each(row.repositoryList, function (index, element) {
+            $('.selectpicker').append("<option selected value='" + element.id + "'>" + element.name + "</option>");
+          })
         }
         unassignRepository();
         // $('.selectpicker').append("<option value=''>不指派</option>");
@@ -238,9 +259,10 @@
                     .isValid()) {
                     return;
                 }
-                console.log($('#repositoryAdmin_repoID_edit').val());
+                console.log(JSON.stringify($('#repositoryAdmin_repoID_edit').val()));
                 var data = {
                     id: selectID,
+                    username: $('#repositoryAdmin_username_edit').val(),
                     name: $('#repositoryAdmin_name_edit').val(),
                     tel: $('#repositoryAdmin_tel_edit').val(),
                     repoIdList: $('#repositoryAdmin_repoID_edit').val()
@@ -538,7 +560,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="javascript:void(0)" class="dropOption">仓库管理员ID</a></li>
                                 <li><a href="javascript:void(0)" class="dropOption">仓库管理员姓名</a></li>
-                                <li><a href="javascript:void(0)" class="dropOption">仓库ID</a></li>
+                                <li><a href="javascript:void(0)" class="dropOption">仓库名称</a></li>
                                 <li><a href="javascript:void(0)" class="dropOption">所有</a></li>
                             </ul>
                         </div>

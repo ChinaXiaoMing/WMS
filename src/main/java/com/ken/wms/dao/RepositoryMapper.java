@@ -70,9 +70,24 @@ public interface RepositoryMapper {
     void update(Repository repository);
 
     /**
+     * 更新管理id
+     *
+     * @param repoId 回购id
+     */
+    void updateAdminID(Integer repoId);
+
+    /**
      * 删除指定 Repository ID 的 Repository 记录
      *
      * @param repositoryID 仓库ID
      */
     void deleteByID(Integer repositoryID);
+
+    /**
+     * 根据仓库管理员ID查询仓库信息
+     *
+     * @param adminID 管理员id
+     * @return {@link Repository}
+     */
+    List<Repository> selectByRepoAdminId(Integer adminID);
 }

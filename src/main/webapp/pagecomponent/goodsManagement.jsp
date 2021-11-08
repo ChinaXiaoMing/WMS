@@ -177,6 +177,7 @@
       $('#preview_modal').modal("show");
       console.log("/upload/" + row.goodImage);
       $('#preview_image').attr("src", "/upload/" + row.goodImage);
+      $('#image_a').attr("href", "/upload/" + row.goodImage);
     }
 
     // 上传物资照片_新增
@@ -858,8 +859,7 @@
 
 <!-- 预览图片模态框 -->
 <div class="modal fade" id="preview_modal" table-index="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true"
-     data-backdrop="static">
+     aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -871,7 +871,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div style="text-align: center;">
-                        <img src="" alt="" id="preview_image" style="width: 98%">
+                        <a id="image_a" href="" target="_Blank"><img src="" alt="" id="preview_image" style="width: 98%"></a>
                     </div>
                 </div>
             </div>

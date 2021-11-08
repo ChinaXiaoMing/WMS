@@ -152,8 +152,9 @@ public class RepositoryManageServiceImpl implements RepositoryService {
         boolean isPagination = true;
 
         // validate
-        if (offset < 0 || limit < 0)
+        if (offset < 0 || limit < 0) {
             isPagination = false;
+        }
 
         //query
         try {
