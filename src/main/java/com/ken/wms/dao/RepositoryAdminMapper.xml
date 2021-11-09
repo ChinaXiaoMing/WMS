@@ -74,6 +74,7 @@
           wms_repo_admin
       where
           REPO_ADMIN_USERNAME = #{username}
+      limit 1
   </select>
 
   <insert id="insert" keyProperty="id" useGeneratedKeys="true">

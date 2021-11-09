@@ -1,8 +1,7 @@
 package com.ken.wms.common.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ken.wms.common.service.Interface.RepositoryAdminManageService;
+import com.ken.wms.common.util.JsonUtils;
 import com.ken.wms.common.util.Response;
 import com.ken.wms.common.util.ResponseUtil;
 import com.ken.wms.domain.RepositoryAdmin;
@@ -10,7 +9,11 @@ import com.ken.wms.exception.RepositoryAdminManageServiceException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -304,18 +307,10 @@ public class RepositoryAdminManageHandler {
      */
     @RequestMapping(value = "checkUserName", method = RequestMethod.POST)
     @ResponseBody
-    public String checkUserName(String username) {
-        String result = "";
+    public String checkUserName(@RequestParam("username") String username) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("valid", repositoryAdminManageService.checkUsername(username));
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            result = mapper.writeValueAsString(map);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        return result;
+        return JsonUtils.jsonToString(map);
     }
 
 }

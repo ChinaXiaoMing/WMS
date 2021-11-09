@@ -231,7 +231,7 @@
             },
             excluded: [':disabled'],
             fields: {
-                repositoryAdmin_username: {
+                username: {
                     validators: {
                         notEmpty: {
                             message: '仓库管理员用户名不能为空'
@@ -243,14 +243,14 @@
                         }
                     }
                 },
-                repositoryAdmin_name: {
+                name: {
                     validators: {
                         notEmpty: {
                             message: '仓库管理员姓名不能为空'
                         }
                     }
                 },
-                repositoryAdmin_tel: {
+                tel: {
                     validators: {
                         notEmpty: {
                             message: '仓库管理员联系电话不能为空'
@@ -647,7 +647,7 @@
                                 </label>
                                 <div class="col-md-7 col-sm-7">
                                     <input type="text" class="form-control" id="repositoryAdmin_username"
-                                           name="repositoryAdmin_username" placeholder="仓库管理员用户名">
+                                           name="username" placeholder="仓库管理员用户名">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -656,7 +656,7 @@
                                 </label>
                                 <div class="col-md-7 col-sm-7">
                                     <input type="text" class="form-control" id="repositoryAdmin_name"
-                                           name="repositoryAdmin_name" placeholder="仓库管理员姓名">
+                                           name="name" placeholder="仓库管理员姓名">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -665,7 +665,7 @@
                                 </label>
                                 <div class="col-md-7 col-sm-7">
                                     <input type="text" class="form-control" id="repositoryAdmin_tel"
-                                           name="repositoryAdmin_tel" placeholder="联系电话">
+                                           name="tel" placeholder="联系电话">
                                 </div>
                             </div>
                         </form>
@@ -946,7 +946,7 @@
                                 </label>
                                 <div class="col-md-7 col-sm-7">
                                     <input type="text" class="form-control" id="repositoryAdmin_username_edit"
-                                           name="repositoryAdmin_username" disabled="disabled">
+                                           name="username" disabled="disabled">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -955,7 +955,7 @@
                                 </label>
                                 <div class="col-md-7 col-sm-7">
                                     <input type="text" class="form-control" id="repositoryAdmin_name_edit"
-                                           name="repositoryAdmin_name" placeholder="仓库管理员姓名">
+                                           name="name" placeholder="仓库管理员姓名">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -964,7 +964,7 @@
                                 </label>
                                 <div class="col-md-7 col-sm-7">
                                     <input type="text" class="form-control" id="repositoryAdmin_tel_edit"
-                                           name="repositoryAdmin_tel" placeholder="联系电话">
+                                           name="tel" placeholder="联系电话">
                                 </div>
                             </div>
                             <div class="form-group">

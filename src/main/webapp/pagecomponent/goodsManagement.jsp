@@ -191,9 +191,12 @@
             success: function (data, status) {
                 console.log(data);
                 $('#goods_image').val(data.fileName);
+                infoModal("success", "物资照片上传成功");
             },
             error: function (data) {
                 console.log("物资照片上传失败！");
+                infoModal("error", "物资照片上传成功");
+                tableRefresh();
             }
         })
     }
@@ -209,9 +212,12 @@
             success: function (data, status) {
                 console.log(data);
                 $('#goods_image_edit').val(data.fileName);
+                infoModal("success", "物资照片上传成功");
             },
             error: function (data) {
                 console.log("物资照片上传失败！");
+                infoModal("error", "物资照片上传成功");
+                tableRefresh();
             }
         })
     }
