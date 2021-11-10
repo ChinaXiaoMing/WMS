@@ -56,15 +56,15 @@
     </select>
 
     <insert id="insert">
-        insert into wms_goods(GOOD_CODE, GOOD_NAME, GOOD_RYPE, GOOD_SIZE, GOOD_VALUE, GOOD_CAR_NUMBER, GOOD_IMPORTANCE, GOOD_IMAGE)
-        values (#{goodCode}, #{name}, #{type}, #{size}, #{value}, #{carNumber}, #{goodImportance}, #{goodImage})
+        insert into wms_goods(GOOD_CODE, GOOD_NAME, GOOD_RYPE, GOOD_SIZE, GOOD_CAR_NUMBER, GOOD_IMPORTANCE, GOOD_IMAGE)
+        values (#{goodCode}, #{name}, #{type}, #{size}, #{carNumber}, #{goodImportance}, #{goodImage})
     </insert>
 
     <insert id="insertBatch">
-        insert into wms_goods(GOOD_CODE, GOOD_NAME, GOOD_RYPE, GOOD_SIZE, GOOD_VALUE, GOOD_CAR_NUMBER, GOOD_IMPORTANCE, GOOD_IMAGE)
+        insert into wms_goods(GOOD_CODE, GOOD_NAME, GOOD_RYPE, GOOD_SIZE, GOOD_CAR_NUMBER, GOOD_IMPORTANCE, GOOD_IMAGE)
         values
         <foreach collection="list" item="goods" separator=",">
-            (#{goods.goodCode},#{goods.name},#{goods.type},#{goods.size},#{goods.value}, #{goods.carNumber},
+            (#{goods.goodCode},#{goods.name},#{goods.type},#{goods.size}, #{goods.carNumber},
              #{goods.goodImportance}, #{goods.goodImage})
         </foreach>
     </insert>

@@ -5,6 +5,7 @@ import org.apache.commons.configuration2.XMLConfiguration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.configuration2.tree.ImmutableNode;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
@@ -118,6 +119,8 @@ public class ExcelUtil {
         // 获取类名和映射信息
         String className = classType.getName();
         MappingInfo mappingInfo = excelMappingInfo.get(className);
+        log.info("Excel映射字段名信息：{}, 字段值信息：{}", JsonUtils.jsonToString(mappingInfo.fieldsMap),
+                JsonUtils.jsonToString(mappingInfo.valuesMap));
         if (mappingInfo == null) {
             return null;
         }

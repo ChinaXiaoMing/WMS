@@ -1,12 +1,22 @@
 package com.ken.wms.common.service.Impl;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ken.wms.common.service.Interface.StockRecordManageService;
 import com.ken.wms.common.service.Interface.StorageManageService;
-import com.ken.wms.dao.*;
-import com.ken.wms.domain.*;
+import com.ken.wms.dao.CustomerMapper;
+import com.ken.wms.dao.GoodsMapper;
+import com.ken.wms.dao.RepositoryMapper;
+import com.ken.wms.dao.StockInMapper;
+import com.ken.wms.dao.StockOutMapper;
+import com.ken.wms.dao.SupplierMapper;
+import com.ken.wms.domain.Customer;
+import com.ken.wms.domain.Goods;
+import com.ken.wms.domain.Repository;
+import com.ken.wms.domain.StockInDO;
+import com.ken.wms.domain.StockOutDO;
+import com.ken.wms.domain.StockRecordDTO;
+import com.ken.wms.domain.Supplier;
 import com.ken.wms.exception.StockRecordManageServiceException;
 import com.ken.wms.exception.StorageManageServiceException;
 import com.ken.wms.util.aop.UserOperation;
@@ -20,7 +30,11 @@ import org.springframework.stereotype.Service;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class StockRecordManageServiceImpl implements StockRecordManageService {
@@ -45,18 +59,20 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
     /**
      * 货物入库操作
      *
-     * @param supplierID   供应商ID
-     * @param goodsID      货物ID
-     * @param repositoryID 入库仓库ID
+     * @param goodsId      货物ID
+     * @param repositoryId 入库仓库ID
      * @param number       入库数量
+     * @param personInCharge 入库经手人
+     * @param remark       备注
      * @return 返回一个boolean 值，若值为true表示入库成功，否则表示入库失败
      */
     @UserOperation(value = "货物入库")
     @Override
-    public boolean stockInOperation(Integer supplierID, Integer goodsID, Integer repositoryID, long number, String personInCharge) throws StockRecordManageServiceException {
+    public boolean stockInOperation(Integer goodsId, Integer repositoryId, long number, String personInCharge, String remark)
+            throws StockRecordManageServiceException {
 
         // ID对应的记录是否存在
-        if (!(supplierValidate(supplierID) && goodsValidate(goodsID) && repositoryValidate(repositoryID))) {
+        if (!goodsValidate(goodsId) && repositoryValidate(repositoryId)) {
             return false;
         }
 
@@ -72,17 +88,17 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
         try {
             // 更新库存记录
             boolean isSuccess;
-            isSuccess = storageManageService.storageIncrease(goodsID, repositoryID, number);
+            isSuccess = storageManageService.storageIncrease(goodsId, repositoryId, number);
 
             // 保存入库记录
             if (isSuccess) {
                 StockInDO stockInDO = new StockInDO();
-                stockInDO.setGoodID(goodsID);
-                stockInDO.setSupplierID(supplierID);
+                stockInDO.setGoodId(goodsId);
                 stockInDO.setNumber(number);
                 stockInDO.setPersonInCharge(personInCharge);
                 stockInDO.setTime(new Date());
-                stockInDO.setRepositoryID(repositoryID);
+                stockInDO.setRepositoryId(repositoryId);
+                stockInDO.setRemark(remark);
                 stockinMapper.insert(stockInDO);
             }
 
@@ -334,8 +350,9 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
         boolean isPagination = true;
 
         // 检查是否需要分页
-        if (offset < 0 || limit < 0)
+        if (offset < 0 || limit < 0) {
             isPagination = false;
+        }
 
         // 查询记录
         try {
@@ -375,11 +392,10 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
     private StockRecordDTO stockInRecordConvertToStockRecordDTO(StockInDO stockInDO) {
         StockRecordDTO stockRecordDTO = new StockRecordDTO();
         stockRecordDTO.setRecordID(stockInDO.getId());
-        stockRecordDTO.setSupplierOrCustomerName(stockInDO.getSupplierName());
         stockRecordDTO.setGoodsName(stockInDO.getGoodName());
         stockRecordDTO.setNumber(stockInDO.getNumber());
         stockRecordDTO.setTime(dateFormat.format(stockInDO.getTime()));
-        stockRecordDTO.setRepositoryID(stockInDO.getRepositoryID());
+        stockRecordDTO.setRepositoryID(stockInDO.getRepositoryId());
         stockRecordDTO.setPersonInCharge(stockInDO.getPersonInCharge());
         stockRecordDTO.setRepoName(stockInDO.getRepoName());
         stockRecordDTO.setType("入库");

@@ -1,9 +1,6 @@
 package com.ken.wms.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
 /**
@@ -17,29 +14,19 @@ public class StockInDO {
     private Integer id;
 
     /**
-     * 供应商ID
-     */
-    private Integer supplierID;
-
-    /**
-     * 供应商名称
-     */
-    private String supplierName;
-
-    /**
      * 商品ID
      */
-    private Integer goodID;
+    private Integer goodId;
 
     /**
-     * 商品名称
+     * 物料描述
      */
     private String goodName;
 
     /**
      * 出/入库仓库ID
      */
-    private Integer repositoryID;
+    private Integer repositoryId;
 
     /**
      * 出/入库仓库名称
@@ -61,29 +48,10 @@ public class StockInDO {
      */
     private String personInCharge;
 
-    public Integer getRepositoryID() {
-        return repositoryID;
-    }
-
-    public void setRepositoryID(Integer repositoryID) {
-        this.repositoryID = repositoryID;
-    }
-
-    public Integer getSupplierID() {
-        return supplierID;
-    }
-
-    public void setSupplierID(Integer supplierID) {
-        this.supplierID = supplierID;
-    }
-
-    public Integer getGoodID() {
-        return goodID;
-    }
-
-    public void setGoodID(Integer goodID) {
-        this.goodID = goodID;
-    }
+    /**
+     * 入库备注
+     */
+    private String remark;
 
     public Integer getId() {
         return id;
@@ -91,14 +59,6 @@ public class StockInDO {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getSupplierName() {
-        return supplierName;
-    }
-
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
     }
 
     public String getGoodName() {
@@ -141,19 +101,27 @@ public class StockInDO {
         this.repoName = repoName;
     }
 
-    @Override
-    public String toString() {
-        return "StockInDO{" +
-                "id=" + id +
-                ", supplierID=" + supplierID +
-                ", supplierName='" + supplierName + '\'' +
-                ", goodID=" + goodID +
-                ", goodName='" + goodName + '\'' +
-                ", repositoryID=" + repositoryID +
-                ", repoName='" + repoName + '\'' +
-                ", number=" + number +
-                ", time=" + time +
-                ", personInCharge='" + personInCharge + '\'' +
-                '}';
+    public Integer getGoodId() {
+        return goodId;
+    }
+
+    public void setGoodId(Integer goodId) {
+        this.goodId = goodId;
+    }
+
+    public Integer getRepositoryId() {
+        return repositoryId;
+    }
+
+    public void setRepositoryId(Integer repositoryId) {
+        this.repositoryId = repositoryId;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

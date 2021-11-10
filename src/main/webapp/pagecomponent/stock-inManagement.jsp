@@ -2,11 +2,9 @@
          pageEncoding="UTF-8" %>
 <script>
     var stockin_repository = null;// 入库仓库编号
-    var stockin_supplier = null;// 入库供应商编号
     var stockin_goods = null;// 入库货物编号
     var stockin_number = null;// 入库数量
 
-    var supplierCache = new Array();// 供应商信息缓存
     var goodsCache = new Array();//货物信息缓存
 
     $(function () {
@@ -16,7 +14,6 @@
 
         stockInOption();
         fetchStorage();
-        supplierAutocomplete();
         goodsAutocomplete();
     })
 
@@ -26,7 +23,24 @@
             message: 'This is not valid',
 
             fields: {
-                stockin_input: {
+                goods_name: {
+                    validators: {
+                        notEmpty: {
+                            message: '货物不能为空'
+                        }
+                    }
+                },
+                repository_id: {
+                    validators: {
+                        callback: {
+                            message: '请选择入库仓库',
+                            callback: function (value) {
+                                return value !== "";
+                            }
+                        }
+                    }
+                },
+                stockin_number: {
                     validators: {
                         notEmpty: {
                             message: '入库数量不能为空'
@@ -59,7 +73,7 @@
                         searchType: 'searchByName'
                     },
                     success: function (data) {
-                        var autoCompleteInfo = new Array();
+                        var autoCompleteInfo = [];
                         $.each(data.rows, function (index, elem) {
                             goodsCache.push(elem);
                             autoCompleteInfo.push({label: elem.name, value: elem.id});
@@ -82,118 +96,40 @@
         })
     }
 
-    // 供应商信息自动匹配
-    function supplierAutocomplete() {
-        $('#supplier_input').autocomplete({
-            minLength: 0,
-            delay: 500,
-            source: function (request, response) {
-                $.ajax({
-                    type: "GET",
-                    url: 'supplierManage/getSupplierList',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    data: {
-                        offset: -1,
-                        limit: -1,
-                        searchType: 'searchByName',
-                        keyWord: request.term
-                    },
-                    success: function (data) {
-                        var autoCompleteInfo = new Array();
-                        $.each(data.rows, function (index, elem) {
-                            supplierCache.push(elem);
-                            autoCompleteInfo.push({label: elem.name, value: elem.id});
-                        });
-                        response(autoCompleteInfo);
-                    }
-                });
-            },
-            focus: function (event, ui) {
-                $('#supplier_input').val(ui.item.label);
-                return false;
-            },
-            select: function (event, ui) {
-                $('#supplier_input').val(ui.item.label);
-                stockin_supplier = ui.item.value;
-                supplierInfoSet(stockin_supplier);
-                return false;
-            }
-        })
-    }
-
-    // 填充供应商详细信息
-    function supplierInfoSet(supplierID) {
-        var detailInfo;
-        $.each(supplierCache, function (index, elem) {
-            if (elem.id == supplierID) {
-                detailInfo = elem;
-
-                if (detailInfo.id == null)
-                    $('#info_supplier_ID').text('-');
-                else
-                    $('#info_supplier_ID').text(detailInfo.id);
-
-                if (detailInfo.name == null)
-                    $('#info_supplier_name').text('-');
-                else
-                    $('#info_supplier_name').text(detailInfo.name);
-
-                if (detailInfo.tel == null)
-                    $('#info_supplier_tel').text('-');
-                else
-                    $('#info_supplier_tel').text(detailInfo.tel);
-
-                if (detailInfo.personInCharge == null)
-                    $('#info_supplier_person').text('-');
-                else
-                    $('#info_supplier_person').text(detailInfo.personInCharge);
-
-                if (detailInfo.email == null)
-                    $('#info_supplier_email').text('-');
-                else
-                    $('#info_supplier_email').text(detailInfo.email);
-
-
-                if (detailInfo.adress == null)
-                    $('#info_supplier_address').text('-');
-                else
-                    $('#info_supplier_address').text(detailInfo.address);
-            }
-        })
-
-    }
-
     // 填充货物详细信息
-    function goodsInfoSet(goodsID) {
+    function goodsInfoSet(goods_id) {
         var detailInfo;
         $.each(goodsCache, function (index, elem) {
-            if (elem.id == goodsID) {
+            if (elem.id === goods_id) {
                 detailInfo = elem;
-                if (detailInfo.id == null)
-                    $('#info_goods_ID').text('-');
+                if (detailInfo.goodCode == null)
+                    $('#goods_code').text('-');
                 else
-                    $('#info_goods_ID').text(detailInfo.id);
+                    $('#goods_code').text(detailInfo.goodCode);
 
                 if (detailInfo.name == null)
-                    $('#info_goods_name').text('-');
+                    $('#goods_name').text('-');
                 else
-                    $('#info_goods_name').text(detailInfo.name);
+                    $('#goods_name').text(detailInfo.name);
 
                 if (detailInfo.type == null)
-                    $('#info_goods_type').text('-');
+                    $('#goods_type').text('-');
                 else
-                    $('#info_goods_type').text(detailInfo.type);
+                    $('#goods_type').text(detailInfo.type);
 
                 if (detailInfo.size == null)
-                    $('#info_goods_size').text('-');
+                    $('#goods_size').text('-');
                 else
-                    $('#info_goods_size').text(detailInfo.size);
+                    $('#goods_size').text(detailInfo.size);
 
-                if (detailInfo.value == null)
-                    $('#info_goods_value').text('-');
+                if (detailInfo.carNumber == null)
+                    $('#goods_car_number').text('-');
                 else
-                    $('#info_goods_value').text(detailInfo.value);
+                    $('#goods_car_number').text(detailInfo.carNumber);
+                if (detailInfo.goodImportance == null)
+                    $('#goods_importance').text('-');
+                else
+                    $('#goods_importance').text(detailInfo.goodImportance);
             }
         })
     }
@@ -244,6 +180,7 @@
     function fetchStorage() {
         $('#repository_selector').change(function () {
             stockin_repository = $(this).val();
+            console.log(stockin_repository);
             loadStorageInfo();
         });
     }
@@ -287,10 +224,10 @@
             }
 
             data = {
-                repositoryID: stockin_repository,
-                supplierID: stockin_supplier,
-                goodsID: stockin_goods,
-                number: $('#stockin_input').val(),
+                repositoryId: stockin_repository,
+                goodsId: stockin_goods,
+                number: $('#stockin_number').val(),
+                remark: $('#stockin_remark').val()
             }
 
             $.ajax({
@@ -324,20 +261,11 @@
 
     // 页面重置
     function inputReset() {
-        $('#supplier_input').val('');
         $('#goods_input').val('');
         $('#stockin_input').val('');
-        $('#info_supplier_ID').text('-');
-        $('#info_supplier_name').text('-');
-        $('#info_supplier_tel').text('-');
-        $('#info_supplier_address').text('-');
-        $('#info_supplier_email').text('-');
-        $('#info_supplier_person').text('-');
-        $('#info_goods_ID').text('-');
-        $('#info_goods_name').text('-');
-        $('#info_goods_size').text('-');
-        $('#info_goods_type').text('-');
-        $('#info_goods_value').text('-');
+        $('#goods_name').text('-');
+        $('#goods_size').text('-');
+        $('#goods_type').text('-');
         $('#info_storage').text('-');
         $('#stockin_form').bootstrapValidator("resetForm", true);
     }
@@ -361,12 +289,12 @@
     </ol>
     <div class="panel-body">
         <div class="col-md-8 col-sm-8 col-md-offset-4 col-sm-offset-4">
-            <form class="form-horizontal" role="form" id="stockin_form1">
+            <form class="form-horizontal" role="form" id="stockin_form">
                 <div class="row">
                     <div class="form-group col-md-6 col-sm-6">
                         <label for="goods_input" class="control-label col-md-4 col-sm-4">入库货物：</label>
                         <div class="col-md-8 col-sm-8">
-                            <input type="text" class="form-control" id="goods_input" placeholder="请输入货物名称">
+                            <input type="text" class="form-control" id="goods_input" name="goods_name" placeholder="请输入物料描述">
                         </div>
                     </div>
                     <div class="form-group col-md-6 col-sm-6"></div>
@@ -382,16 +310,22 @@
                         </div>
                         <div class="row">
                             <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
-                                <span>货物ID：<span id="info_goods_ID">-</span></span>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <span>货物类型：<span id="info_goods_type">-</span></span>
+                                <span>物料编码：<span id="goods_code">-</span></span>
                             </div>
                             <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
-                                <span>货物名：<span id="info_goods_name">-</span></span>
+                                <span>物料描述：<span id="goods_name">-</span></span>
                             </div>
-                            <div class="col-md-6 col-sm-6">
-                                <span>货物规格：<span id="info_goods_size">-</span></span>
+                            <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
+                                <span>单位：<span id="goods_size">-</span></span>
+                            </div>
+                            <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
+                                <span>车号：<span id="goods_car_number">-</span></span>
+                            </div>
+                            <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
+                                <span>重要性：<span id="goods_importance">-</span></span>
+                            </div>
+                            <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
+                                <span>物料属性：<span id="goods_type">-</span></span>
                             </div>
                         </div>
                     </div>
@@ -411,7 +345,7 @@
                     <div class="form-group col-md-6 col-sm-6">
                         <label for="repository_selector" class="control-label col-md-4 col-sm-4">入库仓库：</label>
                         <div class="col-md-8 col-sm-8">
-                            <select name="" id="repository_selector" class="form-control">
+                            <select name="repository_id" id="repository_selector" class="form-control">
                                 <option value="">请选择仓库</option>
                             </select>
                         </div>
@@ -421,10 +355,10 @@
 
                 <div class="row">
                     <div class="form-group col-md-6 col-sm-6">
-                        <label for="stockin_input" class="control-label col-md-4 col-sm-4">入库数量：</label>
+                        <label for="stockin_number" class="control-label col-md-4 col-sm-4">入库数量：</label>
                         <div class="col-md-8 col-sm-8">
-                            <input type="text" class="form-control" placeholder="请输入数量" id="stockin_input"
-                                   name="stockin_input">
+                            <input type="text" class="form-control" placeholder="请输入数量" id="stockin_number"
+                                   name="stockin_number">
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6" style="padding-top:7px;">

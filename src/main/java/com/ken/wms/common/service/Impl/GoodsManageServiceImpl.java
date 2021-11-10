@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ken.wms.common.service.Interface.GoodsManageService;
 import com.ken.wms.common.util.ExcelUtil;
+import com.ken.wms.common.util.JsonUtils;
 import com.ken.wms.dao.GoodsMapper;
 import com.ken.wms.dao.StockInMapper;
 import com.ken.wms.dao.StockOutMapper;
@@ -17,6 +18,8 @@ import com.ken.wms.exception.GoodsManageServiceException;
 import com.ken.wms.util.aop.UserOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.exceptions.PersistenceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +35,8 @@ import java.util.Map;
  */
 @Service
 public class GoodsManageServiceImpl implements GoodsManageService {
+
+    private final Logger log = LoggerFactory.getLogger(GoodsManageServiceImpl.class);
 
     @Autowired
     private GoodsMapper goodsMapper;

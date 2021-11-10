@@ -65,9 +65,8 @@ public class StockRecordManageHandler {
     /**
      * 货物入库操作
      *
-     * @param supplierID   供应商ID
-     * @param goodsID      货物ID
-     * @param repositoryID 仓库ID
+     * @param goodsId      货物ID
+     * @param repositoryId 仓库ID
      * @param number       入库数目
      * @param request      http 请求
      * @return 返回一个map，key为result的值表示操作是否成功
@@ -75,16 +74,16 @@ public class StockRecordManageHandler {
     @RequestMapping(value = "stockIn", method = RequestMethod.POST)
     public
     @ResponseBody
-    Map<String, Object> stockIn(@RequestParam("supplierID") Integer supplierID,
-                                @RequestParam("goodsID") Integer goodsID, @RequestParam("repositoryID") Integer repositoryID,
-                                @RequestParam("number") long number, HttpServletRequest request) throws StockRecordManageServiceException {
+    Map<String, Object> stockIn(@RequestParam("goodsId") Integer goodsId, @RequestParam("repositoryId") Integer repositoryId,
+                                @RequestParam("number") long number, @RequestParam("remark") String remark,
+                                HttpServletRequest request) throws StockRecordManageServiceException {
         // 初始化 Response
         Response responseContent = responseUtil.newResponseInstance();
 
         HttpSession session = request.getSession();
         String personInCharge = (String) session.getAttribute("userName");
 
-        String result = stockRecordManageService.stockInOperation(supplierID, goodsID, repositoryID, number, personInCharge) ?
+        String result = stockRecordManageService.stockInOperation(goodsId, repositoryId, number, personInCharge, remark) ?
                 Response.RESPONSE_RESULT_SUCCESS : Response.RESPONSE_RESULT_ERROR;
 
         // 设置 Response
