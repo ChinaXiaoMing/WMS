@@ -25,7 +25,8 @@
         r.RECORD_NUMBER as STOCKIN_NUMBER,
         r.RECORD_TIME as STOCKIN_TIME,
         r.RECORD_PERSON as STOCKIN_PERSON,
-        r.RECORD_REPOSITORYID as STOCKIN_REPOSITORY_ID
+        r.RECORD_REPOSITORYID as STOCKIN_REPOSITORY_ID,
+        r.REMARK as REMARK
         from
         wms_record_in r,wms_goods g
         where
@@ -40,7 +41,8 @@
         r.RECORD_NUMBER as STOCKIN_NUMBER,
         r.RECORD_TIME as STOCKIN_TIME,
         r.RECORD_PERSON as STOCKIN_PERSON,
-        r.RECORD_REPOSITORYID as STOCKIN_REPOSITORY_ID
+        r.RECORD_REPOSITORYID as STOCKIN_REPOSITORY_ID,
+        r.REMARK as REMARK
         from
         wms_record_in r,wms_goods g
         where
@@ -56,7 +58,8 @@
         r.RECORD_NUMBER as STOCKIN_NUMBER,
         r.RECORD_TIME as STOCKIN_TIME,
         r.RECORD_PERSON as STOCKIN_PERSON,
-        r.RECORD_REPOSITORYID as STOCKIN_REPOSITORY_ID
+        r.RECORD_REPOSITORYID as STOCKIN_REPOSITORY_ID,
+        r.REMARK as REMARK
         from
         wms_record_in r,wms_goods g
         where
@@ -72,7 +75,8 @@
         r.RECORD_NUMBER as STOCKIN_NUMBER,
         r.RECORD_TIME as STOCKIN_TIME,
         r.RECORD_PERSON as STOCKIN_PERSON,
-        r.RECORD_REPOSITORYID as STOCKIN_REPOSITORY_ID
+        r.RECORD_REPOSITORYID as STOCKIN_REPOSITORY_ID,
+        r.REMARK as REMARK
         from
         wms_record_in r,wms_goods g
         where
@@ -89,7 +93,8 @@
         r.RECORD_TIME as STOCKIN_TIME,
         r.RECORD_PERSON as STOCKIN_PERSON,
         r.RECORD_REPOSITORYID as STOCKIN_REPOSITORY_ID,
-        t1.REPO_NAME as REPO_NAME
+        t1.REPO_NAME as REPO_NAME,
+        r.REMARK as REMARK
         from
         wms_record_in r,wms_goods g,wms_respository t1
         where
@@ -107,13 +112,14 @@
         r.RECORD_TIME as STOCKIN_TIME,
         r.RECORD_PERSON as STOCKIN_PERSON,
         r.RECORD_REPOSITORYID as STOCKIN_REPOSITORY_ID,
-        t1.REPO_NAME as REPO_NAME
+        t1.REPO_NAME as REPO_NAME,
+        r.REMARK as REMARK
         from
         wms_record_in r,wms_goods g,wms_respository t1
         where
         r.RECORD_GOODID = g.GOOD_ID and
         r.RECORD_REPOSITORYID = t1.REPO_ID
-        <if test="repositoryID > 0">
+        <if test="repositoryId != null">
             and r.RECORD_REPOSITORYID = #{repositoryId}
         </if>
         <if test="startDate != null">
@@ -126,18 +132,19 @@
 
     <insert id="insert">
         insert into
-        wms_record_in(RECORD_GOODID,RECORD_NUMBER,RECORD_TIME,RECORD_PERSON,RECORD_REPOSITORYID)
-        values(#{goodId},#{number},#{time},#{personInCharge},#{repositoryId})
+        wms_record_in(RECORD_GOODID,RECORD_NUMBER,RECORD_TIME,RECORD_PERSON,RECORD_REPOSITORYID,REMARK)
+        values(#{goodId},#{number},#{time},#{personInCharge},#{repositoryId}, #{remark})
     </insert>
 
     <update id="update">
         update
         wms_record_in
         set
-        RECORD_GOODID = #{goodID},
+        RECORD_GOODID = #{goodId},
         RECORD_NUMBER = #{number},
         RECORD_TIME = #{time},
-        RECORD_PERSON = #{personInCharge}
+        RECORD_PERSON = #{personInCharge},
+        REMARK = #{remark}
         where
         RECORD_ID = #{id}
     </update>

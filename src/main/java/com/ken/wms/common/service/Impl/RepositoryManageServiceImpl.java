@@ -379,7 +379,7 @@ public class RepositoryManageServiceImpl implements RepositoryService {
 
         // 查询
         try {
-            repositories = repositoryMapper.selectUnassign();
+            repositories = repositoryMapper.selectAll();
         } catch (PersistenceException e) {
             throw new RepositoryManageServiceException(e);
         }

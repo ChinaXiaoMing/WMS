@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -35,26 +34,28 @@ public class StockRecordManageHandler {
     /**
      * 货物出库操作
      *
-     * @param customerID   客户ID
-     * @param goodsID      货物ID
-     * @param repositoryID 仓库ID
+     * @param goodsId      货物ID
+     * @param repositoryId 仓库ID
      * @param number       出库数量
+     * @param remark       备注
      * @param request      http请求
      * @return 返回一个map，key为result的值表示操作是否成功
      */
     @RequestMapping(value = "stockOut", method = RequestMethod.POST)
     public
     @ResponseBody
-    Map<String, Object> stockOut(@RequestParam("customerID") Integer customerID,
-                                 @RequestParam("goodsID") Integer goodsID, @RequestParam("repositoryID") Integer repositoryID,
-                                 @RequestParam("number") long number, HttpServletRequest request) throws StockRecordManageServiceException {
+    Map<String, Object> stockOut(@RequestParam("goodsId") Integer goodsId,
+                                 @RequestParam(value = "repositoryId", required = false) Integer repositoryId,
+                                 @RequestParam("number") long number,
+                                 @RequestParam(value = "remark", required = false) String remark,
+                                 HttpServletRequest request) throws StockRecordManageServiceException {
         // 初始化 Response
         Response responseContent = responseUtil.newResponseInstance();
 
         HttpSession session = request.getSession();
         String personInCharge = (String) session.getAttribute("userName");
 
-        String result = stockRecordManageService.stockOutOperation(customerID, goodsID, repositoryID, number, personInCharge) ?
+        String result = stockRecordManageService.stockOutOperation(goodsId, repositoryId, number, personInCharge, remark) ?
                 Response.RESPONSE_RESULT_SUCCESS : Response.RESPONSE_RESULT_ERROR;
 
         // 设置 Response
@@ -95,7 +96,7 @@ public class StockRecordManageHandler {
      * 查询出入库记录
      *
      * @param searchType      查询类型（查询所有或仅查询入库记录或仅查询出库记录）
-     * @param repositoryIDStr 查询记录所对应的仓库ID
+     * @param repositoryId 查询记录所对应的仓库ID
      * @param endDateStr      查询的记录起始日期
      * @param startDateStr    查询的记录结束日期
      * @param limit           分页大小
@@ -106,11 +107,11 @@ public class StockRecordManageHandler {
     @RequestMapping(value = "searchStockRecord", method = RequestMethod.GET)
     public @ResponseBody
     Map<String, Object> getStockRecord(@RequestParam("searchType") String searchType,
-                                       @RequestParam("repositoryID") String repositoryIDStr,
+                                       @RequestParam(value = "repositoryId", required = false) Integer repositoryId,
                                        @RequestParam("startDate") String startDateStr,
                                        @RequestParam("endDate") String endDateStr,
                                        @RequestParam("limit") int limit,
-                                       @RequestParam("offset") int offset) throws ParseException, StockRecordManageServiceException {
+                                       @RequestParam("offset") int offset) throws StockRecordManageServiceException {
         // 初始化 Response
         Response responseContent = responseUtil.newResponseInstance();
         List<StockRecordDTO> rows = null;
@@ -120,16 +121,10 @@ public class StockRecordManageHandler {
         String regex = "([0-9]{4})-([0-9]{2})-([0-9]{2})";
         boolean startDateFormatCheck = (StringUtils.isEmpty(startDateStr) || startDateStr.matches(regex));
         boolean endDateFormatCheck = (StringUtils.isEmpty(endDateStr) || endDateStr.matches(regex));
-        boolean repositoryIDCheck = (StringUtils.isEmpty(repositoryIDStr) || StringUtils.isNumeric(repositoryIDStr));
 
-        if (startDateFormatCheck && endDateFormatCheck && repositoryIDCheck) {
-            Integer repositoryID = -1;
-            if (StringUtils.isNumeric(repositoryIDStr)) {
-                repositoryID = Integer.valueOf(repositoryIDStr);
-            }
-
+        if (startDateFormatCheck && endDateFormatCheck) {
             // 转到 Service 执行查询
-            Map<String, Object> queryResult = stockRecordManageService.selectStockRecord(repositoryID, startDateStr, endDateStr, searchType, offset, limit);
+            Map<String, Object> queryResult = stockRecordManageService.selectStockRecord(repositoryId, startDateStr, endDateStr, searchType, offset, limit);
             if (queryResult != null) {
                 rows = (List<StockRecordDTO>) queryResult.get("data");
                 total = (long) queryResult.get("total");

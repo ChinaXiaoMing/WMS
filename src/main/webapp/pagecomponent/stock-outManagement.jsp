@@ -6,8 +6,8 @@
     var stockout_goods = null;
     var stockout_number = null;
 
-    var customerCache = new Array();
-    var goodsCache = new Array();
+    var customerCache = [];
+    var goodsCache = [];
 
     $(function () {
         dataValidateInit();
@@ -17,15 +17,30 @@
 
         fetchStorage();
         goodsAutocomplete();
-        customerAutocomplete();
     })
 
     function dataValidateInit() {
         $('#stockout_form').bootstrapValidator({
             message: 'This is not valid',
-
             fields: {
-                stockout_input: {
+                goods_name: {
+                    validators: {
+                        notEmpty: {
+                            message: '货物不能为空'
+                        }
+                    }
+                },
+                repository_id: {
+                    validators: {
+                        callback: {
+                            message: '请选择出库仓库',
+                            callback: function (value) {
+                                return value !== "";
+                            }
+                        }
+                    }
+                },
+                stockout_number: {
                     validators: {
                         notEmpty: {
                             message: '入库数量不能为空'
@@ -58,7 +73,7 @@
                         searchType: 'searchByName'
                     },
                     success: function (data) {
-                        var autoCompleteInfo = new Array();
+                        var autoCompleteInfo = [];
                         $.each(data.rows, function (index, elem) {
                             goodsCache.push(elem);
                             autoCompleteInfo.push({label: elem.name, value: elem.id});
@@ -81,115 +96,40 @@
         })
     }
 
-    function customerAutocomplete() {
-        $('#customer_input').autocomplete({
-            minLength: 0,
-            delay: 500,
-            source: function (request, response) {
-                $.ajax({
-                    type: 'GET',
-                    url: 'customerManage/getCustomerList',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    data: {
-                        offset: -1,
-                        limit: -1,
-                        keyWord: request.term,
-                        searchType: 'searchByName'
-                    },
-                    success: function (data) {
-                        var autoCompleteInfo = Array();
-                        $.each(data.rows, function (index, elem) {
-                            customerCache.push(elem);
-                            autoCompleteInfo.push({label: elem.name, value: elem.id});
-                        });
-                        response(autoCompleteInfo);
-                    }
-                });
-            },
-            focus: function (event, ui) {
-                $('#customer_input').val(ui.item.label);
-                return false;
-            },
-            select: function (event, ui) {
-                $('#customer_input').val(ui.item.label);
-                stockout_customer = ui.item.value;
-                customerInfoSet(stockout_customer);
-                loadStorageInfo();
-                return false;
-            }
-        })
-    }
-
-    function goodsInfoSet(goodsID) {
+    // 填充货物详细信息
+    function goodsInfoSet(goods_id) {
         var detailInfo;
         $.each(goodsCache, function (index, elem) {
-            if (elem.id == goodsID) {
+            if (elem.id === goods_id) {
                 detailInfo = elem;
-                if (detailInfo.id == null)
-                    $('#info_goods_ID').text('-');
+                if (detailInfo.goodCode == null)
+                    $('#goods_code').text('-');
                 else
-                    $('#info_goods_ID').text(detailInfo.id);
+                    $('#goods_code').text(detailInfo.goodCode);
 
                 if (detailInfo.name == null)
-                    $('#info_goods_name').text('-');
+                    $('#goods_name').text('-');
                 else
-                    $('#info_goods_name').text(detailInfo.name);
+                    $('#goods_name').text(detailInfo.name);
 
                 if (detailInfo.type == null)
-                    $('#info_goods_type').text('-');
+                    $('#goods_type').text('-');
                 else
-                    $('#info_goods_type').text(detailInfo.type);
+                    $('#goods_type').text(detailInfo.type);
 
                 if (detailInfo.size == null)
-                    $('#info_goods_size').text('-');
+                    $('#goods_size').text('-');
                 else
-                    $('#info_goods_size').text(detailInfo.size);
+                    $('#goods_size').text(detailInfo.size);
 
-                if (detailInfo.value == null)
-                    $('#info_goods_value').text('-');
+                if (detailInfo.carNumber == null)
+                    $('#goods_car_number').text('-');
                 else
-                    $('#info_goods_value').text(detailInfo.value);
-            }
-        })
-    }
-
-    function customerInfoSet(customerID) {
-        var detailInfo;
-        $.each(customerCache, function (index, elem) {
-            if (elem.id == customerID) {
-                detailInfo = elem;
-
-                if (detailInfo.id == null)
-                    $('#info_customer_ID').text('-');
+                    $('#goods_car_number').text(detailInfo.carNumber);
+                if (detailInfo.goodImportance == null)
+                    $('#goods_importance').text('-');
                 else
-                    $('#info_customer_ID').text(detailInfo.id);
-
-                if (detailInfo.name == null)
-                    $('#info_customer_name').text('-');
-                else
-                    $('#info_customer_name').text(detailInfo.name);
-
-                if (detailInfo.tel == null)
-                    $('#info_customer_tel').text('-');
-                else
-                    $('#info_customer_tel').text(detailInfo.tel);
-
-                if (detailInfo.address == null)
-                    $('#info_customer_address').text('-');
-                else
-                    $('#info_customer_address').text(detailInfo.address);
-
-                if (detailInfo.email == null)
-                    $('#info_customer_email').text('-');
-                else
-                    $('#info_customer_email').text(detailInfo.email);
-
-                if (detailInfo.personInCharge == null)
-                    $('#info_customer_person').text('-');
-                else
-                    $('#info_customer_person').text(detailInfo.personInCharge);
-
+                    $('#goods_importance').text(detailInfo.goodImportance);
             }
         })
     }
@@ -199,12 +139,14 @@
             $('#detailInfo').removeClass('hide');
             $(this).addClass('hide');
             $('#info-hidden').removeClass('hide');
+            $('#hide_div').addClass('hide');
         });
 
         $('#info-hidden').click(function () {
             $('#detailInfo').removeClass('hide').addClass('hide');
             $(this).addClass('hide');
             $('#info-show').removeClass('hide');
+            $('#hide_div').removeClass('hide');
         });
     }
 
@@ -279,10 +221,10 @@
             }
 
             data = {
-                customerID: stockout_customer,
-                goodsID: stockout_goods,
-                repositoryID: stockout_repository,
-                number: $('#stockout_input').val(),
+                goodsId: stockout_goods,
+                repositoryId: stockout_repository,
+                number: $('#stockout_number').val(),
+                remark: $('#stockout_remark').val()
             }
 
             $.ajax({
@@ -315,21 +257,15 @@
     }
 
     function inputReset() {
-        $('#customer_input').val('');
         $('#goods_input').val('');
         $('#stockout_input').val('');
-        $('#info_customer_ID').text('-');
-        $('#info_customer_name').text('-');
-        $('#info_customer_tel').text('-');
-        $('#info_customer_address').text('-');
-        $('#info_customer_email').text('-');
-        $('#info_customer_person').text('-');
-        $('#info_goods_ID').text('-');
-        $('#info_goods_name').text('-');
-        $('#info_goods_size').text('-');
-        $('#info_goods_type').text('-');
-        $('#info_goods_value').text('-');
-        $('#info_storage').text('-');
+        $('#goods_Id').text('-');
+        $('#goods_name').text('-');
+        $('#goods_size').text('-');
+        $('#goods_type').text('-');
+        $('#goods_car_number').text('-');
+        $('#storage').text('-');
+        $('#goods_importance').text('-');
         $('#stockout_form').bootstrapValidator("resetForm", true);
     }
 
@@ -352,211 +288,102 @@
         <li>货物出库</li>
     </ol>
     <div class="panel-body">
-        <div class="row">
-            <div class="col-md-6 col-sm-6">
+        <div class="col-md-8 col-sm-8 col-md-offset-4 col-sm-offset-4">
+            <form class="form-horizontal" role="form" id="stockout_form">
                 <div class="row">
-                    <div class="col-md-1 col-sm-1"></div>
-                    <div class="col-md-10 col-sm-11">
-                        <form action="" class="form-inline">
-                            <div class="form-group">
-                                <label for="" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户：</label>
-                                <input type="text" class="form-control" id="customer_input" placeholder="请输入客户名称">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6">
-                <div class="row">
-                    <div class="col-md-1 col-sm-1"></div>
-                    <div class="col-md-10 col-sm-11">
-                        <form action="" class="form-inline">
-                            <div class="form-group">
-                                <label for="" class="form-label">出库货物：</label>
-                                <input type="text" class="form-control" id="goods_input" placeholder="请输入货物名称">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row visible-md visible-lg">
-            <div class="col-md-12">
-                <div class='pull-right' style="cursor:pointer" id="info-show">
-                    <span>显示详细信息</span>
-                    <span class="glyphicon glyphicon-chevron-down"></span>
-                </div>
-                <div class='pull-right hide' style="cursor:pointer" id="info-hidden">
-                    <span>隐藏详细信息</span>
-                    <span class="glyphicon glyphicon-chevron-up"></span>
-                </div>
-            </div>
-        </div>
-        <div class="row hide" id="detailInfo" style="margin-bottom:30px">
-            <div class="col-md-6  visible-md visible-lg">
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
-                        <label for="" class="text-info">客户信息</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-11">
-                        <div class="col-md-6">
-                            <div style="margin-top:5px">
-                                <div class="col-md-6">
-                                    <span for="" class="pull-right">客户ID：</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span id="info_customer_ID">-</span>
-                                </div>
-                            </div>
-                            <div style="margin-top:5px">
-                                <div class="col-md-6">
-                                    <span for="" class="pull-right">负责人：</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span id="info_customer_person">-</span>
-                                </div>
-                            </div>
-                            <div style="margin-top:5px">
-                                <div class="col-md-6">
-                                    <span for="" class="pull-right">电子邮件：</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span id="info_customer_email">-</span>
-                                </div>
-                            </div>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label for="goods_input" class="control-label col-md-4 col-sm-4">出库货物：</label>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="text" class="form-control" id="goods_input" name="goods_name" placeholder="请输入物料描述">
                         </div>
-                        <div class="col-md-6">
-                            <div style="margin-top:5px">
-                                <div class="col-md-6">
-                                    <span for="" class="pull-right">客户名：</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span id="info_customer_name">-</span>
-                                </div>
-                            </div>
-                            <div style="margin-top:5px">
-                                <div class="col-md-6">
-                                    <span for="" class="pull-right">联系电话：</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span id="info_customer_tel">-</span>
-                                </div>
-                            </div>
-                            <div style="margin-top:5px">
-                                <div class="col-md-6">
-                                    <span for="" class="pull-right">联系地址：</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span id="info_customer_address">-</span>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6"></div>
+                </div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6  visible-md visible-lg">
                 <div class="row">
-                    <div class="col-md-1 col-sm-1"></div>
-                    <div class="col-md-11 col-sm-11">
-                        <label for="" class="text-info">货物信息</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-11">
-                        <div class="col-md-6">
-                            <div style="margin-top:5px">
-                                <div class="col-md-6">
-                                    <span for="" class="pull-right">货物ID：</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span id="info_goods_ID">-</span>
-                                </div>
-                            </div>
-                            <div style="margin-top:5px">
-                                <div class="col-md-6">
-                                    <span for="" class="pull-right">货物类型：</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span id="info_goods_type">-</span>
-                                </div>
-                            </div>
-                            <div style="margin-top:5px">
-                                <div class="col-md-6">
-                                    <span for="" class="pull-right">货物名：</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span id="info_goods_name">-</span>
-                                </div>
+                    <div class="col-md-6 col-sm-6" id="hide_div" style="margin-bottom:15px"></div>
+                    <div class="hide col-md-6 col-sm-6" id="detailInfo" style="margin-bottom:15px">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <label class="text-info" style="margin-left:7%">货物信息</label>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div style="margin-top:5px">
-                                <div class="col-md-6">
-                                    <span for="" class="pull-right">货物规格：</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span id="info_goods_size">-</span>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
+                                <span>物料编码：<span id="goods_code">-</span></span>
                             </div>
-                            <div style="margin-top:5px">
-                                <div class="col-md-6">
-                                    <span for="" class="pull-right">货物价值：</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span id="info_goods_value">-</span>
-                                </div>
+                            <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
+                                <span>物料描述：<span id="goods_name">-</span></span>
+                            </div>
+                            <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
+                                <span>单位：<span id="goods_size">-</span></span>
+                            </div>
+                            <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
+                                <span>车号：<span id="goods_car_number">-</span></span>
+                            </div>
+                            <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
+                                <span>重要性：<span id="goods_importance">-</span></span>
+                            </div>
+                            <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
+                                <span>物料属性：<span id="goods_type">-</span></span>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row" style="margin-top:10px">
-            <div class="col-md-6 col-sm-6">
-                <div class="row">
-                    <div class="col-md-1 col-sm-1"></div>
-                    <div class="col-md-10 col-sm-11">
-                        <form action="" class="form-inline">
-                            <div class="form-group">
-                                <label for="repository_selector" class="form-label">出库仓库：</label>
-                                <select name="" id="repository_selector" class="form-control">
-                                    <option value="">请选择仓库</option>
-                                </select>
-                            </div>
-                        </form>
+                    <div class="visible-md visible-lg col-md-6 col-sm-6">
+                        <div class='pull-right' style="cursor:pointer" id="info-show">
+                            <span>显示详细信息</span>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </div>
+                        <div class='pull-right hide' style="cursor:pointer" id="info-hidden">
+                            <span>隐藏详细信息</span>
+                            <span class="glyphicon glyphicon-chevron-up"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row" style="margin-top:20px">
-            <div class="col-md-6 col-sm-6">
+
                 <div class="row">
-                    <div class="col-md-1 col-sm-1"></div>
-                    <div class="col-md-10 col-sm-11">
-                        <form action="" class="form-inline" id="stockout_form">
-                            <div class="form-group">
-                                <label for="" class="form-label">出库数量：</label>
-                                <input type="text" class="form-control" placeholder="请输入数量" id="stockout_input"
-                                       name="stockout_input">
-                                <span>(当前库存量：</span>
-                                <span id="info_storage">-</span>
-                                <span>)</span>
-                            </div>
-                        </form>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label for="repository_selector" class="control-label col-md-4 col-sm-4">出库仓库：</label>
+                        <div class="col-md-8 col-sm-8">
+                            <select name="repository_id" id="repository_selector" class="form-control">
+                                <option value="">请选择仓库</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6"></div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label for="stockout_number" class="control-label col-md-4 col-sm-4">出库数量：</label>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="text" class="form-control" placeholder="请输入数量" id="stockout_number"
+                                   name="stockout_number">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6" style="padding-top:7px;">
+                        <span>(当前库存量：</span>
+                        <span id="info_storage">-</span>
+                        <span>)</span>
                     </div>
                 </div>
-            </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label for="stockout_remark" class="control-label col-md-4 col-sm-4">备注：</label>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="text" class="form-control" placeholder="请输入备注" id="stockout_remark"
+                                   name="remark">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6"></div>
+                </div>
+            </form>
         </div>
         <div class="row" style="margin-top:80px"></div>
     </div>
     <div class="panel-footer">
-        <div style="text-align:right">
+        <div style="text-align:center">
             <button class="btn btn-success" id="submit">提交出库</button>
         </div>
     </div>

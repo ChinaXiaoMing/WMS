@@ -1,5 +1,6 @@
 package com.ken.wms.dao;
 
+import com.ken.wms.domain.RepoRepoAdmin;
 import com.ken.wms.domain.Repository;
 
 import java.util.List;
@@ -90,4 +91,29 @@ public interface RepositoryMapper {
      * @return {@link Repository}
      */
     List<Repository> selectByRepoAdminId(Integer adminID);
+
+    /**
+     * 新增仓库与仓库管理员关联
+     *
+     * @param repoRepoAdmin 仓库与仓库管理员关联表
+     * @return int
+     */
+    int insertRepoRepoAdmin(RepoRepoAdmin repoRepoAdmin);
+
+    /**
+     * 删除仓库与仓库管理员关联
+     *
+     * @param repoAdminId 仓库管理员ID
+     * @return int
+     */
+    int removeRepoRepoAdminByRepoAdminId(Integer repoAdminId);
+
+    /**
+     * 通过仓库管理员ID查询仓库与仓库管理员关联
+     *
+     * @param repoAdminId 回购管理id
+     * @return {@link List<RepoRepoAdmin>}
+     */
+    List<RepoRepoAdmin> selectRepoRepoAdminByRepoAdminId(Integer repoAdminId);
+
 }

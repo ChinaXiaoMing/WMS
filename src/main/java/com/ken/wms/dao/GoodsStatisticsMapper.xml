@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ken.wms.dao.GoodsStatisticsMapper">
+
+  <resultMap type="com.ken.wms.domain.GoodsStatisticsDTO" id="goodsStatistics">
+    <id property="id" column="id"/>
+    <result property="goodsId" column="goods_id" />
+    <result property="totalNumber" column="total_number"/>
+    <result property="outNumber" column="out_number"/>
+    <result property="leaveNumber" column="leave_number"/>
+    <result property="xianghuNumber" column="xianghu_number"/>
+    <result property="nanyangNumber" column="nanyang_number"/>
+    <result property="qibaoNumber" column="qibao_number"/>
+    <result property="faultOneNumber" column="fault_one_number"/>
+    <result property="faultTwoNumber" column="fault_two_number"/>
+    <result property="reworkingNumber" column="reworking_number"/>
+    <result property="reworkNumber" column="rework_number"/>
+    <result property="overhaulNumber" column="overhaul_number"/>
+    <result property="scrapNumber" column="scrap_number"/>
+    <result property="goodCode" column="GOOD_CODE" />
+    <result property="name" column="GOOD_NAME" />
+    <result property="type" column="GOOD_RYPE" />
+    <result property="size" column="GOOD_SIZE" />
+    <result property="carNumber" column="OOD_CAR_NUMBER"/>
+    <result property="goodImportance" column="GOOD_IMPORTANCE" />
+  </resultMap>
+
+  <sql id="baseColumn">
+    goods_id, total_number, out_number, leave_number, xianghu_number, nanyang_number, qibao_number, fault_one_number,
+    fault_two_number, reworking_number, rework_number, overhaul_number, scrap_number
+  </sql>
+
+  <!-- 新增 -->
+  <insert id="insert">
+    insert into wms_goods_statistics(goods_id, total_number, out_number, leave_number, xianghu_number, nanyang_number,
+                                     qibao_number, fault_one_number,fault_two_number, reworking_number, rework_number,
+                                     overhaul_number, scrap_number)
+    values(#{goodsId}, #{totalNumber}, #{outNumber}, #{leaveNumber}, #{xianghuNumber}, #{nanyangNumber},
+           #{qibaoNumber}, #{faultOneNumber},#{faultTwoNumber}, #{reworkingNumber}, #{reworkNumber},
+           #{overhaulNumber}, #{scrapNumber})
+  </insert>
+
+  <!-- 更新 -->
+  <update id="update">
+    update wms_goods_statistics
+    set
+    where id = #{id}
+  </update>
+
+  <!-- 删除 -->
+  <delete id="delete">
+    delete from wms_goods_statistics where id = #{id}
+  </delete>
+
+  <!-- 根据ID查询 -->
+  <select id="selectById" resultMap="goodsStatistics">
+    select t1.id, t1.goods_id, t1.total_number, t1.out_number, t1.leave_number, t1.xianghu_number, t1.nanyang_number,
+           t1.qibao_number, t1.fault_one_number,t1.fault_two_number, t1.reworking_number, t1.rework_number,
+           t1.overhaul_number, t1.scrap_number,t2.GOOD_CODE, t2.GOOD_NAME, t2.GOOD_RYPE, t2.GOOD_SIZE, t2.GOOD_VALUE,
+           t2.GOOD_CAR_NUMBER, t2.GOOD_IMPORTANCE
+    from wms_goods_statistics t1 right join wms_goods t2 on t1.goods_id = t2.GOOD_ID
+    where t1.id = #{id}
+  </select>
+
+  <!-- 查询所以 -->
+  <select id="selectAll" resultMap="goodsStatistics">
+    select t1.id, t1.goods_id, t1.total_number, t1.out_number, t1.leave_number, t1.xianghu_number, t1.nanyang_number,
+           t1.qibao_number, t1.fault_one_number,t1.fault_two_number, t1.reworking_number, t1.rework_number,
+           t1.overhaul_number, t1.scrap_number,t2.GOOD_CODE, t2.GOOD_NAME, t2.GOOD_RYPE, t2.GOOD_SIZE, t2.GOOD_CAR_NUMBER,
+           t2.GOOD_IMPORTANCE
+    from wms_goods_statistics t1 left join wms_goods t2 on t1.goods_id = t2.GOOD_ID
+  </select>
+
+
+</mapper>

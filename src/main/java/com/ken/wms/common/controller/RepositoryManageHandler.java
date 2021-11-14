@@ -111,16 +111,16 @@ public class RepositoryManageHandler {
      * @return 返回一个 map，其中key=data表示查询的记录，key=total表示记录的条数
      */
     @SuppressWarnings("unchecked")
-    @RequestMapping(value = "getUnassignRepository", method = RequestMethod.GET)
+    @RequestMapping(value = "getAllRepository", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> getUnassignRepository() throws RepositoryManageServiceException {
+    public Map<String, Object> getAllRepository() throws RepositoryManageServiceException {
         // 初始化结果集
         Map<String, Object> resultSet = new HashMap<>();
         List<Repository> data;
         long total = 0;
 
         // 查询
-        Map<String, Object> queryResult = repositoryService.selectUnassign();
+        Map<String, Object> queryResult = repositoryService.selectAll();
         if (queryResult != null) {
             data = (List<Repository>) queryResult.get("data");
             total = (long) queryResult.get("total");

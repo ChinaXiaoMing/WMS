@@ -16,6 +16,12 @@
         <result property="adminID" column="REPO_ADMIN_ID"/>
     </resultMap>
 
+    <resultMap type="com.ken.wms.domain.RepoRepoAdmin" id="repoRepoAdmin">
+        <id property="id" column="id"/>
+        <result property="repositoryId" column="repository_id" />
+        <result property="repoAdminId" column="repo_admin_id" />
+    </resultMap>
+
     <select id="selectAll" resultMap="repository">
         select
         r.REPO_ID,
@@ -94,8 +100,8 @@
             r.REPO_ADDRESS,
             r.REPO_STATUS,
             r.REPO_DESC
-        from wms_respository r
-        where r.REPO_ADMIN_ID = #{adminID}
+        from wms_respository r right join wms_repo_repo_admin t1 on r.REPO_ID = t1.repository_id
+        where t1.repo_admin_id = #{adminID}
     </select>
 
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
@@ -136,4 +142,20 @@
         delete from wms_respository
         where REPO_ID = #{id}
     </delete>
+
+    <!-- 新增仓库与仓库管理员关联关系 -->
+    <insert id="insertRepoRepoAdmin">
+        insert into wms_repo_repo_admin(repository_id, repo_admin_id)
+        values(#{repositoryId}, #{repoAdminId})
+    </insert>
+
+    <delete id="removeRepoRepoAdminByRepoAdminId">
+        delete from wms_repo_repo_admin
+        where repo_admin_id = #{repoAdminId}
+    </delete>
+
+    <select id="selectRepoRepoAdminByRepoAdminId" resultMap="repoRepoAdmin">
+        select * from wms_repo_repo_admin where repo_admin_id = #{repoAdminId}
+    </select>
+
 </mapper>

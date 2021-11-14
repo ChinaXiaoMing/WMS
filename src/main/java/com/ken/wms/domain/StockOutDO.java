@@ -15,20 +15,11 @@ public class StockOutDO {
      */
     private Integer id;
 
-    /**
-     * 客户ID
-     */
-    private Integer customerID;
-
-    /**
-     * 客户名称
-     */
-    private String customerName;
 
     /**
      * 商品ID
      */
-    private Integer goodID;
+    private Integer goodId;
 
     /**
      * 商品名称
@@ -38,7 +29,7 @@ public class StockOutDO {
     /**
      * 出库仓库ID
      */
-    private Integer repositoryID;
+    private Integer repositoryId;
 
     /**
      * 出/入库仓库名称
@@ -61,13 +52,10 @@ public class StockOutDO {
      */
     private String personInCharge;
 
-    public Integer getRepositoryID() {
-        return repositoryID;
-    }
-
-    public void setRepositoryID(Integer repositoryID) {
-        this.repositoryID = repositoryID;
-    }
+    /**
+     * 备注
+     */
+    private String remark;
 
     public Integer getId() {
         return id;
@@ -77,28 +65,12 @@ public class StockOutDO {
         this.id = id;
     }
 
-    public Integer getCustomerID() {
-        return customerID;
+    public Integer getGoodId() {
+        return goodId;
     }
 
-    public void setCustomerID(Integer customerID) {
-        this.customerID = customerID;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public Integer getGoodID() {
-        return goodID;
-    }
-
-    public void setGoodID(Integer goodID) {
-        this.goodID = goodID;
+    public void setGoodId(Integer goodId) {
+        this.goodId = goodId;
     }
 
     public String getGoodName() {
@@ -107,6 +79,22 @@ public class StockOutDO {
 
     public void setGoodName(String goodName) {
         this.goodName = goodName;
+    }
+
+    public Integer getRepositoryId() {
+        return repositoryId;
+    }
+
+    public void setRepositoryId(Integer repositoryId) {
+        this.repositoryId = repositoryId;
+    }
+
+    public String getRepoName() {
+        return repoName;
+    }
+
+    public void setRepoName(String repoName) {
+        this.repoName = repoName;
     }
 
     public long getNumber() {
@@ -133,19 +121,11 @@ public class StockOutDO {
         this.personInCharge = personInCharge;
     }
 
-    public String getRepoName() {
-        return repoName;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setRepoName(String repoName) {
-        this.repoName = repoName;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
-
-    @Override
-    public String toString() {
-        return "StockOutDO [id=" + id + ", customerID=" + customerID + ", customerName=" + customerName + ", goodID="
-                + goodID + ", goodName=" + goodName + ", repositoryID=" + repositoryID + ", number=" + number
-                + ", time=" + time + ", personInCharge=" + personInCharge + "]";
-    }
-
 }

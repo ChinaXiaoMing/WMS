@@ -39,3 +39,40 @@ ADD COLUMN `REMARK` varchar(255) NOT NULL COMMENT '入库备注' AFTER `RECORD_R
 
 ALTER TABLE `wms_db`.`wms_record_out`
 ADD COLUMN `REMARK` varchar(255) NULL COMMENT '出库备注' AFTER `RECORD_REPOSITORYID`;
+
+ALTER TABLE `wms_record_in`
+    MODIFY COLUMN `RECORD_SUPPLIERID`  int(11) NULL AFTER `RECORD_ID`,
+    MODIFY COLUMN `REMARK`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '入库备注' AFTER `RECORD_REPOSITORYID`;
+
+ALTER TABLE `wms_record_out`
+    MODIFY COLUMN `RECORD_CUSTOMERID`  int(11) NULL AFTER `RECORD_ID`,
+    MODIFY COLUMN `RECORD_REPOSITORYID`  int(11) NULL AFTER `RECORD_PERSON`;
+
+CREATE TABLE `wms_repo_repo_admin` (
+   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+   `repository_id` int(11) NOT NULL COMMENT '仓库ID',
+   `repo_admin_id` int(11) NOT NULL COMMENT '仓库管理员ID',
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='仓库与仓库管理员关联表';
+
+
+
+CREATE TABLE `wms_goods_statistics` (
+    `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `goods_id` int(11) NOT NULL COMMENT '物料ID',
+    `total_number` int(11) NOT NULL DEFAULT '0' COMMENT '总数（物资库）',
+    `out_number` int(11) NOT NULL DEFAULT '0' COMMENT '借出（物资库）',
+    `leave_number` int(11) NOT NULL DEFAULT '0' COMMENT '库余（物资库）',
+    `xianghu_number` int(11) DEFAULT NULL COMMENT '湘湖（一线）',
+    `nanyang_number` int(11) DEFAULT NULL COMMENT '南阳（一线）',
+    `qibao_number` int(11) DEFAULT NULL COMMENT '七堡（一线）',
+    `fault_one_number` int(11) DEFAULT NULL COMMENT '故障件（一线）',
+    `fault_teo_number` int(11) DEFAULT NULL COMMENT '故障件（二线）',
+    `reworking_number` int(11) DEFAULT NULL COMMENT '返修中（二线）',
+    `rework_number` int(11) DEFAULT NULL COMMENT '返修回（二线）',
+    `overhaul_number` int(11) DEFAULT NULL COMMENT '大修拆回',
+    `scrap_number` int(11) DEFAULT NULL COMMENT '报废',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='库存物料统计表';
+
+

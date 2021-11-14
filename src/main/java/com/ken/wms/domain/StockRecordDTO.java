@@ -8,17 +8,12 @@ public class StockRecordDTO {
     /**
      * 记录ID
      */
-    private Integer recordID;
+    private Integer recordId;
 
     /**
      * 记录的类型（出库/入库）
      */
     private String type;
-
-    /**
-     * 供应商（入库）或客户（出库）名称
-     */
-    private String supplierOrCustomerName;
 
     /**
      * 商品名称
@@ -28,7 +23,7 @@ public class StockRecordDTO {
     /**
      * 出库或入库仓库ID
      */
-    private Integer repositoryID;
+    private Integer repositoryId;
 
     /**
      * 出/入库仓库名称
@@ -50,69 +45,41 @@ public class StockRecordDTO {
      */
     private String personInCharge;
 
+    /**
+     * 备注
+     */
+    private String remark;
 
-    public Integer getRecordID() {
-        return recordID;
+    public Integer getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(Integer recordId) {
+        this.recordId = recordId;
     }
 
     public String getType() {
         return type;
     }
 
-    public String getSupplierOrCustomerName() {
-        return supplierOrCustomerName;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getGoodsName() {
         return goodsName;
     }
 
-    public Integer getRepositoryID() {
-        return repositoryID;
-    }
-
-    public long getNumber() {
-        return number;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public String getPersonInCharge() {
-        return personInCharge;
-    }
-
-    public void setRecordID(Integer recordID) {
-        this.recordID = recordID;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setSupplierOrCustomerName(String supplierOrCustomerName) {
-        this.supplierOrCustomerName = supplierOrCustomerName;
-    }
-
     public void setGoodsName(String goodsName) {
         this.goodsName = goodsName;
     }
 
-    public void setRepositoryID(Integer repositoryID) {
-        this.repositoryID = repositoryID;
+    public Integer getRepositoryId() {
+        return repositoryId;
     }
 
-    public void setNumber(long number) {
-        this.number = number;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public void setPersonInCharge(String personInCharge) {
-        this.personInCharge = personInCharge;
+    public void setRepositoryId(Integer repositoryId) {
+        this.repositoryId = repositoryId;
     }
 
     public String getRepoName() {
@@ -123,17 +90,35 @@ public class StockRecordDTO {
         this.repoName = repoName;
     }
 
-    @Override
-    public String toString() {
-        return "StockRecordDTO{" +
-                "recordID=" + recordID +
-                ", type='" + type + '\'' +
-                ", supplierOrCustomerName='" + supplierOrCustomerName + '\'' +
-                ", goodsName='" + goodsName + '\'' +
-                ", repositoryID=" + repositoryID +
-                ", number=" + number +
-                ", time=" + time +
-                ", personInCharge='" + personInCharge + '\'' +
-                '}';
+    public long getNumber() {
+        return number;
+    }
+
+    public void setNumber(long number) {
+        this.number = number;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getPersonInCharge() {
+        return personInCharge;
+    }
+
+    public void setPersonInCharge(String personInCharge) {
+        this.personInCharge = personInCharge;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

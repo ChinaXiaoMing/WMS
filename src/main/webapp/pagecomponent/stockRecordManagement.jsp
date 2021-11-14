@@ -1,10 +1,10 @@
-<!--<%@ page language="java" contentType="text/html; charset=UTF-8"-->
-<!--pageEncoding="UTF-8"%>-->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 
 <script>
     // 出入库记录查询参数
     search_type = 'none'
-    search_repositoryID = ''
+    search_repositoryId = null
     search_start_date = null
     search_end_date = null
 
@@ -62,17 +62,13 @@
                 {
                     columns: [
                         {
-                            field: 'recordID',
+                            field: 'recordId',
                             title: '记录ID'
                             //sortable: true
                         },
                         {
-                            field: 'supplierOrCustomerName',
-                            title: '供应商/客户名称'
-                        },
-                        {
                             field: 'goodsName',
-                            title: '商品名称'
+                            title: '物料描述'
                         },
                         {
                             field: 'repoName',
@@ -91,6 +87,10 @@
                         {
                             field: 'personInCharge',
                             title: '经手人'
+                        },
+                        {
+                            field: 'remark',
+                            title: '备注'
                         },
                         {
                             field: 'type',
@@ -123,7 +123,7 @@
             limit: params.limit,
             offset: params.offset,
             searchType: search_type,
-            repositoryID: search_repositoryID,
+            repositoryId: search_repositoryId,
             startDate: search_start_date,
             endDate: search_end_date
         }
@@ -133,7 +133,7 @@
     // 查询操作
     function searchAction() {
         $('#search_button').click(function () {
-            search_repositoryID = $('#search_repository_ID').val();
+            search_repositoryId = $('#search_repository_ID').val();
             search_type = $('#search_type').val();
             search_start_date = $('#search_start_date').val();
             search_end_date = $('#search_end_date').val();

@@ -24,13 +24,15 @@ public interface StockRecordManageService {
     /**
      * 货物出库操作
      *
-     * @param customerID   客户ID
-     * @param goodsID      货物ID
-     * @param repositoryID 出库仓库ID
+     * @param goodsId      货物ID
+     * @param repositoryId 出库仓库ID
      * @param number       出库数量
+     * @param personInCharge 出库经办人
+     * @param remark        备注
      * @return 返回一个boolean值，若值为true表示出库成功，否则表示出库失败
      */
-    boolean stockOutOperation(Integer customerID, Integer goodsID, Integer repositoryID, long number, String personInCharge) throws StockRecordManageServiceException;
+    boolean stockOutOperation(Integer goodsId, Integer repositoryId, long number, String personInCharge, String remark)
+            throws StockRecordManageServiceException;
 
     /**
      * 查询出入库记录

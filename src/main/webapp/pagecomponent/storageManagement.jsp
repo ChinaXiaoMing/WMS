@@ -135,7 +135,7 @@
                         },
                         {
                             field: 'goodCode',
-                            title: '物料编号'
+                            title: '物料编码'
                         },
                         {
                             field: 'goodsName',
@@ -565,6 +565,7 @@
         $('#info_modal').modal("show");
     }
 </script>
+
 <div class="panel panel-default">
     <ol class="breadcrumb">
         <li>库存信息管理</li>

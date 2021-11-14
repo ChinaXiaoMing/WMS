@@ -155,8 +155,9 @@ public class GoodsManageServiceImpl implements GoodsManageService {
         boolean isPagination = true;
 
         // validate
-        if (offset < 0 || limit < 0)
+        if (offset < 0 || limit < 0) {
             isPagination = false;
+        }
 
         // query
         try {

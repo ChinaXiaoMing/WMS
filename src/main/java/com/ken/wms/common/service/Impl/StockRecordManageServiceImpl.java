@@ -4,19 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ken.wms.common.service.Interface.StockRecordManageService;
 import com.ken.wms.common.service.Interface.StorageManageService;
-import com.ken.wms.dao.CustomerMapper;
-import com.ken.wms.dao.GoodsMapper;
-import com.ken.wms.dao.RepositoryMapper;
-import com.ken.wms.dao.StockInMapper;
-import com.ken.wms.dao.StockOutMapper;
-import com.ken.wms.dao.SupplierMapper;
-import com.ken.wms.domain.Customer;
-import com.ken.wms.domain.Goods;
-import com.ken.wms.domain.Repository;
-import com.ken.wms.domain.StockInDO;
-import com.ken.wms.domain.StockOutDO;
-import com.ken.wms.domain.StockRecordDTO;
-import com.ken.wms.domain.Supplier;
+import com.ken.wms.dao.*;
+import com.ken.wms.domain.*;
 import com.ken.wms.exception.StockRecordManageServiceException;
 import com.ken.wms.exception.StorageManageServiceException;
 import com.ken.wms.util.aop.UserOperation;
@@ -30,11 +19,7 @@ import org.springframework.stereotype.Service;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class StockRecordManageServiceImpl implements StockRecordManageService {
@@ -111,18 +96,20 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
     /**
      * 货物出库操作
      *
-     * @param customerID   客户ID
-     * @param goodsID      货物ID
-     * @param repositoryID 出库仓库ID
+     * @param goodsId      货物ID
+     * @param repositoryId 出库仓库ID
      * @param number       出库数量
+     * @param personInCharge 经办人
+     * @param remark        备注
      * @return 返回一个boolean值，若值为true表示出库成功，否则表示出库失败
      */
     @UserOperation(value = "货物出库")
     @Override
-    public boolean stockOutOperation(Integer customerID, Integer goodsID, Integer repositoryID, long number, String personInCharge) throws StockRecordManageServiceException {
+    public boolean stockOutOperation(Integer goodsId, Integer repositoryId, long number, String personInCharge, String remark)
+            throws StockRecordManageServiceException {
 
         // 检查ID对应的记录是否存在
-        if (!(customerValidate(customerID) && goodsValidate(goodsID) && repositoryValidate(repositoryID))) {
+        if (!goodsValidate(goodsId) && repositoryValidate(repositoryId)) {
             return false;
         }
 
@@ -134,17 +121,17 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
         try {
             // 更新库存信息
             boolean isSuccess;
-            isSuccess = storageManageService.storageDecrease(goodsID, repositoryID, number);
+            isSuccess = storageManageService.storageDecrease(goodsId, repositoryId, number);
 
             // 保存出库记录
             if (isSuccess) {
                 StockOutDO stockOutDO = new StockOutDO();
-                stockOutDO.setCustomerID(customerID);
-                stockOutDO.setGoodID(goodsID);
+                stockOutDO.setGoodId(goodsId);
                 stockOutDO.setNumber(number);
                 stockOutDO.setPersonInCharge(personInCharge);
-                stockOutDO.setRepositoryID(repositoryID);
+                stockOutDO.setRepositoryId(repositoryId);
                 stockOutDO.setTime(new Date());
+                stockOutDO.setRemark(remark);
                 stockOutMapper.insert(stockOutDO);
             }
 
@@ -171,7 +158,7 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
     /**
      * 分页查询出入库记录
      *
-     * @param repositoryID 仓库ID
+     * @param repositoryId 仓库ID
      * @param endDateStr   查询记录起始日期
      * @param startDateStr 查询记录结束日期
      * @param searchType   记录查询方式
@@ -181,14 +168,14 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
      */
     @SuppressWarnings("unchecked")
     @Override
-    public Map<String, Object> selectStockRecord(Integer repositoryID, String startDateStr, String endDateStr,
+    public Map<String, Object> selectStockRecord(Integer repositoryId, String startDateStr, String endDateStr,
                                                  String searchType, int offset, int limit) throws StockRecordManageServiceException {
         // 初始化结果集
         Map<String, Object> resultSet = new HashMap<>();
         long total = 0;
 
         // 检查传入参数
-        if (repositoryID == null || searchType == null) {
+        if (searchType == null) {
             throw new StockRecordManageServiceException("exception");
         }
 
@@ -218,8 +205,8 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
         switch (searchType) {
             case "all": {
                 if (offset < 0 || limit < 0) {
-                    stockInTemp = selectStockInRecord(repositoryID, startDate, endDate, offset, limit);
-                    stockOutTemp = selectStockOutRecord(repositoryID, startDate, endDate, offset, limit);
+                    stockInTemp = selectStockInRecord(repositoryId, startDate, endDate, offset, limit);
+                    stockOutTemp = selectStockOutRecord(repositoryId, startDate, endDate, offset, limit);
                     stockInRecordDOS = (List<StockInDO>) stockInTemp.get("data");
                     stockOutRecordDOS = (List<StockOutDO>) stockOutTemp.get("data");
                 } else {
@@ -228,8 +215,8 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
                     int stockInRecordLimit = limit / 2;
                     int stockOutRecordLimit = stockInRecordLimit * 2 < limit ? stockInRecordLimit + 1 : stockInRecordLimit;
 
-                    stockInTemp = selectStockInRecord(repositoryID, startDate, newEndDate, stockInRecordOffset, limit);
-                    stockOutTemp = selectStockOutRecord(repositoryID, startDate, newEndDate, stockOutRecordOffset, limit);
+                    stockInTemp = selectStockInRecord(repositoryId, startDate, newEndDate, stockInRecordOffset, limit);
+                    stockOutTemp = selectStockOutRecord(repositoryId, startDate, newEndDate, stockOutRecordOffset, limit);
 
                     stockInRecordDOS = (List<StockInDO>) stockInTemp.get("data");
                     stockOutRecordDOS = (List<StockOutDO>) stockOutTemp.get("data");
@@ -255,13 +242,13 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
                 break;
             }
             case "stockInOnly": {
-                stockInTemp = selectStockInRecord(repositoryID, startDate, newEndDate, offset, limit);
+                stockInTemp = selectStockInRecord(repositoryId, startDate, newEndDate, offset, limit);
                 total = (long) stockInTemp.get("total");
                 stockInRecordDOS = (List<StockInDO>) stockInTemp.get("data");
                 break;
             }
             case "stockOutOnly": {
-                stockOutTemp = selectStockOutRecord(repositoryID, startDate, newEndDate, offset, limit);
+                stockOutTemp = selectStockOutRecord(repositoryId, startDate, newEndDate, offset, limit);
                 total = (long) stockOutTemp.get("total");
                 stockOutRecordDOS = (List<StockOutDO>) stockOutTemp.get("data");
                 break;
@@ -286,14 +273,15 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
     /**
      * 查询入库记录
      *
-     * @param repositoryID 入库仓库ID
+     * @param repositoryId 入库仓库ID
      * @param startDate    入库记录起始日期
      * @param endDate      入库记录结束日期
      * @param offset       分页偏移值
      * @param limit        分页大小
      * @return 返回所有符合要求的入库记录
      */
-    private Map<String, Object> selectStockInRecord(Integer repositoryID, Date startDate, Date endDate, int offset, int limit) throws StockRecordManageServiceException {
+    private Map<String, Object> selectStockInRecord(Integer repositoryId, Date startDate, Date endDate, int offset,
+                                                    int limit) throws StockRecordManageServiceException {
         Map<String, Object> result = new HashMap<>();
         List<StockInDO> stockInRecords;
         long stockInTotal = 0;
@@ -309,7 +297,7 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
             if (isPagination) {
                 PageHelper.offsetPage(offset, limit);
                 // 入库记录查询
-                stockInRecords = stockinMapper.selectByRepositoryIDAndDate(repositoryID, startDate, endDate);
+                stockInRecords = stockinMapper.selectByRepositoryIDAndDate(repositoryId, startDate, endDate);
                 if (stockInRecords != null) {
                     stockInTotal = new PageInfo<>(stockInRecords).getTotal();
                 } else {
@@ -317,7 +305,7 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
                 }
             } else {
                 // 入库记录查询
-                stockInRecords = stockinMapper.selectByRepositoryIDAndDate(repositoryID, startDate, endDate);
+                stockInRecords = stockinMapper.selectByRepositoryIDAndDate(repositoryId, startDate, endDate);
                 if (stockInRecords != null) {
                     stockInTotal = stockInRecords.size();
                 } else {
@@ -336,14 +324,15 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
     /**
      * 查询出库记录
      *
-     * @param repositoryID 出库仓库ID
+     * @param repositoryId 出库仓库ID
      * @param startDate    出库记录起始日期
      * @param endDate      出库记录结束日期
      * @param offset       分页偏移值
      * @param limit        分页大小
      * @return 返回所有符合要求的出库记录
      */
-    private Map<String, Object> selectStockOutRecord(Integer repositoryID, Date startDate, Date endDate, int offset, int limit) throws StockRecordManageServiceException {
+    private Map<String, Object> selectStockOutRecord(Integer repositoryId, Date startDate, Date endDate, int offset,
+                                                     int limit) throws StockRecordManageServiceException {
         Map<String, Object> result = new HashMap<>();
         List<StockOutDO> stockOutRecords;
         long stockOutRecordTotal = 0;
@@ -358,14 +347,14 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
         try {
             if (isPagination) {
                 PageHelper.offsetPage(offset, limit);
-                stockOutRecords = stockOutMapper.selectByRepositoryIDAndDate(repositoryID, startDate, endDate);
+                stockOutRecords = stockOutMapper.selectByRepositoryIDAndDate(repositoryId, startDate, endDate);
                 if (stockOutRecords != null) {
                     stockOutRecordTotal = new PageInfo<>(stockOutRecords).getTotal();
                 } else {
                     stockOutRecords = new ArrayList<>(10);
                 }
             } else {
-                stockOutRecords = stockOutMapper.selectByRepositoryIDAndDate(repositoryID, startDate, endDate);
+                stockOutRecords = stockOutMapper.selectByRepositoryIDAndDate(repositoryId, startDate, endDate);
                 if (stockOutRecords != null) {
                     stockOutRecordTotal = stockOutRecords.size();
                 } else {
@@ -391,14 +380,15 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
      */
     private StockRecordDTO stockInRecordConvertToStockRecordDTO(StockInDO stockInDO) {
         StockRecordDTO stockRecordDTO = new StockRecordDTO();
-        stockRecordDTO.setRecordID(stockInDO.getId());
+        stockRecordDTO.setRecordId(stockInDO.getId());
         stockRecordDTO.setGoodsName(stockInDO.getGoodName());
         stockRecordDTO.setNumber(stockInDO.getNumber());
         stockRecordDTO.setTime(dateFormat.format(stockInDO.getTime()));
-        stockRecordDTO.setRepositoryID(stockInDO.getRepositoryId());
+        stockRecordDTO.setRepositoryId(stockInDO.getRepositoryId());
         stockRecordDTO.setPersonInCharge(stockInDO.getPersonInCharge());
         stockRecordDTO.setRepoName(stockInDO.getRepoName());
         stockRecordDTO.setType("入库");
+        stockRecordDTO.setRemark(stockInDO.getRemark());
         return stockRecordDTO;
     }
 
@@ -410,15 +400,15 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
      */
     private StockRecordDTO stockOutDoConvertToStockRecordDTO(StockOutDO stockOutDO) {
         StockRecordDTO stockRecordDTO = new StockRecordDTO();
-        stockRecordDTO.setRecordID(stockOutDO.getId());
-        stockRecordDTO.setSupplierOrCustomerName(stockOutDO.getCustomerName());
-        stockRecordDTO.setGoodsName(stockOutDO.getCustomerName());
+        stockRecordDTO.setRecordId(stockOutDO.getId());
+        stockRecordDTO.setGoodsName(stockOutDO.getGoodName());
         stockRecordDTO.setNumber(stockOutDO.getNumber());
         stockRecordDTO.setTime(dateFormat.format(stockOutDO.getTime()));
-        stockRecordDTO.setRepositoryID(stockOutDO.getRepositoryID());
+        stockRecordDTO.setRepositoryId(stockOutDO.getRepositoryId());
         stockRecordDTO.setPersonInCharge(stockOutDO.getPersonInCharge());
         stockRecordDTO.setRepoName(stockOutDO.getRepoName());
         stockRecordDTO.setType("出库");
+        stockRecordDTO.setRemark(stockOutDO.getRemark());
         return stockRecordDTO;
     }
 

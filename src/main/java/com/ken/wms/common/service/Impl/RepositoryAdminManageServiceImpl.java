@@ -6,6 +6,7 @@ import com.ken.wms.common.service.Interface.RepositoryAdminManageService;
 import com.ken.wms.common.util.ExcelUtil;
 import com.ken.wms.dao.RepositoryAdminMapper;
 import com.ken.wms.dao.RepositoryMapper;
+import com.ken.wms.domain.RepoRepoAdmin;
 import com.ken.wms.domain.Repository;
 import com.ken.wms.domain.RepositoryAdmin;
 import com.ken.wms.domain.UserInfoDTO;
@@ -254,20 +255,22 @@ public class RepositoryAdminManageServiceImpl implements RepositoryAdminManageSe
                     return false;
                 }
 
-                repositoryAdmin.setRepoId(StringUtils.join(repositoryAdmin.getRepoIdList(), ","));
-
-                // 更新仓库管理员信息
                 repositoryAdminMapper.update(repositoryAdmin);
-                repositoryMapper.updateAdminID(repositoryAdmin.getId());
-                // 查询是否存在待分配的仓库ID计划，存在则更新仓库信息，设置仓库管理员ID
+
+                // 查询是否存在待分配的仓库ID
                 List<Integer> repoIdList = repositoryAdmin.getRepoIdList();
                 if (CollectionUtils.isNotEmpty(repoIdList)) {
+                    List<RepoRepoAdmin> repoRepoAdminList = repositoryMapper.selectRepoRepoAdminByRepoAdminId(repositoryAdmin.getId());
+                    if (CollectionUtils.isNotEmpty(repoRepoAdminList)) {
+                        // 删除旧的关联关系
+                        repositoryMapper.removeRepoRepoAdminByRepoAdminId(repositoryAdmin.getId());
+                    }
                     for (Integer repoId : repoIdList) {
-                        Repository repository = repositoryMapper.selectByID(repoId);
-                        // 设置仓库管理员ID
-                        repository.setAdminID(repositoryAdmin.getId());
-                        // 更新仓库信息
-                        repositoryMapper.update(repository);
+                        RepoRepoAdmin repoRepoAdmin = new RepoRepoAdmin();
+                        repoRepoAdmin.setRepositoryId(repoId);
+                        repoRepoAdmin.setRepoAdminId(repositoryAdmin.getId());
+                        // 新增新的关联关系
+                        repositoryMapper.insertRepoRepoAdmin(repoRepoAdmin);
                     }
                  }
 

@@ -8,7 +8,6 @@ import com.ken.wms.common.util.ExcelUtil;
 import com.ken.wms.dao.CustomerMapper;
 import com.ken.wms.dao.StockOutMapper;
 import com.ken.wms.domain.Customer;
-import com.ken.wms.domain.StockOutDO;
 import com.ken.wms.exception.CustomerManageServiceException;
 import com.ken.wms.util.aop.UserOperation;
 import org.apache.ibatis.exceptions.PersistenceException;
@@ -264,16 +263,9 @@ public class CustomerManageServiceImpl implements CustomerManageService {
     public boolean deleteCustomer(Integer customerId) throws CustomerManageServiceException {
 
         try {
-            // 查询该客户是否有出库记录
-            List<StockOutDO> records = stockOutMapper.selectByCustomerId(customerId);
-            if (records != null && records.size() > 0) {
-                return false;
-            } else {
-                // 删除该条客户记录
-                customerMapper.deleteById(customerId);
-                return true;
-
-            }
+            // 删除该条客户记录
+            customerMapper.deleteById(customerId);
+            return true;
         } catch (PersistenceException e) {
             throw new CustomerManageServiceException(e);
         }

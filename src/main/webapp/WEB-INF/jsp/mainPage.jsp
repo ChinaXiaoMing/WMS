@@ -88,20 +88,24 @@
                                 <!--若为普通管理员-->
                                 <shiro:hasRole name="commonsAdmin">
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id="" class="menu_item"
+                                        <a href="javascript:void(0)" class="menu_item"
                                            name="pagecomponent/storageManagementCommon.jsp">库存查询</a>
                                     </li>
                                 </shiro:hasRole>
                                 <!--若为超级管理员-->
                                 <shiro:hasRole name="systemAdmin">
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id="" class="menu_item"
+                                        <a href="javascript:void(0)" class="menu_item"
                                            name="pagecomponent/storageManagement.jsp">库存查询</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id=""
+                                        <a href="javascript:void(0)"
                                            class="menu_item"
-                                           name="pagecomponent/stockRecordManagement.html">出入库记录</a>
+                                           name="pagecomponent/stockRecordManagement.jsp">出入库记录</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="javascript:void(0)" class="menu_item"
+                                           name="pagecomponent/goodsStatisticsManagement.jsp">库存汇总</a>
                                     </li>
                                 </shiro:hasRole>
                             </ul>
@@ -123,11 +127,11 @@
                             <shiro:hasRole name="systemAdmin">
                                 <ul class="list-group">
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id="" class="menu_item"
+                                        <a href="javascript:void(0)" class="menu_item"
                                            name="pagecomponent/stock-inManagement.jsp">货物入库</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id="" class="menu_item"
+                                        <a href="javascript:void(0)" class="menu_item"
                                            name="pagecomponent/stock-outManagement.jsp">货物出库</a>
                                     </li>
                                 </ul>
@@ -135,11 +139,11 @@
                             <shiro:hasRole name="commonsAdmin">
                                 <ul class="list-group">
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id="" class="menu_item"
+                                        <a href="javascript:void(0)" class="menu_item"
                                            name="#">货物入库</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id="" class="menu_item"
+                                        <a href="javascript:void(0)" class="menu_item"
                                            name="#">货物出库</a>
                                     </li>
                                 </ul>
@@ -162,7 +166,7 @@
                             <div class="panel-body">
                                 <ul class="list-group">
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id="" class="menu_item"
+                                        <a href="javascript:void(0)" class="menu_item"
                                            name="pagecomponent/repositoryAdminManagement.jsp">仓库管理员管理</a>
                                     </li>
                                 </ul>
@@ -185,19 +189,19 @@
                             <div class="panel-body">
                                 <ul class="list-group">
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id="" class="menu_item"
+                                        <a href="javascript:void(0)" class="menu_item"
                                            name="pagecomponent/supplierManagement.jsp">供应商信息管理</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id="" class="menu_item"
+                                        <a href="javascript:void(0)" class="menu_item"
                                            name="pagecomponent/customerManagement.jsp">客户信息管理</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id="" class="menu_item"
+                                        <a href="javascript:void(0)" class="menu_item"
                                            name="pagecomponent/goodsManagement.jsp">货物信息管理</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id="" class="menu_item"
+                                        <a href="javascript:void(0)" class="menu_item"
                                            name="pagecomponent/repositoryManagement.jsp">仓库信息管理</a>
                                     </li>
                                 </ul>
@@ -217,16 +221,16 @@
                         <div class="panel-body">
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <a href="javascript:void(0)" id="" class="menu_item"
+                                    <a href="javascript:void(0)" class="menu_item"
                                        name="pagecomponent/passwordModification.jsp">更改密码</a>
                                 </li>
                                 <shiro:hasRole name="systemAdmin">
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id=""
+                                        <a href="javascript:void(0)"
                                            class="menu_item" name="pagecomponent/userOperationRecorderManagement.html">系统日志</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <a href="javascript:void(0)" id=""
+                                        <a href="javascript:void(0)"
                                            class="menu_item" name="pagecomponent/accessRecordManagement.html">登陆日志</a>
                                     </li>
                                 </shiro:hasRole>

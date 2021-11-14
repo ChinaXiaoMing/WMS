@@ -7,69 +7,45 @@
 
     <resultMap type="com.ken.wms.domain.StockOutDO" id="stockOutDO">
         <id property="id" column="STOCKOUT_ID"/>
-        <result property="customerID" column="STOCKOUT_CUSTOMER_ID"/>
-        <result property="customerName" column="STOCKOUT_CUSTOMER_NAME"/>
-        <result property="goodID" column="STOCKOUT_GOOD_ID"/>
+        <result property="goodId" column="STOCKOUT_GOOD_ID"/>
         <result property="goodName" column="STOCKOUT_GOOD_NAME"/>
         <result property="number" column="STOCKOUT_NUMBER"/>
         <result property="time" column="STOCKOUT_TIME"/>
         <result property="personInCharge" column="STOCKOUT_PERSON"/>
-        <result property="repositoryID" column="STOCKOUT_REPOSITORY_ID"/>
+        <result property="repositoryId" column="RECORD_REPOSITORYID"/>
         <result property="repoName" column="REPO_NAME"/>
+        <result property="remark" column="REMARK" />
     </resultMap>
 
     <select id="selectAll" resultMap="stockOutDO">
         select
         r.RECORD_ID as STOCKOUT_ID,
-        r.RECORD_CUSTOMERID as STOCKOUT_CUSTOMER_ID,
-        c.CUSTOMER_NAME as STOCKOUT_CUSTOMER_NAME,
         r.RECORD_GOODID as STOCKOUT_GOOD_ID,
         g.GOOD_NAME as STOCKOUT_GOOD_NAME,
         r.RECORD_NUMBER as STOCKOUT_NUMBER,
         r.RECORD_TIME as STOCKOUT_TIME,
         r.RECORD_PERSON as STOCKOUT_PERSON,
-        r.RECORD_REPOSITORYID asSTOCKOUT_REPOSITORY_ID
+        r.RECORD_REPOSITORYID,
+        r.REMARK as REMARK
         from
-        wms_record_out r,wms_goods g,wms_customer c
+        wms_record_out r,wms_goods g
         where
-        r.RECORD_CUSTOMERID = c.CUSTOMER_ID and
         r.RECORD_GOODID = g.GOOD_ID
-    </select>
-
-    <select id="selectByCustomerId" resultMap="stockOutDO">
-        select
-        r.RECORD_ID as STOCKOUT_ID,
-        r.RECORD_CUSTOMERID as STOCKOUT_CUSTOMER_ID,
-        c.CUSTOMER_NAME as STOCKOUT_CUSTOMER_NAME,
-        r.RECORD_GOODID as STOCKOUT_GOOD_ID,
-        g.GOOD_NAME as STOCKOUT_GOOD_NAME,
-        r.RECORD_NUMBER as STOCKOUT_NUMBER,
-        r.RECORD_TIME as STOCKOUT_TIME,
-        r.RECORD_PERSON as STOCKOUT_PERSON,
-        r.RECORD_REPOSITORYID asSTOCKOUT_REPOSITORY_ID
-        from
-        wms_record_out r,wms_goods g,wms_customer c
-        where
-        r.RECORD_CUSTOMERID = c.CUSTOMER_ID and
-        r.RECORD_GOODID = g.GOOD_ID and
-        r.RECORD_CUSTOMERID = #{customerId}
     </select>
 
     <select id="selectByGoodId" resultMap="stockOutDO">
         select
         r.RECORD_ID as STOCKOUT_ID,
-        r.RECORD_CUSTOMERID as STOCKOUT_CUSTOMER_ID,
-        c.CUSTOMER_NAME as STOCKOUT_CUSTOMER_NAME,
         r.RECORD_GOODID as STOCKOUT_GOOD_ID,
         g.GOOD_NAME as STOCKOUT_GOOD_NAME,
         r.RECORD_NUMBER as STOCKOUT_NUMBER,
         r.RECORD_TIME as STOCKOUT_TIME,
         r.RECORD_PERSON as STOCKOUT_PERSON,
-        r.RECORD_REPOSITORYID asSTOCKOUT_REPOSITORY_ID
+        r.RECORD_REPOSITORYID,
+        r.REMARK as REMARK
         from
-        wms_record_out r,wms_goods g,wms_customer c
+        wms_record_out r,wms_goods g
         where
-        r.RECORD_CUSTOMERID = c.CUSTOMER_ID and
         r.RECORD_GOODID = g.GOOD_ID and
         r.RECORD_GOODID = #{goodId}
     </select>
@@ -77,18 +53,16 @@
     <select id="selectById" resultMap="stockOutDO">
         select
         r.RECORD_ID as STOCKOUT_ID,
-        r.RECORD_CUSTOMERID as STOCKOUT_CUSTOMER_ID,
-        c.CUSTOMER_NAME as STOCKOUT_CUSTOMER_NAME,
         r.RECORD_GOODID as STOCKOUT_GOOD_ID,
         g.GOOD_NAME as STOCKOUT_GOOD_NAME,
         r.RECORD_NUMBER as STOCKOUT_NUMBER,
         r.RECORD_TIME as STOCKOUT_TIME,
         r.RECORD_PERSON as STOCKOUT_PERSON,
-        r.RECORD_REPOSITORYID asSTOCKOUT_REPOSITORY_ID
+        r.RECORD_REPOSITORYID,
+        r.REMARK as REMARK
         from
-        wms_record_out r,wms_goods g,wms_customer c
+        wms_record_out r,wms_goods g
         where
-        r.RECORD_CUSTOMERID = c.CUSTOMER_ID and
         r.RECORD_GOODID = g.GOOD_ID and
         r.RECORD_ID = #{id}
     </select>
@@ -96,44 +70,40 @@
     <select id="selectByRepositoryID" resultMap="stockOutDO">
         select
         r.RECORD_ID as STOCKOUT_ID,
-        r.RECORD_CUSTOMERID as STOCKOUT_CUSTOMER_ID,
-        c.CUSTOMER_NAME as STOCKOUT_CUSTOMER_NAME,
         r.RECORD_GOODID as STOCKOUT_GOOD_ID,
         g.GOOD_NAME as STOCKOUT_GOOD_NAME,
         r.RECORD_NUMBER as STOCKOUT_NUMBER,
         r.RECORD_TIME as STOCKOUT_TIME,
         r.RECORD_PERSON as STOCKOUT_PERSON,
-        r.RECORD_REPOSITORYID as STOCKOUT_REPOSITORY_ID,
-        t1.REPO_NAME as REPO_NAME
+        r.RECORD_REPOSITORYID,
+        t1.REPO_NAME as REPO_NAME,
+        r.REMARK as REMARK
         from
-        wms_record_out r,wms_goods g,wms_customer c,wms_respository t1
+        wms_record_out r,wms_goods g,wms_respository t1
         where
-        r.RECORD_CUSTOMERID = c.CUSTOMER_ID and
         r.RECORD_GOODID = g.GOOD_ID and
-        r.RECORD_REPOSITORYID = #{repositoryID}
+        r.RECORD_REPOSITORYID = #{repositoryId}
         and r.RECORD_REPOSITORYID = t1.REPO_ID
     </select>
 
     <select id="selectByRepositoryIDAndDate" resultMap="stockOutDO">
         select
         r.RECORD_ID as STOCKOUT_ID,
-        r.RECORD_CUSTOMERID as STOCKOUT_CUSTOMER_ID,
-        c.CUSTOMER_NAME as STOCKOUT_CUSTOMER_NAME,
         r.RECORD_GOODID as STOCKOUT_GOOD_ID,
         g.GOOD_NAME as STOCKOUT_GOOD_NAME,
         r.RECORD_NUMBER as STOCKOUT_NUMBER,
         r.RECORD_TIME as STOCKOUT_TIME,
         r.RECORD_PERSON as STOCKOUT_PERSON,
-        r.RECORD_REPOSITORYID as STOCKOUT_REPOSITORY_ID,
-        t1.REPO_NAME as REPO_NAME
+        r.RECORD_REPOSITORYID,
+        t1.REPO_NAME as REPO_NAME,
+        r.REMARK as REMARK
         from
-        wms_record_out r,wms_goods g,wms_customer c,wms_respository t1
+        wms_record_out r,wms_goods g,wms_respository t1
         where
-        r.RECORD_CUSTOMERID = c.CUSTOMER_ID and
         r.RECORD_GOODID = g.GOOD_ID
         and  r.RECORD_REPOSITORYID = t1.REPO_ID
-        <if test="repositoryID > 0">
-            and r.RECORD_REPOSITORYID = #{repositoryID}
+        <if test="repositoryId != null">
+            and r.RECORD_REPOSITORYID = #{repositoryId}
         </if>
         <if test="startDate != null">
             and r.RECORD_TIME >= #{startDate}
@@ -145,19 +115,19 @@
 
     <insert id="insert">
         insert into
-        wms_record_out(RECORD_CUSTOMERID,RECORD_GOODID,RECORD_NUMBER,RECORD_TIME,RECORD_PERSON,RECORD_REPOSITORYID)
-        values(#{customerID},#{goodID},#{number},#{time},#{personInCharge},#{repositoryID})
+        wms_record_out(RECORD_GOODID,RECORD_NUMBER,RECORD_TIME,RECORD_PERSON,RECORD_REPOSITORYID,REMARK)
+        values(#{goodId},#{number},#{time},#{personInCharge},#{repositoryId}, #{remark})
     </insert>
 
     <update id="update">
         update
         wms_record_out
         set
-        RECORD_CUSTOMERID = #{customerID},
         RECORD_GOODID = #{goodID},
         RECORD_NUMBER = #{number},
         RECORD_TIME = #{time},
-        RECORD_PERSON = #{personInCharge}
+        RECORD_PERSON = #{personInCharge},
+        REMARK=#{remark}
         where
         RECORD_ID = #{id}
     </update>
