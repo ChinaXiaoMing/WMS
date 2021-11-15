@@ -9,7 +9,7 @@
 
     var search_type_storage = "none";
     var search_keyWord = "";
-    var select_goodsID;
+    var select_id;
 
     $(function () {
         optionAction();
@@ -23,8 +23,10 @@
         importStorageAction();
         exportStorageAction()
 
-        //物料数据初始化
-        goodsListInit();
+        // 物料数据初始化
+        goodsAutocomplete()
+        // 仓库下拉数据加载
+        repositorySelectorInit()
     })
 
     // 查询方式下拉框，为search_type_storage赋值，若为所有，搜索框不能编辑
@@ -47,28 +49,68 @@
         })
     }
 
-    // 物料下拉框数据初始化，页面加载时完成
-    function goodsListInit() {
+    // 仓库下拉列表初始化
+    function repositorySelectorInit() {
         $.ajax({
             type: 'GET',
-            url: 'goodsManage/getGoodsList',
+            url: 'repositoryManage/getRepositoryList',
             dataType: 'json',
             contentType: 'application/json',
             data: {
-                searchType: "searchAll",
-                keyWord: "",
+                searchType: 'searchAll',
+                keyWord: '',
                 offset: -1,
                 limit: -1
             },
             success: function (response) {
-                //组装option
                 $.each(response.rows, function (index, elem) {
-                    $('#goods_id').append("<option value='" + elem.id + "'>" + elem.name + "</option>");
-                })
+                    $('#repository_selector').append("<option value='" + elem.id + "'>" + elem.name + "</option>");
+                });
             },
             error: function (response) {
+                $('#repository_selector').append("<option value='-1'>加载失败</option>");
             }
-        });
+
+        })
+    }
+
+    // 货物信息自动匹配
+    function goodsAutocomplete() {
+        $('#goods_input').autocomplete({
+            minLength: 0,
+            delay: 500,
+            source: function (request, response) {
+                $.ajax({
+                    type: 'GET',
+                    url: 'goodsManage/getGoodsList',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: {
+                        offset: -1,
+                        limit: -1,
+                        keyWord: request.term,
+                        searchType: 'searchByName'
+                    },
+                    success: function (data) {
+                        let autoCompleteInfo = [];
+                        $.each(data.rows, function (index, elem) {
+                            autoCompleteInfo.push({label: elem.name, value: elem.id});
+                        });
+                        response(autoCompleteInfo);
+                    }
+                });
+            },
+            focus: function (event, ui) {
+                $('#goods_input').val(ui.item.label);
+                $('#goods_id').val(ui.item.value);
+                return false;
+            },
+            select: function (event, ui) {
+                $('#goods_input').val(ui.item.label);
+                $('#goods_id').val(ui.item.value);
+                return false;
+            }
+        })
     }
 
     // 搜索动作
@@ -136,22 +178,18 @@
                             field: 'operation',
                             title: '操作',
                             formatter: function (value, row, index) {
-                                var s = '<button class="btn btn-info btn-sm edit"><span>编辑</span></button>';
+                                var s = '<button class="btn btn-info btn-sm edit"><span>移库</span></button>';
                                 var d = '<button class="btn btn-danger btn-sm delete"><span>删除</span></button>';
                                 return s + ' ' + d;
                             },
                             events: {
                                 // 操作列中编辑按钮的动作，rowEditOperation(row)，传入row
-                                'click .edit': function (e, value,
-                                                         row, index) {
-                                    //selectID = row.id;
+                                'click .edit': function (e, value, row, index) {
                                     rowEditOperation(row);
                                 },
-                                'click .delete': function (e,
-                                                           value, row, index) {
-                                    select_goodsID = row.goodsID;
-                                    $('#deleteWarning_modal').modal(
-                                        'show');
+                                'click .delete': function (e, value, row, index) {
+                                    select_id = row.id;
+                                    $('#deleteWarning_modal').modal('show');
                                 }
                             }
                         }],
@@ -191,17 +229,16 @@
     function bootstrapValidatorInit() {
         $("#goods_statistics_form").bootstrapValidator({
             message: 'This is not valid',
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            excluded: [':disabled'],
             fields: {
-                storage_goodsID: {
+                goodName: {
                     validators: {
                         notEmpty: {
                             message: '物料描述不能为空'
+                        },
+                        remote: {
+                            url: 'goodsStatistics/checkGoodName',
+                            message: '该物料描述已存在',
+                            delay: 1000
                         }
                     }
                 }
@@ -237,10 +274,10 @@
                         $('#edit_modal').modal("hide");
                         var type;
                         var msg;
-                        if (response.result == "success") {
+                        if (response.result === "success") {
                             type = "success";
                             msg = "库存信息更新成功";
-                        } else if (resposne == "error") {
+                        } else if (resposne === "error") {
                             type = "error";
                             msg = "库存信息更新失败"
                         }
@@ -256,27 +293,26 @@
     // 刪除库存信息
     function deleteStorageAction() {
         $('#delete_confirm').click(function () {
-            var data = {
-                "goodsID": select_goodsID,
+            let data = {
+                "id": select_id
             }
 
-            // ajax
             $.ajax({
                 type: "GET",
-                url: "storageManage/deleteStorageRecord",
+                url: "goodsStatistics/deleteGoodsStatics",
                 dataType: "json",
                 contentType: "application/json",
                 data: data,
                 success: function (response) {
                     $('#deleteWarning_modal').modal("hide");
-                    var type;
-                    var msg;
-                    if (response.result == "success") {
+                    let type;
+                    let msg;
+                    if (response.result === "success") {
                         type = "success";
-                        msg = "库存信息删除成功";
+                        msg = "库存汇总记录删除成功";
                     } else {
                         type = "error";
-                        msg = "库存信息删除失败";
+                        msg = "库存汇总记录删除失败";
                     }
                     infoModal(type, msg);
                     tableRefresh();
@@ -295,14 +331,17 @@
         });
 
         $('#add_modal_submit').click(function () {
+            $('#goods_statistics_form').data('bootstrapValidator').validate();
+            if (!$('#goods_statistics_form').data('bootstrapValidator').isValid()) {
+                return;
+            }
 
             let data = $('#goods_statistics_form').serializeArray();
             let dataObj = {};
             $.each(data, function (index, element) {
                 dataObj[element.name] = element.value;
             })
-            console.log(dataObj);
-            // ajax
+
             $.ajax({
                 type: "POST",
                 url: "goodsStatistics/addGoodsStatics",
@@ -593,13 +632,13 @@
                         <form class="form-horizontal" role="form" id="goods_statistics_form"
                               style="margin-top: 25px">
                             <div class="form-group">
-                                <label for="goods_id" class="control-label col-md-4 col-sm-4">
+                                <label for="goods_input" class="control-label col-md-4 col-sm-4">
                                     <span>物料描述：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <select name="goodsId" id="goods_id" class="form-control">
-                                        <option value="">请选择物料描述</option>
-                                    </select>
+                                    <input type="text" id="goods_input" name="goodName" class="form-control"
+                                           placeholder="请输入物料描述" />
+                                    <input type="hidden" id="goods_id" name="goodsId"/>
                                 </div>
                             </div>
 
@@ -964,7 +1003,7 @@
     </div>
 </div>
 
-<!-- 编辑库存模态框 -->
+<!-- 物料移库模态框 -->
 <div id="edit_modal" class="modal fade" table-index="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true"
      data-backdrop="static">
@@ -974,55 +1013,72 @@
                 <button class="close" type="button" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h4 class="modal-title" id="myModalLabel">编辑货物信息</h4>
+                <h4 class="modal-title" id="myModalLabel">移库</h4>
             </div>
             <div class="modal-body">
                 <!-- 模态框的内容 -->
-                <div class="row">
-                    <div class="col-md-1 col-sm-1"></div>
-                    <div class="col-md-8 col-sm-8">
-                        <form class="form-horizontal" role="form" id="storage_form_edit"
-                              style="margin-top: 25px">
-                            <div class="form-group">
-                                <label for="storage_goodsName_edit" class="control-label col-md-4 col-sm-4">
-                                    <span>货物描述：</span>
-                                </label>
-                                <div class="col-md-4 col-sm-4">
-                                    <p id="storage_goodsName_edit" class="form-control-static"></p>
-                                </div>
+                <form class="form-horizontal" role="form" id="move_goods_form" style="margin-top: 25px">
+                    <div class="row">
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label class="control-label col-md-5 col-sm-5">
+                                <span>货物编码：</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7">
+                                <p id="goods_code" class="form-control-static"></p>
                             </div>
-                            <div class="form-group">
-                                <label for="storage_repositoryID_edit" class="control-label col-md-4 col-sm-4">
-                                    <span>仓库名称：</span>
-                                </label>
-                                <div class="col-md-4 col-sm-4">
-                                    <p id="storage_repositoryID_edit" class="form-control-static"></p>
-                                </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label class="control-label col-md-5 col-sm-5">
+                                <span>货物描述：</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7">
+                                <p id="goods_name" class="form-control-static"></p>
                             </div>
-                            <div class="form-group">
-                                <label for="storage_number_edit" class="control-label col-md-4 col-sm-4">
-                                    <span>数量：</span>
-                                </label>
-                                <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" id="storage_number_edit"
-                                           name="storage_number" placeholder="库存数量">
-                                </div>
-                            </div>
-                            <input type="hidden" id="goodsID" />
-                            <input type="hidden" id="repositoryID" />
-                        </form>
+                        </div>
                     </div>
-                    <div class="col-md-1 col-sm-1"></div>
-                </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label class="control-label col-md-5 col-sm-5">
+                                <span>移出仓库：</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7">
+                                <p id="goods_code" class="form-control-static"></p>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label class="control-label col-md-5 col-sm-5">
+                                <span>移入仓库：</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7">
+                                <p id="goods_name" class="form-control-static move"></p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label class="control-label col-md-5 col-sm-5">
+                                <span>移库数量：</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7">
+                                <input type="text" class="form-control" placeholder="请输入移库数量" name="move_goods_number" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-default" type="button" data-dismiss="modal">
                     <span>取消</span>
                 </button>
                 <button class="btn btn-success" type="button" id="edit_modal_submit">
-                    <span>确认更改</span>
+                    <span>确认移库</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
+
+<style type="text/css">.ui-autocomplete{z-index:99999;}</style>

@@ -5,7 +5,7 @@
     var stockin_goods = null;// 入库货物编号
     var stockin_number = null;// 入库数量
 
-    var goodsCache = new Array();//货物信息缓存
+    var goodsCache = [];//货物信息缓存
 
     $(function () {
         repositorySelectorInit();

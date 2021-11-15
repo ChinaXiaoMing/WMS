@@ -19,10 +19,10 @@
         editStorageAction();
         deleteStorageAction();
         importStorageAction();
-        exportStorageAction()
+        exportStorageAction();
 
         //物料数据初始化
-        goodsListInit();
+        goodsAutocomplete();
     })
 
     // 查询方式下拉框，为search_type_storage赋值，若为所有，搜索框不能编辑
@@ -77,28 +77,43 @@
         $('#search_input_repository').append("<option value='all'>请选择仓库</option>");
     }
 
-    // 物料下拉框数据初始化，页面加载时完成
-    function goodsListInit() {
-        $.ajax({
-            type: 'GET',
-            url: 'goodsManage/getGoodsList',
-            dataType: 'json',
-            contentType: 'application/json',
-            data: {
-                searchType: "searchAll",
-                keyWord: "",
-                offset: -1,
-                limit: -1
+    // 货物信息自动匹配
+    function goodsAutocomplete() {
+        $('#goods_input').autocomplete({
+            minLength: 0,
+            delay: 500,
+            source: function (request, response) {
+                $.ajax({
+                    type: 'GET',
+                    url: 'goodsManage/getGoodsList',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: {
+                        offset: -1,
+                        limit: -1,
+                        keyWord: request.term,
+                        searchType: 'searchByName'
+                    },
+                    success: function (data) {
+                        let autoCompleteInfo = [];
+                        $.each(data.rows, function (index, elem) {
+                            autoCompleteInfo.push({label: elem.name, value: elem.id});
+                        });
+                        response(autoCompleteInfo);
+                    }
+                });
             },
-            success: function (response) {
-                //组装option
-                $.each(response.rows, function (index, elem) {
-                    $('#storage_goodsID').append("<option value='" + elem.id + "'>" + elem.name + "</option>");
-                })
+            focus: function (event, ui) {
+                $('#goods_input').val(ui.item.label);
+                $('#goods_id').val(ui.item.value);
+                return false;
             },
-            error: function (response) {
+            select: function (event, ui) {
+                $('#goods_input').val(ui.item.label);
+                $('#goods_id').val(ui.item.value);
+                return false;
             }
-        });
+        })
     }
 
     // 搜索动作
@@ -234,6 +249,7 @@
       $('#image_preview_modal').modal("show");
       console.log("/upload/" + row.goodImage);
       $('#preview_image').attr("src", "/upload/" + row.goodImage);
+      $('#image_a').attr("href", "/upload/" + row.goodImage);
     }
 
     // 行编辑操作模态框展示与数据填充
@@ -260,7 +276,7 @@
             },
             excluded: [':disabled'],
             fields: {
-                storage_goodsID: {
+                goodName: {
                     validators: {
                         notEmpty: {
                             message: '物料描述不能为空'
@@ -278,6 +294,10 @@
                     validators: {
                         notEmpty: {
                             message: '库存数量不能为空'
+                        },
+                        greaterThan: {
+                            value: 0,
+                            message: '入库数量不能小于0'
                         }
                     }
                 }
@@ -346,9 +366,9 @@
                 data: data,
                 success: function (response) {
                     $('#deleteWarning_modal').modal("hide");
-                    var type;
-                    var msg;
-                    if (response.result == "success") {
+                    let type;
+                    let msg;
+                    if (response.result === "success") {
                         type = "success";
                         msg = "库存信息删除成功";
                     } else {
@@ -373,7 +393,7 @@
 
         $('#add_modal_submit').click(function () {
             var data = {
-                goodsID: $('#storage_goodsID').val(),
+                goodsID: $('#goods_id').val(),
                 repositoryID: $('#storage_repositoryID').val(),
                 number: $('#storage_number').val()
             }
@@ -386,12 +406,12 @@
                 data: JSON.stringify(data),
                 success: function (response) {
                     $('#add_modal').modal("hide");
-                    var msg;
-                    var type;
-                    if (response.result == "success") {
+                    let msg;
+                    let type;
+                    if (response.result === "success") {
                         type = "success";
                         msg = "库存信息添加成功";
-                    } else if (response.result == "error") {
+                    } else if (response.result === "error") {
                         type = "error";
                         msg = "库存信息添加失败";
                     }
@@ -399,7 +419,7 @@
                     tableRefresh();
 
                     // reset
-                    $('#storage_goodsID').val("");
+                    $('#goods_input').val("");
                     $('#storage_repositoryID').val("");
                     $('#storage_number').val("");
                     $('#storage_form').bootstrapValidator("resetForm", true);
@@ -643,7 +663,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div style="text-align: center;">
-                        <img src="" alt="" id="preview_image" style="width: 98%">
+                        <a id="image_a" href="" target="_Blank"><img src="" alt="" id="preview_image" style="width: 98%"></a>
                     </div>
                 </div>
             </div>
@@ -671,13 +691,13 @@
                         <form class="form-horizontal" role="form" id="storage_form"
                               style="margin-top: 25px">
                             <div class="form-group">
-                                <label for="storage_goodsID" class="control-label col-md-4 col-sm-4">
+                                <label for="goods_input" class="control-label col-md-4 col-sm-4">
                                     <span>物料描述：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <select name="storage_goodsID" id="storage_goodsID" class="form-control">
-                                        <option value="">请选择物料描述</option>
-                                    </select>
+                                    <input type="text" id="goods_input" name="goodName" class="form-control"
+                                           placeholder="请输入物料描述" />
+                                    <input type="hidden" id="goods_id" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -1015,3 +1035,4 @@
         </div>
     </div>
 </div>
+<style type="text/css">.ui-autocomplete{z-index:99999;}</style>

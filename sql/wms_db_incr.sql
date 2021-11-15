@@ -67,7 +67,7 @@ CREATE TABLE `wms_goods_statistics` (
     `nanyang_number` int(11) DEFAULT NULL COMMENT '南阳（一线）',
     `qibao_number` int(11) DEFAULT NULL COMMENT '七堡（一线）',
     `fault_one_number` int(11) DEFAULT NULL COMMENT '故障件（一线）',
-    `fault_teo_number` int(11) DEFAULT NULL COMMENT '故障件（二线）',
+    `fault_two_number` int(11) DEFAULT NULL COMMENT '故障件（二线）',
     `reworking_number` int(11) DEFAULT NULL COMMENT '返修中（二线）',
     `rework_number` int(11) DEFAULT NULL COMMENT '返修回（二线）',
     `overhaul_number` int(11) DEFAULT NULL COMMENT '大修拆回',

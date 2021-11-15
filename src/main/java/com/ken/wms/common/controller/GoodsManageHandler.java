@@ -1,8 +1,10 @@
 package com.ken.wms.common.controller;
 
 import com.ken.wms.common.service.Interface.GoodsManageService;
+import com.ken.wms.common.util.JsonUtils;
 import com.ken.wms.common.util.Response;
 import com.ken.wms.common.util.ResponseUtil;
+import com.ken.wms.dao.GoodsMapper;
 import com.ken.wms.domain.Goods;
 import com.ken.wms.exception.GoodsManageServiceException;
 import org.apache.commons.lang3.StringUtils;
@@ -10,7 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +25,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +42,8 @@ public class GoodsManageHandler {
     private GoodsManageService goodsManageService;
     @Autowired
     private ResponseUtil responseUtil;
+    @Autowired
+    private GoodsMapper goodsMapper;
 
     private static final String SEARCH_BY_ID = "searchByID";
     private static final String SEARCH_BY_NAME = "searchByName";
@@ -280,4 +290,19 @@ public class GoodsManageHandler {
 
         }
     }
+
+    /**
+     * 检查物料编码是否存在
+     *
+     * @param goodCode 物料编码
+     * @return 是否存在
+     */
+    @PostMapping("/checkGoodCode")
+    @ResponseBody
+    public String checkGoodCode(@RequestParam("goodCode") String goodCode) {
+        HashMap<String, Object> map = new HashMap<>(16);
+        map.put("valid", goodsMapper.selectByGoodCode(goodCode) == null);
+        return JsonUtils.jsonToString(map);
+    }
+
 }

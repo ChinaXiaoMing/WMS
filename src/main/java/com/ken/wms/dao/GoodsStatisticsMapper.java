@@ -48,6 +48,30 @@ public interface GoodsStatisticsMapper {
     GoodsStatistics selectById(int id);
 
     /**
+     * 根据物料id查询汇总信息
+     *
+     * @param goodId 好身份证
+     * @return 汇总信息
+     */
+    GoodsStatisticsDTO selectByGoodId(Integer goodId);
+
+    /**
+     * 根据物料描述查询汇总信息
+     *
+     * @param goodName 物料描述
+     * @return 汇总信息
+     */
+    List<GoodsStatisticsDTO> selectByGoodName(String goodName);
+
+    /**
+     * 根据物料描述查询汇总信息
+     *
+     * @param goodName 物料描述
+     * @return 汇总信息
+     */
+    GoodsStatisticsDTO selectEqualsByGoodName(String goodName);
+
+    /**
      * 查询列表
      *
      * @return 物料统计列表

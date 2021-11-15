@@ -79,4 +79,12 @@ public interface GoodsMapper {
      * @param goodsName 货物的名称
      */
     void deleteByName(String goodsName);
+
+    /**
+     * 根据物料编码查询物料信息
+     *
+     * @param goodCode 物料编码
+     * @return 物料信息
+     */
+    Goods selectByGoodCode(String goodCode);
 }

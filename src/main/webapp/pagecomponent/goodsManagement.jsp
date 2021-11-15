@@ -233,14 +233,19 @@
             },
             excluded: [':disabled'],
             fields: {
-                goods_code: {
+                goodCode: {
                     validators: {
                         notEmpty: {
                             message: '物料编号不能为空'
+                        },
+                        remote: {
+                            url: 'goodsManage/checkGoodCode',
+                            message: '该物料编码已存在',
+                            delay: 1000
                         }
                     }
                 },
-                goods_name: {
+                goodName: {
                     validators: {
                         notEmpty: {
                             message: '物料描述不能为空'
@@ -630,7 +635,7 @@
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="goods_code"
-                                           name="goods_code" placeholder="物料编码">
+                                           name="goodCode" placeholder="物料编码">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -688,7 +693,8 @@
                                             <span>上传照片</span>
                                         </span>
 									    <form id="file_upload_form"><input type="file" id="good_image_upload_add"
-                                                                           name="file" onchange="uploadImage()"></form>
+                                                                           name="file" onchange="uploadImage()">
+                                        </form>
 									</span>
                                 </div>
                             </div>
@@ -993,7 +999,7 @@
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="goods_code_edit"
-                                           name="goods_code" placeholder="物料编码">
+                                           name="goodCode" placeholder="物料编码">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -1002,7 +1008,7 @@
                                 </label>
                                 <div class="col-md-8 col-sm-8">
                                     <input type="text" class="form-control" id="goods_name_edit"
-                                           name="goods_name" placeholder="物料描述">
+                                           name="goodName" placeholder="物料描述">
                                 </div>
                             </div>
                             <div class="form-group">

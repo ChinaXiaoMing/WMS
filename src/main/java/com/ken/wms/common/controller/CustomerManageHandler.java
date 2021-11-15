@@ -51,8 +51,9 @@ public class CustomerManageHandler {
 
         switch (searchType) {
             case SEARCH_BY_ID:
-                if (StringUtils.isNumeric(keyWord))
+                if (StringUtils.isNumeric(keyWord)) {
                     queryResult = customerManageService.selectById(Integer.valueOf(keyWord));
+                }
                 break;
             case SEARCH_BY_NAME:
                 queryResult = customerManageService.selectByName(offset, limit, keyWord);
@@ -199,8 +200,9 @@ public class CustomerManageHandler {
             // 刪除
             String result = customerManageService.deleteCustomer(customerID) ? Response.RESPONSE_RESULT_SUCCESS : Response.RESPONSE_RESULT_ERROR;
             responseContent.setResponseResult(result);
-        } else
+        } else {
             responseContent.setResponseResult(Response.RESPONSE_RESULT_ERROR);
+        }
 
         return responseContent.generateResponse();
     }
