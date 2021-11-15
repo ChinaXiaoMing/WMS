@@ -8,6 +8,7 @@ import com.ken.wms.dao.GoodsStatisticsMapper;
 import com.ken.wms.domain.GoodsStaticsRequest;
 import com.ken.wms.domain.GoodsStatistics;
 import com.ken.wms.domain.GoodsStatisticsDTO;
+import com.ken.wms.domain.MoveGoodsRequest;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -139,9 +140,10 @@ public class GoodsStatisticsController {
      */
     @PostMapping("/moveGoods")
     @ResponseBody
-    public Map<String, Object> moveGoods() {
+    public Map<String, Object> moveGoods(@RequestBody MoveGoodsRequest moveGoodsRequest) {
+        log.info("移库请求数据：{}", JsonUtils.jsonToString(moveGoodsRequest));
         HashMap<String, Object> result = new HashMap<>(16);
-        result.put("result", true);
+        result.put("result", "success");
 
         return result;
     }

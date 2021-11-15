@@ -1,11 +1,16 @@
 package com.ken.wms.common.controller;
 
 import com.ken.wms.common.service.Interface.RepositoryService;
+import com.ken.wms.common.util.JsonUtils;
 import com.ken.wms.common.util.Response;
 import com.ken.wms.common.util.ResponseUtil;
 import com.ken.wms.domain.Repository;
+import com.ken.wms.domain.RepositoryAdmin;
 import com.ken.wms.exception.RepositoryManageServiceException;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +32,8 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/**/repositoryManage")
 public class RepositoryManageHandler {
+
+    private final Logger log = LoggerFactory.getLogger(RepositoryManageHandler.class);
 
     @Autowired
     private RepositoryService repositoryService;
@@ -287,9 +294,22 @@ public class RepositoryManageHandler {
 
         if (queryResult != null) {
             repositories = (List<Repository>) queryResult.get("data");
+            for (Repository repository : repositories) {
+                List<String> nameList = new ArrayList<>();
+                String adminName = null;
+                if (CollectionUtils.isNotEmpty(repository.getRepoAdminList())) {
+                    for (RepositoryAdmin repositoryAdmin : repository.getRepoAdminList()) {
+                        nameList.add(repositoryAdmin.getName());
+                    }
+                    adminName = StringUtils.join(nameList, ",");
+                }
+                repository.setAdminName(adminName);
+            }
         } else {
             repositories = new ArrayList<>();
         }
+
+        log.info("导出数据: {}", JsonUtils.jsonToString(repositories));
 
         // 生成文件
         File file = repositoryService.exportRepository(repositories);

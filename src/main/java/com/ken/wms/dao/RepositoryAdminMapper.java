@@ -79,4 +79,12 @@ public interface RepositoryAdminMapper {
      */
     RepositoryAdmin selectRepositoryAdminByUserName(String username);
 
+    /**
+     * 根据仓库ID查询仓库管理员信息
+     *
+     * @param repoId 仓库id
+     * @return 仓库管理员信息
+     */
+    List<RepositoryAdmin> selectByRepoId(Integer repoId);
+
 }

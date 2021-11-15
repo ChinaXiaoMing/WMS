@@ -77,7 +77,7 @@
       limit 1
   </select>
 
-  <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into
         wms_repo_admin(REPO_ADMIN_USERNAME,REPO_ADMIN_NAME,REPO_ADMIN_TEL)
         values(#{username},#{name},#{tel})
@@ -108,4 +108,10 @@
         delete from wms_repo_admin
         where REPO_ADMIN_ID = #{id}
     </delete>
+
+    <select id="selectByRepoId" resultMap="repositoryAdmin">
+        select t1.REPO_ADMIN_ID, t1.REPO_ADMIN_USERNAME, t1.REPO_ADMIN_NAME, t1.REPO_ADMIN_TEL from wms_repo_admin t1
+        right join wms_repo_repo_admin t2 on t1.REPO_ADMIN_ID = t2.repo_admin_id
+        where t2.repository_id = #{repoId}
+    </select>
 </mapper>

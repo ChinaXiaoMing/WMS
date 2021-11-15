@@ -127,8 +127,8 @@
             <value>联系电话</value>
         </property>
         <property>
-            <field>repositoryBelongID</field>
-            <value>所属仓库ID</value>
+            <field>repoName</field>
+            <value>所属仓库</value>
         </property>
     </entity>
     <entity class="com.ken.wms.domain.Storage">

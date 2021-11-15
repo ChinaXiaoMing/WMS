@@ -4,16 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ken.wms.common.service.Interface.RepositoryService;
 import com.ken.wms.common.util.ExcelUtil;
-import com.ken.wms.dao.RepositoryAdminMapper;
-import com.ken.wms.dao.RepositoryMapper;
-import com.ken.wms.dao.StockInMapper;
-import com.ken.wms.dao.StockOutMapper;
-import com.ken.wms.dao.StorageMapper;
-import com.ken.wms.domain.Repository;
-import com.ken.wms.domain.RepositoryAdmin;
-import com.ken.wms.domain.StockInDO;
-import com.ken.wms.domain.StockOutDO;
-import com.ken.wms.domain.Storage;
+import com.ken.wms.dao.*;
+import com.ken.wms.domain.*;
 import com.ken.wms.exception.RepositoryManageServiceException;
 import com.ken.wms.util.aop.UserOperation;
 import org.apache.ibatis.exceptions.PersistenceException;
@@ -162,6 +154,8 @@ public class RepositoryManageServiceImpl implements RepositoryService {
                 PageHelper.offsetPage(offset, limit);
                 repositories = repositoryMapper.selectAll();
                 if (repositories != null) {
+                    // 填充仓库管理员列表
+                    setRepoAdminInfo(repositories);
                     PageInfo<Repository> pageInfo = new PageInfo<>(repositories);
                     total = pageInfo.getTotal();
                 } else {
@@ -170,6 +164,8 @@ public class RepositoryManageServiceImpl implements RepositoryService {
             } else {
                 repositories = repositoryMapper.selectAll();
                 if (repositories != null) {
+                    // 填充仓库管理员列表
+                    setRepoAdminInfo(repositories);
                     total = repositories.size();
                 } else {
                     repositories = new ArrayList<>();
@@ -373,7 +369,7 @@ public class RepositoryManageServiceImpl implements RepositoryService {
     @Override
     public Map<String, Object> selectUnassign() throws RepositoryManageServiceException {
         // 初始化结果集
-        Map<String, Object> resultSet = new HashMap<>();
+        Map<String, Object> resultSet = new HashMap<>(16);
         List<Repository> repositories;
         long total = 0;
 
@@ -392,6 +388,13 @@ public class RepositoryManageServiceImpl implements RepositoryService {
         resultSet.put("data", repositories);
         resultSet.put("total", total);
         return resultSet;
+    }
+
+    private void setRepoAdminInfo(List<Repository> repositories) {
+        for (Repository repository : repositories) {
+            List<RepositoryAdmin> repositoryAdminList = repositoryAdminMapper.selectByRepoId(repository.getId());
+            repository.setRepoAdminList(repositoryAdminList);
+        }
     }
 
 }

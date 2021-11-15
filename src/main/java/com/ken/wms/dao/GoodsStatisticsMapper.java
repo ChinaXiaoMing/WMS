@@ -45,7 +45,7 @@ public interface GoodsStatisticsMapper {
      * @param id id
      * @return {@link GoodsStatistics}
      */
-    GoodsStatistics selectById(int id);
+    GoodsStatisticsDTO selectById(int id);
 
     /**
      * 根据物料id查询汇总信息

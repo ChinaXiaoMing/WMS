@@ -81,8 +81,25 @@
                             title: '仓库地址'
                         },
                         {
-                            field: 'adminName',
-                            title: '仓库管理员'
+                            field: 'repoAdminList',
+                            title: '仓库管理员',
+                            formatter: function (value, row, index) {
+                                if (value.length === 1) {
+                                    return value[0].name;
+                                } else if (value.length > 1) {
+                                    let name = '';
+                                    for (let i = 0; i < value.length; i++) {
+                                        if (i !== value.length - 1) {
+                                            name = name + value[i].name + ',';
+                                        } else {
+                                            name = name + value[i].name;
+                                        }
+                                    }
+                                    return name;
+                                } else {
+                                    return '-';
+                                }
+                            }
                         },
                         {
                             field: 'status',

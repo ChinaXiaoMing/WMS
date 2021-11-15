@@ -1,5 +1,7 @@
 package com.ken.wms.domain;
 
+import java.util.List;
+
 /**
  * 仓库信息
  */
@@ -19,6 +21,11 @@ public class Repository {
     private String desc;// 仓库描述
     private Integer adminID;//仓库管理员ID
     private String adminName; //仓库管理员名字
+
+    /**
+     * 仓库管理员列表
+     */
+    private List<RepositoryAdmin> repoAdminList;
 
     public Integer getAdminID() {
         return adminID;
@@ -84,17 +91,11 @@ public class Repository {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Repository{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", status='" + status + '\'' +
-                ", area='" + area + '\'' +
-                ", desc='" + desc + '\'' +
-                ", adminID=" + adminID +
-                ", adminName='" + adminName + '\'' +
-                '}';
+    public List<RepositoryAdmin> getRepoAdminList() {
+        return repoAdminList;
+    }
+
+    public void setRepoAdminList(List<RepositoryAdmin> repoAdminList) {
+        this.repoAdminList = repoAdminList;
     }
 }

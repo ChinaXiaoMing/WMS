@@ -4,9 +4,13 @@ import com.ken.wms.common.service.Interface.RepositoryAdminManageService;
 import com.ken.wms.common.util.JsonUtils;
 import com.ken.wms.common.util.Response;
 import com.ken.wms.common.util.ResponseUtil;
+import com.ken.wms.domain.Repository;
 import com.ken.wms.domain.RepositoryAdmin;
 import com.ken.wms.exception.RepositoryAdminManageServiceException;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +36,8 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/**/repositoryAdminManage")
 public class RepositoryAdminManageHandler {
+
+    private final Logger log = LoggerFactory.getLogger(RepositoryAdminManageHandler.class);
 
     @Autowired
     private RepositoryAdminManageService repositoryAdminManageService;
@@ -273,9 +279,22 @@ public class RepositoryAdminManageHandler {
 
         if (queryResult != null) {
             repositoryAdmins = (List<RepositoryAdmin>) queryResult.get("data");
+            for (RepositoryAdmin repositoryAdmin : repositoryAdmins) {
+                List<String> repoNameList = new ArrayList<>();
+                String repoName = null;
+                if (CollectionUtils.isNotEmpty(repositoryAdmin.getRepositoryList())) {
+                    for (Repository repository : repositoryAdmin.getRepositoryList()) {
+                        repoNameList.add(repository.getName());
+                    }
+                    repoName = StringUtils.join(repoNameList, ",");
+                }
+                repositoryAdmin.setRepoName(repoName);
+            }
         } else {
             repositoryAdmins = new ArrayList<>();
         }
+
+        log.info("仓库管理员导出数据：{}", JsonUtils.jsonToString(repositoryAdmins));
 
         // 生成文件
         File file = repositoryAdminManageService.exportRepositoryAdmin(repositoryAdmins);

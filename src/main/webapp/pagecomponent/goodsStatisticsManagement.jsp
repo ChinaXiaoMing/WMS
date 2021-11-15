@@ -16,9 +16,10 @@
         searchAction();
         goodsStaticsListInit();
         bootstrapValidatorInit();
+        moveBootstrapValidatorInit()
 
         addStorageAction();
-        editStorageAction();
+        moveStorageAction();
         deleteStorageAction();
         importStorageAction();
         exportStorageAction()
@@ -219,10 +220,9 @@
 
         // load info
         $('#storage_form_edit').bootstrapValidator("resetForm", true);
-        $('#storage_goodsName_edit').text(row.goodsName);
-        $('#storage_number_edit').val(row.number);
-        $('#goodsID').text(row.goodsID);
-        $('#repositoryID').text(row.repositoryID);
+        $('#goods_code').text(row.goodCode);
+        $('#goods_name').text(row.name);
+        $('#move_goods_id').val(row.goodsId);
     }
 
     // 添加库存信息模态框数据校验
@@ -246,40 +246,54 @@
         })
     }
 
-    // 编辑库存信息，表单数据提交
-    function editStorageAction() {
+    // 移库模态框数据校验
+    function moveBootstrapValidatorInit() {
+        $("#move_goods_form").bootstrapValidator({
+            message: 'This is not valid',
+            fields: {
+                goodName: {
+                    validators: {
+                        notEmpty: {
+                            message: '物料描述不能为空'
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    // 移库，表单数据提交
+    function moveStorageAction() {
         $('#edit_modal_submit').click(
             function () {
-                $('#storage_form_edit').data('bootstrapValidator')
-                    .validate();
-                if (!$('#storage_form_edit').data('bootstrapValidator')
-                    .isValid()) {
+                $('#move_goods_form').data('bootstrapValidator').validate();
+                if (!$('#move_goods_form').data('bootstrapValidator').isValid()) {
                     return;
                 }
 
-                var data = {
-                    goodsID: $('#goodsID').text(),
-                    repositoryID: $('#repositoryID').text(),
-                    number: $('#storage_number_edit').val(),
-                }
+                let data = $('#move_goods_form').serializeArray();
+                let dataObj = {};
+                $.each(data, function (index, element) {
+                    dataObj[element.name] = element.value;
+                })
 
                 // ajax
                 $.ajax({
                     type: "POST",
-                    url: 'storageManage/updateStorageRecord',
+                    url: 'goodsStatistics/moveGoods',
                     dataType: "json",
                     contentType: "application/json",
-                    data: JSON.stringify(data),
+                    data: JSON.stringify(dataObj),
                     success: function (response) {
                         $('#edit_modal').modal("hide");
-                        var type;
-                        var msg;
+                        let type;
+                        let msg;
                         if (response.result === "success") {
                             type = "success";
-                            msg = "库存信息更新成功";
-                        } else if (resposne === "error") {
+                            msg = "移库操作成功";
+                        } else if (response.result === "error") {
                             type = "error";
-                            msg = "库存信息更新失败"
+                            msg = "移库操作失败"
                         }
                         infoModal(type, msg);
                         tableRefresh();
@@ -1035,6 +1049,7 @@
                                 <p id="goods_name" class="form-control-static"></p>
                             </div>
                         </div>
+                        <input type="hidden" id="move_goods_id" name="goodsId" />
                     </div>
 
                     <div class="row">
@@ -1043,7 +1058,7 @@
                                 <span>移出仓库：</span>
                             </label>
                             <div class="col-md-7 col-sm-7">
-                                <select name="repository_id" class="form-control move">
+                                <select name="outRepoId" class="form-control move">
                                     <option value="">请选择仓库</option>
                                 </select>
                             </div>
@@ -1053,7 +1068,7 @@
                                 <span>移入仓库：</span>
                             </label>
                             <div class="col-md-7 col-sm-7">
-                                <select name="repository_id" class="form-control move">
+                                <select name="inRepoId" class="form-control move">
                                     <option value="">请选择仓库</option>
                                 </select>
                             </div>
@@ -1066,7 +1081,7 @@
                                 <span>数量：</span>
                             </label>
                             <div class="col-md-7 col-sm-7">
-                                <input type="text" class="form-control" placeholder="请输入数量" name="move_goods_number" />
+                                <input type="text" class="form-control" placeholder="请输入数量" name="moveGoodsNumber" />
                             </div>
                         </div>
                     </div>

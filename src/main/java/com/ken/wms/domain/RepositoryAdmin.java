@@ -52,6 +52,11 @@ public class RepositoryAdmin {
      */
     private List<Repository> repositoryList;
 
+    /**
+     * 仓库名称
+     */
+    private String repoName;
+
     public String getRepoId() {
         return repoId;
     }
@@ -132,19 +137,11 @@ public class RepositoryAdmin {
         this.repositoryList = repositoryList;
     }
 
-    @Override
-    public String toString() {
-        return "RepositoryAdmin{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", tel='" + tel + '\'' +
-                ", address='" + address + '\'' +
-                ", birth=" + birth +
-                ", repoId='" + repoId + '\'' +
-                ", repoIdList=" + repoIdList +
-                ", repositoryList=" + repositoryList +
-                '}';
+    public String getRepoName() {
+        return repoName;
+    }
+
+    public void setRepoName(String repoName) {
+        this.repoName = repoName;
     }
 }
