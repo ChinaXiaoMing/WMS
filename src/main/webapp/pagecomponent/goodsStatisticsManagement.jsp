@@ -64,11 +64,11 @@
             },
             success: function (response) {
                 $.each(response.rows, function (index, elem) {
-                    $('#repository_selector').append("<option value='" + elem.id + "'>" + elem.name + "</option>");
+                    $('.move').append("<option value='" + elem.id + "'>" + elem.name + "</option>");
                 });
             },
             error: function (response) {
-                $('#repository_selector').append("<option value='-1'>加载失败</option>");
+                $('.move').append("<option value='-1'>加载失败</option>");
             }
 
         })
@@ -1017,7 +1017,7 @@
             </div>
             <div class="modal-body">
                 <!-- 模态框的内容 -->
-                <form class="form-horizontal" role="form" id="move_goods_form" style="margin-top: 25px">
+                <form class="form-horizontal" role="form" id="move_goods_form">
                     <div class="row">
                         <div class="form-group col-md-6 col-sm-6">
                             <label class="control-label col-md-5 col-sm-5">
@@ -1043,7 +1043,9 @@
                                 <span>移出仓库：</span>
                             </label>
                             <div class="col-md-7 col-sm-7">
-                                <p id="goods_code" class="form-control-static"></p>
+                                <select name="repository_id" class="form-control move">
+                                    <option value="">请选择仓库</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group col-md-6 col-sm-6">
@@ -1051,8 +1053,9 @@
                                 <span>移入仓库：</span>
                             </label>
                             <div class="col-md-7 col-sm-7">
-                                <p id="goods_name" class="form-control-static move"></p>
-
+                                <select name="repository_id" class="form-control move">
+                                    <option value="">请选择仓库</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -1060,10 +1063,10 @@
                     <div class="row">
                         <div class="form-group col-md-6 col-sm-6">
                             <label class="control-label col-md-5 col-sm-5">
-                                <span>移库数量：</span>
+                                <span>数量：</span>
                             </label>
                             <div class="col-md-7 col-sm-7">
-                                <input type="text" class="form-control" placeholder="请输入移库数量" name="move_goods_number" />
+                                <input type="text" class="form-control" placeholder="请输入数量" name="move_goods_number" />
                             </div>
                         </div>
                     </div>

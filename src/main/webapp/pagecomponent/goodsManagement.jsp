@@ -288,10 +288,10 @@
                         $('#edit_modal').modal("hide");
                         var type;
                         var msg;
-                        if (response.result == "success") {
+                        if (response.result === "success") {
                             type = "success";
                             msg = "货物信息更新成功";
-                        } else if (resposne == "error") {
+                        } else if (response === "error") {
                             type = "error";
                             msg = "货物信息更新失败"
                         }
@@ -322,7 +322,7 @@
                     $('#deleteWarning_modal').modal("hide");
                     var type;
                     var msg;
-                    if (response.result == "success") {
+                    if (response.result === "success") {
                         type = "success";
                         msg = "货物信息删除成功";
                     } else {
