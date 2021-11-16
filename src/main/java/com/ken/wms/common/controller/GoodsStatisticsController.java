@@ -89,7 +89,8 @@ public class GoodsStatisticsController {
     @ResponseBody
     public Map<String, Object> getGoodsStaticsList(@RequestParam("searchType") String searchType,
                                                    @RequestParam("offset") int offset, @RequestParam("limit") int limit,
-                                                   @RequestParam(value = "keyWord", required = false) String keyWord) {
+                                                   @RequestParam(value = "keyWord", required = false) String keyWord,
+                                                   @RequestParam(value = "goodsType", required = false) String goodsType) {
         // 初始化 Response
         Map<String, Object> resultMap = new HashMap<>(16);
         long total = 0L;

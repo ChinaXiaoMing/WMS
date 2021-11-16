@@ -84,6 +84,7 @@ public class GoodsStatisticsServiceImpl implements GoodsStatisticsService {
         stockOutDO.setPersonInCharge(userName);
         stockOutDO.setRepositoryId(moveGoodsRequest.getOutRepoId());
         stockOutDO.setTime(new Date());
+        stockOutDO.setRemark(moveGoodsRequest.getRemark());
         stockOutMapper.insert(stockOutDO);
 
         StockInDO stockInDO = new StockInDO();
@@ -92,6 +93,7 @@ public class GoodsStatisticsServiceImpl implements GoodsStatisticsService {
         stockInDO.setPersonInCharge(userName);
         stockInDO.setTime(new Date());
         stockInDO.setRepositoryId(moveGoodsRequest.getInRepoId());
+        stockInDO.setRemark(moveGoodsRequest.getRemark());
         stockInMapper.insert(stockInDO);
 
         result.put("result", "success");

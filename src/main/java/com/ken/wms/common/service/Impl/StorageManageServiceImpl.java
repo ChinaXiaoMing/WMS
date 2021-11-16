@@ -415,9 +415,10 @@ public class StorageManageServiceImpl implements StorageManageService {
                 for (Object object : storageList) {
                     isAvailable = true;
                     storage = (Storage) object;
+                    log.info("导入数据：{}", storage);
 
                     // validate
-                    goods = goodsMapper.selectByName(storage.getGoodsName());
+                    goods = goodsMapper.selectByGoodCode(storage.getGoodCode());
                     repository = repositoryMapper.selectByRepoName(storage.getRepoName());
                     log.info("导入仓库信息：{}", repository);
                     if (goods != null && repository != null) {
@@ -426,7 +427,7 @@ public class StorageManageServiceImpl implements StorageManageService {
                             isAvailable = false;
                         }
                     }
-                    if (goods == null || repository == null || storage.getNumber() < 0) {
+                    if (goods == null || repository == null || storage.getNumber() == null || storage.getNumber() < 0) {
                         isAvailable = false;
                     }
 

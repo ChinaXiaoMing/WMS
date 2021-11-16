@@ -9,6 +9,7 @@
 
     var search_type_storage = "none";
     var search_keyWord = "";
+    var goods_type;
     var select_id;
 
     $(function () {
@@ -118,6 +119,7 @@
     function searchAction() {
         $('#search_button').click(function () {
             search_keyWord = $('#search_input_type').val();
+            goods_type = $('#search_goods_type').val();
             tableRefresh();
         })
     }
@@ -128,6 +130,7 @@
             limit: params.limit,
             offset: params.offset,
             searchType: search_type_storage,
+            goodsType: goods_type,
             keyword: search_keyWord
         }
         return temp;
@@ -566,7 +569,7 @@
                     </div>
                     <!--通过后台查询信息-->
                     <div class="col-md-3 col-sm-4">
-                        <select class="form-control">
+                        <select class="form-control" id="search_goods_type">
                             <option value="">请选择物料属性</option>
                             <option value="可维修">可维修</option>
                             <option value="不可维修">不可维修</option>
@@ -1082,6 +1085,14 @@
                             </label>
                             <div class="col-md-7 col-sm-7">
                                 <input type="text" class="form-control" placeholder="请输入数量" name="moveGoodsNumber" />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label class="control-label col-md-5 col-sm-5">
+                                <span>备注：</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7">
+                                <input type="text" class="form-control" placeholder="请输入备注" name="remark" />
                             </div>
                         </div>
                     </div>

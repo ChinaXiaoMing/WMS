@@ -28,6 +28,11 @@ public class MoveGoodsRequest {
      */
     private Long moveGoodsNumber;
 
+    /**
+     * 备注
+     */
+    private String remark;
+
     public Integer getGoodsId() {
         return goodsId;
     }
@@ -58,5 +63,13 @@ public class MoveGoodsRequest {
 
     public void setMoveGoodsNumber(Long moveGoodsNumber) {
         this.moveGoodsNumber = moveGoodsNumber;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

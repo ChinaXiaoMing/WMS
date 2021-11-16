@@ -70,10 +70,9 @@
             r.REPO_NAME,
             r.REPO_ADDRESS,
             r.REPO_STATUS,
-            r.REPO_DESC,
-            ra.REPO_ADMIN_NAME
+            r.REPO_DESC
         from
-            wms_respository r left join wms_repo_admin ra on(r.REPO_ADMIN_ID = ra.REPO_ADMIN_ID)
+            wms_respository r
         where
             r.REPO_NAME = #{repoName}
         limit 1
