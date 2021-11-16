@@ -2,6 +2,7 @@ package com.ken.wms.dao;
 
 import com.ken.wms.domain.GoodsStatistics;
 import com.ken.wms.domain.GoodsStatisticsDTO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -77,5 +78,22 @@ public interface GoodsStatisticsMapper {
      * @return 物料统计列表
      */
     List<GoodsStatisticsDTO> selectAll();
+
+    /**
+     * 根据物料属性查询库存汇总
+     *
+     * @param goodsType 物料属性
+     * @return 库存汇总信息
+     */
+    List<GoodsStatisticsDTO> selectByGoodsType(String goodsType);
+
+    /**
+     * 根据物料属性和物料描述查询库存汇总
+     *
+     * @param goodsType 物料属性
+     * @param goodName  物料描述
+     * @return 汇总信息
+     */
+    List<GoodsStatisticsDTO> selectByGoodsTypeAndGoodName(@Param("goodsType") String goodsType, @Param("goodName") String goodName);
 
 }

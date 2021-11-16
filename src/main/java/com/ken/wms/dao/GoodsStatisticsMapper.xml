@@ -93,13 +93,31 @@
     where t1.goods_id = #{goodId} limit 1
   </select>
 
-  <!-- 查询所以 -->
+  <!-- 查询所有 -->
   <select id="selectAll" resultMap="goodsStatistics">
     select t1.id, t1.goods_id, t1.total_number, t1.out_number, t1.leave_number, t1.xianghu_number, t1.nanyang_number,
            t1.qibao_number, t1.fault_one_number,t1.fault_two_number, t1.reworking_number, t1.rework_number,
            t1.overhaul_number, t1.scrap_number,t2.GOOD_CODE, t2.GOOD_NAME, t2.GOOD_RYPE, t2.GOOD_SIZE, t2.GOOD_CAR_NUMBER,
            t2.GOOD_IMPORTANCE
     from wms_goods_statistics t1 left join wms_goods t2 on t1.goods_id = t2.GOOD_ID
+  </select>
+
+  <select id="selectByGoodsType" resultMap="goodsStatistics">
+    select t1.id, t1.goods_id, t1.total_number, t1.out_number, t1.leave_number, t1.xianghu_number, t1.nanyang_number,
+           t1.qibao_number, t1.fault_one_number,t1.fault_two_number, t1.reworking_number, t1.rework_number,
+           t1.overhaul_number, t1.scrap_number,t2.GOOD_CODE, t2.GOOD_NAME, t2.GOOD_RYPE, t2.GOOD_SIZE, t2.GOOD_CAR_NUMBER,
+           t2.GOOD_IMPORTANCE
+    from wms_goods_statistics t1 left join wms_goods t2 on t1.goods_id = t2.GOOD_ID
+    where t2.GOOD_RYPE = #{goodsType}
+  </select>
+
+  <select id="selectByGoodsTypeAndGoodName" resultMap="goodsStatistics">
+    select t1.id, t1.goods_id, t1.total_number, t1.out_number, t1.leave_number, t1.xianghu_number, t1.nanyang_number,
+           t1.qibao_number, t1.fault_one_number,t1.fault_two_number, t1.reworking_number, t1.rework_number,
+           t1.overhaul_number, t1.scrap_number,t2.GOOD_CODE, t2.GOOD_NAME, t2.GOOD_RYPE, t2.GOOD_SIZE, t2.GOOD_CAR_NUMBER,
+           t2.GOOD_IMPORTANCE
+    from wms_goods_statistics t1 left join wms_goods t2 on t1.goods_id = t2.GOOD_ID
+    where t2.GOOD_NAME like concat(concat("%",#{goodName},"%")) and t2.GOOD_RYPE = #{goodsType}
   </select>
 
 

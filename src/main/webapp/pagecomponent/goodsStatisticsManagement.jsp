@@ -37,11 +37,12 @@
             var type = $(this).text();
             $("#search_input").val("");
             if (type == "所有") {
+                $("#search_input_type").val("");
                 $("#search_input_type").attr("readOnly", "true");
                 search_type_storage = "searchAll";
             } else if (type == "物料描述") {
                 $("#search_input_type").removeAttr("readOnly");
-                search_type_storage = "searchByGoodsName";
+                search_type_storage = "searchByName";
             } else {
                 $("#search_input_type").removeAttr("readOnly");
             }
@@ -131,7 +132,7 @@
             offset: params.offset,
             searchType: search_type_storage,
             goodsType: goods_type,
-            keyword: search_keyWord
+            keyWord: search_keyWord
         }
         return temp;
     }
@@ -172,7 +173,10 @@
                         },
                         {
                             field: 'outNumber',
-                            title: '借出'
+                            title: '借出',
+                            formatter: function (value, row, index) {
+                                return row;
+                            }
                         },
                         {
                             field: 'leaveNumber',
@@ -564,8 +568,7 @@
             <div class="col-md-9 col-sm-9">
                 <div>
                     <div class="col-md-3 col-sm-3">
-                        <input id="search_input_type" type="text" class="form-control"
-                               placeholder="">
+                        <input id="search_input_type" type="text" class="form-control" placeholder="" readonly />
                     </div>
                     <!--通过后台查询信息-->
                     <div class="col-md-3 col-sm-4">

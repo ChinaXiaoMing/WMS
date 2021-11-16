@@ -6,11 +6,9 @@ import com.ken.wms.common.service.Interface.GoodsStatisticsService;
 import com.ken.wms.common.util.JsonUtils;
 import com.ken.wms.common.util.Response;
 import com.ken.wms.dao.GoodsStatisticsMapper;
-import com.ken.wms.domain.GoodsStaticsRequest;
-import com.ken.wms.domain.GoodsStatistics;
-import com.ken.wms.domain.GoodsStatisticsDTO;
-import com.ken.wms.domain.MoveGoodsRequest;
+import com.ken.wms.domain.*;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -93,9 +91,25 @@ public class GoodsStatisticsController {
                                                    @RequestParam(value = "goodsType", required = false) String goodsType) {
         // 初始化 Response
         Map<String, Object> resultMap = new HashMap<>(16);
+        log.info("查询库存汇总keyword: {}, goodsType: {}", keyWord, goodsType);
         long total = 0L;
         PageHelper.offsetPage(offset, limit);
-        List<GoodsStatisticsDTO> goodsStatisticsDTOList = goodsStatisticsMapper.selectAll();
+        List<GoodsStatisticsDTO> goodsStatisticsDTOList = null;
+        if (searchType.equals(CommonConstant.SEARCH_ALL)) {
+            if (StringUtils.isNotEmpty(goodsType)) {
+                goodsStatisticsDTOList = goodsStatisticsMapper.selectByGoodsType(goodsType);
+            } else {
+                goodsStatisticsDTOList = goodsStatisticsMapper.selectAll();
+            }
+        }
+        if (searchType.equals(CommonConstant.SEARCH_BY_NAME)) {
+            if (StringUtils.isNotEmpty(goodsType)) {
+                goodsStatisticsDTOList = goodsStatisticsMapper.selectByGoodsTypeAndGoodName(goodsType, keyWord);
+            } else {
+                goodsStatisticsDTOList = goodsStatisticsMapper.selectByGoodName(keyWord);
+            }
+
+        }
         if (CollectionUtils.isNotEmpty(goodsStatisticsDTOList)) {
             PageInfo<GoodsStatisticsDTO> pageInfo = new PageInfo<>(goodsStatisticsDTOList);
             total = pageInfo.getTotal();
