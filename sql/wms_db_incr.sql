@@ -55,8 +55,6 @@ CREATE TABLE `wms_repo_repo_admin` (
    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='仓库与仓库管理员关联表';
 
-
-
 CREATE TABLE `wms_goods_statistics` (
     `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
     `goods_id` int(11) NOT NULL COMMENT '物料ID',
@@ -74,5 +72,17 @@ CREATE TABLE `wms_goods_statistics` (
     `scrap_number` int(11) DEFAULT NULL COMMENT '报废',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='库存物料统计表';
+
+ALTER TABLE `wms_db`.`wms_record_storage` DROP FOREIGN KEY `wms_record_storage_ibfk_1`;
+
+ALTER TABLE `wms_db`.`wms_record_storage` DROP FOREIGN KEY `wms_record_storage_ibfk_2`;
+
+ALTER TABLE `wms_db`.`wms_record_storage`
+    ADD COLUMN `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '库存主键id' FIRST,
+MODIFY COLUMN `RECORD_GOODID` int(11) NOT NULL COMMENT '物料id' FIRST,
+MODIFY COLUMN `RECORD_REPOSITORY` int(11) NOT NULL COMMENT '仓库id' AFTER `RECORD_GOODID`,
+MODIFY COLUMN `RECORD_NUMBER` int(11) NOT NULL COMMENT '库存数量' AFTER `RECORD_REPOSITORY`,
+DROP PRIMARY KEY,
+ADD PRIMARY KEY (`ID`) USING BTREE;
 
 

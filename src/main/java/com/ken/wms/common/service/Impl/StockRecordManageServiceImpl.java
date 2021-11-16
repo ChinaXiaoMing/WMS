@@ -265,6 +265,13 @@ public class StockRecordManageServiceImpl implements StockRecordManageService {
             stockOutRecordDOS.forEach(stockOutDO -> stockRecordDTOS.add(stockOutDoConvertToStockRecordDTO(stockOutDO)));
         }
 
+        Collections.sort(stockRecordDTOS, new Comparator<StockRecordDTO>() {
+            @Override
+            public int compare(StockRecordDTO o1, StockRecordDTO o2) {
+                return o2.getTime().compareTo(o1.getTime());
+            }
+        });
+
         resultSet.put("data", stockRecordDTOS);
         resultSet.put("total", total);
         return resultSet;

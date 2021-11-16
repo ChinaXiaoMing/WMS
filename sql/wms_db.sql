@@ -1,785 +1,3397 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50724
-Source Host           : localhost:3306
-Source Database       : wms_db
+ Source Server         : localhost_root
+ Source Server Type    : MySQL
+ Source Server Version : 50730
+ Source Host           : localhost:3306
+ Source Schema         : wms_db
 
-Target Server Type    : MYSQL
-Target Server Version : 50724
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 50730
+ File Encoding         : 65001
 
-Date: 2021-11-08 20:33:36
+ Date: 16/11/2021 17:41:13
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for wms_access_record
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_access_record`;
-CREATE TABLE `wms_access_record` (
+CREATE TABLE `wms_access_record`  (
   `RECORD_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `USER_ID` int(11) DEFAULT NULL,
-  `USER_NAME` varchar(50) NOT NULL,
-  `ACCESS_TYPE` varchar(30) NOT NULL,
-  `ACCESS_TIME` datetime NOT NULL,
-  `ACCESS_IP` varchar(45) NOT NULL,
-  PRIMARY KEY (`RECORD_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=244 DEFAULT CHARSET=utf8;
+  `USER_ID` int(11) NOT NULL,
+  `USER_NAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `ACCESS_TYPE` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `ACCESS_TIME` datetime(0) NOT NULL,
+  `ACCESS_IP` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`RECORD_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 317 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_access_record
 -- ----------------------------
-INSERT INTO `wms_access_record` VALUES ('1', '1001', 'admin', 'login', '2021-11-02 20:14:31', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('2', '1001', 'admin', 'login', '2021-11-02 20:17:59', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('3', '1001', 'admin', 'login', '2021-11-02 20:20:37', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('4', '1001', 'admin', 'login', '2021-11-02 20:24:44', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('5', '1001', 'admin', 'login', '2021-11-02 20:46:35', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('6', '1001', 'admin', 'login', '2021-11-02 20:49:12', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('7', '1001', 'admin', 'login', '2021-11-02 20:59:43', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('8', '1001', 'admin', 'login', '2021-11-02 21:11:14', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('9', '1001', 'admin', 'login', '2021-11-02 21:14:02', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('10', '1001', 'admin', 'login', '2021-11-02 21:16:03', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('11', '1001', 'admin', 'logout', '2021-11-02 21:17:25', '-');
-INSERT INTO `wms_access_record` VALUES ('12', '1001', 'admin', 'login', '2021-11-02 21:17:46', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('13', '1001', 'admin', 'logout', '2021-11-02 21:18:33', '-');
-INSERT INTO `wms_access_record` VALUES ('14', '1001', 'admin', 'login', '2021-11-02 21:19:17', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('15', '1001', 'admin', 'login', '2021-11-02 21:23:13', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('16', '1001', 'admin', 'logout', '2021-11-02 21:23:36', '-');
-INSERT INTO `wms_access_record` VALUES ('17', '1001', 'admin', 'login', '2021-11-02 21:24:30', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('18', '1001', 'admin', 'login', '2021-11-02 22:25:45', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('19', '1001', 'admin', 'logout', '2021-11-02 22:56:03', '-');
-INSERT INTO `wms_access_record` VALUES ('20', '1001', 'admin', 'login', '2021-11-03 20:23:08', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('21', '1001', 'admin', 'logout', '2021-11-03 20:25:46', '-');
-INSERT INTO `wms_access_record` VALUES ('22', '1001', 'admin', 'login', '2021-11-03 20:25:56', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('23', '1001', 'admin', 'login', '2021-11-03 20:44:02', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('24', '1001', 'admin', 'logout', '2021-11-03 20:44:28', '-');
-INSERT INTO `wms_access_record` VALUES ('25', '1001', 'admin', 'login', '2021-11-03 20:44:32', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('26', '1001', 'admin', 'login', '2021-11-03 20:53:27', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('27', '1001', 'admin', 'logout', '2021-11-03 20:53:48', '-');
-INSERT INTO `wms_access_record` VALUES ('28', '1001', 'admin', 'login', '2021-11-03 20:54:16', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('29', '1001', 'admin', 'logout', '2021-11-03 20:54:32', '-');
-INSERT INTO `wms_access_record` VALUES ('30', '1001', 'admin', 'login', '2021-11-03 20:54:37', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('31', '1001', 'admin', 'logout', '2021-11-03 21:26:22', '-');
-INSERT INTO `wms_access_record` VALUES ('32', '1001', 'admin', 'login', '2021-11-03 21:28:55', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('33', '1001', 'admin', 'login', '2021-11-03 22:32:40', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('34', '1001', 'admin', 'login', '2021-11-03 22:43:36', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('35', '1001', 'admin', 'login', '2021-11-03 23:09:52', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('36', '1001', 'admin', 'login', '2021-11-03 23:16:44', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('37', '1001', 'admin', 'login', '2021-11-03 23:23:08', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('38', '1001', 'admin', 'login', '2021-11-03 23:26:35', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('39', '1001', 'admin', 'login', '2021-11-03 23:28:21', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('40', '1001', 'admin', 'login', '2021-11-03 23:30:15', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('41', '1001', 'admin', 'login', '2021-11-03 23:32:35', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('42', '1001', 'admin', 'login', '2021-11-03 23:35:19', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('43', '1001', 'admin', 'login', '2021-11-03 23:36:51', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('44', '1001', 'admin', 'login', '2021-11-03 23:38:27', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('45', '1001', 'admin', 'login', '2021-11-03 23:39:32', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('46', '1001', 'admin', 'login', '2021-11-03 23:40:47', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('47', '1001', 'admin', 'login', '2021-11-03 23:43:37', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('48', '1001', 'admin', 'login', '2021-11-04 00:08:51', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('49', '1001', 'admin', 'login', '2021-11-04 00:12:15', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('50', '1001', 'admin', 'login', '2021-11-04 00:20:17', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('51', '1001', 'admin', 'login', '2021-11-04 00:32:49', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('52', '1001', 'admin', 'logout', '2021-11-04 01:04:44', '-');
-INSERT INTO `wms_access_record` VALUES ('53', '1001', 'admin', 'login', '2021-11-04 01:23:53', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('54', '1001', 'admin', 'login', '2021-11-04 20:10:06', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('55', '1001', 'admin', 'login', '2021-11-04 21:06:35', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('56', '1001', 'admin', 'login', '2021-11-04 21:09:43', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('57', '1001', 'admin', 'login', '2021-11-04 21:12:34', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('58', '1001', 'admin', 'login', '2021-11-04 21:14:17', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('59', '1001', 'admin', 'login', '2021-11-04 21:18:03', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('60', '1001', 'admin', 'login', '2021-11-04 21:48:57', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('61', '1001', 'admin', 'login', '2021-11-04 22:03:08', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('62', '1001', 'admin', 'login', '2021-11-04 22:07:49', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('63', '1001', 'admin', 'login', '2021-11-04 22:30:45', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('64', '1001', 'admin', 'login', '2021-11-04 22:39:56', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('65', '1001', 'admin', 'logout', '2021-11-04 23:16:49', '-');
-INSERT INTO `wms_access_record` VALUES ('66', '1001', 'admin', 'login', '2021-11-04 23:49:28', '127.0.0.1');
-INSERT INTO `wms_access_record` VALUES ('67', '1001', 'admin', 'login', '2021-11-04 23:57:11', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('68', '1001', 'admin', 'logout', '2021-11-05 00:28:06', '-');
-INSERT INTO `wms_access_record` VALUES ('69', '1001', 'admin', 'login', '2021-11-05 01:10:35', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('70', '1001', 'admin', 'login', '2021-11-05 01:17:25', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('71', '1001', 'admin', 'login', '2021-11-05 01:21:08', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('72', '1001', 'admin', 'login', '2021-11-05 19:56:50', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('73', '1001', 'admin', 'logout', '2021-11-05 20:30:29', '-');
-INSERT INTO `wms_access_record` VALUES ('74', '1001', 'admin', 'login', '2021-11-05 22:45:53', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('75', '1001', 'admin', 'login', '2021-11-05 23:23:03', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('76', '1001', 'admin', 'login', '2021-11-05 23:42:19', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('77', '1001', 'admin', 'login', '2021-11-06 00:12:12', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('78', '1001', 'admin', 'login', '2021-11-06 00:26:51', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('79', '1001', 'admin', 'login', '2021-11-06 00:38:51', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('80', '1001', 'admin', 'login', '2021-11-06 00:53:16', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('81', '1001', 'admin', 'login', '2021-11-06 01:08:36', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('82', '1001', 'admin', 'logout', '2021-11-06 01:39:25', '-');
-INSERT INTO `wms_access_record` VALUES ('83', '1001', 'admin', 'login', '2021-11-06 01:57:24', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('84', '1001', 'admin', 'login', '2021-11-06 02:01:04', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('85', '1001', 'admin', 'login', '2021-11-06 02:02:59', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('86', '1001', 'admin', 'login', '2021-11-06 02:11:20', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('87', '1001', 'admin', 'login', '2021-11-06 02:16:13', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('88', '1001', 'admin', 'login', '2021-11-06 02:29:36', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('89', '1001', 'admin', 'logout', '2021-11-06 02:31:50', '-');
-INSERT INTO `wms_access_record` VALUES ('90', '1001', 'admin', 'login', '2021-11-06 02:32:07', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('91', '1001', 'admin', 'login', '2021-11-06 02:51:45', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('92', '1001', 'admin', 'login', '2021-11-06 02:59:08', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('93', '1001', 'admin', 'login', '2021-11-06 03:01:58', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('94', '1001', 'admin', 'logout', '2021-11-06 03:03:19', '-');
-INSERT INTO `wms_access_record` VALUES ('95', '1024', '1', 'login', '2021-11-06 03:03:26', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('96', '1024', '1', 'logout', '2021-11-06 03:03:43', '-');
-INSERT INTO `wms_access_record` VALUES ('97', '1001', 'admin', 'login', '2021-11-06 03:03:47', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('98', '1001', 'admin', 'login', '2021-11-06 03:24:29', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('99', '1001', 'admin', 'logout', '2021-11-06 03:28:47', '-');
-INSERT INTO `wms_access_record` VALUES ('100', '1030', 'user', 'login', '2021-11-06 03:28:54', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('101', '1030', 'user', 'logout', '2021-11-06 03:28:57', '-');
-INSERT INTO `wms_access_record` VALUES ('102', '1001', 'admin', 'login', '2021-11-06 03:29:01', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('103', '1001', 'admin', 'login', '2021-11-06 03:34:15', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('104', '1001', 'admin', 'login', '2021-11-06 03:42:43', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('105', '1001', 'admin', 'login', '2021-11-06 12:43:45', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('106', '1001', 'admin', 'login', '2021-11-06 12:51:34', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('107', '1001', 'admin', 'login', '2021-11-06 12:58:59', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('108', '1001', 'admin', 'login', '2021-11-06 13:07:59', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('109', '1001', 'admin', 'login', '2021-11-06 13:11:47', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('110', '1001', 'admin', 'login', '2021-11-06 13:21:56', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('111', '1001', 'admin', 'login', '2021-11-06 13:33:37', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('112', '1001', 'admin', 'login', '2021-11-06 13:48:22', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('113', '1001', 'admin', 'login', '2021-11-06 13:49:50', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('114', '1001', 'admin', 'login', '2021-11-06 13:52:38', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('115', '1001', 'admin', 'login', '2021-11-06 13:55:56', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('116', '1001', 'admin', 'login', '2021-11-06 14:01:26', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('117', '1001', 'admin', 'login', '2021-11-06 14:12:05', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('118', '1001', 'admin', 'login', '2021-11-06 14:13:32', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('119', '1001', 'admin', 'login', '2021-11-06 14:19:11', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('120', '1001', 'admin', 'login', '2021-11-06 14:43:54', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('121', '1001', 'admin', 'login', '2021-11-06 15:00:00', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('122', '1001', 'admin', 'login', '2021-11-06 15:05:14', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('123', '1001', 'admin', 'logout', '2021-11-06 15:35:30', '-');
-INSERT INTO `wms_access_record` VALUES ('124', '1001', 'admin', 'login', '2021-11-06 19:37:56', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('125', '1001', 'admin', 'login', '2021-11-06 19:48:51', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('126', '1001', 'admin', 'login', '2021-11-06 19:59:12', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('127', '1001', 'admin', 'logout', '2021-11-06 20:31:02', '-');
-INSERT INTO `wms_access_record` VALUES ('128', '1001', 'admin', 'login', '2021-11-06 23:11:32', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('129', '1001', 'admin', 'login', '2021-11-07 00:13:16', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('130', '1001', 'admin', 'logout', '2021-11-07 00:44:02', '-');
-INSERT INTO `wms_access_record` VALUES ('131', '1001', 'admin', 'login', '2021-11-07 02:47:10', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('132', '1001', 'admin', 'login', '2021-11-07 02:50:52', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('133', '1001', 'admin', 'login', '2021-11-07 02:52:21', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('134', '1001', 'admin', 'login', '2021-11-07 02:59:04', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('135', '1001', 'admin', 'login', '2021-11-07 03:04:04', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('136', '1001', 'admin', 'login', '2021-11-07 03:07:10', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('137', '1001', 'admin', 'login', '2021-11-07 03:08:35', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('138', '1001', 'admin', 'login', '2021-11-07 03:11:43', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('139', '1001', 'admin', 'login', '2021-11-07 03:12:49', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('140', '1001', 'admin', 'login', '2021-11-07 03:15:34', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('141', '1001', 'admin', 'login', '2021-11-07 03:17:02', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('142', '1001', 'admin', 'login', '2021-11-07 13:52:06', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('143', '1001', 'admin', 'login', '2021-11-07 14:08:00', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('144', '1001', 'admin', 'login', '2021-11-07 14:17:39', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('145', '1001', 'admin', 'login', '2021-11-07 14:25:19', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('146', '1001', 'admin', 'login', '2021-11-07 14:26:48', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('147', '1001', 'admin', 'login', '2021-11-07 14:30:56', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('148', '1001', 'admin', 'login', '2021-11-07 14:37:52', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('149', '1001', 'admin', 'login', '2021-11-07 14:41:08', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('150', '1001', 'admin', 'login', '2021-11-07 14:44:22', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('151', '1001', 'admin', 'login', '2021-11-07 14:58:30', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('152', '1001', 'admin', 'login', '2021-11-07 15:09:32', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('153', '1001', 'admin', 'logout', '2021-11-07 15:48:27', '-');
-INSERT INTO `wms_access_record` VALUES ('154', '1001', 'admin', 'login', '2021-11-07 15:49:59', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('155', '1001', 'admin', 'login', '2021-11-07 16:03:26', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('156', '1001', 'admin', 'login', '2021-11-07 16:05:46', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('157', '1001', 'admin', 'login', '2021-11-07 16:18:55', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('158', '1001', 'admin', 'login', '2021-11-07 16:20:00', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('159', '1001', 'admin', 'login', '2021-11-07 16:23:14', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('160', '1001', 'admin', 'login', '2021-11-07 16:30:22', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('161', '1001', 'admin', 'login', '2021-11-07 16:32:28', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('162', '1001', 'admin', 'login', '2021-11-07 16:42:33', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('163', '1001', 'admin', 'login', '2021-11-07 16:53:10', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('164', '1001', 'admin', 'login', '2021-11-07 16:57:37', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('165', '1001', 'admin', 'logout', '2021-11-07 16:59:22', '-');
-INSERT INTO `wms_access_record` VALUES ('166', '1001', 'admin', 'login', '2021-11-07 16:59:39', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('167', '1001', 'admin', 'login', '2021-11-07 17:03:32', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('168', '1001', 'admin', 'login', '2021-11-07 17:06:14', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('169', '1001', 'admin', 'login', '2021-11-07 17:08:53', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('170', '1001', 'admin', 'login', '2021-11-07 17:11:21', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('171', '1001', 'admin', 'login', '2021-11-07 17:13:53', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('172', '1001', 'admin', 'login', '2021-11-07 17:16:39', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('173', '1001', 'admin', 'login', '2021-11-07 17:21:12', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('174', '1001', 'admin', 'login', '2021-11-07 17:23:02', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('175', '1001', 'admin', 'login', '2021-11-07 17:28:47', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('176', '1001', 'admin', 'login', '2021-11-07 17:31:26', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('177', '1001', 'admin', 'login', '2021-11-07 17:33:39', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('178', '1001', 'admin', 'login', '2021-11-07 17:43:15', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('179', '1001', 'admin', 'login', '2021-11-07 17:47:04', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('180', '1001', 'admin', 'login', '2021-11-07 17:52:17', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('181', '1001', 'admin', 'login', '2021-11-07 18:03:33', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('182', '1001', 'admin', 'login', '2021-11-07 18:05:02', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('183', '1001', 'admin', 'login', '2021-11-07 18:09:59', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('184', '1001', 'admin', 'login', '2021-11-07 18:11:45', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('185', '1001', 'admin', 'login', '2021-11-07 18:13:05', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('186', '1001', 'admin', 'login', '2021-11-07 18:17:05', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('187', '1001', 'admin', 'login', '2021-11-07 18:18:05', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('188', '1001', 'admin', 'login', '2021-11-07 18:19:07', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('189', '1001', 'admin', 'login', '2021-11-07 18:20:27', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('190', '1001', 'admin', 'login', '2021-11-07 18:22:54', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('191', '1001', 'admin', 'login', '2021-11-07 18:32:05', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('192', '1001', 'admin', 'login', '2021-11-07 18:36:46', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('193', '1001', 'admin', 'login', '2021-11-07 18:45:49', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('194', '1001', 'admin', 'login', '2021-11-07 18:49:30', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('195', '1001', 'admin', 'login', '2021-11-07 18:51:07', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('196', '1001', 'admin', 'login', '2021-11-07 18:58:06', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('197', '1001', 'admin', 'login', '2021-11-07 18:59:57', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('198', '1001', 'admin', 'login', '2021-11-07 19:02:39', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('199', '1001', 'admin', 'login', '2021-11-07 19:04:15', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('200', '1001', 'admin', 'login', '2021-11-07 19:05:25', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('201', '1001', 'admin', 'login', '2021-11-07 19:06:49', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('202', '1001', 'admin', 'logout', '2021-11-07 19:37:43', '-');
-INSERT INTO `wms_access_record` VALUES ('203', '1001', 'admin', 'login', '2021-11-07 21:33:56', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('204', '1001', 'admin', 'login', '2021-11-07 21:43:07', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('205', '1001', 'admin', 'login', '2021-11-07 21:49:20', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('206', '1001', 'admin', 'login', '2021-11-07 21:52:23', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('207', '1001', 'admin', 'login', '2021-11-07 21:58:25', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('208', '1001', 'admin', 'login', '2021-11-07 21:59:45', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('209', '1001', 'admin', 'login', '2021-11-07 22:08:12', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('210', '1001', 'admin', 'login', '2021-11-07 22:10:46', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('211', '1001', 'admin', 'login', '2021-11-07 22:12:14', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('212', '1001', 'admin', 'login', '2021-11-07 22:14:40', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('213', '1001', 'admin', 'login', '2021-11-07 22:17:35', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('214', '1001', 'admin', 'login', '2021-11-07 22:22:07', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('215', '1001', 'admin', 'login', '2021-11-07 22:39:37', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('216', '1001', 'admin', 'login', '2021-11-07 22:42:05', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('217', '1001', 'admin', 'login', '2021-11-07 22:57:17', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('218', '1001', 'admin', 'login', '2021-11-07 23:00:18', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('219', '1001', 'admin', 'login', '2021-11-07 23:09:00', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('220', '1001', 'admin', 'login', '2021-11-07 23:10:31', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('221', '1001', 'admin', 'login', '2021-11-07 23:12:06', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('222', '1001', 'admin', 'login', '2021-11-07 23:15:30', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('223', '1001', 'admin', 'login', '2021-11-07 23:19:59', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('224', '1001', 'admin', 'login', '2021-11-07 23:27:43', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('225', '1001', 'admin', 'login', '2021-11-07 23:30:13', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('226', '1001', 'admin', 'login', '2021-11-07 23:34:58', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('227', '1001', 'admin', 'login', '2021-11-07 23:37:19', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('228', '1001', 'admin', 'login', '2021-11-07 23:39:40', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('229', '1001', 'admin', 'logout', '2021-11-08 00:10:36', '-');
-INSERT INTO `wms_access_record` VALUES ('230', '1001', 'admin', 'login', '2021-11-08 01:02:27', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('231', '1001', 'admin', 'login', '2021-11-08 01:07:25', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('232', '1001', 'admin', 'login', '2021-11-08 01:10:20', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('233', '1001', 'admin', 'login', '2021-11-08 01:14:04', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('234', '1001', 'admin', 'login', '2021-11-08 01:15:50', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('235', '1001', 'admin', 'login', '2021-11-08 01:22:21', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('236', '1001', 'admin', 'login', '2021-11-08 01:26:35', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('237', '1001', 'admin', 'login', '2021-11-08 20:21:59', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('238', '1001', 'admin', 'logout', '2021-11-08 20:29:53', '-');
-INSERT INTO `wms_access_record` VALUES ('239', '1018', 'wanghao', 'login', '2021-11-08 20:31:48', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('240', '1018', 'wanghao', 'logout', '2021-11-08 20:32:14', '-');
-INSERT INTO `wms_access_record` VALUES ('241', '1019', 'lifurong', 'login', '2021-11-08 20:32:49', '0:0:0:0:0:0:0:1');
-INSERT INTO `wms_access_record` VALUES ('242', '1019', 'lifurong', 'logout', '2021-11-08 20:32:53', '-');
-INSERT INTO `wms_access_record` VALUES ('243', '1001', 'admin', 'login', '2021-11-08 20:33:09', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (1, 1001, 'admin', 'login', '2021-11-02 16:15:27', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (2, 1001, 'admin', 'logout', '2021-11-02 16:50:59', '-');
+INSERT INTO `wms_access_record` VALUES (3, 1001, 'admin', 'login', '2021-11-02 16:51:33', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (4, 1001, 'admin', 'login', '2021-11-02 16:55:42', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (5, 1001, 'admin', 'login', '2021-11-02 17:13:13', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (6, 1001, 'admin', 'logout', '2021-11-02 17:45:52', '-');
+INSERT INTO `wms_access_record` VALUES (7, 1001, 'admin', 'login', '2021-11-02 18:16:07', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (8, 1001, 'admin', 'login', '2021-11-02 18:23:44', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (9, 1001, 'admin', 'login', '2021-11-03 10:06:56', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (10, 1001, 'admin', 'login', '2021-11-03 10:11:40', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (11, 1001, 'admin', 'login', '2021-11-03 11:01:08', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (12, 1001, 'admin', 'login', '2021-11-03 11:04:28', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (13, 1001, 'admin', 'login', '2021-11-03 11:05:29', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (14, 1001, 'admin', 'login', '2021-11-03 11:37:50', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (15, 1001, 'admin', 'login', '2021-11-03 11:46:08', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (16, 1027, 'user', 'login', '2021-11-03 12:11:24', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (17, 1027, 'user', 'login', '2021-11-03 12:17:48', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (18, 1027, 'user', 'logout', '2021-11-03 12:18:08', '-');
+INSERT INTO `wms_access_record` VALUES (19, 1001, 'admin', 'login', '2021-11-03 17:40:29', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (20, 1001, 'admin', 'login', '2021-11-04 10:07:11', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (21, 1001, 'admin', 'login', '2021-11-04 10:52:41', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (22, 1001, 'admin', 'login', '2021-11-04 11:29:59', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (23, 1001, 'admin', 'login', '2021-11-04 11:47:45', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (24, 1001, 'admin', 'login', '2021-11-04 11:52:51', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (25, 1001, 'admin', 'login', '2021-11-04 11:59:28', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (26, 1001, 'admin', 'login', '2021-11-04 12:07:17', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (27, 1001, 'admin', 'login', '2021-11-04 12:27:25', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (28, 1001, 'admin', 'logout', '2021-11-04 12:59:15', '-');
+INSERT INTO `wms_access_record` VALUES (29, 1001, 'admin', 'login', '2021-11-04 14:04:27', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (30, 1001, 'admin', 'logout', '2021-11-04 14:06:09', '-');
+INSERT INTO `wms_access_record` VALUES (31, 1028, '1', 'login', '2021-11-04 14:06:15', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (32, 1001, 'admin', 'login', '2021-11-04 14:31:01', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (33, 1001, 'admin', 'login', '2021-11-04 15:09:10', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (34, 1001, 'admin', 'login', '2021-11-04 15:13:17', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (35, 1001, 'admin', 'login', '2021-11-04 15:23:54', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (36, 1001, 'admin', 'login', '2021-11-04 15:27:16', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (37, 1001, 'admin', 'login', '2021-11-04 15:30:41', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (38, 1001, 'admin', 'login', '2021-11-04 15:32:09', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (39, 1001, 'admin', 'login', '2021-11-04 15:37:56', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (40, 1001, 'admin', 'login', '2021-11-04 15:42:21', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (41, 1001, 'admin', 'login', '2021-11-04 15:44:32', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (42, 1001, 'admin', 'login', '2021-11-04 15:47:58', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (43, 1001, 'admin', 'login', '2021-11-04 15:52:12', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (44, 1001, 'admin', 'login', '2021-11-04 16:36:10', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (45, 1001, 'admin', 'login', '2021-11-04 16:43:20', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (46, 1001, 'admin', 'login', '2021-11-04 16:58:36', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (47, 1001, 'admin', 'login', '2021-11-04 17:05:58', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (48, 1001, 'admin', 'login', '2021-11-04 17:08:10', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (49, 1001, 'admin', 'login', '2021-11-04 17:12:05', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (50, 1001, 'admin', 'login', '2021-11-04 17:13:16', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (51, 1001, 'admin', 'login', '2021-11-04 17:18:11', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (52, 1001, 'admin', 'login', '2021-11-04 17:19:02', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (53, 1001, 'admin', 'login', '2021-11-04 17:24:10', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (54, 1001, 'admin', 'login', '2021-11-04 17:29:49', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (55, 1001, 'admin', 'login', '2021-11-04 17:31:12', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (56, 1001, 'admin', 'login', '2021-11-04 17:33:24', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (57, 1001, 'admin', 'login', '2021-11-04 17:45:39', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (58, 1001, 'admin', 'login', '2021-11-04 18:05:04', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (59, 1001, 'admin', 'login', '2021-11-04 18:10:45', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (60, 1001, 'admin', 'login', '2021-11-04 18:23:55', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (61, 1001, 'admin', 'login', '2021-11-05 10:08:18', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (62, 1001, 'admin', 'login', '2021-11-05 10:26:11', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (63, 1001, 'admin', 'login', '2021-11-05 10:29:23', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (64, 1001, 'admin', 'login', '2021-11-05 10:33:20', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (65, 1001, 'admin', 'login', '2021-11-05 10:37:15', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (66, 1001, 'admin', 'login', '2021-11-05 10:44:41', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (67, 1001, 'admin', 'login', '2021-11-05 10:50:39', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (68, 1001, 'admin', 'logout', '2021-11-05 11:21:31', '-');
+INSERT INTO `wms_access_record` VALUES (69, 1001, 'admin', 'login', '2021-11-05 11:30:12', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (70, 1001, 'admin', 'login', '2021-11-05 11:43:21', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (71, 1001, 'admin', 'login', '2021-11-05 11:45:40', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (72, 1001, 'admin', 'login', '2021-11-05 11:48:01', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (73, 1001, 'admin', 'login', '2021-11-05 11:54:26', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (74, 1001, 'admin', 'login', '2021-11-05 11:56:57', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (75, 1001, 'admin', 'login', '2021-11-05 12:01:05', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (76, 1001, 'admin', 'login', '2021-11-05 12:04:10', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (77, 1001, 'admin', 'logout', '2021-11-05 12:40:01', '-');
+INSERT INTO `wms_access_record` VALUES (78, 1001, 'admin', 'login', '2021-11-05 14:26:55', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (79, 1001, 'admin', 'logout', '2021-11-05 14:57:49', '-');
+INSERT INTO `wms_access_record` VALUES (80, 1001, 'admin', 'login', '2021-11-05 14:58:18', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (81, 1001, 'admin', 'login', '2021-11-05 15:07:39', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (82, 1001, 'admin', 'login', '2021-11-05 15:10:20', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (83, 1001, 'admin', 'login', '2021-11-05 15:55:31', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (84, 1001, 'admin', 'login', '2021-11-05 16:43:02', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (85, 1001, 'admin', 'login', '2021-11-05 17:01:45', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (86, 1001, 'admin', 'login', '2021-11-05 17:10:27', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (87, 1001, 'admin', 'login', '2021-11-05 17:13:00', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (88, 1001, 'admin', 'logout', '2021-11-05 17:45:52', '-');
+INSERT INTO `wms_access_record` VALUES (89, 1001, 'admin', 'login', '2021-11-05 17:54:17', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (90, 1001, 'admin', 'login', '2021-11-05 17:57:21', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (91, 1001, 'admin', 'login', '2021-11-05 18:03:07', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (92, 1001, 'admin', 'login', '2021-11-05 18:07:28', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (93, 1001, 'admin', 'login', '2021-11-05 18:12:57', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (94, 1001, 'admin', 'login', '2021-11-05 18:19:54', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (95, 1001, 'admin', 'login', '2021-11-08 09:49:56', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (96, 1001, 'admin', 'login', '2021-11-08 09:57:40', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (97, 1001, 'admin', 'login', '2021-11-08 10:01:35', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (98, 1001, 'admin', 'login', '2021-11-08 10:04:14', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (99, 1001, 'admin', 'login', '2021-11-08 10:12:38', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (100, 1001, 'admin', 'login', '2021-11-08 10:15:06', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (101, 1001, 'admin', 'login', '2021-11-08 10:19:30', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (102, 1001, 'admin', 'login', '2021-11-08 10:24:18', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (103, 1001, 'admin', 'logout', '2021-11-08 10:55:11', '-');
+INSERT INTO `wms_access_record` VALUES (104, 1001, 'admin', 'login', '2021-11-08 11:30:18', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (105, 1001, 'admin', 'logout', '2021-11-08 12:09:13', '-');
+INSERT INTO `wms_access_record` VALUES (106, 1001, 'admin', 'login', '2021-11-08 12:24:01', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (107, 1001, 'admin', 'logout', '2021-11-08 12:56:53', '-');
+INSERT INTO `wms_access_record` VALUES (108, 1001, 'admin', 'login', '2021-11-08 13:12:19', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (109, 1001, 'admin', 'login', '2021-11-08 13:16:53', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (110, 1001, 'admin', 'login', '2021-11-08 13:18:14', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (111, 1001, 'admin', 'login', '2021-11-08 13:19:13', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (112, 1001, 'admin', 'login', '2021-11-08 13:29:30', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (113, 1001, 'admin', 'login', '2021-11-08 13:30:53', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (114, 1001, 'admin', 'login', '2021-11-08 13:37:56', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (115, 1001, 'admin', 'login', '2021-11-08 13:39:09', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (116, 1001, 'admin', 'login', '2021-11-08 13:41:59', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (117, 1001, 'admin', 'login', '2021-11-08 14:08:52', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (118, 1001, 'admin', 'login', '2021-11-08 14:10:22', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (119, 1001, 'admin', 'login', '2021-11-08 14:14:05', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (120, 1001, 'admin', 'login', '2021-11-08 14:17:41', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (121, 1001, 'admin', 'login', '2021-11-08 14:53:55', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (122, 1001, 'admin', 'login', '2021-11-08 14:55:52', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (123, 1001, 'admin', 'logout', '2021-11-08 14:57:25', '-');
+INSERT INTO `wms_access_record` VALUES (124, 1001, 'admin', 'login', '2021-11-08 14:57:41', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (125, 1001, 'admin', 'logout', '2021-11-08 14:57:58', '-');
+INSERT INTO `wms_access_record` VALUES (126, 1027, 'user', 'login', '2021-11-08 14:58:06', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (127, 1027, 'user', 'logout', '2021-11-08 14:58:56', '-');
+INSERT INTO `wms_access_record` VALUES (128, 1001, 'admin', 'login', '2021-11-08 14:58:59', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (129, 1001, 'admin', 'logout', '2021-11-08 15:17:27', '-');
+INSERT INTO `wms_access_record` VALUES (130, 1027, 'user', 'login', '2021-11-08 15:17:32', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (131, 1027, 'user', 'logout', '2021-11-08 15:47:46', '-');
+INSERT INTO `wms_access_record` VALUES (132, 1001, 'admin', 'login', '2021-11-08 15:50:55', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (133, 1001, 'admin', 'logout', '2021-11-08 16:22:47', '-');
+INSERT INTO `wms_access_record` VALUES (134, 1001, 'admin', 'login', '2021-11-08 16:27:15', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (135, 1001, 'admin', 'logout', '2021-11-08 16:38:38', '-');
+INSERT INTO `wms_access_record` VALUES (136, 1027, 'user', 'login', '2021-11-08 16:38:48', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (137, 1001, 'admin', 'login', '2021-11-08 16:42:31', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (138, 1001, 'admin', 'logout', '2021-11-08 16:49:10', '-');
+INSERT INTO `wms_access_record` VALUES (139, 1027, 'user', 'login', '2021-11-08 16:49:17', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (140, 1027, 'user', 'logout', '2021-11-08 16:55:20', '-');
+INSERT INTO `wms_access_record` VALUES (141, 1001, 'admin', 'login', '2021-11-08 16:55:27', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (142, 1001, 'admin', 'login', '2021-11-08 17:09:27', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (143, 1001, 'admin', 'login', '2021-11-08 17:16:03', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (144, 1001, 'admin', 'login', '2021-11-08 17:35:17', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (145, 1001, 'admin', 'login', '2021-11-08 17:36:07', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (146, 1001, 'admin', 'login', '2021-11-08 17:39:54', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (147, 1001, 'admin', 'login', '2021-11-08 17:44:06', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (148, 1001, 'admin', 'login', '2021-11-08 18:08:39', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (149, 1001, 'admin', 'logout', '2021-11-08 18:10:55', '-');
+INSERT INTO `wms_access_record` VALUES (150, 1001, 'admin', 'login', '2021-11-08 18:11:14', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (151, 1001, 'admin', 'logout', '2021-11-08 18:14:35', '-');
+INSERT INTO `wms_access_record` VALUES (152, 1030, 'user1', 'login', '2021-11-08 18:14:44', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (153, 1030, 'user1', 'logout', '2021-11-08 18:14:56', '-');
+INSERT INTO `wms_access_record` VALUES (154, 1001, 'admin', 'login', '2021-11-08 18:15:01', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (155, 1001, 'admin', 'login', '2021-11-09 09:22:37', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (156, 1001, 'admin', 'login', '2021-11-09 09:49:38', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (157, 1001, 'admin', 'login', '2021-11-09 09:52:02', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (158, 1001, 'admin', 'login', '2021-11-09 09:56:15', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (159, 1001, 'admin', 'logout', '2021-11-09 10:31:08', '-');
+INSERT INTO `wms_access_record` VALUES (160, 1001, 'admin', 'login', '2021-11-09 11:16:04', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (161, 1001, 'admin', 'login', '2021-11-09 11:36:37', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (162, 1001, 'admin', 'login', '2021-11-09 11:42:51', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (163, 1001, 'admin', 'login', '2021-11-09 11:59:19', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (164, 1001, 'admin', 'login', '2021-11-09 12:14:39', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (165, 1001, 'admin', 'login', '2021-11-09 12:17:10', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (166, 1001, 'admin', 'login', '2021-11-09 12:23:22', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (167, 1001, 'admin', 'login', '2021-11-09 12:28:37', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (168, 1001, 'admin', 'logout', '2021-11-09 14:03:44', '-');
+INSERT INTO `wms_access_record` VALUES (169, 1001, 'admin', 'login', '2021-11-09 14:48:15', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (170, 1001, 'admin', 'login', '2021-11-09 14:53:26', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (171, 1001, 'admin', 'login', '2021-11-09 14:59:11', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (172, 1001, 'admin', 'login', '2021-11-09 15:01:31', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (173, 1001, 'admin', 'login', '2021-11-09 15:10:38', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (174, 1001, 'admin', 'login', '2021-11-09 15:14:15', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (175, 1001, 'admin', 'login', '2021-11-09 15:18:37', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (176, 1001, 'admin', 'login', '2021-11-09 15:20:12', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (177, 1001, 'admin', 'login', '2021-11-09 15:22:01', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (178, 1001, 'admin', 'login', '2021-11-09 15:23:03', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (179, 1001, 'admin', 'login', '2021-11-09 15:28:07', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (180, 1001, 'admin', 'login', '2021-11-09 15:36:28', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (181, 1001, 'admin', 'login', '2021-11-09 15:41:35', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (182, 1001, 'admin', 'login', '2021-11-09 15:45:47', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (183, 1001, 'admin', 'login', '2021-11-09 15:46:55', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (184, 1001, 'admin', 'login', '2021-11-09 15:51:16', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (185, 1001, 'admin', 'login', '2021-11-09 15:55:46', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (186, 1001, 'admin', 'login', '2021-11-09 15:59:19', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (187, 1001, 'admin', 'login', '2021-11-09 16:03:48', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (188, 1001, 'admin', 'login', '2021-11-09 16:06:15', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (189, 1001, 'admin', 'login', '2021-11-09 16:08:07', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (190, 1001, 'admin', 'login', '2021-11-09 16:10:33', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (191, 1001, 'admin', 'login', '2021-11-09 16:12:43', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (192, 1001, 'admin', 'login', '2021-11-09 16:14:59', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (193, 1001, 'admin', 'login', '2021-11-09 16:16:01', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (194, 1001, 'admin', 'login', '2021-11-09 16:17:38', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (195, 1001, 'admin', 'login', '2021-11-09 16:22:12', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (196, 1001, 'admin', 'login', '2021-11-09 16:24:58', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (197, 1001, 'admin', 'login', '2021-11-09 16:28:22', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (198, 1001, 'admin', 'login', '2021-11-09 16:32:43', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (199, 1001, 'admin', 'login', '2021-11-09 16:36:18', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (200, 1001, 'admin', 'login', '2021-11-09 16:39:44', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (201, 1001, 'admin', 'login', '2021-11-09 16:46:26', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (202, 1001, 'admin', 'login', '2021-11-09 16:52:24', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (203, 1001, 'admin', 'login', '2021-11-09 17:17:00', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (204, 1001, 'admin', 'login', '2021-11-09 17:20:10', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (205, 1001, 'admin', 'login', '2021-11-09 17:23:00', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (206, 1001, 'admin', 'login', '2021-11-09 17:25:07', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (207, 1001, 'admin', 'login', '2021-11-09 17:37:59', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (208, 1001, 'admin', 'login', '2021-11-09 18:04:31', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (209, 1001, 'admin', 'login', '2021-11-09 18:15:03', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (210, 1001, 'admin', 'login', '2021-11-09 18:20:02', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (211, 1001, 'admin', 'login', '2021-11-10 09:49:05', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (212, 1001, 'admin', 'login', '2021-11-10 09:51:53', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (213, 1001, 'admin', 'login', '2021-11-10 10:08:12', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (214, 1001, 'admin', 'login', '2021-11-10 11:16:16', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (215, 1001, 'admin', 'login', '2021-11-10 11:21:07', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (216, 1001, 'admin', 'login', '2021-11-10 11:25:54', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (217, 1001, 'admin', 'login', '2021-11-10 11:30:52', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (218, 1001, 'admin', 'login', '2021-11-10 11:51:22', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (219, 1001, 'admin', 'logout', '2021-11-10 12:11:33', '-');
+INSERT INTO `wms_access_record` VALUES (220, 1001, 'admin', 'login', '2021-11-10 12:11:38', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (221, 1001, 'admin', 'logout', '2021-11-10 14:00:56', '-');
+INSERT INTO `wms_access_record` VALUES (222, 1001, 'admin', 'login', '2021-11-10 14:13:20', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (223, 1001, 'admin', 'logout', '2021-11-10 14:44:58', '-');
+INSERT INTO `wms_access_record` VALUES (224, 1001, 'admin', 'login', '2021-11-10 15:19:31', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (225, 1001, 'admin', 'login', '2021-11-10 15:29:53', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (226, 1001, 'admin', 'login', '2021-11-10 15:37:25', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (227, 1001, 'admin', 'login', '2021-11-10 15:39:57', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (228, 1001, 'admin', 'login', '2021-11-10 15:47:16', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (229, 1001, 'admin', 'login', '2021-11-10 16:07:25', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (230, 1001, 'admin', 'login', '2021-11-10 16:09:55', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (231, 1001, 'admin', 'login', '2021-11-10 17:32:53', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (232, 1001, 'admin', 'login', '2021-11-10 18:07:17', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (233, 1001, 'admin', 'login', '2021-11-11 09:36:53', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (234, 1001, 'admin', 'login', '2021-11-11 10:26:14', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (235, 1001, 'admin', 'login', '2021-11-11 10:29:05', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (236, 1001, 'admin', 'login', '2021-11-11 11:48:42', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (237, 1001, 'admin', 'login', '2021-11-11 12:08:34', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (238, 1001, 'admin', 'login', '2021-11-11 12:11:32', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (239, 1001, 'admin', 'login', '2021-11-11 12:14:29', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (240, 1001, 'admin', 'login', '2021-11-11 12:17:48', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (241, 1001, 'admin', 'login', '2021-11-11 12:28:29', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (242, 1001, 'admin', 'logout', '2021-11-11 12:59:21', '-');
+INSERT INTO `wms_access_record` VALUES (243, 1001, 'admin', 'login', '2021-11-11 14:10:01', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (244, 1001, 'admin', 'login', '2021-11-11 15:00:53', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (245, 1001, 'admin', 'login', '2021-11-11 15:14:45', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (246, 1001, 'admin', 'login', '2021-11-11 15:19:05', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (247, 1001, 'admin', 'login', '2021-11-11 15:22:00', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (248, 1001, 'admin', 'login', '2021-11-11 16:23:33', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (249, 1001, 'admin', 'login', '2021-11-11 16:43:59', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (250, 1001, 'admin', 'login', '2021-11-11 16:50:40', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (251, 1001, 'admin', 'login', '2021-11-11 16:59:40', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (252, 1001, 'admin', 'login', '2021-11-11 17:18:23', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (253, 1001, 'admin', 'logout', '2021-11-11 17:49:15', '-');
+INSERT INTO `wms_access_record` VALUES (254, 1001, 'admin', 'login', '2021-11-15 10:02:46', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (255, 1001, 'admin', 'login', '2021-11-15 10:23:00', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (256, 1001, 'admin', 'login', '2021-11-15 10:26:12', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (257, 1001, 'admin', 'login', '2021-11-15 10:44:14', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (258, 1001, 'admin', 'login', '2021-11-15 10:46:20', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (259, 1001, 'admin', 'login', '2021-11-15 10:50:14', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (260, 1001, 'admin', 'login', '2021-11-15 10:56:09', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (261, 1001, 'admin', 'login', '2021-11-15 10:59:50', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (262, 1001, 'admin', 'login', '2021-11-15 11:38:13', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (263, 1001, 'admin', 'login', '2021-11-15 12:00:01', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (264, 1001, 'admin', 'login', '2021-11-15 12:02:00', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (265, 1001, 'admin', 'login', '2021-11-15 12:22:13', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (266, 1001, 'admin', 'login', '2021-11-15 12:28:42', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (267, 1001, 'admin', 'logout', '2021-11-15 13:00:26', '-');
+INSERT INTO `wms_access_record` VALUES (268, 1001, 'admin', 'login', '2021-11-15 14:04:43', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (269, 1001, 'admin', 'login', '2021-11-15 14:12:54', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (270, 1001, 'admin', 'login', '2021-11-15 14:20:06', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (271, 1001, 'admin', 'login', '2021-11-15 14:22:20', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (272, 1001, 'admin', 'login', '2021-11-15 14:25:05', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (273, 1001, 'admin', 'login', '2021-11-15 14:27:42', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (274, 1001, 'admin', 'login', '2021-11-15 14:36:41', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (275, 1001, 'admin', 'login', '2021-11-15 14:41:09', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (276, 1001, 'admin', 'login', '2021-11-15 14:45:36', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (277, 1001, 'admin', 'login', '2021-11-15 14:47:28', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (278, 1001, 'admin', 'login', '2021-11-15 14:49:29', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (279, 1001, 'admin', 'login', '2021-11-15 14:55:56', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (280, 1001, 'admin', 'login', '2021-11-15 14:58:54', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (281, 1001, 'admin', 'login', '2021-11-15 15:15:55', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (282, 1001, 'admin', 'login', '2021-11-15 15:25:34', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (283, 1001, 'admin', 'login', '2021-11-15 15:46:41', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (284, 1001, 'admin', 'logout', '2021-11-15 16:22:33', '-');
+INSERT INTO `wms_access_record` VALUES (285, 1001, 'admin', 'login', '2021-11-15 17:02:48', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (286, 1001, 'admin', 'login', '2021-11-15 17:23:49', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (287, 1001, 'admin', 'logout', '2021-11-15 17:54:40', '-');
+INSERT INTO `wms_access_record` VALUES (288, 1001, 'admin', 'login', '2021-11-15 18:15:26', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (289, 1001, 'admin', 'login', '2021-11-15 18:21:27', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (290, 1001, 'admin', 'login', '2021-11-15 18:23:33', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (291, 1001, 'admin', 'login', '2021-11-15 18:26:56', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (292, 1001, 'admin', 'login', '2021-11-16 10:18:52', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (293, 1001, 'admin', 'login', '2021-11-16 10:41:49', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (294, 1001, 'admin', 'login', '2021-11-16 10:46:51', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (295, 1001, 'admin', 'login', '2021-11-16 10:47:54', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (296, 1001, 'admin', 'login', '2021-11-16 10:57:29', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (297, 1001, 'admin', 'logout', '2021-11-16 11:29:52', '-');
+INSERT INTO `wms_access_record` VALUES (298, 1001, 'admin', 'login', '2021-11-16 11:59:01', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (299, 1001, 'admin', 'login', '2021-11-16 12:01:25', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (300, 1001, 'admin', 'login', '2021-11-16 12:28:37', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (301, 1001, 'admin', 'login', '2021-11-16 12:51:14', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (302, 1001, 'admin', 'login', '2021-11-16 12:53:48', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (303, 1001, 'admin', 'login', '2021-11-16 13:11:01', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (304, 1001, 'admin', 'login', '2021-11-16 13:12:24', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (305, 1001, 'admin', 'logout', '2021-11-16 14:02:51', '-');
+INSERT INTO `wms_access_record` VALUES (306, 1001, 'admin', 'login', '2021-11-16 14:03:04', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (307, 1001, 'admin', 'login', '2021-11-16 14:27:26', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (308, 1001, 'admin', 'login', '2021-11-16 14:35:21', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (309, 1001, 'admin', 'login', '2021-11-16 14:38:35', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (310, 1001, 'admin', 'login', '2021-11-16 14:39:46', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (311, 1001, 'admin', 'login', '2021-11-16 14:42:11', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (312, 1001, 'admin', 'login', '2021-11-16 14:43:18', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (313, 1001, 'admin', 'login', '2021-11-16 14:45:54', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (314, 1001, 'admin', 'login', '2021-11-16 14:46:44', '0:0:0:0:0:0:0:1');
+INSERT INTO `wms_access_record` VALUES (315, 1001, 'admin', 'logout', '2021-11-16 15:18:36', '-');
+INSERT INTO `wms_access_record` VALUES (316, 1001, 'admin', 'login', '2021-11-16 17:22:46', '0:0:0:0:0:0:0:1');
 
 -- ----------------------------
 -- Table structure for wms_action
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_action`;
-CREATE TABLE `wms_action` (
+CREATE TABLE `wms_action`  (
   `ACTION_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ACTION_NAME` varchar(30) NOT NULL,
-  `ACTION_DESC` varchar(30) DEFAULT NULL,
-  `ACTION_PARAM` varchar(50) NOT NULL,
-  PRIMARY KEY (`ACTION_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+  `ACTION_NAME` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `ACTION_DESC` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `ACTION_PARAM` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`ACTION_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 49 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_action
 -- ----------------------------
-INSERT INTO `wms_action` VALUES ('1', 'addSupplier', null, '/supplierManage/addSupplier');
-INSERT INTO `wms_action` VALUES ('2', 'deleteSupplier', null, '/supplierManage/deleteSupplier');
-INSERT INTO `wms_action` VALUES ('3', 'updateSupplier', null, '/supplierManage/updateSupplier');
-INSERT INTO `wms_action` VALUES ('4', 'selectSupplier', null, '/supplierManage/getSupplierList');
-INSERT INTO `wms_action` VALUES ('5', 'getSupplierInfo', null, '/supplierManage/getSupplierInfo');
-INSERT INTO `wms_action` VALUES ('6', 'importSupplier', null, '/supplierManage/importSupplier');
-INSERT INTO `wms_action` VALUES ('7', 'exportSupplier', null, '/supplierManage/exportSupplier');
-INSERT INTO `wms_action` VALUES ('8', 'selectCustomer', null, '/customerManage/getCustomerList');
-INSERT INTO `wms_action` VALUES ('9', 'addCustomer', null, '/customerManage/addCustomer');
-INSERT INTO `wms_action` VALUES ('10', 'getCustomerInfo', null, '/customerManage/getCustomerInfo');
-INSERT INTO `wms_action` VALUES ('11', 'updateCustomer', null, '/customerManage/updateCustomer');
-INSERT INTO `wms_action` VALUES ('12', 'deleteCustomer', null, '/customerManage/deleteCustomer');
-INSERT INTO `wms_action` VALUES ('13', 'importCustomer', null, '/customerManage/importCustomer');
-INSERT INTO `wms_action` VALUES ('14', 'exportCustomer', null, '/customerManage/exportCustomer');
-INSERT INTO `wms_action` VALUES ('15', 'selectGoods', null, '/goodsManage/getGoodsList');
-INSERT INTO `wms_action` VALUES ('16', 'addGoods', null, '/goodsManage/addGoods');
-INSERT INTO `wms_action` VALUES ('17', 'getGoodsInfo', null, '/goodsManage/getGoodsInfo');
-INSERT INTO `wms_action` VALUES ('18', 'updateGoods', null, '/goodsManage/updateGoods');
-INSERT INTO `wms_action` VALUES ('19', 'deleteGoods', null, '/goodsManage/deleteGoods');
-INSERT INTO `wms_action` VALUES ('20', 'importGoods', null, '/goodsManage/importGoods');
-INSERT INTO `wms_action` VALUES ('21', 'exportGoods', null, '/goodsManage/exportGoods');
-INSERT INTO `wms_action` VALUES ('22', 'selectRepository', null, '/repositoryManage/getRepositoryList');
-INSERT INTO `wms_action` VALUES ('23', 'addRepository', null, '/repositoryManage/addRepository');
-INSERT INTO `wms_action` VALUES ('24', 'getRepositoryInfo', null, '/repositoryManage/getRepository');
-INSERT INTO `wms_action` VALUES ('25', 'updateRepository', null, '/repositoryManage/updateRepository');
-INSERT INTO `wms_action` VALUES ('26', 'deleteRepository', null, '/repositoryManage/deleteRepository');
-INSERT INTO `wms_action` VALUES ('27', 'importRepository', null, '/repositoryManage/importRepository');
-INSERT INTO `wms_action` VALUES ('28', 'exportRepository', null, '/repositoryManage/exportRepository');
-INSERT INTO `wms_action` VALUES ('29', 'selectRepositoryAdmin', null, '/repositoryAdminManage/getRepositoryAdminList');
-INSERT INTO `wms_action` VALUES ('30', 'addRepositoryAdmin', null, '/repositoryAdminManage/addRepositoryAdmin');
-INSERT INTO `wms_action` VALUES ('31', 'getRepositoryAdminInfo', null, '/repositoryAdminManage/getRepositoryAdminInfo');
-INSERT INTO `wms_action` VALUES ('32', 'updateRepositoryAdmin', null, '/repositoryAdminManage/updateRepositoryAdmin');
-INSERT INTO `wms_action` VALUES ('33', 'deleteRepositoryAdmin', null, '/repositoryAdminManage/deleteRepositoryAdmin');
-INSERT INTO `wms_action` VALUES ('34', 'importRepositoryAd,om', null, '/repositoryAdminManage/importRepositoryAdmin');
-INSERT INTO `wms_action` VALUES ('35', 'exportRepository', null, '/repositoryAdminManage/exportRepositoryAdmin');
-INSERT INTO `wms_action` VALUES ('36', 'getUnassignRepository', null, '/repositoryManage/getUnassignRepository');
-INSERT INTO `wms_action` VALUES ('37', 'getStorageListWithRepository', null, '/storageManage/getStorageListWithRepository');
-INSERT INTO `wms_action` VALUES ('38', 'getStorageList', null, '/storageManage/getStorageList');
-INSERT INTO `wms_action` VALUES ('39', 'addStorageRecord', null, '/storageManage/addStorageRecord');
-INSERT INTO `wms_action` VALUES ('40', 'updateStorageRecord', null, '/storageManage/updateStorageRecord');
-INSERT INTO `wms_action` VALUES ('41', 'deleteStorageRecord', null, '/storageManage/deleteStorageRecord');
-INSERT INTO `wms_action` VALUES ('42', 'importStorageRecord', null, '/storageManage/importStorageRecord');
-INSERT INTO `wms_action` VALUES ('43', 'exportStorageRecord', null, '/storageManage/exportStorageRecord');
-INSERT INTO `wms_action` VALUES ('44', ' stockIn', null, '/stockRecordManage/stockIn');
-INSERT INTO `wms_action` VALUES ('45', 'stockOut', null, '/stockRecordManage/stockOut');
-INSERT INTO `wms_action` VALUES ('46', 'searchStockRecord', null, '/stockRecordManage/searchStockRecord');
-INSERT INTO `wms_action` VALUES ('47', 'getAccessRecords', null, '/systemLog/getAccessRecords');
-INSERT INTO `wms_action` VALUES ('48', 'selectUserOperationRecords', null, '/systemLog/selectUserOperationRecords');
+INSERT INTO `wms_action` VALUES (1, 'addSupplier', NULL, '/supplierManage/addSupplier');
+INSERT INTO `wms_action` VALUES (2, 'deleteSupplier', NULL, '/supplierManage/deleteSupplier');
+INSERT INTO `wms_action` VALUES (3, 'updateSupplier', NULL, '/supplierManage/updateSupplier');
+INSERT INTO `wms_action` VALUES (4, 'selectSupplier', NULL, '/supplierManage/getSupplierList');
+INSERT INTO `wms_action` VALUES (5, 'getSupplierInfo', NULL, '/supplierManage/getSupplierInfo');
+INSERT INTO `wms_action` VALUES (6, 'importSupplier', NULL, '/supplierManage/importSupplier');
+INSERT INTO `wms_action` VALUES (7, 'exportSupplier', NULL, '/supplierManage/exportSupplier');
+INSERT INTO `wms_action` VALUES (8, 'selectCustomer', NULL, '/customerManage/getCustomerList');
+INSERT INTO `wms_action` VALUES (9, 'addCustomer', NULL, '/customerManage/addCustomer');
+INSERT INTO `wms_action` VALUES (10, 'getCustomerInfo', NULL, '/customerManage/getCustomerInfo');
+INSERT INTO `wms_action` VALUES (11, 'updateCustomer', NULL, '/customerManage/updateCustomer');
+INSERT INTO `wms_action` VALUES (12, 'deleteCustomer', NULL, '/customerManage/deleteCustomer');
+INSERT INTO `wms_action` VALUES (13, 'importCustomer', NULL, '/customerManage/importCustomer');
+INSERT INTO `wms_action` VALUES (14, 'exportCustomer', NULL, '/customerManage/exportCustomer');
+INSERT INTO `wms_action` VALUES (15, 'selectGoods', NULL, '/goodsManage/getGoodsList');
+INSERT INTO `wms_action` VALUES (16, 'addGoods', NULL, '/goodsManage/addGoods');
+INSERT INTO `wms_action` VALUES (17, 'getGoodsInfo', NULL, '/goodsManage/getGoodsInfo');
+INSERT INTO `wms_action` VALUES (18, 'updateGoods', NULL, '/goodsManage/updateGoods');
+INSERT INTO `wms_action` VALUES (19, 'deleteGoods', NULL, '/goodsManage/deleteGoods');
+INSERT INTO `wms_action` VALUES (20, 'importGoods', NULL, '/goodsManage/importGoods');
+INSERT INTO `wms_action` VALUES (21, 'exportGoods', NULL, '/goodsManage/exportGoods');
+INSERT INTO `wms_action` VALUES (22, 'selectRepository', NULL, '/repositoryManage/getRepositoryList');
+INSERT INTO `wms_action` VALUES (23, 'addRepository', NULL, '/repositoryManage/addRepository');
+INSERT INTO `wms_action` VALUES (24, 'getRepositoryInfo', NULL, '/repositoryManage/getRepository');
+INSERT INTO `wms_action` VALUES (25, 'updateRepository', NULL, '/repositoryManage/updateRepository');
+INSERT INTO `wms_action` VALUES (26, 'deleteRepository', NULL, '/repositoryManage/deleteRepository');
+INSERT INTO `wms_action` VALUES (27, 'importRepository', NULL, '/repositoryManage/importRepository');
+INSERT INTO `wms_action` VALUES (28, 'exportRepository', NULL, '/repositoryManage/exportRepository');
+INSERT INTO `wms_action` VALUES (29, 'selectRepositoryAdmin', NULL, '/repositoryAdminManage/getRepositoryAdminList');
+INSERT INTO `wms_action` VALUES (30, 'addRepositoryAdmin', NULL, '/repositoryAdminManage/addRepositoryAdmin');
+INSERT INTO `wms_action` VALUES (31, 'getRepositoryAdminInfo', NULL, '/repositoryAdminManage/getRepositoryAdminInfo');
+INSERT INTO `wms_action` VALUES (32, 'updateRepositoryAdmin', NULL, '/repositoryAdminManage/updateRepositoryAdmin');
+INSERT INTO `wms_action` VALUES (33, 'deleteRepositoryAdmin', NULL, '/repositoryAdminManage/deleteRepositoryAdmin');
+INSERT INTO `wms_action` VALUES (34, 'importRepositoryAd,om', NULL, '/repositoryAdminManage/importRepositoryAdmin');
+INSERT INTO `wms_action` VALUES (35, 'exportRepository', NULL, '/repositoryAdminManage/exportRepositoryAdmin');
+INSERT INTO `wms_action` VALUES (36, 'getUnassignRepository', NULL, '/repositoryManage/getUnassignRepository');
+INSERT INTO `wms_action` VALUES (37, 'getStorageListWithRepository', NULL, '/storageManage/getStorageListWithRepository');
+INSERT INTO `wms_action` VALUES (38, 'getStorageList', NULL, '/storageManage/getStorageList');
+INSERT INTO `wms_action` VALUES (39, 'addStorageRecord', NULL, '/storageManage/addStorageRecord');
+INSERT INTO `wms_action` VALUES (40, 'updateStorageRecord', NULL, '/storageManage/updateStorageRecord');
+INSERT INTO `wms_action` VALUES (41, 'deleteStorageRecord', NULL, '/storageManage/deleteStorageRecord');
+INSERT INTO `wms_action` VALUES (42, 'importStorageRecord', NULL, '/storageManage/importStorageRecord');
+INSERT INTO `wms_action` VALUES (43, 'exportStorageRecord', NULL, '/storageManage/exportStorageRecord');
+INSERT INTO `wms_action` VALUES (44, ' stockIn', NULL, '/stockRecordManage/stockIn');
+INSERT INTO `wms_action` VALUES (45, 'stockOut', NULL, '/stockRecordManage/stockOut');
+INSERT INTO `wms_action` VALUES (46, 'searchStockRecord', NULL, '/stockRecordManage/searchStockRecord');
+INSERT INTO `wms_action` VALUES (47, 'getAccessRecords', NULL, '/systemLog/getAccessRecords');
+INSERT INTO `wms_action` VALUES (48, 'selectUserOperationRecords', NULL, '/systemLog/selectUserOperationRecords');
 
 -- ----------------------------
 -- Table structure for wms_customer
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_customer`;
-CREATE TABLE `wms_customer` (
+CREATE TABLE `wms_customer`  (
   `CUSTOMER_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `CUSTOMER_NAME` varchar(30) NOT NULL,
-  `CUSTOMER_PERSON` varchar(10) NOT NULL,
-  `CUSTOMER_TEL` varchar(20) NOT NULL,
-  `CUSTOMER_EMAIL` varchar(20) NOT NULL,
-  `CUSTOMER_ADDRESS` varchar(30) NOT NULL,
-  PRIMARY KEY (`CUSTOMER_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1217 DEFAULT CHARSET=utf8;
+  `CUSTOMER_NAME` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `CUSTOMER_PERSON` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `CUSTOMER_TEL` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `CUSTOMER_EMAIL` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `CUSTOMER_ADDRESS` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`CUSTOMER_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1217 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_customer
 -- ----------------------------
-INSERT INTO `wms_customer` VALUES ('1214', '醴陵荣旗瓷业有限公司', '陈娟', '17716786888', '23369888@136.com', '中国 湖南 醴陵市 嘉树乡玉茶村柏树组');
-INSERT INTO `wms_customer` VALUES ('1215', '深圳市松林达电子有限公司', '刘明', '85263335-820', '85264958@126.com', '中国 广东 深圳市宝安区 深圳市宝安区福永社区桥头村桥塘路育');
-INSERT INTO `wms_customer` VALUES ('1216', '郑州绿之源饮品有限公司 ', '赵志敬', '87094196', '87092165@qq.com', '中国 河南 郑州市 郑州市嘉亿东方大厦609');
+INSERT INTO `wms_customer` VALUES (1214, '醴陵荣旗瓷业有限公司', '陈娟', '17716786888', '23369888@136.com', '中国 湖南 醴陵市 嘉树乡玉茶村柏树组');
+INSERT INTO `wms_customer` VALUES (1215, '深圳市松林达电子有限公司', '刘明', '85263335-820', '85264958@126.com', '中国 广东 深圳市宝安区 深圳市宝安区福永社区桥头村桥塘路育');
+INSERT INTO `wms_customer` VALUES (1216, '郑州绿之源饮品有限公司 ', '赵志敬', '87094196', '87092165@qq.com', '中国 河南 郑州市 郑州市嘉亿东方大厦609');
 
 -- ----------------------------
 -- Table structure for wms_goods
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_goods`;
-CREATE TABLE `wms_goods` (
+CREATE TABLE `wms_goods`  (
   `GOOD_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `GOOD_CODE` varchar(64) NOT NULL COMMENT '货物编号',
-  `GOOD_NAME` varchar(30) NOT NULL COMMENT '货物描述',
-  `GOOD_RYPE` varchar(20) DEFAULT NULL COMMENT '货物类型',
-  `GOOD_SIZE` varchar(20) DEFAULT NULL COMMENT '货物单位',
-  `GOOD_VALUE` double DEFAULT NULL,
-  `GOOD_CAR_NUMBER` varchar(64) DEFAULT NULL COMMENT '车号',
-  `GOOD_IMPORTANCE` varchar(32) DEFAULT NULL COMMENT '货物重要性',
-  `GOOD_IMAGE` varchar(255) DEFAULT NULL COMMENT '物资照片',
-  PRIMARY KEY (`GOOD_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
+  `GOOD_CODE` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '货物编号',
+  `GOOD_NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '货物描述',
+  `GOOD_RYPE` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '货物类型',
+  `GOOD_SIZE` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '货物单位',
+  `GOOD_VALUE` double NULL DEFAULT NULL,
+  `GOOD_CAR_NUMBER` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '车号',
+  `GOOD_IMPORTANCE` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '货物重要性',
+  `GOOD_IMAGE` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '物资照片',
+  PRIMARY KEY (`GOOD_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4978 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_goods
 -- ----------------------------
-INSERT INTO `wms_goods` VALUES ('103', '', '五孔插座西门子墙壁开关', '电器', '86*86', '1.85', null, null, null);
-INSERT INTO `wms_goods` VALUES ('104', '', '陶瓷马克杯', '陶瓷', '9*9*11', '3.5', null, null, null);
-INSERT INTO `wms_goods` VALUES ('105', '', '精酿苹果醋', '饮料', '312ml', '300', null, null, null);
+INSERT INTO `wms_goods` VALUES (2545, '621000011', '逆变器芯‖A5E00233728‖西门子', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2546, '621000003', 'BHDU WO Display显示屏（司机显示器）‖A2V00001714486‖西门子', '可维修', '套', NULL, '01001-01048', '服务关键物料C2', NULL);
+INSERT INTO `wms_goods` VALUES (2547, '620500041', '右门扇‖MS130DP06-2-20000R‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2548, '620800034', '司机室通风单元‖CVU645‖利勃海尔', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2549, '621000005', '司控器‖S355D(DC24V)Technical specification to be updated‖沙尔特宝', '可维修', '个', NULL, '01001-01048', '服务关键物料C2', NULL);
+INSERT INTO `wms_goods` VALUES (2550, '621000004', 'SKSSIBASKLIP站‖A5E00191844‖西门子', '可维修', '套', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2551, '620500065', '门扇‖MJ560AP08L-20000‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2552, '620900005', '空气干燥器单元‖II65416/14110X101‖克诺尔', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2553, '620700155', '完整的动车转向架（含电机）‖BOKMD00000000‖浦厂', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2554, '620700050', '完整的拖车转向架‖BOKTD00000000‖浦镇', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2555, '620800020', 'BK3控制器‖BK/3 MASTER‖利勃海尔', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2556, '620800029', 'BK3控制器（空调从控制器）‖BK/3 SLAVER‖利勃海尔', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2557, '620900055', '智能阀（EP2002控制模块）‖S7029/HZ01‖克诺尔', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2558, '620900057', '门阀（MC网关模块）‖G7029/HZ01‖克诺尔', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2559, '621100016', '制动电阻‖2*1.96Ω；2*1120KW‖上海吉泰', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2560, '620500038', '门控器（主门控器）‖MKQ132-110EMDS-RS-90000‖康尼', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2561, '620500007', '门控器‖MKQ131-110RS-90000；用于从门控器‖康尼', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2562, '621200003', 'Control unit SIBCOS控制模块‖A2V00001375790‖西门子；纵横', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2563, '620300033', '受电弓电机‖天海', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2564, '621100021', '4换向触点继电器‖F670-H4V-XUUY；110V线圈；751500611‖浦厂；利奇', '不可维修', '件', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2565, '621700001', '带箱子的蓄电池‖FN233MR‖荷贝克', '可维修', '套', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2566, '621000014', '设备风机（牵引风机）‖2Cs7352-1Rg81-0Ck1；A5E00172604‖西门子', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2567, '600100079', '低压接触器‖3RT2035-3XF40-0LA2', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2568, '621000007', '控制器‖BHPC48/CPU/D1932147900‖西门子', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2569, '621200004', 'Fan主风扇‖radial__1800M3/H；380；A2V00001305767‖西门子/纵横', '可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2570, '621000030', 'pulse-width-modul.InverterK1700 逆变模块‖A2V00001305465', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2571, '621200008', 'Battery charger  蓄电池充电器‖A2V00001305543', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2572, '620100071', '方孔锁套装‖含压缩锁+锁片；BHPC48；A2V00001714324‖西门子', '不可维修', '套', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2573, '620100279', '所有气制动缓解、所有停放制动缓解、所有门关好指示灯‖AD16-22P/G26-TKP ‖西门子；APT', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2574, '620100280', '受电弓状态指示灯‖AD16-22D/gy26‖西门子；APT', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2575, '620100282', 'MVB重配置按钮、电笛俺就、泵水按钮‖LA39-C1-10/K-RWP‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2576, '620100283', '按钮1‖3SU10610JB400AA0-G24/240-40-KM‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2577, '620100285', '联挂停放施加开关‖LW39-16CUP-9AC-01X/1-G-RWP‖西门子 ; APT', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2578, '620100286', '除霜器开关‖LW39-16CU-9AC-01X/1-RWP‖西门子；APT', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2579, '620100289', 'VCU故障、隔离开关动作、气制动施加示灯‖AD16-22P/R26-TKP‖西门子 ;APT', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2580, '620100291', 'ATB1按钮、ATB2按钮‖LA39-C1-20/K-RWP‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2581, '620100292', '解构按钮‖3SU10610JB700AA0-W24/240-12-KM‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2582, '620100293', '按钮3‖3SU10610JB400AA0-R24/240-40-KM‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2583, '620100295', '客室照明开关‖LW39-16CU-B2-201X/2-RWP‖西门子 ;APT', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2584, '620100296', '门模式选择开关‖LW39-16CU-9GC-245X/5-RWP‖西门子 ;APT', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2585, '620100297', 'ATC模式开关‖LW39-16CU-4GC-22323X/6-RWP‖西门子 ;APT', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2586, '620200012', '按钮4‖3SU10610JB400AA0-R24/240-40-KM-BHG‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2587, '620200013', '按钮2‖3SU10610JB400AA0-G24/240-40-KM-BHG‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2588, '621000001', '多功能列车总线转发器‖9AB4110-2AA10；A2V00001161299‖西门子', '可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2589, '621000002', 'MVB服务端口‖A2V00001194988Type: 6103103000303‖西门子', '可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2590, '621000006', 'MVB连接器‖Type:6663009511303；A2V00156034868‖西门子', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2591, '621000009', '承力杆‖A5E00191844‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2592, '621000012', '电源模块‖POWER_SPLY_CURRENT_P354_50；4-138_24V/6；A5E00329511‖西门子', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2593, '621000013', '接地电容‖Cap_Mkp_54U_+-10%_750V_Polypropylen；A5E00170119‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2594, '621000015', '线路接触器‖Contactor_1.5Kv _ 650A _Lths06501Sac2_Dc；A5E00170079‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2595, '621000016', '预充电接触器‖Contactor LTHH00401*A05 1800V 60A 24Vdc;1009625‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2596, '621000017', '辅助接触器‖3Rt1017-2Kb41 24V-1S K110；1011786‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2597, '621000018', '辅助接触器‖Contactor 3Rh1140-2Kb40 24V- 4S；1011821‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2598, '621000019', '电抗器‖Reactor_10Mh_350A_2.05Kv L100；A5E02617564‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2599, '621000020', '固定电阻‖Wire-Wound Resistor Gbs 30/330 33 Ohm R120/R121；750W；553750‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2600, '621000021', 'ICU逆变器控制单元‖6FH4721-1B‖西门子', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2601, '621000022', '电压传感器‖1500V；QPSW750‖西门子；纵横', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2602, '621000024', '辅助线路接触器‖A2V00156020446‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2603, '621000025', '预充电单元‖A2V00001669393‖西门子', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2604, '621000026', '预充电电阻‖GBS 30/330 8R2 5% 450W；A2V00001342410‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2605, '621000027', '接线盒‖Firing box/ 6k5_DRV_01；A2V00156033433‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2606, '621000028', '750/1500V 输入电压传感器‖A2V00001241337‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2607, '621000029', '输入电流传感器‖A2V00156016672‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2608, '621000031', '人工电机启动器‖A2V00156020054‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2609, '621000032', '低电平启动器‖A2V00001680122‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2610, '621000033', '驱动板‖A2V00001288689‖西门子', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2611, '621000034', '固定电阻‖5W；A2V00001318345‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2612, '621000035', '正玄滤波电容‖A2V00156023992‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2613, '621000036', '滤波电容‖0U5/2500V-40/+85GRD；A2V00156008091‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2614, '621000037', '连接继电器‖3RT1017-2KF41；A2V00156017951‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2615, '621000038', '温度传感器‖D48A-NTC10KOHM；A2V00156018024‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2616, '621000039', '滤波电容‖0；47U/2500VDC；A2V00156028257‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2617, '621000040', '电源开关‖3Rv1011-1Ea15 2.8- 4.0A F130；1010027‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2618, '621000041', '接触器‖Contactor 3Rh1122-2Kf40 110V- 2S+2O；1010862‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2619, '621000042', 'VCU列车中央控制单元（包括MSIC RS485卡）‖A5E02563272‖西门子', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2620, '621000045', '高速断路器‖UR6-32TD-ZZZZZE1ECN1/AUR003221629E51‖西门子', '可维修', '个', NULL, '01001-01048', '服务关键物料C2', NULL);
+INSERT INTO `wms_goods` VALUES (2621, '621000046', '刀开关‖RTB&MDA_HJ47B0146SJS‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2622, '621000047', '释放手柄的微动开关‖A2V00001316663 1-1570-128743‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2623, '621000048', '刀开关释放微动开关‖3SE2200-6C‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2624, '621000049', '接触器‖A2V00001121363/3RT1017-2KF42‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2625, '621000050', '高速断路器限流电阻‖Vitreous resistor 20R&Resistor；GWS220 SS 160 253R J‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2626, '621000051', '1500V列车线熔断器‖A2V00001179463/V075757‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2627, '621000053', '受电弓解耦二极管‖A2V00001350978D1809N40T-K0.2.7S/1-E01‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2628, '621000054', '车间电源插座‖Drawing No:165.102 277.6Z-1Type:048148‖西门子', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2629, '621000057', '驱动板‖IGBT-4DRV-BLG-1K7-T01；A2V00001288690‖西门子', '不可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2630, '621000058', '接触器辅助触点‖9A；1F；24V；3RH2911-2FA22‖西门子', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2631, '621000059', '接触器‖3RT2017-2KF42-0LA0‖西门子', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2632, '621000060', '输出电压传感器‖A2V00156032851‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2633, '621000061', 'VCU以太网接口板‖6FH9580 -3AY60；-3BY60；-3CY60；-3DY60‖西门子', '可维修', '块', NULL, '01001-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2634, '621000062', 'VCU电源适配器‖APCS15；6FH9433-3AY60‖西门子', '可维修', '块', NULL, '01001-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2635, '621000063', 'VCU电源板‖6FH9151-3C‖西门子', '可维修', '块', NULL, '01001-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2636, '621000064', 'VCU风扇组件34TE 1U ( FAN )‖6FH6041-3B‖西门子', '可维修', '块', NULL, '01001-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2637, '621000065', 'RS422卡（VCU）MSIC 2*RS422‖6FH9400-3BX88-0GS0‖西门子', '可维修', '块', NULL, '01001-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2638, '621000077', '速度传感器‖STN31450/220A25U‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2639, '621000081', '牵引控制单元‖110V；6FH4872-1B；130901001011‖德国西门子', '可维修', '套', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2640, '621000082', '避雷器‖3EB4020-7DS32-0D；117300001454‖德国西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2641, '621000085', '辅助接触器K121‖3RH2122-2LF40_110V；130501001054‖德国西门子', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2642, '621000086', '辅助接触器K110‖130501001053‖德国西门子', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2643, '621000088', '牵引逆变器功率模块‖131000001052‖德国西门子', '可维修', '台', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2644, '621000093', '辅助触点‖3RH2921-2DA20‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2645, '621100054', '熔断器‖PMG7900000036‖西门子', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2646, '621100095', '熔断器‖PMG7900000033；3NA31202C(50A)‖西门子', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2647, '621100096', '熔断器‖3NA3807-2C‖西门子', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2648, '621200001', '接地错误检测模块‖A2V00001758353‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2649, '621200002', '直流回路低压传感器‖A2V00156034345‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2650, '621200005', 'Fan风扇‖A2V00156009589‖西门子；纵横', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2651, '621200006', '三相交流输出接触器‖A2V00150257268‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2652, '621200007', '三相交流熔断器‖A2V00150267946‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2653, '621200009', '接地装置‖Earthing device/ 754200；A2V00150267894‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2654, '621200013', '带定位开关出线环‖3SB3901-0CK (Int. Article No. (EAN/UPC) 4011209720312)‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2655, '621200014', '断路器‖5SY61107‖西门子', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2656, '621200015', '断路器‖5SY51107‖西门子', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2657, '621200016', '断路器‖5SY5150-7CC11‖西门子', '不可维修', '件', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2658, '621200017', '断路器‖3RV10211KA15‖西门子', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2659, '621200018', '断路器‖3RV10211DA15‖西门子', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2660, '621200019', '断路器‖3RV10214CA15‖西门子', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2661, '621200020', '电子负载接触器‖3RT1044-3XF40-0LA2；PMG7700000035‖西门子；纵横', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2662, '621200021', '电子负载接触器辅助触点‖3RH1921-2EA20；PMG77B0000032‖西门子；纵横', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2663, '621200022', '功率负载接触器‖3RT1055-6NF36‖西门子/纵横', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2664, '621200023', '接触器‖3RT2017-2KF41‖西门子/纵横', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2665, '621200024', '变压器过热保护断路器‖3RV2021-1JA15‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2666, '621200025', '变压器副侧漏电保护断路器‖5SM3311-6；PMG7800000037‖西门子；纵横', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2667, '621200026', '电子负载熔断器‖20A；3NA31072C‖西门子；纵横', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2668, '621200027', '永久负载熔断器‖20A；3NA38072C‖西门子；纵横', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2669, '621200028', '电子负载熔断器‖100A；3NA31302C‖西门子；纵横', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2670, '621200029', '功率负载熔断器‖160A；3NA31362C‖西门子；纵横', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2671, '621200030', '熔断器座‖3NH3030-2C；PMG79B0000031‖西门子；纵横', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2672, '621200031', '熔断器座‖3NH3230-2C；PMG79B0000032‖西门子；纵横', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2673, '621200032', '熔断器座‖3NH4230-2C；PMG79B0000033‖西门子；纵横', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2674, '621200038', '接触器‖3RT2017-2XF42-0LA2‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2675, '621200041', 'DC/DC模块‖DCW-120-A3.01；131000001040‖德国西门子', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2676, '621200042', '电压传感器‖A2V00001711268;EFD 650V;130801001123‖德国西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2677, '621200044', '预充电模块T1‖A5E03521027；1500V；117300001361‖德国西门子', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2678, '621200045', 'T4模块‖A5E03466379；117300001343‖德国西门子', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2679, '621200046', '脉宽调制逆变器‖PWR-170-A3.01；131000001041‖德国西门子', '可维修', '台', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2680, '621200047', '蓄电池充电机功率模块‖131000001043‖德国西门子', '可维修', '台', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2681, '621200048', '蓄电池充电机控制单元‖130901001014‖德国西门子', '可维修', '套', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2682, '621200049', '辅助逆变器控制单元‖130901001002‖德国西门子', '可维修', '套', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2683, '621200052', '辅助接触器K130‖130501001055‖德国西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2684, '621500001', 'HMI‖CaViS12‖西门子', '可维修', '套', NULL, '01049-01072', '服务关键物料C2', NULL);
+INSERT INTO `wms_goods` VALUES (2685, '621500002', '车辆控制单元VCU‖6FH5131-1A‖西门子', '可维修', '套', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2686, '621500003', 'SKS站‖SKS‖西门子', '可维修', '套', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2687, '621500006', '接触器1‖3RT2017-2KF42‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2688, '621500009', '断路器6‖5SV3311-6‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2689, '621500010', '断路器4‖3RV2011-1JA15‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2690, '621500011', '断路器2‖3RV2011-1DA15‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2691, '621500014', '接触器4‖3RT2045-3XF40-0LA2‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2692, '621500018', '断路器13‖5SY5120-7CC11‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2693, '621500019', '断路器12‖5SY5103-7CC11‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2694, '621500020', '断路器11‖5SY4110-7CC11‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2695, '621500021', '断路器8‖5SY5110-7CC11‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2696, '621500022', '断路器5‖3RV2021-4CA15‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2697, '621500023', '断路器3‖3RV2011-1KA15‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2698, '620700098', '高度阀‖I78821/003‖克诺尔', '不可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2699, '620700293', '呼气塞‖B66529/5‖克诺尔', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2700, '620700294', '保护帽‖B75404‖克诺尔', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2701, '620900001', '螺堵‖469177；适用于空压机进油口‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2702, '620900002', '螺堵‖462459；适用于空压机放油口‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2703, '620900003', '过滤器‖8.000.0.923.724.5‖克诺尔', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2704, '620900004', '空压机滤芯‖8.000.8.923.728.5‖克诺尔', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2705, '620900006', '压力表‖II55802/12-002‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2706, '620900007', '踏面制动单元‖II71609/2LP‖克诺尔', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2707, '620900008', '软管‖II44729/10019NN‖克诺尔', '不可维修', '根', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2708, '620900009', '安全阀‖II38273/7120 SV10 G3/4 12bar‖克诺尔', '不可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2709, '620900010', '滤油器‖I98554/X101‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2710, '620900011', '安全阀‖II38273/7105 SV10 G3/4 10.5bar‖克诺尔', '不可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2711, '620900012', '球阀‖II50172/2A2R‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2712, '620900015', '压力控制器‖7.0-5.5bar；II35827/07055‖克诺尔', '不可维修', '个', NULL, '01001-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2713, '620900016', '电磁阀‖II67043/110（II86418/110）‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2714, '620900017', '球阀‖II53484/1A1E‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2715, '620900018', '球阀‖II58614/1A1E‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2716, '620900019', '测试点‖I68943/K‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2717, '620900020', '软管‖II44729/09016NT‖克诺尔', '不可维修', '根', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2718, '620900021', '软管‖II44729/07008NT‖克诺尔', '不可维修', '根', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2719, '620900022', '测速齿轮‖B81249/11‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2720, '620900023', '螺堵‖B80896/3‖克诺尔', '不可维修', '个', NULL, '01049-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2721, '620900024', '压差阀‖I25510/1‖克诺尔', '不可维修', '个', NULL, '01001-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2722, '620900025', '软管‖II44729/14019NN‖克诺尔', '不可维修', '根', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2723, '620900026', '球阀‖II50175/1A3RE‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2724, '620900027', '电磁阀‖I82555/110‖克诺尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2725, '620900029', '球阀‖II50174/1A1R‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2726, '620900030', '球阀‖II74560/2A1LE‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2727, '620900031', '球阀‖II50172/1A1RE‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2728, '620900032', '软管‖II44729/09619NN‖克诺尔', '不可维修', '根', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2729, '620900033', '空气过滤器‖I71486‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2730, '620900034', '3/2-路塞门‖II51172/2‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2731, '620900035', '溢流阀‖6.7bar；II63947/0670‖克诺尔', '不可维修', '个', NULL, '01001-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2732, '620900036', '减压阀‖I71472/0630U‖克诺尔', '不可维修', '个', NULL, '01001-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2733, '620900037', 'Test fitting K1-ES G1/4测试点‖II48013‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2734, '620900038', '风笛‖II51214‖克诺尔', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2735, '620900039', '软管‖II44729/14008NN‖克诺尔', '不可维修', '根', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2736, '620900040', '安全阀‖SV10 G3/4 ；压力设置值：10.5bar‖克诺尔', '不可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2737, '620900041', '安全阀‖SV10 G3/4 ；压力设置值：12bar‖克诺尔', '不可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2738, '620900042', '空压机压力开关‖II35827/07055，压力设置：7.0-5.5bar‖克诺尔', '不可维修', '个', NULL, '01001-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2739, '620900044', '溢流阀‖L08；I25510/1‖克诺尔', '不可维修', '个', NULL, '01001-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2740, '620900045', '供风单元‖A00；8.120.2.321.846.9‖克诺尔', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2741, '620900046', 'CUBE控制模块‖B00；70461/1‖克诺尔', '可维修', '个', NULL, '01001-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2742, '620900047', '空气压缩机真空指示器‖8.000.0.064.701.4‖克诺尔', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2743, '620900048', '空气过滤器壳体‖8.000.0.923.721.6‖克诺尔', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2744, '620900049', 'O型圈‖ORC0950000‖克诺尔', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2745, '620900050', '阻尼管‖8.120.0.942.002.7‖克诺尔', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2746, '620900053', '空压机滤芯垫圈‖8.120.0.851.001.4‖克诺尔', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2747, '620900054', '空气压缩机模块（供风单元）‖8.120.2.321.134.9‖克诺尔', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2748, '620900056', '带弹簧停放的制动单元‖II71608/44LP‖克诺尔', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2749, '620900062', '电磁阀2‖I87625/1110‖克诺尔', '可维修', '个', NULL, '01049-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2750, '620900064', '踏面制动单元2‖II92243/24LP‖克诺尔', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2751, '620900065', '踏面制动单元1‖II90660/2LP‖克诺尔', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2752, '620900068', '单向阀‖II67897‖克诺尔', '可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2753, '620900070', '压力开关‖II35827/09070‖克诺尔', '可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2754, '620900071', '干燥器‖II90414‖克诺尔', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2755, '620900072', '空压机组‖8.120.2.321.199.9‖克诺尔', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2756, '620900073', '干燥塔密封圈‖453790‖克诺尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2757, '620900074', '空气压缩机喷嘴‖B66929/14‖克诺尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2758, '620900075', '安全阀‖91921/01105；10.5bar‖克诺尔', '不可维修', '个', NULL, '01001-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2759, '620900076', '安全阀‖91921/01120；12bar‖克诺尔', '不可维修', '个', NULL, '01001-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2760, '620900083', '节流阀‖B10；B46822/12‖克诺尔', '可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2761, '620900088', '风缸螺堵‖B80896/4‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2762, '620900089', '风缸‖II38286/100X168C‖克诺尔', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2763, '620100090', '司机室侧门下玻璃‖MJ560AP07-20702‖康尼', '不可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2764, '620100091', '司机室侧门上玻璃‖MJ560AP07-20703‖康尼', '不可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2765, '620100218', '周边密封条‖MJ560AP07-20706‖康尼', '不可维修', '条', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2766, '620200009', '止挡插销（盐浴硫氮碳）‖MJ700AP-20306‖康尼', '不可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2767, '620500001', '螺母‖细牙六角薄；M14*1.5；A2-040；GB6173‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2768, '620500002', '油杯‖MS130DH-2‖康尼', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2769, '620500003', '螺纹套‖MS130DW-2‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2770, '620500004', '窗钩组件‖MY600AP‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2771, '620500005', '左门扇‖MS130DP06-2-20000L‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2772, '620500006', '承载驱动机构‖MS130DP06-2-30000A；用于顶部机构‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2773, '620500008', '侧吊架组件‖MS130DP05-2-10001；用于驱动机构支架‖康尼', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2774, '620500009', '紧急入口装置‖MS130DP05-2-42000‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2775, '620500010', '紧急入口钢丝套管组件‖MS130DP05-2-43002；原型号：M403003032‖康尼', '不可维修', '件', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2776, '620500011', '紧急出口钢丝套管组件‖MS130DP05-2-43001；原型号：M403004006‖康尼', '不可维修', '件', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2777, '620500012', '摆臂组件‖MS130DP05-2-23000L‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2778, '620500013', '摆臂组件‖MS130DP05-2-23000R‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2779, '620500015', '右携门架组件‖MS130DP05-2-32000R‖康尼', '不可维修', '件', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2780, '620500017', '传动部件‖MS130Dw7-2-31301；用于丝杆组件‖康尼', '不可维修', '套', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2781, '620500018', '嵌块‖MS130DP05-2-10606‖康尼', '不可维修', '件', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2782, '620500019', '电机‖BG65*75 110V PLG60；7:1 IP44 96565.09105‖康尼', '不可维修', '台', NULL, '01001-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2783, '620500021', '右门到位开关组件(锁到位开关组件)‖MS140DW-2-33000R‖康尼', '不可维修', '件', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2784, '620500022', '拖链(坦克链)‖MP10.3 009R18‖康尼', '不可维修', '根', NULL, '01001-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2785, '620500023', '拖链带销接头‖KA10.3 009（公）‖康尼', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2786, '620500024', '拖链带孔接头‖KA10.3 009（母）‖康尼', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2787, '620500026', '销‖镀铬；MS140DP-2-20302；用于门板下挡销‖康尼', '不可维修', '件', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2788, '620500027', '微动开关(地铁开关盒)(隔离锁行程开关)‖S804B‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2789, '620500028', '隔离开关组件‖MS130DP05-2-22000‖康尼', '不可维修', '套', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2790, '620500030', '微动行程开关‖S826-e20；用于车门‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2791, '620500031', '左门到位开关组件‖MS140DW-2-33000L‖康尼', '不可维修', '套', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2792, '620500032', '滚轮‖MS140DP7-2-23001‖康尼', '不可维修', '个', NULL, '01001-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2793, '620500033', '尼龙滚轮‖MS730AP-24701‖康尼', '不可维修', '个', NULL, '01001-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2794, '620500034', '缓冲头‖MS730AP-24702‖康尼', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2795, '620500035', '右旋螺母组件‖KTBM3107R‖康尼', '不可维修', '件', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2796, '620500036', '左旋螺母组件‖KTBM3107L‖康尼', '不可维修', '件', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2797, '620500037', '中间吊架组件(驱动机构支架)‖MS130DP05-2-10002‖康尼', '不可维修', '件', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2798, '620500039', '承载驱动机构(顶部机构)‖MS130DP06-2-30000B‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2799, '620500040', '承载驱动机构(顶部机构)‖MS130DP06-2-30000C‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2800, '620500048', '螺栓套组‖车门平行度螺栓及垫片；M10*45‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2801, '620500049', '长导柱‖MS130DW7-2-30302‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2802, '620500050', '短导柱‖MS140DW-2-30303‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2803, '620500051', '平衡轮组件‖MS130DP05-2-34000‖康尼', '不可维修', '套', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2804, '620500052', '左护指胶条‖MS130DP05-2-20704L‖康尼', '不可维修', '条', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2805, '620500053', '外操作拨爪组件‖MJ560AP4‖康尼', '不可维修', '套', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2806, '620500055', '插销组件‖MJ560AP1‖康尼', '不可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2807, '620500056', '上拨爪组件‖MJ560AP4‖康尼', '不可维修', '套', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2808, '620500057', '止挡组件（司机室侧门吸）‖MJ560AP08-10001‖康尼', '不可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2809, '620500059', '右护指胶条‖MS130DP05-2-20704R‖康尼', '不可维修', '条', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2810, '620500060', '挡卡‖镀环保锌；12-Fe/Zn.c2C（12#）‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2811, '620500061', '右车门周边胶条‖MS130DP05-2-20701R‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2812, '620500062', '左车门周边胶条‖MS130DP05-2-20701L‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2813, '620500063', '右侧锁档‖MJ560AP08R-40301‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2814, '620500064', '左侧锁档‖MJ560AP08L-40301‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2815, '620500066', '门扇‖MJ560AP08R-20000‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2816, '620500067', '门锁‖MJ560AP4R-42000‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2817, '620500068', '门锁‖MJ560AP4L-42000‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2818, '620500069', '挡条‖MJ560AP07-20705‖康尼', '不可维修', '根', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2819, '620500070', '钢丝绳‖MJ560AP1-40302‖康尼', '不可维修', '根', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2820, '620500071', '弹簧‖MJ560APR-42310‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2821, '620500072', '扭簧‖MJ560AP1R-42306‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2822, '620500074', '夹头‖黄；8*8*15；黄铜；MS730BP-43601‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2823, '620500075', '压紧块‖黄、D4*4.2、黄铜； MS730BP-43602‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2824, '620500078', '下滑道左‖MS130DP05-2-20503L‖康尼', '不可维修', '条', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2825, '620500079', '门开关装置‖M221510017；厂家物料号：0803400023‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2826, '620500080', '门开关装置（司机室右侧门方孔锁）‖MJ560AP08R-40000；原型号：M221510018‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2827, '620500089', '外操作装置‖MJ560AP07R-41000‖康尼', '不可维修', '套', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2828, '620500090', '鼓型齿式联轴器‖TS-0311990280；厂家物料号：0111990280‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2829, '620500091', '中间支撑‖氧化；MS140DW4-2-31602‖康尼', '不可维修', '套', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2830, '620500093', '外扣板焊接件‖喷塑；M232000002‖康尼', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2831, '620500095', '外操作装置‖MJ560AP07L-41000‖康尼', '不可维修', '套', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2832, '620500098', '尼龙滚轮‖0901000124‖康尼', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2833, '620500099', '右滚轮摆臂组件‖M418200002‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2834, '620500100', '左滚轮摆臂组件‖M418200001‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2835, '620500103', '司机室右门扇‖MJ560AP16R-20000‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2836, '620500104', '司机室左门扇‖MJ560AP16L-20000‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2837, '620500105', '左门周边密封条‖L713003S25‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2838, '620500106', '左门护指胶条‖L711003S25‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2839, '620500107', '右丝杆螺母‖KTBM3112R‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2840, '620500109', '隔离锁开关组件‖MS130DP32-2-28000‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2841, '620500110', '左开关组件（门关到位开关组件）M422000147‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2842, '620500111', '钢丝绳‖用于外操作组件；MS140DW10-2-43002R‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2843, '620500114', '门窗玻璃‖L703001S04‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2844, '620500115', '右门周边密封条‖L713003S26‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2845, '620500116', '右门护指胶条‖L711003S26‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2846, '620500117', '左丝杆螺母‖KTBM3112L‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2847, '620500118', '隔离锁行程开关‖MK7855-91022‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2848, '620500119', '门板下挡销‖TS-0301010021‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2849, '620500120', '电机‖TS-0301010021‖康尼', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2850, '620500122', '右滑动小车组件‖MS130DP32-2-32000R‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2851, '620500123', '左滑动小车组件‖MS130DP32-2-32000L‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2852, '620500124', '车内紧急出口装置组件‖M401010002‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2853, '620500125', '钢丝绳‖用于车内紧急装置；MS140DW06-2-43001‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2854, '620500126', '外操作组件‖MS130DW14-2-42000‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2855, '620500128', '车门驱动装置右‖MS130DP32-2-30000C‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2856, '620500129', '车门驱动装置左‖MS130DP32-2-30000A/MS130DP32-2-30000B‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2857, '620500171', '左携门架组件‖MS130DP05-2-32000L‖康尼', '不可维修', '件', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2858, '620500172', '端部解锁组件‖MS130Dw7-2-31000；用于门锁组件‖康尼', '不可维修', '套', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2859, '620500175', '下滑道右‖MS130DP05-2-20503R‖康尼', '不可维修', '条', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2860, '620800099', '紧急出口装置‖MS130DP05-2-41000‖康尼', '不可维修', '套', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2861, '620300006', '右球窝接头‖外螺纹；M16‖天海', '不可维修', '个', NULL, '01001-01048', '服务关键物料C2', NULL);
+INSERT INTO `wms_goods` VALUES (2862, '620300007', '下部框架轴承绝缘‖QGD-100-000100‖天海', '不可维修', '个', NULL, '01001-01048', '服务关键物料C2', NULL);
+INSERT INTO `wms_goods` VALUES (2863, '620300009', '带端子电缆‖QGD-100-060000‖天海', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2864, '620300010', '碳滑板支架‖QG-120(F)-070100‖天海', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2865, '620300011', '耦合杆‖QG-120(B)-050001‖天海', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2866, '620300013', '电器控制箱‖QGD100C-(HZL1)-100000‖天海', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2867, '620300014', '电气降弓装置‖QGD100-080000‖天海', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2868, '620300015', '软轴‖QGD100C-(HZL1)-090401‖天海', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2869, '620300016', '大绝缘子‖QGD100-(SHL2)-000100‖天海', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2870, '620300017', '弓角‖QG-120(F)-070001‖天海', '不可维修', '套', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2871, '620300018', '液压减振器‖QG-120-00-04‖天海', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2872, '620300019', '小绝缘子‖QGD100-080002‖天海', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2873, '620300020', '平弹簧‖QGD100-070203‖天海', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2874, '620300021', '弓头‖QGD100C(HZL1)-070000‖天海', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2875, '620300022', '平行导杆‖QGD100-060000‖天海', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2876, '620300024', '支撑弹簧‖QGD100-070204‖天海', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2877, '620300025', '上部框架‖QGD100C(HZL1)-040000‖天海', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2878, '620300026', '上部框架轴承绝缘‖QGD-100-020100‖天海', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2879, '620300027', '受电弓钢丝绳‖QGD(SHL2)-100-020100‖天海', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2880, '620300029', '缓冲套‖QGD100-080009‖天海', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2881, '620300036', '受电弓总成‖QGD100C‖天海', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2882, '620300043', '阻尼器‖3-D00.2050‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2883, '620300044', '平衡杆组装‖2-P07.6674‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2884, '620300046', '上臂杆组装‖SB-029592‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2885, '621000068', '速动开关‖S826 aLc‖沙尔特宝', '不可维修', '个', NULL, '01001-01080', '服务关键物料C2', NULL);
+INSERT INTO `wms_goods` VALUES (2886, '120600085', '润滑脂‖佳度Gadus;S3 V220C 2;180KG/桶', '不可维修', '桶', NULL, '01001-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2887, '120600077', '司控器润滑油‖MD控制线硅油', '不可维修', '桶', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2888, '120600059', '工业凡士林‖500g/听', '0', '听', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2889, '100500011', '防静电毛刷‖AS-501B大号', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2890, '120400021', '管路测漏液‖Leak Detectoe Spray;ITW/产品代码32030', '不可维修', '箱', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2891, '100200069', '不锈钢尼龙防松螺母||佰瑞特M12（不锈钢316材质）100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2892, '101100015', '防腐袋（干燥剂)‖A2V00156008400', '0', '袋', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2893, '100900007', '工业擦拭湿巾‖DYMON 42272 SCRUBS擦污纸', '0', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2894, '120400014', '橡胶条保护剂‖LPS01716‖12瓶/箱‖454ml/瓶', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2895, '620900043', '密封垫‖进油口处垫圈A30X36‖原生厂商：453868', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2896, '620700099', '密封垫‖放油口处垫圈A18X22‖原生厂商：453820', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2897, '620700018', '齿轮箱铜密封垫‖COPPERRINGA27xD32  铜环GA27xD32（密封圈）‖14070CU00273202克诺尔', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2898, '101400006', '镀锌铁丝‖8#；Ф4.0；15公斤/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2899, '120400028', '精密电子清洁剂‖CFC FREE  312g/瓶 12瓶/箱‖LPS', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2900, '101200001', '防松标记笔（红色）‖DYKEM Brite-Mark PAINT MARKER；12支/盒', '0', '盒', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2901, '101200003', '防松标记笔（白色）‖DYKEM Brite-Mark PAINT MARKER；12支/盒', '0', '盒', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2902, '100900002', '抹布‖普通棉布；块状', '0', '千克', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2903, '100900003', '工业擦拭纸‖750张；卷单层白色 ', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2904, '120400020', '列车清洗剂（20KG）‖REMA CLEAN W808‖诺而曼', '不可维修', '桶', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2905, '620800056', '空调过滤棉（49-80）‖950*325*20mm ', '不可维修', '张', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2906, '620800042', '空调过滤棉（1-48）‖870*325*20mm ', '不可维修', '张', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2907, '120400027', '去油污洗手液permatex‖25218;1加仑/桶;每桶为3.78L', '0', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2908, '101200005', '防松线标记笔‖REMA PAINT MARKER（0.8）‖诺而曼', '不可维修', '盒', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2909, '101400005', '铅封‖8mm*4mm 600粒/kg', '0', '千克', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2910, '120400005', '多功能去污剂‖REMA CLEAN MP;500ML/瓶;12瓶/箱‖诺而曼', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2911, '120400018', '清洁去除剂‖REMA CLEAN MR;450ML/瓶;12瓶/箱‖诺而曼', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2912, '120600029', '多功能松动润滑防锈剂‖450ML/瓶‖诺尔曼', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2913, '120600091', '二硫化钼粉‖98%高纯超细', '不可维修', '瓶', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2914, '120600060', '长城3#锂基脂‖15KG/桶', '0', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2915, '120600117', '轮缘润滑油‖KLUBERRAIL LEA 62-2000；25公斤/桶‖克鲁勃', '不可维修', '桶', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2916, '120600062', '硅基脂‖H295；20KG/桶', '0', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2917, '120600063', '润滑油‖MP-3；0.8kg/瓶‖长城', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2918, '120600098', '润滑脂‖XHP 222；2KG/听‖美孚', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2919, '120600096', '锂基脂‖2#；15KG/桶 ', '0', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2920, '120600097', '齿轮箱润滑油‖Mobil SHC gear 150(208L)‖美孚', '不可维修', '桶', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2921, '120600092', '润滑油‖Top2000；400g/瓶‖Autol', '不可维修', '瓶', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2922, '120600089', '联轴节润滑油‖Omala S4 GX 460 20L/桶‖壳牌 ', '0', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2923, '120600088', '润滑油‖劲霸R6LM 10W-40；209L/桶‖壳牌', '不可维修', '桶', NULL, '01001-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2924, '120600087', '车门润滑脂‖ISOFLEX LDS 18 SPECIAL A；25Kg/桶‖克鲁勃', '不可维修', '桶', NULL, '01001-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2925, '120600075', '齿轮箱润滑油‖shell omala S2G 320 209L/桶‖壳牌', '不可维修', '桶', NULL, '01001-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2926, '120600114', '润滑脂‖佳度Gadus;S3 V220C 2;18KG/桶', '不可维修', '桶', NULL, '01001-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2927, '620700037', '组合密封垫圈‖电客车齿轮箱专用JB/T 982-1977；公称直径20mm‖戚墅堰', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2928, '620700036', '组合密封垫圈‖电客车齿轮箱专用JB/T 982-1977；公称直径30mm‖戚墅堰 ', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2929, '621400191', '固态硬盘‖MSATA【OMSP0S3128B-00/128G】', '0', '块', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2930, '820005624', '无线办公键盘鼠标‖键鼠套装', '0', '套', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2931, '620100458', '门立柱罩‖PM0GD18330400100‖今创', '0', '块', NULL, '通用', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2932, '620100457', '窗侧单层玻璃‖定制；备注：616.5mm*1064mm', '不可维修', '块', NULL, '01073-01080', '服务关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2933, '621300061', '光源板组成（尾灯）‖LPQZD102-01-09-100‖兰普', '不可维修', '只', NULL, '01049-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2934, '621300060', '控制板组成（尾灯）‖LPQZD102-01-09-200‖兰普', '不可维修', '只', NULL, '01049-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2935, '620100456', '右门柱罩板组成‖PM0GD18330400200‖今创', '不可维修', '块', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2936, '620100455', '左门柱罩板组成2‖PM0GD18330400300‖今创', '不可维修', '块', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2937, '120400051', '列车清洗剂‖NJ-720A机车车体清洗剂25KG/桶‖能洁', '不可维修', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2938, '120400050', '列车清洗剂‖NC-208高效除油剂 25KG/桶‖三星五洲', '不可维修', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (2939, '620100422', '按钮片（绿色）‖T30FGN‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2940, '620100421', '门紧急使能开关‖KCE604051A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2941, '620100420', '强迫泵风按钮‖K30STZ38849‖诺和', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2942, '620100419', '按钮片（透明）‖T30FKL‖诺和', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2943, '620100418', '左侧、右侧关门按钮‖K30STZ38847‖诺和', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2944, '620100417', '门关好旁路开关‖KCE310705B1a‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2945, '620100416', '所有停放制动缓解指示灯、所有制动缓解指示灯、所有制动施加指示灯‖K30SNZ38842‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2946, '620100415', '司机室照明灯、洗车模式、除霜器开关‖KCE604073A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2947, '620100414', '客室照明开关‖KCE604066A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2948, '620100413', '灯测试、汽笛、充电机紧急启动、泵水、MVB重新配置按钮‖K30STZ38848‖诺和', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2949, '620100412', 'ATC模式开关2‖KCE604061A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2950, '620100411', '门使能旁路开关‖KCE604079A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2951, '620100410', 'ATC模式开关1‖KCE604074A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2952, '620100409', '制动缓解旁路开关‖KCE604080A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2953, '620100408', 'ATO/IATP/ATB 发车按钮‖K30STZ38850‖诺和', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2954, '620100407', '刮雨器控制开关‖KCE604076A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2955, '620100406', '受电弓控制开关‖KCE604071A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2956, '620100405', '头灯明暗调节开关‖KCE604056A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2957, '620100404', '门模式选择开关‖KCE604075A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2958, '620100403', '转换开关保护盖（透明）‖KCE310709BLA‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2959, '620100402', '按钮指示灯（绿色）‖357008‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2960, '620100401', '车钩监视旁路开关‖KCE604072A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2961, '620100400', '警惕、无车间电源、升弓允许、强迫缓解、零速、回库下载旁路开关‖KCE604058A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2962, '620100399', '紧急牵引/拖行开关‖KCE604060A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2963, '620100398', '按钮座‖K30ST‖诺和', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2964, '620100397', '按钮指示灯（白色）‖357006‖诺和', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2965, '620100396', '按钮片（红色）‖T30FRT‖诺和', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2966, '620100395', '按钮指示灯（红色）‖357009‖诺和', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2967, '620100394', '按钮片（黑色）‖T30FGSW‖诺和', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2968, '620100393', '电客车轮椅专座集成安全带‖定制', '不可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2969, '620400077', '踏板页‖UFD248-08-00-01‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2970, '621400145', '电客车17寸LCD显示器‖定制', '可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2971, '620100392', '所有制动施加、VCU故障、隔离开关动作指示灯‖K30SNZ38843‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2972, '621000114', '断电延时继电器‖TDE4-U204-KC；60S‖施密特', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2973, '620100391', '高速断路器断开按钮‖K30STZ31535‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2974, '620100390', '紧急制动红色蘑菇按钮‖K30SZ38851‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2975, '620100389', '左侧/右侧开门按钮‖K30STZ38844‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2976, '620100388', '受电弓状态指示灯‖K30RN‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2977, '620100387', '高速断路器按钮‖K30STZ31533‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2978, '620100386', '解钩按钮‖K30STZ38846‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2979, '620100385', '停放制动施加缓解按钮‖K30STZ38845‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2980, '620100384', '隔间门门把手固定螺栓‖内六角柱头螺钉M6*12 A2-70；浦镇物料号：DFGHZ-DQ06-01-200‖大丰', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2981, '620100383', '客室电器柜锁扣（方孔锁）‖E3-99-4170-08 ‖大丰', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2982, '620100382', '司机室电器柜锁‖E3-99-4170-05 ‖大丰', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2983, '620100381', '客室车门盖板锁‖E3-99-4170-10 ‖大丰', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2984, '620100380', '隔间门格栅‖DFGHZ11NTP-DQ03-02-000‖大丰', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2985, '620500206', '右开关组件（门锁到位开关组件）‖M422000148‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2986, '620400076', '线‖材质牛筋线软白色、线直径0.8mm；1500米/卷', '不可维修', '卷', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2987, '620400075', '缝补针‖钢制针长6.2cm、直径2mm、针孔大小宽度1mm长2mm', '不可维修', '根', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2988, '620600099', '开口销‖10*56', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (2989, '620800156', '断路器-风机‖GV2-ME05C(0.63-1A)‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2990, '620800155', '司机室通风单元减震器‖GV2-ME05C(0.63-1A)‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2991, '620500205', '门到位开关‖TS-0308060010‖康尼', '不可维修', '个', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2992, '620500204', '紧急解锁开关‖TS-0308060010‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (2993, '621300045', 'LED驱动电源‖LPDM61-00-000‖兰普', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2994, '620600098', '螺栓‖M16*150；803314302016150‖思锐', '不可维修', '件', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2995, '620800154', '回风过滤网‖770399014203‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2996, '620800153', '新风滤网‖770399014202‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2997, '620500203', '止挡组件‖MJ560AP07-10001‖康尼', '不可维修', '套', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (2998, '620700323', '接地轴箱前盖‖PBT12400102‖三合山', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (2999, '620700322', '动车转向架‖PW80E-Ⅱ‖浦镇', '可维修', '台', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3000, '620700321', '润滑油‖81131‖苏莱瑞（制造商：莱伯斯）', '不可维修', '桶', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3001, '620500202', '端部解锁‖MS140DW23-2-20701L‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3002, '620800152', '避震软管‖770399015503;HY-07;ODF22×292‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3003, '620800151', '温控器‖E5CSL-RP‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3004, '620800150', '模式选择开关‖LW39-16A-4OB-022X/2P‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3005, '620800149', '空调司机室变压器‖BTR300-380G230‖上海博杰', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3006, '620800148', '司机室送风机‖DKHM 225-2SW.040.4DA‖盾安', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3007, '620800147', '接触器-风机和接触器‖LC1-D09FDC；DC110V‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3008, '620800146', '继电器-加热器和风机‖RXM2CB2FD；DC110V‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3009, '620800145', '断路器-加热器‖OSMC65H3D6/3P‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3010, '620800144', '避震软管‖770399015504；HY-09；ODF28×330‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3011, '620500201', '长导柱‖MS140DW23-2-20701R‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3012, '620800143', '压缩机减震脚‖770301000076‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3013, '620800142', '低压开关‖PS1-084-005‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3014, '620800141', '高压开关‖PS1-084-003‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3015, '620800140', '排气温度保护开关‖770401000233‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3016, '621400144', '客室控制器‖HQ-30010-SPU-1‖华启', '可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3017, '620800139', '风速选择开关‖LW39-16A-4OC-0222X/2P‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3018, '620600097', '螺母‖802011101016000；M16‖思锐', '不可维修', '件', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3019, '620700320', '空簧调整垫t2‖PBT131302‖瑞发', '不可维修', '个', NULL, '01073-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3020, '620700319', '空簧调整垫t5‖PBT131301‖瑞发', '不可维修', '个', NULL, '01073-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3021, '620800138', '电磁阀‖EVR10‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3022, '620800137', '风阀执行器‖770416000013‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3023, '620800136', '制热热力膨胀阀‖TGEZ5‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3024, '620800135', '视液镜‖SGN12S‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3025, '620800134', '四通阀‖DSF-34H;R407C‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3026, '620800133', '制冷热力膨胀阀‖TGEZ7‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3027, '620800132', '干燥过滤器‖DMB165S‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3028, '621400143', '12.1”触摸监控屏‖HQ-30010-TCU-1‖华启', '可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3029, '621400142', '紧急报警对讲器（集成噪检器）‖HQ-30010-PECU-1‖华启', '可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3030, '620700318', '轴箱密封垫‖PBT122071‖扬州华通', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3031, '620700317', '车轮‖PBT122012‖马钢', '可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3032, '620700316', '紧线座‖PBT126041‖瑞发', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3033, '620700315', '中心牵引节点‖PBT132001‖雷尔伟', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3034, '620700314', '牵引中心橡胶堆‖PBT132003‖雷尔伟', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3035, '620500200', '坦克链接头2‖TS-0125080155‖康尼', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3036, '620500199', '门板下挡销‖MS130DW27-2-20301‖康尼', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3037, '620500198', '隔离锁行程开关‖TS-0308060353‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3038, '620500197', '锁舌‖MJ560AP10R-21301‖康尼', '不可维修', '套', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3039, '621400141', '司机室广播主机‖HQ-30010-CPU-1‖华启', '可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3040, '621400140', '网络存储主机‖HQ-30010-NVR-1‖华启', '可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3041, '621400139', '广播控制盒(含话筒）‖HQ-30010-DACU-1‖华启', '可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3042, '621400138', '司机室扬声器‖HQ-30010-LSP_C-1‖华启', '可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3043, '620500196', '中挂架‖MS140DW23-2-20702‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3044, '621400137', '21.LCD液晶显示屏‖HQ-30010-LCD-1‖华启', '可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3045, '621400136', 'LCD动态地图‖HQ17042-MDU-1‖华启', '可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3046, '621400135', '贯通道LED显示屏‖HQ-30010-IDU-1‖华启', '可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3047, '621400134', '终点站LED显示屏‖HQ-30010-FDU-1‖华启', '可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3048, '620500195', '边挂架‖MS140DP9-2-32901‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3049, '621400133', '客室扬声器‖HQ-30010-LSP-1‖华启', '不可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3050, '620500194', '锁舌‖MJ560AP10L-21301‖康尼', '不可维修', '套', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3051, '620800131', '压缩机‖ZRH87KTE-TFD-502‖盾安', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3052, '621400132', '弓网摄像机‖HQ-30010-PCAM-1‖华启', '不可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3053, '621400131', '客室摄像机‖HQ-30010-CAM-1‖华启', '不可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3054, '621400130', '司机室摄像机‖HQ-30010-CAM_C-1‖华启', '不可维修', '台', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3055, '620500193', '门锁（右门）‖MJ560AP16R-21000‖康尼', '不可维修', '个', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3056, '621500041', '事件记录模块‖TE486-050000‖时代电气', '可维修', '个', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3057, '620300067', '小绝缘子‖3-G01.5430‖崇德', '不可维修', '件', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3058, '621300044', '贯通道筒灯‖LPD45B-00-000‖兰普', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3059, '621500040', '显示器HMI‖TE7932200000-005‖时代电气', '可维修', '个', NULL, '01073-01080', '服务关键物料C2', NULL);
+INSERT INTO `wms_goods` VALUES (3060, '621500039', 'RS485通信模块‖ZS826E-400-000‖时代电气', '可维修', '个', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3061, '620700313', '一系橡胶弹簧‖PBT121001‖株洲时代', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3062, '620600096', '防松板‖SRIT55-00-00-17‖青岛思锐', '不可维修', '件', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3063, '620700312', '分配器组成‖PBT171010‖苏莱瑞（制造商：莱伯斯）', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3064, '620700311', '电控箱‖PBT910029‖苏莱瑞（制造商：莱伯斯）', '可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3065, '620700310', '接车体软管‖PBT171006；L=700‖苏莱瑞（制造商：莱伯斯）', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3066, '620500192', '坦克链‖TS-0125080151‖康尼', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3067, '621500038', '数字量输入输出模块‖ZS826E-216-000‖时代电气', '可维修', '个', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3068, '621500037', '中继模块‖TE486-600000‖时代电气', '可维修', '个', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3069, '620700309', '一系调整垫‖t2；PBT121003‖瑞发', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3070, '620700308', '天线支架‖PBT920019‖瑞发', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3071, '620700307', 'O形密封圈‖9939030B；195*3.55-A‖扬州华通', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3072, '620700306', '滚动轴承‖PBT122082‖FAG', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3073, '620500191', '整套安装用标准件及专用垫片‖PM06600716010601‖康尼', '不可维修', '套', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3074, '620500190', '隔离锁开关组件‖MS140DW23-2-28000‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3075, '620600095', '内六角圆柱头螺钉‖8980000000037；M36*120‖青岛思锐', '不可维修', '件', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3076, '620800130', '电动机热磁断路器‖GV2-ME22C；AC400V‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3077, '620800129', '控制器‖ACCU06；输入电压：DC110V；输出电压：DC24V；工作功率20W‖盾安', '可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3078, '620800128', '小型断路器‖5SY6 3108 CC AC400 10A 3P‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3079, '620800127', '电动机热磁断路器‖GV2-ME08C；AC400V‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3080, '620500189', '坦克链接头1‖TS-0125080154‖康尼', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3081, '620500188', '钢丝绳（用于外操作组件）‖MS130DP11-2-43001‖康尼', '不可维修', '套', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3082, '620500187', '车内紧急出口装置组件‖MS140DW3-2-41000‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3083, '620500186', '左滚轮摆臂组件‖MS140DW07-2-23000L‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3084, '620500185', '右滚轮摆臂组件‖MS140DW07-2-23000R‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3085, '620500184', '左滑动小车组件‖MS130DW37-2-32000L‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3086, '620500183', '右滑动小车组件‖MS130DW37-2-32000R‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3087, '620500182', '完整的丝杆部件组‖PM06600716170805（M310101S01/M310101S02)‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3088, '620700305', '油箱组成‖PBT171007‖苏莱瑞（制造商：莱伯斯）', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3089, '620700304', '喷嘴组成‖PBT171011‖苏莱瑞（制造商：莱伯斯）', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3090, '620700303', '调节板组成（右）‖PBT171009‖苏莱瑞（制造商：莱伯斯）', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3091, '620700302', '调节板组成(左)‖PBT171008‖苏莱瑞（制造商：莱伯斯）', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3092, '620700301', '接喷嘴软管‖L=550；PBT171005‖苏莱瑞（制造商：莱伯斯）', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3093, '621300043', '光源板4‖LPCY318-01-05-000‖兰普', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3094, '620600094', '止动块‖SRIT108-02-00-01‖青岛思锐', '不可维修', '件', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3095, '621100109', '按钮‖894201‖mafelec', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3096, '621500036', '指示灯‖AD16-22P/G26-TKP‖西门子', '不可维修', '个', NULL, '01073-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3097, '620100379', '连接器‖YGC-A6‖永贵', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3098, '620100378', '连接器‖YGC-A104/6M12A‖永贵', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3099, '620500181', '门锁（左门）‖MJ560AP16L-21000‖康尼', '不可维修', '个', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3100, '620900108', '压力开关‖II53565/T048S‖克诺尔', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3101, '620900107', '网关阀‖G7029/HNP01‖克诺尔', '可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3102, '620700300', '二系横向减振器‖PBT131901‖DISPEN', '可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3103, '620700299', '二系垂向减振器‖PBT131801‖DISPEN', '可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3104, '620900106', '智能阀‖S7029/HNP01‖克诺尔', '可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3105, '620100377', '司机室座椅‖DFGHZL1T-SY01-00-000‖大丰', '不可维修', '把', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3106, '620400074', '中央板磨耗条‖UFD279-02-00-02‖欧特美', '不可维修', '块', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3107, '620400073', '侧翼板磨耗条‖UFD279-02-00-03L‖欧特美', '不可维修', '块', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3108, '620500180', '窗框胶条粘接件‖MJ560AP07-20001‖康尼', '不可维修', '个', NULL, '01073-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3109, '620100376', '波纹管‖PAC4/BL‖顺和', '不可维修', '个', NULL, '01073-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3110, '620100375', '波纹管‖PACL42/BL‖顺和', '不可维修', '个', NULL, '01073-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3111, '620100374', '挡风玻璃‖PM144T1751010100‖海安铁锚', '不可维修', '块', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3112, '620100373', '客室大玻璃‖PM144T1721020100‖海安铁锚', '不可维修', '块', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3113, '620500179', '缓冲头‖L629000007‖康尼', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3114, '620100372', '波纹管‖PAFL28/BL‖顺和', '不可维修', '个', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3115, '620700298', '管接头‖ST34/U144/SFA‖顺和', '不可维修', '个', NULL, '01073-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3116, '620300066', '完整连接杆‖1-K06.14676‖崇德', '不可维修', '件', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3117, '620400072', '渡板连杆组成‖UFD130-01-00-00‖欧特美', '不可维修', '根', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3118, '620300065', '完整下降机构‖1-E24.5120‖崇德', '可维修', '件', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3119, '620300064', '杆端关节轴承（平行导杆）‖GARSW 12 R.C3‖崇德', '不可维修', '件', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3120, '620700297', '空气弹簧组成‖PBT131101‖思锐', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3121, '620500178', '右上滑道‖MS140DW23-2-20703R‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3122, '620500177', '左上滑道‖MS140DW23-2-20703L‖康尼', '不可维修', '套', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3123, '620400071', '车体框组成‖UFD248-06-00-00‖欧特美', '不可维修', '套', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3124, '620300063', '杆端关节轴承（平行导杆）‖GALRSW 12 R.C3‖崇德', '不可维修', '件', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3125, '620400070', '渡板磨耗块‖UFD279-02-00-01R‖欧特美', '不可维修', '块', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3126, '620800126', '中间接口继电器‖CR-P024DC1‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3127, '621500035', '网关模块‖TE486-560000‖时代电气', '可维修', '个', NULL, '01073-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3128, '620800125', '足部加热器‖700103000001‖盾安', '可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3129, '620800124', '紧急逆变器‖700105000001‖盾安', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3130, '620800123', 'DC-DC电源‖SD-150D-24；输入：DC110V；输出：DC24V‖盾安', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3131, '620800122', '温度选择开关‖LW39-16B-4OC-0112X/1P-TK‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3132, '620800121', '模式选择开关‖LW39-16B-4OE-011212X/2P-TK‖盾安', '不可维修', '个', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3133, '120400049', '列车清洗剂‖KF-5305 25kg/桶‖瑞驰', '不可维修', '桶', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3134, '120400048', '全能高效清洁剂‖SE-411 500ml/瓶‖嘉德仕', '不可维修', '瓶', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3135, '120400047', '多功能喷剂‖0890085500 500ML‖伍尔特', '不可维修', '瓶', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3136, '120400046', '列车车体清洗剂‖GRB-801B 25KG/桶‖瑞思博', '不可维修', '桶', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3137, '120400045', '维修强力清洁剂‖0890107 500ML‖伍尔特', '不可维修', '桶', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3138, '120400044', '列车清洗剂‖ZYDX-1(中性） 20KG/桶‖億尔', '不可维修', '桶', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3139, '120400043', '车厢外表清洗剂‖WT-60W 25KG/桶‖嘉德仕', '不可维修', '桶', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3140, '120400042', '列车机械油污清洗剂‖GRB-811 500ml/瓶‖瑞思博', '不可维修', '瓶', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3141, '120400041', '多功能去污剂‖KF-5900 25kg/桶‖瑞驰', '不可维修', '桶', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3142, '120400040', '精密电子仪器清洗剂‖异丙醇清洁剂UNICLNR-CLEAR-500ML-0893223500', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3143, '120400039', '精密电子清洗剂‖HX CLEAN HE;150012‖海得润', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3144, '120400038', '防松线清洁剂‖HX CLEAN HM;150011‖海得润', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3145, '120400037', '多用途工业清洁剂‖500ML‖伍尔特', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3146, '120400036', '精密电子仪器清洗剂‖SE-241‖嘉德仕', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3147, '120400035', '全能高效清洁剂‖SE-411‖嘉德仕', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3148, '120400034', '清洁去除剂‖RSE-60A‖瑞驰', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3149, '120400033', '清洁去除剂‖表面油污清洗剂RSB-811‖瑞思博', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3150, '120400032', '精密电子仪器清洗剂‖RSE-550A', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3151, '120400031', '精密电子仪器清洗剂‖DE-35A‖瑞思博', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3152, '620500176', '复合轴承‖1215#‖康尼', '不可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3153, '620300062', '浸金属碳滑条‖ECHP72C‖易卡朋', '不可维修', '根', NULL, '01001-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3154, '620300061', '浸金属碳滑条‖VAN1219‖北京万高', '不可维修', '根', NULL, '01001-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3155, '810400250', '绿联VGA转HDMI线', '0', '条', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3156, '100500016', '带木柄毛刷‖2寸；猪毛', '0', '把', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3157, '100500015', '带木柄毛刷‖10寸，猪毛', '0', '把', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3158, '100500014', '带木柄毛刷‖1寸；猪毛', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3159, '100600024', '防水绝缘胶带‖28CT‖3M', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3160, '100200427', '304不锈钢平头拉铆螺母‖M5', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3161, '100200426', '304不锈钢平头拉铆螺母‖M6', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3162, '620100371', '卡式螺母‖M3；不锈钢+不锈钢', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3163, '100200425', '304不锈钢平头拉铆螺母‖M4', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3164, '620700295', '接地铜盘‖N1019096A；厂商物料代码117300001529‖上海美尔森', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3165, '620300060', '浸金属碳滑条‖DK2020-C61M1‖东南佳', '不可维修', '条', NULL, '01001-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3166, '620500170', '锁到位开关组件‖M422001S02‖康尼', '不可维修', '个', NULL, '01001-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3167, '620800118', '瞬时辅助触点‖GVAE113‖施耐德', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3168, '620800119', '状态指示接点‖26924‖施耐德', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3169, '620500169', '端部解锁组件‖M430301S02‖康尼', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3170, '621300040', '光源组件‖LPCY318-01-02-000/LPCY318-01-03-000/LPCY318-01-04-000‖兰普', '不可维修', '套', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3171, '620500161', '下导轨‖左；M230102S03；厂家物料号：28900000179300‖康尼', '不可维修', '条', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3172, '620500162', '偏心轮‖L654002S01；厂家物料号：090100096802‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3173, '620500163', '隔圈‖L603002S02；厂家物料号：0901002380‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3174, '620500158', '海绵胶条‖L715006S01；厂家物料号：28900000111100‖康尼', '不可维修', '条', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3175, '620500159', '隔离锁‖M228002S01；厂家物料号：28900000223900‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3176, '620500160', '下导轨‖右；M230102S04；厂家物料号：28900000178900‖康尼', '不可维修', '条', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3177, '620500155', '外操作装置‖M4010100099；厂家物料号：0801420108‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3178, '620500156', '平衡轮组件‖M410200083；厂家物料号：0801340025‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3179, '620500157', '挡销支架组件‖MS140DP22-2-20001；厂家物料号：28100002815600‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3180, '620500153', '滑筒组件‖右；M322001S02；厂家物料号：0901012894‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3181, '620500154', '承载驱动机构B‖MS130DP32-2-30000B；厂家物料号：27100300085100‖康尼', '不可维修', '套', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3182, '620500150', '中间支撑组件‖M318001S01；厂家物料号：0901012896‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3183, '620500151', '传动架‖M322101S01；厂家物料号：0901012967‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3184, '620500152', '滑筒组件‖左；M322001S01；厂家物料号：0901012895‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3185, '620500147', '隔离锁开关组件（短线）‖M421000096；厂家物料号：27100280012100‖康尼', '不可维修', '条', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3186, '620500148', '锁到位撞板‖L302003S01；厂家物料号：090100964901‖康尼', '不可维修', '块', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3187, '620500149', '门到位撞块‖L302002S01；厂家物料号：28900000168900‖康尼', '不可维修', '块', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3188, '620500144', '上铰链组件‖左；M324000062；厂家物料号：28500000808800‖康尼', '不可维修', '块', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3189, '620500145', '锁挡‖左；L304000145；厂家物料号：0903003809‖康尼', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3190, '620500146', '短导柱‖M331201S01；厂家物料号：0901012918‖康尼', '不可维修', '根', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3191, '620500141', '窗框胶条粘接件‖M233000144；厂家物料号：0903002920‖康尼', '不可维修', '条', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3192, '620500142', '窗钩‖L390000063；厂家物料号：28200000020600‖康尼', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3193, '620500143', '上铰链组件‖右；M324000063；厂家物料号：28500000808900‖康尼', '不可维修', '块', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3194, '620500138', '长导柱‖L642000003；厂家物料号：0901014378‖康尼', '不可维修', '根', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3195, '620500139', '从门控器‖MKQ131-110RS-RS MK7855-96B；厂家物料号：29020030051000‖康尼', '可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3196, '620500140', '排水套‖L604000357；厂家物料号：0903002975‖康尼', '不可维修', '条', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3197, '620500135', '下铰链组件‖左；M324000064；厂家物料号：28500000809000‖康尼', '不可维修', '块', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3198, '620500136', '锁挡‖右；L304000146；厂家物料号：28500000832101‖康尼', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3199, '620500137', '携门架垫片‖锥形弹簧垫圈；DIN6796；10-200HV-达克罗；厂家物料号：0204000172‖康尼', '不可维修', '片', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3200, '620500132', '锁舌‖左；L304000006；厂家物料号：28500000072401‖康尼', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3201, '620500133', '门板周边密封胶条‖L713000243；厂家物料号：28500000832000‖康尼', '不可维修', '条', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3202, '620500134', '下铰链组件‖右；M324000065；厂家物料号：28500000809100‖康尼', '不可维修', '块', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3203, '620500131', '锁舌‖右；L304000001；厂家物料号：28500000072501‖康尼', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3204, '620700290', '一系垫板‖PBT121007‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3205, '620700291', '齿轮箱视液镜‖OIL GAUGE GLASS M42X1.5_A_SPEC‖安杰达', '不可维修', '个', NULL, '01001-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3206, '620700287', '一系螺母‖M16；镀达克罗；8级；ISO4032‖浦镇', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3207, '620700288', '中心牵引锁紧钢丝‖∅1.2；0525010B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3208, '620700289', '二系安全垫圈‖10；镀达克罗；2841630B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3209, '620700284', '回流电刷‖U-PBT124024‖美尔森', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3210, '620700285', '接地轴箱垫圈‖10；镀达克罗；2840210B‖骏威', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3211, '620700286', '中心牵引安全垫圈‖20；2841660B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3212, '620700281', '中心牵引防松片‖PBT132010‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3213, '620700282', '二系螺栓‖M12×30；镀达克罗；2800223B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3214, '620700283', '横向橡胶止挡调整垫‖t5；PBT132013‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3215, '620700278', '防滑轴箱螺堵‖M22×1.5；0935010B‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3216, '620700279', '中心牵引起吊止档‖PBT610009‖高铁', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3217, '620700280', 'TIA天线支架‖PBT180019‖瑞发', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3218, '620700275', '高度调节杆组成‖PBT134011‖铁树', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3219, '620700276', '中心牵引螺栓‖M16×50；镀达克罗；2800246B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3220, '620700277', '中心牵引安全垫圈‖16；镀达克罗；2841650B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3221, '620700272', '一系调整垫‖t4；PBT121004‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3222, '620700273', '中心牵引螺栓‖M36×110；2800292B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3223, '620700274', '一系调整垫‖t2；PBT121-003‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3224, '620700269', '中心牵引自锁垫圈‖16；镀达克罗；2841720B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3225, '620700270', '牵引中心销‖B0GMD32000001；浦镇物料号：PBT132005‖三合山', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3226, '620700271', '接地轴箱接地线缆‖PBT210010‖浦镇', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3227, '620700266', '一系调整垫‖t6；PBT121005‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3228, '620700267', '二系垫圈‖12-24；镀达克罗；2840510B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3229, '620700268', '二系安全垫圈‖8；镀达克罗；2841620B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3230, '620700263', '二系垫圈‖L8；镀达克罗；2841410B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3231, '620700264', '中心牵引螺栓‖M24×70；2800280B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3232, '620700265', '一系垫圈‖NL型；36；镀达克罗‖浦镇', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3233, '620700261', '轮对提吊‖PBT12100201‖瑞发', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3234, '620700262', '一系螺栓‖M36×90；镀达克罗；8.8级；ISO4017；头部带孔‖浦镇', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3235, '620700258', '防滑轴箱测速齿轮‖PBT123021‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3236, '620700259', '接地轴箱螺栓‖M10×30；镀达克罗；2800217B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3237, '620700260', '信号轴箱单边管卡‖∅25；090B9110‖江阴必得', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3238, '620700255', '二系螺母‖M12；镀达克罗；2821330B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3239, '620700256', '抗侧滚螺栓‖M20×55；镀达克罗；2800272B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3240, '620700257', '抗侧滚螺栓‖M16×85；镀达克罗；2800255B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3241, '620700252', '一系螺栓‖M16×60；镀达克罗；8.8级；ISO4017‖浦镇', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3242, '620700253', '二系螺栓‖M12×35；镀达克罗；2800227B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3243, '620700254', '二系螺栓‖M12×50；镀达克罗；2800115B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3244, '620700249', '中心牵引调整垫‖t2；PBT132011‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3245, '620700250', '二系螺母‖M10；镀达克罗；2821320B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3246, '620700251', '中心牵引调整垫‖t7；PBT132009‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3247, '620700246', '二系调整垫‖t5；PBT131303‖骏威', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3248, '620700247', '垂向油压减振器下座‖左；PBT131201‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3249, '620700248', '接地轴箱弹性垫圈‖TREP；10-3L‖骏威', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3250, '620700243', '二系螺栓‖M12×20；镀达克罗；2800220B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3251, '620700245', '牵引中心座‖PBT13200401‖三合山', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3252, '620700240', '轮对轴箱车轮注油孔螺堵‖PBT110022‖马钢', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3253, '620700241', '中心牵引起吊垫‖PBT132006‖高铁', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3254, '620700242', '中心牵引调整垫‖t5；PBT132012‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3255, '620700237', '二系螺栓‖M8×60；镀达克罗；2800110B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3256, '620700238', '轮对轴箱降噪环‖697；PBT122022‖哈通达', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3257, '620700239', '二系螺母‖M8；镀达克罗；2821310B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3258, '620700234', '二系调整垫‖t2；PBT131304‖骏威', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3259, '620700235', '垂向油压减振器下座‖右；PBT131202‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3260, '620700236', '横向橡胶止挡调整垫‖t10；PBT132008‖瑞发', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3261, '620700231', '一系螺栓‖M16×30；镀达克罗；10.9级；ISO4017；浦镇物料号：2800235B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3262, '620700232', '二系螺栓‖M12×25；镀达克罗；2800221B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3263, '620700233', '二系安全垫圈‖12；镀达克罗；2841640B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3264, '620700229', '轮对轴箱降噪环‖710；PBT122021‖哈通达', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3265, '620700230', '中心牵引螺栓‖M20×100；2800183B‖骏威', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3266, '621300037', '光源板组成（头灯）‖LPQZD72-01-02-100‖兰普', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3267, '621300038', '司机室顶棚灯驱动‖LPDM63-00-000‖兰普', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3268, '621300039', 'LED驱动器220V（整流器）‖LPDM55-00-000；AC220V/40W‖兰普', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3269, '621300034', '标志灯LED板‖白；LPQZD164-02-02-000‖兰普', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3270, '621300035', '标志灯LED板‖红；LPQZD164-02-01-000‖兰普', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3271, '621300036', '电源模块组成（头灯）‖LPQZD88-03-05-100‖兰普', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3272, '621300031', '头灯总成‖LPQZD147-01-00-000L‖兰普', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3273, '621300032', 'LED控制板‖红；LPQZD164-02-04-000‖兰普', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3274, '621300033', 'LED控制板‖白；LPQZD164-02-03-000‖兰普', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3275, '620400058', '顶板安装座‖左；UFD47-10-00-00-L‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3276, '620400059', '渡板折页‖UFD248-07-01-00‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3277, '621300030', '头灯总成‖LPQZD147-01-00-000R‖兰普', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3278, '620400055', '顶板安装座‖右；UFD47-10-00-00-R‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3279, '620400056', '护板压簧‖UFD62-03-00-03‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3280, '620400057', '护板上安装座‖右；UFD248-04-00-00-R‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3281, '620400052', '顶板调整垫板‖UFD248-00-00-01‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3282, '620400053', '车体框密封胶条‖UFD200-00-00-01‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3283, '620400054', '渡板磨耗条‖右；UFD248-07-00-03-R‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3284, '620400049', '连接板‖UFD248-07-00-04‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3285, '620400050', '护板下安装座‖左；UFD248-05-00-00-L‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3286, '620400051', '中顶板毛毡‖1423X35‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3287, '620400046', '裙边‖左；UFD99-02-01-01-L‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3288, '620400047', '锁舌组成‖左；UFD62-06-01-00-L‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3289, '620400069', '护板上安装座‖左；UFD248-04-00-00-L‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3290, '620400043', '连接框密封胶条‖UFD200-00-00-02‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3291, '620400044', '护板下安装座‖右；UFD248-05-00-00-R‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3292, '620400068', '锁舌组成‖右；UFD62-06-01-00-R‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3293, '620900101', '电控箱组件‖07021000440‖莱伯斯', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3294, '620900102', '供风单元‖II97902/012‖克诺尔', '可维修', '个', NULL, '01049-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3295, '620900103', '风缸‖II17955/100X101‖克诺尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3296, '620900099', '维护接口‖J80247/095‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3297, '620900100', '铜弯头‖022004001‖莱伯斯', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3298, '620900096', '辅助制动控制阀‖B00（CUBE阀）；II70461/2‖克诺尔', '可维修', '个', NULL, '01049-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3299, '620900097', '软管‖II90265/07608NT‖克诺尔', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3300, '620900098', '压力开关角钢‖C79356‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3301, '620900093', '连接器‖B00/B05/B11；STN30981‖克诺尔', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3302, '620900094', '停放制动缓解装置‖左；II48339/0920‖克诺尔', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3303, '620900095', '压力开关连接器‖C71275‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3304, '620900090', '风缸转换接头‖77633112‖克诺尔', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3305, '620900091', '连接器‖GV阀；J80247/229‖克诺尔', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3306, '620900092', '压力开关插座‖II35833‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3307, '620900087', '停放制动缓解装置‖左；II48339/0730‖克诺尔', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3308, '620900084', '喷嘴组件‖07021000430‖莱伯斯', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3309, '620900085', '风缸中间连接接头‖77239601‖克诺尔', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3310, '620900086', '软管‖II90265/14008NQ‖克诺尔', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3311, '620900081', '电控箱组件‖07021741340‖莱伯斯', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3312, '620900082', '快速接头‖A2900191‖莱伯斯', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3313, '620900078', '球阀连接接头（风缸）‖77239602‖克诺尔', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3314, '620900079', '连接器‖B00/B09；STN33642/F007‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3315, '620900080', '停放制动缓解装置‖右；II48339/1705II48339/1705‖克诺尔', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3316, '621200122', '直流环节电容‖LNK-P2X-25-180；纵横物料号：130302001039‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3317, '621200123', '升压器扼流圈‖4mH/124A；1500；纵横物料号：130400001025‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3318, '620900077', '软管‖II93453/09420NT‖克诺尔', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3319, '621200119', '信号调理模块‖CT-Adpapter；X054-1；纵横物料号：130901001013‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3320, '621200120', '中频变压器‖1AC 1150V/670V；20kHz；60kW；纵横物料号：130400001023‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3321, '621200121', '进气格栅‖TKQ5221095；纵横物料号：141037001228‖纵横', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3322, '621200116', '输出接触器‖LTC 250 3P NA；LTC002503；纵横物料号：130501001044‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3323, '621200117', '熔断器插头‖6.3A；281-511/282-466；纵横物料号：122300001042‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3324, '621200118', '熔断器插头‖1A；281-511/282-463；纵横物料号：122300001040‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3325, '621200113', '输入滤波电容‖E63_100U_10%_2.8kV_M10；纵横物料号：130302001036‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3326, '621200114', '铁氧体磁芯‖TKD531C2505；纵横物料号：130309001002‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3327, '621200115', '电容‖2u_5%_630V_PP PMB 1200V F208；纵横物料号：130302001037‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3328, '621200110', '电阻器‖R-BG-05/2AA；纵横物料号：130301001034‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3329, '621200111', '热敏电阻‖D48A-NTC10KOHM；纵横物料号：120600001559‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3330, '621200112', '电压传感器‖EFD 650V；纵横物料号：130201001808‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3331, '621200108', '熔断器插头‖3.15A；281-511/282-472；纵横物料号：130505000005‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3332, '621200109', '熔断器‖2000413；纵横物料号：130505000003‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3333, '621200105', '电阻夹‖500R/0.6 2.5QMM；纵横物料号：130301000003‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3334, '621200106', '电容‖FPX66N0105J；纵横物料号：130302001034‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3335, '621200107', '风机电机断路器‖3RV1011-1GA15；纵横物料号：130599000013‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3336, '621200102', '电流传感器‖T60404-N4644-X054；纵横物料号：130801001131‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3337, '621200103', '电流传感器‖T60404-N4644-X053；纵横物料号：130801000003‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3338, '621200104', '电容‖FPG66Z0474J；纵横物料号：130302001030‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3339, '621200099', '不锈钢螺丝‖HEXAG. SCREW ISO 4017 M8x14 A2-70 1.4301 M8x14；纵横物料号：4201818014‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3340, '621200100', '正弦滤波电容器‖E54.M10-104C60；纵横物料号：130302001045‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3341, '621200101', '滤波电阻‖GBS 30/165 0R4/150W/5%；纵横物料号：130301001033‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3342, '621200096', 'NTC温度传感器 6M引出线‖TEMP.-PROBE-ACCES.NTC(6M CABLE+SOCKET)；纵横物料号：4142200808‖纵横', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3343, '621200097', '温度传感器连接片‖CONNECTOR  L-7x35x3 FOR SONDE PT100;M8；纵横物料号：4144242438‖纵横', '不可维修', '片', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3344, '621200098', '57毫米连接片‖CONNECTOR F1/2 L-L 57/35x3；纵横物料号：4144242025‖纵横', '不可维修', '片', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3345, '621200093', '加水管‖HOSE (PU) FOR WATER-INJECTOR SYSTEM PS；纵横物料号：4144000165‖纵横', '不可维修', '根', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3346, '621200094', '加液塞‖双通；PLUG WATER-INJECTOR CPL.W.ADAPTER PS ；纵横物料号：4144000133‖纵横', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3347, '621200095', '订制连接片‖special connector F1/2 35X3；纵横物料号：4144242472‖纵横', '不可维修', '片', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3348, '621200090', '自锁螺母‖M16；SUS316 A4-70‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3349, '621200091', '塑料螺母‖HEXAGONAL LOCK NUT BMN-M20X1.5 BLACK PMA M20X1.5；纵横物料号：4141200177‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3350, '621200092', '双通道连接器‖不锈钢；CRATEADAPTER F. WATERINGEQUIPMENT PS；纵横物料号：4144000164‖纵横', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3351, '621200087', '绝缘护套‖白色；COVER HOOD; WHITE; F.END-TERMINAL；纵横物料号：4144160610‖纵横', '不可维修', '条', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3352, '621200088', '93毫米连接片‖CONNECTOR F1/2 L-L 93/35x3；纵横物料号：4144242005‖纵横', '不可维修', '片', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3353, '621200089', '蝶形垫片‖SPRING WASHER B 8 DIN137-1.4301；纵横物料号：4064001208‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3354, '621200085', '阻燃绝缘条‖白色；INSULAT.PROFILE F.CON.35X3/6 EXT.WHITE；纵横物料号：4144160700‖纵横', '不可维修', '条', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3355, '621200086', '平头螺丝‖不锈钢；FLAT HEADED SCREW ISO 1580 M4X20 1.4301；纵横物料号：4201804020‖纵横', '不可维修', '颗', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3356, '621200082', '加水接口‖WATER INPUT COUPLING WITH END CAP PS CPL；纵横物料号：4144000141‖纵横', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3357, '621200083', '加水管环形卡子‖COLLAR F.TUBE INSTALLATION WI-SYSTEM PS；纵横物料号：4144000175‖纵横', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3358, '621200084', '加液塞‖单通；END-PLUG WATER-INJECTOR CPL.W.ADAPTER PS；纵横物料号：4144000134‖纵横', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3359, '621200079', '外六角螺栓‖M8×30；SUS316 A4-70‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3360, '621200080', '外六角螺栓‖M8×16；SUS316 A4-70‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3361, '621200081', '材料圆形垫片‖SEALING RING SMOOTH M20x1.5 PE PE；纵横物料号：4144000153‖纵横', '不可维修', '颗', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3362, '621200076', '外六角螺栓‖M6×16；SUS316 A4-70‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3363, '621200077', '弹垫‖M4；SUS316‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3364, '621200078', '外六角螺栓‖M4×25；SUS316 A4-70‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3365, '621200073', '熔断器‖100A；NH1GG50V100；X216703‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3366, '621200074', '熔断器‖50A；NH1GG50V50 B213648‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3367, '621200075', '开口铆钉‖φ4.8×16；SUS304‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3368, '621200070', '外六角螺栓‖M4×16；SUS316 A4-70‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3369, '621200071', '熔断器座‖PM111T130101006‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3370, '621200072', '接触器‖3RT2027-2XF40-0LA2‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3371, '621200067', '外六角螺栓‖M5×25；SUS316 A4-70‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3372, '621200068', '弹垫‖M6；SUS316‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3373, '621200069', '自锁螺母‖M4；SUS316 A4-80‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3374, '621200064', '外六角螺栓‖M6×30；A2-70‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3375, '621200065', '闭铆钉‖φ4×8；A2/A2‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3376, '621200066', '闭铆钉‖φ3×8；SUS304‖纵横', '不可维修', '颗', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3377, '621200061', '熔断器‖20A；NH1GG50V20；A222847‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3378, '621200062', '熔断器‖160A；NH1GG50V160；A218247‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3379, '621200063', '蓄电池隔离开关‖ICN 250-200A‖纵横', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3380, '621200058', '连接器‖CF04LVB_1‖纵横', '不可维修', '套', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3381, '621200059', '接触器‖3RT2037-3XF40-0LA2；110VDC‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3382, '621200060', '熔断器‖40A；NH1GG50V40；Y212633‖纵横', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3383, '621200055', '端子排‖TB04LVB‖纵横', '不可维修', '条', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3384, '621200056', '连接器‖CF04LVB_2‖纵横', '不可维修', '套', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3385, '621200057', '端子排‖TB05 LVB-3‖纵横', '不可维修', '条', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3386, '620100365', '中央扶手螺栓1‖螺钉M6×8；不锈钢；浦镇物料号：2813A004‖浦镇', '不可维修', '颗', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3387, '620100366', '门切除指示灯‖红色；PM121T1360702003‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3388, '620100367', '右门柱罩板‖PM121T1621030200‖大丰', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3389, '620100362', '灯测试按钮‖LA39-C1-30/K-RWP；浦镇物料号：PM121T1300000513‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3390, '620100363', '残疾人区扶手组成‖PM0GD18710302010‖金字', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3391, '620100364', '保护盖2（左右开门按钮/高速断路器断开、闭合）‖F38-30B-SH9-3；浦镇物料号：PM121T1360705015‖硕维', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3392, '620100359', '大盲窗玻璃‖PM121T1721020300‖江苏铁锚', '不可维修', '块', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3393, '620100360', '列车唤醒/睡眠控制开关‖LW39-16CUP-B2-012X/1-G-RWP；浦镇物料号：PM121T1360706001‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3394, '620100361', '中央扶手螺栓2‖螺钉M5×16；不锈钢；浦镇物料号：2813A066‖浦镇', '不可维修', '颗', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3395, '620100356', '关门按钮片‖红；3SU1901-OFT20-OAAO‖西门子', '不可维修', '片', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3396, '620100357', '紧急制动旁路蜂鸣器‖SCE120MA3SP1B；浦镇物料号：PM121T1360704002‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3397, '620100358', '停放制动施加按钮座‖LW39-C1-101D/R26-RWP；浦镇物料号：PM144T1300000514‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3398, '620100354', '紧急牵引/拖行‖LW39-16CUP-9GC-201X/2-G-RWP；浦镇物料号：PM121T1360706004‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3399, '620100355', '开门按钮片‖绿；3SU1901-OFT40-OAAO‖西门子', '不可维修', '片', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3400, '620100351', '小盲窗玻璃‖PM121T1721020400‖江苏铁锚', '不可维修', '块', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3401, '620100352', '受电弓控制开关‖LW39-16CUP-9AA-2222X/2-G-RWP；浦镇物料号：PM121T1360706002‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3402, '620100353', '门紧急使能旁路/门使能旁路‖LW39-16CUP-9AC-14X/3-G-RWP；浦镇物料号：PM121T1360706016‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3403, '620100348', '门内指示灯‖黄色；PM121T1360702002‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3404, '620100349', '门模式开关‖LW39-16CU-9GC-245X/5-RWP；浦镇物料号：PM121T1360706010‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3405, '620100350', '头灯明暗调节开关‖LW39-16CU-9AC-11X/1-RWP；浦镇物料号：PM121T1360706013‖西门子', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3406, '620100345', '广告框‖PM121T1721070100‖浦镇', '不可维修', '个', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3407, '620100346', '高断断开灯‖ 894226 ‖ MAFELEC', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3408, '620100347', '高断闭合灯‖ 894664 ‖ MAFELEC', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3409, '620100342', '保护盖1（紧急牵引/拖行开关）‖3US1-30-SL90；浦镇物料号：PM121T1360706026‖硕维', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3410, '620100343', '强迫泵风‖ 894205 ‖ MAFELEC', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3411, '620100344', '左门柱罩板‖PM121T1621030100‖大丰', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3412, '620100339', '门关好旁路‖8触电；894663；浦镇物料号：PM121T1360706006‖马福来', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3413, '620100340', '司机室副座椅‖PM121T1-741-031000‖大丰', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3414, '620100341', '刮雨器控制开关‖894497；浦镇物料号：PM121T1360706011‖马福来', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3415, '620100336', '制动不缓解指示灯、门切除指示灯‖红色；WKD10-14-01-000‖唯可', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3416, '620100337', '窗侧单层玻璃‖PM121T1721020200‖江苏铁锚', '可维修', '块', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3417, '620100338', '司机室侧门扶手‖PM121T1-752-030000‖金字', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3418, '620100333', '门外指示灯、门内指示灯‖黄色；WKD10-14-02-000‖唯可', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3419, '620100334', '散流器安装总成‖PM121T1632020000‖今创', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3420, '620100335', '车钩旁路等/ATC模式开关‖LW39-16CUP-9AC-22X/2-G-RWP；浦镇物料号：PM121T1360706003‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3421, '620100330', 'I型六角螺母‖28211077；M8‖浦镇', '不可维修', '颗', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3422, '620100331', '隔间门组成‖PM121T1641051000‖大丰', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3423, '620100332', '司机室照明旋钮‖894661；浦镇物料号：PM121T1360706015‖马福来', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3424, '620100327', '插座保护盖‖PM121T1320100102‖浦镇', '不可维修', '个', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3425, '620100328', '发车按钮座‖894213；浦镇物料号：PM121T1300000525‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3426, '620100329', '警惕按钮旁路/无车间电源旁路/升弓允许旁路/零速旁路/联挂旁路/紧急制动旁路‖LW39-16CUP-9AC-02X/1-G-RWP；浦镇物料号：PM121T1360706007‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3427, '620600084', '1型全金属六角锁紧螺母（+）‖M16；GB/T6184-2000；8级；M000000826065‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3428, '620100325', '灭火器支架组成‖PM121T1721040100‖浦镇', '不可维修', '个', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3429, '620100326', '保护盖3（洗车模式开关）‖SF30-RT90；浦镇物料号：PM121T1360706027‖硕维', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3430, '620600081', '内拉断式EFG3缓冲系统（+）‖SRIT1536-03-00-00；M000001584154‖青岛思锐', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3431, '620600082', '橡胶支承（+）‖SRIT35-04-05-00；M000000488582‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3432, '620600083', 'SRIDG-64型电气车钩（+）‖SRIT1536-04-00-01；M000001584243‖青岛思锐', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3433, '620600078', '异形密封圈（*）‖SRIT35-05-00-01;M000000886603‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3434, '620600079', '防松垫圈（+）‖M10;A2;VS;GB/T3098.6-2014;M000002087312‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3435, '620600080', '防松垫片（+）‖NL36;M000002087706‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3436, '620600075', '六角薄螺母（=）‖M24;GB/T6172.1-2000;5级;M000000824927‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3437, '620600076', '全自动压溃管组成（+）‖SRIT1536-02-00-00；M000001572668‖青岛思锐', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3438, '620600077', '六角头螺栓（+）‖M10X20;GB/T5783-2000;A2-70;M000000019731‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3439, '620600073', '薄螺母（*）‖SRIT172-00-00-14;M000000493169‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3440, '620600074', '六角头螺栓（=）‖M24X200;GB/T5783-2000;8.8级;M000000838849‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3441, '620600070', '六角头螺栓全螺纹（+）‖M24X185；GB/T5783-2000；8.8级；M000000837931‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3442, '620600071', '弹性圆柱销（+）‖M10X20；GB/T879.1-2000\\A2；M000000840934‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3443, '620600072', '带对中橡胶缓冲器（=）‖SRIT1537-03-00-00;M000001584174‖青岛思锐', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3444, '620600067', '风管连接器体（*）‖SRIT800-00-00-05;M000000714708‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3445, '620600068', '2型全金属六角锁紧螺母（*）‖M36;GB/T6185.1-2000;8级;M000000824720‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3446, '620600069', 'O型密封圈（+）‖80X1.8；GB/T3452.1-2005；M000000786102‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3447, '620600064', '前端密封（+）‖SRIT73-06-00-13；M000000475559‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3448, '620600065', '解钩气缸组成（+）‖SRIT1044-01-02-00；M000000934930‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3449, '620600066', '1型六角螺母（+）‖M24；GB/T6170-2000；8级；M000000825923‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3450, '620600061', '加强板（=）‖SRIT1213-03-02-01;M000000954156‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3451, '620600062', 'MRP阀用风管组成（+）‖SRIT1536-01-02-01；M000001584166‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3452, '620600063', '阀杆密封圈（+）‖SRIT73-06-00-10；M000000475560‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3453, '620600058', '平垫圈（+）‖M16；GB/T97.1-2002；M000001978244‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3454, '620600059', '平垫圈（+）‖M10;GB/T97.1-2002;A2;M000001060512‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3455, '620600060', '接地线（*）‖L=1350;SRIT1214-00-00-03;M000000978754‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3456, '620600055', '压溃管组成（*）‖SRIT1539-02-00-00;M000001572678‖青岛思锐', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3457, '620600056', '半自动压溃管组成（=）‖SRIT1537-02-00-00;M000001572672‖青岛思锐', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3458, '620600057', '橡胶块（+）‖SRIT35-06-02-04；氯丁橡胶；M000000715898‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3459, '620600052', '12芯电气连接器（=）‖TL12-DC110;10B-TX;M000001584173‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3460, '620600053', '压簧橡胶柱（+）‖SRIT73-06-00-14；M000000475558‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3461, '620600054', '内六角圆柱头螺钉（*）‖M36X110;GB/T70.1-2008;8.8级;M000000816382‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3462, '620600049', '六角头螺栓（+）‖M16X30;GB/T5783-2000;8.8级;M000001591511‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3463, '620600050', '双叠自锁防松垫圈（+）‖M16；DIN25201-2006；A4；M000002087700‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3464, '620600051', '接地线（=）‖SRIT125-00-00-01;L=1150;M000000934374‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3465, '621400128', 'NVR电源板‖HQ-PCBA-NVRPW-001B‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3466, '621400129', '噪声检测器‖HQ17042-NDT-1‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3467, '620600048', '六角头螺栓（+）‖M16X50；GB/T5783-2000；8.8级；M000000838808‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3468, '621400125', 'MVB板PCBA‖HQ-PCBA-SYMVB-001B‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3469, '621400126', 'PANEL显示屏‖G215HVN01.0‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3470, '621400127', 'MVB主板‖SSMVZ1XX.A-Av1.30‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3471, '621400123', '司机室扬声器‖LD-P32-027‖华启', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3472, '621400124', '固态硬盘‖MSATA 固态硬盘【RBU-SMS180S3/128GJ】', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3473, '621400120', '3716核心板‖HQ-PCBA-H37C-001A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3474, '621400121', '电源模块‖KW75/110T1237V237V2R‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3475, '621400122', 'PA主控扣板‖HQ-PCBA-TXPAKB-001A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3476, '621400117', '监控触摸屏主板扣板PCBA‖HQ-PCBA-NVRKB-001A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3477, '621400118', '金属按键‖HQ17042-DACU-1.5 01‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3478, '621400119', '报警器电源板‖HQ-PCBA-AHPEP-001A 01‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3479, '621400114', '客室主控模块‖HQ17042-SCB-1‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3480, '621400115', '功放模块‖HQ17036-PAB-1‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3481, '621400116', 'LCD电源板‖KAW50/220S12‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3482, '621400111', '重联扣板‖HQ-PCBA-H1ZUIOS-001B‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3483, '621400112', '触摸屏‖AT070TN83 V.1‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3484, '621400113', '动态地图接口板PCBA‖HQ-PCBA-JKB-004A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3485, '621400108', 'DACU电源板PCBA‖HQ-PCBA-SYDC-001A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3486, '621400109', '电源模块‖HQ17036-PWB-1‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3487, '621400110', '重联/UIC总线模块‖HQ17042-IRB-1‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3488, '621400105', '影视播放模块‖HQ17042-MPB-1‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3489, '621400106', '功放板‖HQ-PCBA-AMP-002A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3490, '621400107', '音量控制板PCBA‖HQ-PCBA-JZVC-001A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3491, '621400102', '网络视频播放板PCBA‖HQ-PCBA-NVP-002A 01‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3492, '621400103', 'PA主控载板‖HQ-PCBA-TXPAZB-001B‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3493, '621400104', '动态地图屏核心板PCBA‖HQ-PCBA-NVP-001E(02)‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3494, '621400099', '手咪板PCBA‖HQ-PCBA-MIC-002B‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3495, '621400100', 'NVR主板‖HQ-PCBA-NVRMB-001C‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3496, '621400101', '司机室交换机‖HQ17042-SWB-1‖华启', '不可维修', '台', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3497, '621400096', '影视解码板‖HQ-PCBA-AHVDO-001A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3498, '621400097', 'PA主控模块‖HQ17042-CCB-1‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3499, '621400098', 'IR接收板‖8E-IRYC01-SXX‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3500, '621400093', '网络视频刻录机主板PCBA‖HQ-PCBA-NVRMB-011C‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3501, '621400094', 'NVR接口板制成板‖HQ-PCBA-NVRCN-004A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3502, '621400095', 'SD存储卡‖SDSDUN-008G-Z46', '不可维修', '块', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3503, '621400090', '客室主控板PCBA‖HQ-PCBA-PAM-003A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3504, '621400091', 'iMX6核心板‖HQ-PCBA-IMX6C-002A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3505, '621400092', '喇叭‖YDP4070-10-8N12C-R‖华启', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3506, '621400087', 'NVR接口板‖HQ-PCBA-NVRCN-007A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3507, '621400088', '重联主板‖HQ-PCBA-H1ZUIO-001B‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3508, '621400089', 'LCD屏接口板PCBA‖HQ-PCBA-H1JK-001A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3509, '621400084', '手咪‖MC2100‖华启', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3510, '621400085', '报警器主板‖HQ-PCBA-AHPEC-001A 01‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3511, '621400086', '机械硬盘‖ST12000VN0008‖希捷', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3512, '621400081', '广播控制盒主板‖HQ-PCBA-SYDA-002B（01）‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3513, '621400082', 'SDI视频模块‖HQ17042-SDI-1‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3514, '621400083', 'panel（LCD面板）‖FW366C01V4‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3515, '621400078', 'MVB模块‖HQ17042-MVB-1‖华启', '可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3516, '621400079', '噪检器板‖HQ-PCBA-AHNM-001B 01‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3517, '621400080', '客室交换机‖HQ17042-SWB-2‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3518, '620800113', '小型断路器‖5SY6310-8CC；盾安物料号：770406000080‖盾安', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3519, '620800114', '司机室通风单元直流接触器‖LC1-09FDC；盾安物料号：770408000003‖盾安', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3520, '621400077', '客室主控扣板‖HQ-PCBA-CONN-002A‖华启', '不可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3521, '620800110', '司机室通风单元变压器‖BTR300-380G140；盾安物料号：770403000015‖盾安', '不可维修', '个', NULL, '01073-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3522, '620800111', '断路器‖IC65H 3P D6A‖施耐德', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3523, '620800112', '司机室通风单元热磁断路器‖GV2ME05C‖施耐德', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3524, '620800107', '司机室通风单元温控器‖E5CSZ-RT；盾安物料号：770401000082‖盾安', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3525, '620800108', '三相电压监控继电器‖（KV01/KV02）；3UG4615-1CR20；盾安物料号：770499000073‖盾安', '不可维修', '个', NULL, '01049-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3526, '620800109', '小型断路器‖5SY5204-7CC；盾安物料号：770406000041‖盾安', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3527, '620800105', '接触器‖3RT6027-1KF40；盾安物料号：770408000055‖盾安', '不可维修', '个', NULL, '01049-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3528, '620800106', '小型断路器‖5SY6363-8CC；盾安物料号：770406000043‖盾安', '不可维修', '个', NULL, '01049-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3529, '620800102', '接触器‖3RT6015-1KF42；盾安物料号：770408000053‖盾安', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3530, '620800103', '紧急逆变器‖盾安物料号：700199000061‖盾安', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3531, '620800104', '热磁断路器‖GV2-MC22C/20-25A‖施耐德', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3532, '620300058', '弓头‖SB-035070；订货号：10859872‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3533, '621000111', '模拟量输入模块‖SIBAS KLIP Analog input module；AE4x+/-10V；9AB4143-2DW10‖西门子', '可维修', '个', NULL, '01001-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3534, '620800101', '热磁断路器‖GV2-MC08C/2.5-4A；‖施耐德', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3535, '621000108', '二极管‖1D1800NK02SU29205；2000V；522A；纵横物料号：130304001006‖西门子', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3536, '621000109', '数字量输入模块‖SIBAS KLIP Digital input module；DE16xDC110V；9AB4143-2ED23‖西门子', '可维修', '个', NULL, '01001-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3537, '621000110', '低压检测继电器‖UMD-81-MTDV4-U204-KE 84/90；浦镇物料号:PM121T1320703030‖施密特', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3538, '621500033', 'TC车继电器指示模块2‖ECM001-110；浦镇物料号:PM121T1320700412‖德驰', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3539, '620300056', '完整底架‖SB-034944；订货号：10859819‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3540, '620300057', '完整平行导向板‖4-W08.6652；订货号：10482277‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3541, '621000106', '中央处理器‖Central Processing Unit 686 6FH9715-3AY60‖西门子', '可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3542, '621000107', '数字量输出模块‖SIBAS KLIP Digital output module；DA8xDC110V；9AB4143-2HD21‖西门子', '可维修', '个', NULL, '01001-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3543, '621500032', '向前/向后/RM模式/ATB折返/拖行/半自动车钩/紧制旁路继电器‖ETP61L11BXUUY；浦镇物料号:PM121T1360705002‖德驰', '不可维修', '个', NULL, '01049-01072', '服务关键物料C2', NULL);
+INSERT INTO `wms_goods` VALUES (3544, '620300055', '完整连接杆‖1-K01.14676；订货号：10790332‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3545, '621000104', '风机‖2CS7352-1RG11-5JE3 A5E34815003；纵横物料号：130308001026‖西门子', '可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3546, '621000105', '线路电抗器‖4mH;430A A5E36502279；纵横物料号：130305001020‖西门子', '可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3547, '620300054', '完整下支架‖1-UN22.5558；订货号：10860922‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3548, '621500030', 'TC车继电器指示模块1‖ECM001-110；浦镇物料号:PM121T1320700411‖德驰', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3549, '621500031', 'TC车继电器指示模块4‖ECM001-110；浦镇物料号:PM121T1320700414‖德驰', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3550, '621000102', '玻璃质电阻‖GBS30/265 375 20R K；纵横物料号：130301001023‖西门子', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3551, '621000103', '接口模块‖SIBAS KLIP AS 318 MVB Interface module；9AB4143-2AA50‖西门子', '可维修', '个', NULL, '01001-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3552, '620300053', '完整羊角‖SB-023793；订货号：10703951‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3553, '621500028', 'TC车继电器指示模块3‖ECM001-110；浦镇物料号:PM121T1320700413‖德驰', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3554, '621500029', 'MP车继电器指示模块1‖ECM001-110；浦镇物料号:PM121T1320700415‖德驰', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3555, '620300052', '完整电控盒‖SB-035124；订货号：10860153‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3556, '620300050', '缓冲胶垫‖M10；FORM NR.25481；订货号：10481714‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3557, '620300051', '完整摇臂盒‖SB-023771；订货号：10704745‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3558, '621500027', 'MP车继电器指示模块2‖ECM001-110；浦镇物料号:PM121T1320700416‖德驰', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3559, '621500026', 'M车继电器指示模块1‖ECM001-110；浦镇物料号:PM121T1320700417‖德驰', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3560, '621000101', '前端连接器‖SIBUS KLIP Crimp contacts S5 (front connector)；6ES5490-8MA13‖西门子', '可维修', '个', NULL, '01001-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3561, '620300049', '完整摇臂盒‖SB-023770；订货号：10704751‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3562, '621000100', '总线模块‖SIBAS KLIP Bus module base1；9AB4143-2BA10‖西门子', '可维修', '个', NULL, '01001-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3563, '621500034', '升弓/牵引逆变器电源/中继器/VCU/车间电源/ATO模式/轮缘润滑/故障车/联挂/照明继电器‖ETP41L18BXUV；浦镇物料号:PM121T1360705001‖德驰', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3564, '620300048', '铝磨耗板‖SB-023795；订货号：10703949‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3565, '621500024', 'M车继电器指示模块2‖ECM001-110；浦镇物料号:PM121T1320700418‖德驰', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3566, '621000098', '功率负载延时继电器‖TDE4N-U 72-230V AC/DC-KC 30S；浦镇物料号:PM121T1320703031‖施密特', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3567, '621000099', '电源模块‖SIBAS KLIP Power supply module；SV110/24V；9AB4143-2SD10‖西门子', '可维修', '个', NULL, '01001-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3568, '621100102', '旋钮‖诺和KCM310719B1a；原厂商代码PMG7AF22300H8', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3569, '620400042', '顶板组成‖UFD62-02-00-00；收紧框一侧有槽顶板', '可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3570, '620100324', '车门侧立柱紧固螺丝‖不锈钢；PMG11M0620B11‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3571, '621400076', '司机室监听扬声器‖GLY1001E', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3572, '620200016', '水泵出水口连接管‖硅胶管4*7‖吉林恒辉', '不可维修', '米', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3573, '620200017', '水箱密封圈‖PM164T1768000402‖吉林恒辉', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3574, '620200018', '水箱出水口连接管‖PU 8*12‖吉林恒辉', '不可维修', '米', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3575, '620200014', '进水连接管接头‖不锈钢;PM0KD0893019-1007‖吉林恒辉', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3576, '620200015', '卡箍‖JB/T 8870-1999‖吉林恒辉', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3577, '620100323', '雨刮罩盖套件‖GZL-HZ1-ZGT‖吉林恒辉', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3578, '621000094', '注油嘴防尘帽‖M8‖浦厂', '不可维修', '粒', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3579, '621400075', 'i5新版CCTV主机主板‖SYS76989VGGA‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3580, '620400041', '边护板裙边（右）‖UFD62-03-02-01R‖欧特美', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3581, '620700226', '齿轮箱吊杆（含紧固件）‖L450（紧固件：M20*120;ISO4014）;U-PBT850004', '不可维修', '套', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3582, '621300028', '控制板部分（白）标志灯控制板‖LPQZD22-02-02-000‖兰普', '不可维修', '片', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3583, '621300029', '控制板部分（红）标志灯控制板‖LPQZD22-02-01-000‖兰普', '不可维修', '片', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3584, '620100321', '废排‖PM0GD15510010000‖浦厂 ', '不可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3585, '620100322', '内六角沉头螺栓（客室车门旁扶手）‖M8*20；P=1.25粗牙；DIN7991-1986', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3586, '620800100', '电阻丝加热器2‖04.01.01.009；3KW‖利勃海尔', '不可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3587, '620100320', '十字圆头螺丝‖M4*25；不锈钢', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3588, '620100319', '卡式螺母‖M4；不锈钢+不锈钢', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3589, '620800096', '司机室通风单元喷嘴‖770399014201&770399015434‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3590, '620800097', '司机室通风单元模式选择开关‖770419000031‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3591, '620800098', '司机室通风单元风速选择开关‖770419000009‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3592, '620800092', '空调止回阀‖770302000580‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3593, '620800093', '空调热力膨胀阀‖770302030046&770302000234‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3594, '620800094', '空调干燥过滤器‖770302000233‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3595, '620800095', '空调机组温度传感器‖770302000236‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3596, '620800089', '空调高压压力控制器‖770302000484‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3597, '620800090', '空调低压压力控制器‖770302000501‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3598, '620800091', '空调电磁四通阀‖770302000350‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3599, '620800086', '空调回风阀‖右；770310000178‖盾安', '不可维修', '件', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3600, '620800087', '空调新风阀‖770310000179‖盾安', '不可维修', '件', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3601, '620800088', '空调6L气液分离器‖770303000038‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3602, '620800083', '空调1位蒸发器‖705300000039‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3603, '620800084', '空调2位蒸发器‖705300000040‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3604, '620800085', '空调回风阀‖左；770310000196‖盾安', '不可维修', '件', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3605, '620800080', '空调冷凝风机‖770305000068；500-668*640‖盾安', '可维修', '台', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3606, '620800081', '空调1位冷凝器‖705300000001‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3607, '620800082', '空调2位冷凝器‖705300000002‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3608, '620800077', '司机室通风单元电加热‖770321000146‖盾安', '可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3609, '620800078', '空调压缩机‖770301000075‖盾安', '不可维修', '台', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3610, '620800079', '空调送风机‖770304003324‖盾安', '可维修', '台', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3611, '620800074', '空调盘管温度传感器‖770302000353‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3612, '620800075', '空调控制器‖770399015457‖盾安', '可维修', '件', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3613, '620800076', '司机室通风单元送风机‖770304003325‖盾安', '可维修', '件', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3614, '620500130', '左门扇‖M201010S01‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3615, '621300027', '驱动器280‖LPDM61-00-00;DC110V;40W‖兰普', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3616, '620800072', '空调检查阀‖770302990134‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3617, '620800073', '空调视液镜‖770302080067‖盾安', '不可维修', '件', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3618, '620500127', '主门控器‖TS-29020030050900‖康尼', '可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3619, '620500121', '完整的丝杆部件组‖M310101S03；厂家物料号：27100310001000‖康尼', '不可维修', '个', NULL, '01001-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3620, '620500112', '整套安装用标准件及专用垫片‖L190200002‖康尼', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3621, '620500113', '右门扇‖M201010S02‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3622, '620500108', '紧急解锁开关‖0308060010‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3623, '620500102', '门锁‖（左门）/不含锁芯；MJ560AP16L-10301‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3624, '620700224', '轴承‖F-566912.01.TAROL120195-B-TVP‖FAG', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3625, '620700225', '轴箱体‖PBT12204101‖平度', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3626, '620500101', '门锁‖（右门）/不含锁芯；MJ560AP16R-10301‖康尼', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3627, '620700221', '二系横向减振器‖7048-40‖DISPEN', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3628, '620700222', '空气弹簧‖SYS500B2‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3629, '620700223', '防滑轴箱前盖‖PBT12300102‖平度', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3630, '620700218', '扭杆组成‖TX1010096‖TMT', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3631, '620700219', '横向橡胶止挡‖PBT520202‖雷尔伟', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3632, '620700220', '二系垂向减振器‖7057-40‖DISPEN', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3633, '620700215', '扭杆轴承盖‖TX1120016‖TMT', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3634, '620700216', '扭杆摩擦套‖TX0010348‖TMT', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3635, '620700217', '连杆组成‖PBT133007‖雷尔伟', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3636, '620700211', '动车转向架‖PB123M1000000000‖浦镇', '可维修', '台', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3637, '620700212', '二系调整垫片‖1、2、5mm；PBT131301-1‖瑞发', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3638, '620700213', '轴箱密封垫‖W28‖扬州华通', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3639, '620700214', '轮缘润滑装置‖PB104001010‖REBS', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3640, '620700208', '一系橡胶弹簧‖TX0030140‖TMT', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3641, '620700209', '轴箱后盖‖PBT12205101‖平度', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3642, '620700210', '拖车转向架‖PB123T1000000000/PB123T2000000000‖浦镇', '可维修', '台', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3643, '621400073', '监控存储服务器NVR‖1407001027‖华启', '可维修', '台', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3644, '621400074', '司机室广播控制主机CCU‖1408001097‖华启', '可维修', '台', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3645, '620700207', '接地轴箱前盖‖PBT12400102‖平度', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3646, '621400070', '司机室广播控制盒DACU‖1408001099‖华启', '可维修', '台', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3647, '621400071', '司机室扬声器CLSP‖2002000156‖华启', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3648, '621400072', '客室控制器SMFU‖1408001098‖华启', '可维修', '台', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3649, '621400067', 'LCD动态地图显示器‖2001000411‖华启', '可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3650, '621400068', '乘客紧急报警器/数字PECU‖2002000155‖华启', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3651, '621400069', '客室扬声器SLSP‖2002000157‖华启', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3652, '621400064', '客室LCD‖2001000410‖华启', '可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3653, '621400065', '目的地显示器FDU‖2001000413‖华启', '可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3654, '621400066', '贯通道LED显示屏 IDU‖2001000412‖华启', '可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3655, '621400061', '司机室监控触摸屏STCU‖2001000414‖华启', '可维修', '块', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3656, '621400062', '客室数字摄像机‖2001000417‖华启', '不可维修', '台', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3657, '621400063', '司机室数字摄像机‖2001000416‖华启', '不可维修', '台', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3658, '621300024', '光源板组成3‖LPCY318-01-04-000‖兰普', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3659, '621300025', '光源板组成2‖LPCY318-01-03-000‖兰普', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3660, '621300026', '光源板组成1‖LPCY318-01-02-000‖兰普', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3661, '621700003', '蓄电池组‖FNC 140MR2‖荷贝克', '可维修', '组', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3662, '620900067', '网关阀‖G7029/HSV01‖克诺尔', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3663, '620900069', '电磁阀1‖II86418/110‖克诺尔', '可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3664, '620900066', '智能阀‖S7029/HSV01‖克诺尔', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3665, '620100318', '管接头1‖ST34/M32/SA‖顺和', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3666, '620900063', '速度传感器‖SIN31450/220A25U‖克诺尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3667, '620100315', '管接头4‖ST28/M25/SA‖顺和', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3668, '620100316', '管接头3‖ST21/M20/SA‖顺和', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3669, '620100317', '管接头2‖ST16/U119/SFA‖顺和', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3670, '620100312', '波纹管1‖SH-PAFZ16/BL‖顺和', '不可维修', '个', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3671, '620100313', '管接头6‖ST42/M40/SA‖顺和', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3672, '620100314', '管接头5‖ST34/U119/SFA‖顺和', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3673, '620100308', '波纹管5‖SH-PACZ42/BL‖顺和', '不可维修', '个', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3674, '620100309', '波纹管4‖SH-PACZ34/BL‖顺和', '不可维修', '个', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3675, '620100310', '波纹管3‖SH-PAFZ28/BL‖顺和', '不可维修', '个', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3676, '620100311', '波纹管2‖SH-PAFZ21/BL‖顺和', '不可维修', '个', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3677, '620100305', '戈兰头2‖SHJ-M25*1.5 (10-16MM)‖顺和', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3678, '620100306', '戈兰头1‖SHJ-M32*1.5 (15-22MM)‖顺和', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3679, '620100307', '波纹管6‖SH-PACZ54/BL‖顺和', '不可维修', '个', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3680, '620100303', '戈兰头4‖SHJ-M20*1.5 (8-14MM)‖顺和', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3681, '620100304', '戈兰头3‖SHJ-M32*1.5 (13-18MM)‖顺和', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3682, '621500017', '继电器1‖D-U204-KLE‖SMITT', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3683, '621500015', '继电器6‖TERS6L1ATZYW‖德驰', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3684, '621500016', '继电器4‖ETP61L11BXUUY‖德驰', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3685, '621500012', '连接器3‖YGC-57/3M17‖永贵', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3686, '621500013', '连接器1‖HDC-3EMC8F-121S-01‖唯恩', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3687, '621500007', '继电器5‖TERS6B1ATYWV‖德驰', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3688, '621500008', '继电器3‖ETP41L18BXUV‖德驰', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3689, '621500004', '连接器4‖HDC-HC350F-121H-01‖唯恩', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3690, '621500005', '连接器2‖YGC-104/6M12‖永贵', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3691, '620100300', '挡风玻璃‖PM121T1751010100‖海安', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3692, '620100301', '司机室座椅‖DFGH1Z-SY01-00-000‖大丰', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3693, '620100302', '客室大玻璃‖PM121T1721020100‖海安', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3694, '620100298', '洗车模式、制动缓解旁路、回库下载开关‖894660‖mafelec', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3695, '620100299', '遮阳帘‖JL-12s-000(A)‖久立', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3696, '620100294', '右开门2按钮、左开门2按钮‖3SU10610JB400AA0-G24/240-40-KM‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3697, '620100288', '指示灯4‖WKD10-14-02-000‖西门子 ;APT', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3698, '620100290', '充电机紧急启动按钮‖894406‖mafelec', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3699, '620100287', '强迫缓解开关、总风缸欠压旁路开关‖894662‖mafelec', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3700, '620100281', '紧急制动按钮‖894303‖mafelec', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3701, '620100284', '左开门1按钮、右开门1按钮‖3SU10610JB400AA0-G24/240-40-KM-BHG‖西门子', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3702, '620800071', '回风过滤网‖770399014202‖盾安', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3703, '620800070', '新风过滤网‖770399014203‖盾安', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3704, '620400038', '裙边(右)‖UFD99-02-01-01R‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3705, '620400039', '渡板组成‖UFD248-07-00-00‖欧特美', '可维修', '套', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3706, '620400040', '折棚组成‖UFD248-01-00-00‖欧特美', '可维修', '套', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3707, '620400035', '侧护板组成‖UFD248-02-00-00‖欧特美', '可维修', '套', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3708, '620400036', '顶板组成‖UFD248-03-00-00‖欧特美', '可维修', '套', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3709, '620400037', '踏板组成‖UFD248-08-00-00‖欧特美', '可维修', '套', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3710, '621000092', '牵引电机‖131200001012‖天津纵西', '可维修', '套', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3711, '620400033', '中央板磨耗条‖UFD248-07-00-02‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3712, '620400034', '渡板磨耗条(左)‖UFD248-07-00-03L‖欧特美', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3713, '621000089', '车间电源插座‖CT88-8Z-05(TKY)-01；130201001268‖中航光电', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3714, '621000090', '解耦二极管用功率电容‖130302001028‖上海爱普克斯', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3715, '621000091', '高速断路器‖UR10-42TD；ZZZZZE1EDN1；130501001060‖瑞士赛雪龙', '可维修', '个', NULL, '01049-01072', '服务关键物料C2', NULL);
+INSERT INTO `wms_goods` VALUES (3716, '621000087', 'EMI电容‖KOND_MKP_FPX_0.68uF_5%_4.6kV；130302001033‖AVX', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3717, '621100101', '制动电阻‖FCJ00415；117300001527‖上海吉泰', '不可维修', '套', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3718, '621000083', '辅助系统高压母线熔断器‖130505100011‖上海中电罗莱', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3719, '621000084', '隔离开关‖RTB&MDA_HJHEUPA2UQ3K；117300001629‖北京纵横机电', '可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3720, '621200054', '电源模块‖131001000002‖德国庚罗电源', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3721, '621200051', '预充电电阻‖GBS 45/370；130301001044‖美国威世', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3722, '621200053', '预充电接触器‖130501001052‖意大利MS', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3723, '621200050', '电源变换器‖DC110V/DC24V;4NIC-LBJF300;131000001086‖江苏朝阳', '不可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3724, '621200043', '应急启动电源‖400NSB1500M110W00；131000001038‖德国庚罗电源', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3725, '620700206', '接地装置‖K1019392A；厂商物料代码117300001525‖上海美尔森', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3726, '621000079', '三相交流滤波器‖3AC 300uH 169A 50Hz；130309001003‖英大科特', '不可维修', '台', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3727, '621000080', 'LC输入滤波器‖1DC 4mH/124A 1500V；130400001024‖英大科特', '不可维修', '台', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3728, '620700204', '联轴节‖ZK 170-1；140900001128‖常州KWD', '不可维修', '台', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3729, '620700205', '齿轮箱‖AHD1-355-6.32-V08；117300001528‖苏州安杰达', '可维修', '台', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3730, '621200040', '380V/220V单相隔离变压器‖130400001044‖英大科特', '不可维修', '台', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3731, '621000078', '线路接触器‖SEC20.1001S41_1kA_110V；130501001051‖瑞士赛雪龙', '不可维修', '个', NULL, '01049-01072', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3732, '620300045', '横托架组装‖1-F24.4588‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3733, '620300041', '钢丝绳‖3-F24.3796‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3734, '620300042', '支持绝缘子‖SCC0100‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3735, '620300038', '软连线C组合‖SB-024678‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3736, '620300039', '软连线B组合‖SB-024678‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3737, '620300040', '软连线A组合‖SB-024678‖崇德', '不可维修', '个', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3738, '620500097', '方孔钥匙‖7*7 81E‖康尼', '不可维修', '把', NULL, '01001-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (3739, '620600046', '带压溃管半永久车钩‖SRIT1539-00-00-00‖青岛思锐', '可维修', '套', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3740, '620600047', '头车全自动车钩‖SRIT1536-00-00-00‖青岛思锐', '可维修', '套', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3741, '120600113', '车门润滑油‖0128000064‖克鲁勃', '不可维修', '千克', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3742, '620600043', '过载保护螺栓‖SRIT1044-03-01-01‖青岛思锐', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3743, '620600044', '卡环螺栓组件‖SRIT3;803314302016150‖青岛思锐', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3744, '620600045', '带缓冲器半永久车钩‖SRIT1540-00-00-00‖青岛思锐', '可维修', '套', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3745, '620600040', '橡胶框密封‖18902508000180‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3746, '620600041', '接地线‖SRIT799-00-00-01‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3747, '620600042', '钩舌拉簧‖SRIT88-01-00-05A‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3748, '620600037', '连接环组成‖SRIT368-04-00-01/02‖青岛思锐', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3749, '620600038', '缓冲系统‖SRIT1539-01-00-00‖青岛思锐', '可维修', '个', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3750, '620600039', '中间半自动车钩‖SRIT1537-00-00-00‖青岛思锐', '可维修', '套', NULL, '01049-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (3751, '620600034', 'O型密封圈‖18902504500180‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3752, '620600035', '安装螺栓组件‖SRIT4;801071102036120‖青岛思锐', '可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3753, '620600036', '橡胶支撑‖SRIT35-06-01-00‖青岛思锐', '不可维修', '个', NULL, '01049-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3754, '620600033', 'O形环密封‖18902506900530‖青岛思锐', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3755, '620500092', '止动垫片‖L193005S01‖康尼', '不可维修', '片', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3756, '620500094', '玻璃粘接辅助胶条‖L715000294；厂家物料号：0903002956‖康尼', '不可维修', '条', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3757, '620700201', '电磁阀插头‖016613033‖莱伯斯', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3758, '620700202', '防尘帽‖G1/4-NIPPEL GPN‖莱伯斯', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3759, '620700203', '油标尺‖SP-BF6‖莱伯斯', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3760, '620500088', '窗扣‖L310000162‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3761, '620700198', '油箱盖密封垫‖029902357‖莱伯斯', '不可维修', '件', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3762, '620700199', '气动泵-混合块组件‖1×SP-PIO/K+1×OLM‖莱伯斯', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3763, '620700200', '轮缘润滑喷嘴软管‖L=800mm‖莱伯斯', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3764, '620700196', '轮缘润滑喷嘴组件‖DPS1‖莱伯斯', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3765, '620700197', '电磁阀组件‖MVA2/2-24VDC NW1.8‖莱伯斯', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3766, '621300021', 'LED板组成（尾灯）‖LPQZD25-01-03-100‖兰普', '不可维修', '只', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3767, '621300022', '控制板组成（尾灯）‖LPQZD25-01-03-200‖兰普', '不可维修', '只', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3768, '120600109', '高速轴承润滑脂‖7018；1kg/桶‖长城', '0', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3769, '100600022', '绝缘胶带‖35#；PVC高温防水；黄色‖3M', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3770, '100600023', '绝缘胶带‖35#；PVC高温防水；红色‖3M', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3771, '100600019', '绝缘胶带‖35#；PVC高温防水；白色‖3M', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3772, '100600020', '绝缘胶带‖35#；PVC高温防水；绿色‖3M', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3773, '100600021', '绝缘胶带‖35#；PVC高温防水；蓝色‖3M', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3774, '621400054', '电脑散热硅胶垫‖T-FLEX740；150mm*150mm*2mm‖莱尔德', '不可维修', '片', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3775, '621400055', '电脑散热硅脂‖X-23-7762；50克‖信越', '不可维修', '瓶', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (3776, '620100219', '停放制动施加缓解按钮‖KRTRTMTIFL110‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3777, '620800065', '温控器‖E5CC-RX2DSM-800‖OMRON', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3778, '620500084', '止挡组件‖MJ700AP-10004；不锈钢（银）‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3779, '620500085', '插销组件（右）‖MJ560AP1R-43000A‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3780, '620500083', '插销组件（左）‖MJ560AP1L-43000A‖康尼', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (3781, '120600034', '螺纹润滑油膏‖型号：8023；454g/罐‖乐泰', '0', '罐', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3782, '120200006', '无水酒精（无水乙醇）‖含量99.8% 500ml/瓶', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3783, '120600033', '润滑脂（黄油）‖EP1；16KG/桶‖美孚力士', '0', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3784, '120600099', '导电膏‖DDG-A 500g/桶', '0', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3785, '120600030', '汽油‖92号', '0', '公升', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3786, '120600053', '柴油‖0号柴油', '0', '公升', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3787, '120500009', '自喷漆‖黑色；400ML', '0', '罐', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3788, '120500006', '自动喷漆‖400ML；黄色', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3789, '120500027', '油漆稀释剂‖8KG', '0', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3790, '120500028', '脱漆剂‖B-1116；400ml/罐‖保锡利', '0', '罐', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3791, '120500004', '自动喷漆‖400ML；红色', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3792, '120500047', '自动喷漆‖400ML；白色', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3793, '120400016', '肥皂‖黄色透明；300克/块‖西湖牌', '0', '块', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3794, '120400025', '万能防锈润滑剂‖WD-40 350ML；272G；11.2FL.OZ', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3795, '120400017', '高级干膜防腐剂‖PROCYON；12瓶/箱；394ml/听‖LPS', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3796, '120400029', '柑橘清洗剂‖01420 presolve ；534ml/瓶‖LPS ', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3797, '120400030', '螺纹松动剂‖LPSTKX02016；12瓶/箱；368ML/瓶‖LPS', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3798, '120400004', '精密电子清洗剂‖REMA CLEAN EC；500ML/瓶', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3799, '120400024', '空调清洗剂‖涤尘5L/瓶‖金亮博士', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3800, '120400007', '渗透探伤清洗剂‖DPT-5；500ML/瓶', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3801, '120400008', '渗透探伤渗透剂‖DPT-5；500ML/瓶', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3802, '120400009', '渗透探伤显像剂‖DPT-5；500ML/瓶', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3803, '120400011', '清洁去除剂‖dykem remover&prep；340g/瓶；12瓶/箱', '0', '箱', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3804, '120200005', '电解液‖1.28；1L/瓶', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3805, '120300011', '氧气‖40L', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3806, '120300012', '乙炔‖40L', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3807, '120400002', '高效去油污洗手液‖500ml；工业用‖蓝飞', '0', '瓶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3808, '120200002', '蒸馏水‖25Kg/桶', '0', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3809, '120200024', '去离子水‖25kg/桶', '0', '桶', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3810, '100500013', '毛刷‖2寸；软毛', '0', '把', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3811, '101000084', '网口防尘塞‖接口：RJ45；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3812, '101000083', '键鼠套装‖kk-5520N；PS2接口‖双飞燕', '0', '套', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3813, '100300017', '尼龙扎带‖10*800mm；100条/包；白色', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3814, '101300010', '球形门锁‖不锈钢；5831钢双；国标件', '0', '套', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3815, '100500012', '软毛刷‖2寸；毛宽5CM', '0', '把', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3816, '101000078', '网线水晶头‖接口：RJ45（含护套）；型号：4-554720-3‖安普', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3817, '101000077', '键盘‖K120‖罗技', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3818, '101000075', '无线键鼠套装‖MK240；黑色‖罗技', '0', '套', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3819, '101000076', '鼠标‖M100r‖罗技', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3820, '101000074', '网线连接器‖RJ45网线', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3821, '100300010', '扎带‖自封式；KSS尼龙66；CV-120；100根/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3822, '100300016', '可退式尼龙扎带‖8*350；100根/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3823, '100300005', '尼龙扎带‖4*200mm；100根/包；白色', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3824, '100300006', '尼龙扎带‖5*300mm；100根/包；白色', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3825, '100300013', '尼龙扎带‖5*500mm；100根/包；白色', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3826, '100300014', '尼龙扎带‖3*200mm；100根/包；白色', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3827, '100300015', '扎带‖自封式；KSS尼龙66；CV-200A(203*3.6mm)100根/包；本色', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3828, '100300002', '尼龙扎带‖3*100mm；100根/包；白色', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3829, '100300003', '尼龙扎带‖5*250mm；100根/包；白色', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3830, '100300004', '尼龙扎带‖8*300mm；100根/包；白色', '0', '袋', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3831, '100600007', '电工胶布‖规格：1600；蓝色；20M/卷‖3M', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3832, '100600008', '电工胶布‖规格：1600；黄色；20M/卷‖3M', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3833, '100600009', '电工胶布‖规格：1600；绿色；20M/卷‖3M', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3834, '100600010', '泡沫双面胶‖1cm*3m', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3835, '100600011', '美纹纸胶带‖60mm*50m；型号：200；白色', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3836, '100600005', '黄黑警示胶带‖材质：PVC；尺寸：4.5cm*20m； 20m/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3837, '220800156', '电工胶布‖1600#；黑色；20米/卷‖3M', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3838, '100600006', '电工胶布‖规格：1600；红色；20M/卷‖3M', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3839, '100600003', '黄黑警示胶带‖材质：PVC；尺寸：5cm*20m；20m/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3840, '100600004', '黄黑警示胶带‖材质：PVC；尺寸：10cm*20m；20m/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3841, '100500008', '羊毛刷‖1寸；宽度:2.5cm；长度:3cm', '0', '把', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3842, '100500009', '毛刷‖型号:HF0004‖轩之梦', '0', '把', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3843, '100500010', '羊毛刷‖4寸；木柄；100mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3844, '100500002', '带木柄毛刷‖3寸', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3845, '100500003', '黄油刷‖2寸；硅胶刷', '0', '把', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3846, '100500004', '钢丝刷‖EM4004；4*16；木柄‖卡夫威尔', '0', '把', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3847, '100500005', '软毛刷‖1寸；用于液晶屏清洁', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3848, '100500006', '钢丝刷‖总长:205mm*27mm；丝面:78mm*20mm；木柄栓；铜丝‖九菱', '0', '把', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3849, '100500007', '钢丝刷‖1寸；带手柄', '0', '把', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3850, '100700008', '普通砂纸‖800目；230*280mm', '0', '张', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3851, '100500001', '带木柄毛刷‖5寸', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3852, '100700007', '细砂纸‖139mm*228mm；2000目‖3M', '0', '张', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3853, '100700004', '砂纸‖工业级偏心磨机；180目；直径125mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3854, '100700005', '砂纸‖工业级偏心磨机；80目；直径125mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3855, '100700006', '普通砂纸‖500目；230*280mm', '0', '张', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3856, '220200150', '单芯铜线‖WDZB-BV；2.5平方毫米；黄色；100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3857, '100600014', '安全警示带‖通用4.2cm*100m；黄白卷式警示线；卷状；无包装盒', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3858, '100600015', '安全警示带‖通用5cm*125m；盒装', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3859, '100700003', '手用砂纸‖尺寸：230*280；粒度：150目', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3860, '220200147', '单芯铜线‖WDZB-BYJ；6平方毫米；红色100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3861, '220200148', '单芯铜线‖WDZB-BV；4平方毫米；红色；100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3862, '220200149', '单芯铜线‖WDZB-BV；4平方毫米；黄色；100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3863, '220200144', '单芯铜线‖WDZB-BV；1.5平方毫米；蓝色；100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3864, '220200145', '单芯铜线‖WDZB-BV；1.5平方毫米；绿色；100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3865, '220200146', '开关面板‖86型大翘板；三位单极开关‖鸿雁', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3866, '220200140', '单芯铜线‖WDZB-BV；4平方毫米；绿色；100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3867, '220200141', '单芯铜线‖WDZB-BV；2.5平方毫米；红色；100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3868, '220200142', '单芯铜线‖WDZB-BV；2.5平方毫米；绿色；100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3869, '220200143', '单芯铜线‖WDZB-BV；2.5平方毫米；蓝色；100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3870, '220200137', '单芯铜线‖WDZB-BYJ；6平方毫米；绿色；100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3871, '220200138', '单芯铜线‖WDZB-BYJ；6平方毫米；蓝色；100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3872, '220200139', '单芯铜线‖WDZB-BV；4平方毫米；蓝色；100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3873, '220200136', '单芯铜线‖WDZB-BV；6平方毫米；黄色；100米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3874, '101000066', '电池‖18650；额定电压3.7V；额定容量2000mAh；适用于海洋王JW7622', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3875, '621300020', '压力表背光灯灯珠‖电压：24V；功率：2W；卡口', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3876, '101000064', '可拆二极插头‖10A；GNT-10L1；250V‖公牛', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3877, '101000063', '玻璃保险管‖5*20mm；1A/250V；100个/盒', '0', '盒', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3878, '101000060', '电池‖7号；碱性电池；1.5V；12节/盒‖南孚', '0', '盒', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3879, '101000061', '电池‖5号；碱性电池；1.5V；12节/盒‖南孚', '0', '盒', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3880, '101000062', '纽扣电池‖LR44；10粒装‖南孚', '0', '板', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3881, '101000058', '电池‖9V；6LR61；碱性‖南孚', '0', '节', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3882, '101000059', '电池‖5号；LR6-2B‖南孚', '0', '节', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3883, '101000047', '热缩管‖直径60mm；25米/卷；耐压等级10kV', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3884, '101000048', '电池‖2号/LR14‖南孚', '0', '节', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3885, '101000050', '铜接线端子‖DT-95；单螺丝孔12.5平方毫米', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3886, '101000045', '快速电线接线端子‖T型免破线；纯铜；范围是1.5-2.5平方', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3887, '101000040', '热缩管‖Φ25mm；50m/卷；黑色', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3888, '101000041', '热缩管‖Φ8mm；100m/卷；红色', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3889, '101000042', '热缩管‖Φ2mm；200m/卷；红色', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3890, '101000043', '热缩管‖绝缘阻燃；黑色；12mm；100m/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3891, '101000044', '热缩管‖绝缘阻燃；黑色；2mm；200m/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3892, '101000035', '铜接线端子‖DT-150；镀锡', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3893, '101000036', '热缩管‖Φ12mm；100m/卷；红色', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3894, '101000037', '热缩管‖Φ4mm；200m/卷；黑色', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3895, '101000038', '热缩管‖Φ30mm；25m/卷；红色', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3896, '101000039', '热缩管‖Φ4mm；200m/卷；红色', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3897, '101000034', '玻璃保险管‖6*30mm；5A/250V；100个/盒', '0', '盒', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3898, '101000029', '导轨式接线端子‖MA：2.5平方毫米/5平方毫米 ；连接类型：螺钉连接', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3899, '101000032', '玻璃保险管‖6*30mm；1A/250V；100个/盒', '0', '盒', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3900, '101000033', '玻璃保险管‖6*30mm；2A/250V；100个/盒', '0', '盒', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3901, '101000025', '铜接线端子‖DT2-95；双螺丝孔12.5平方毫米', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3902, '220200116', '三芯护套软线‖中策3*1平方毫米 黑色 纯铜内芯‖中策', '0', '米', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3903, '220200117', '二芯护套软线‖2*2.5平方毫米；黑色；纯铜内芯‖中策', '0', '米', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3904, '101000023', '热缩套管‖直径：11mm', '0', '米', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3905, '220200109', '单芯铜线‖BV；4平方毫米；硬线；黄绿双色；100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3906, '220200110', '单芯铜线‖BV；6平方毫米；硬线；蓝色；100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3907, '220200111', '单芯铜线‖BV；6平方毫米；硬线；红色；100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3908, '220200112', '单芯铜线‖BV；6平方毫米；硬线；黄色；100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3909, '220200113', '单芯铜线‖BV；6平方毫米；硬线；绿色；100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3910, '220200114', '单芯铜线‖BV；6平方毫米；硬线；黄绿双色；100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3911, '220200101', '单芯铜硬线‖BV；2.5平方毫米；红色；100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3912, '220200102', '单芯铜硬线‖BV；2.5平方毫米；黄色；100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3913, '220200103', '单芯铜线‖BV；2.5平方毫米；硬线；绿色；100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3914, '220200104', '单芯铜线‖BV；2.5平方毫米；硬线；黄绿双色；100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3915, '220200105', '单芯铜线‖BV；4平方毫米；硬线；蓝色；100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3916, '220200106', '单芯铜线‖BV；4平方毫米；硬线；红色；100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3917, '220200107', '单芯铜线‖BV；4平方毫米；硬线；黄色；100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3918, '220200108', '单芯铜线‖BV；4平方毫米；硬线；绿色100米/卷‖永通中策', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3919, '101000019', '热缩管‖绝缘阻燃；直径50mm；黑色‖宜丰', '0', '米', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3920, '101000020', '热缩管‖绝缘阻燃；直径1mm；黑色‖宜丰', '0', '米', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3921, '101000021', '热缩管‖绝缘阻燃；直径3mm；黑色‖宜丰', '0', '米', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3922, '101000022', '热缩管‖绝缘阻燃；直径5mm；黑色‖宜丰', '0', '米', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3923, '101000017', '热缩管‖绝缘阻燃；直径30mm；黑色‖宜丰', '0', '米', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3924, '101000018', '热缩管‖绝缘阻燃；直径40mm；黑色‖宜丰', '0', '米', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3925, '101000015', '插线板‖GN-608；5米‖公牛', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3926, '101000016', '插线板‖GN-403；10米‖公牛', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3927, '101000014', '电池‖LR44', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3928, '101000011', '针形绝缘端子‖2.5平方毫米；蓝；乙烯；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3929, '101000012', '纽扣电池‖GPA76；电压: 1.5V 直径:11.60mm 厚度:5.40mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3930, '101000013', '纽扣电池‖CR2032；3V‖南孚', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3931, '101000005', 'Y型绝缘端子‖6平方毫米；黄；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3932, '101000006', 'R型绝缘端子‖1.5平方毫米；红；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3933, '101000007', 'R型绝缘端子‖2.5平方毫米；蓝；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3934, '101000185', 'R型绝缘端子‖4平方毫米；黑；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3935, '101000186', 'R型绝缘端子‖6平方毫米；黄；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3936, '101000187', '针形绝缘端子‖1.5平方毫米；红；乙烯；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3937, '101000002', 'Y型绝缘端子‖1.5平方毫米；红；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3938, '101000184', 'Y型绝缘端子‖2.5平方毫米；蓝；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3939, '101000004', 'Y型绝缘端子‖4平方毫米；黑；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3940, '220200077', '单芯铜线‖BV；4平方毫米；蓝色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3941, '220200078', '单芯铜线‖BV；4平方毫米；绿色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3942, '220200079', '单芯铜线‖BV；4平方毫米；红色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3943, '220200080', '单芯铜线‖BV；6平方毫米；黄色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3944, '220200081', '单芯铜线‖BV；6平方毫米；蓝色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3945, '220200082', '单芯铜线‖BV；6平方毫米；绿色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3946, '220200083', '单芯铜线‖BV；6平方毫米；红色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3947, '220200072', '单芯铜线‖BV；2.5平方毫米；红色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3948, '220200073', '单芯铜线‖BV；2.5平方毫米；黄色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3949, '220200074', '单芯铜线‖BV；2.5平方毫米；蓝色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3950, '220200075', '单芯铜线‖BV；2.5平方毫米；绿色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3951, '220200076', '单芯铜线‖BV；4平方毫米；黄色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3952, '220200066', '护套线‖BVVB；3*1.5平方毫米；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3953, '220200067', '护套线‖BVVB；3*2.5平方毫米；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3954, '220200068', '单芯铜线‖BV；1.5平方毫米；红色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3955, '220200069', '单芯铜线‖BV；1.5平方毫米；黄色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3956, '220200070', '单芯铜线‖BV；1.5平方毫米；蓝色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3957, '220200071', '单芯铜线‖BV；1.5平方毫米；绿色；100米/卷‖鸿雁', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3958, '100900004', '抹布‖超细纤维抹布；72*36cm', '0', '条', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3959, '100900005', '无尘擦拭布‖229*229mm；100/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3960, '100900001', '工业用清洁无纺布‖白色大卷装；22*50CM；每片600片/卷；300米/卷', '0', '卷', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3961, '100200365', '螺丝钉+膨胀管‖8*40；黄色；25套/盒', '0', '盒', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3962, '100200366', '膨胀螺栓‖M6*50；304不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3963, '100200367', '自攻螺丝‖平机；4*25mm；不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3964, '100200368', '十字外六角螺丝‖304不锈钢；M3*6；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3965, '100200355', '抽芯铆钉‖M4*10；304不锈钢；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3966, '100200356', '抽芯铆钉‖M5*10；304不锈钢；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3967, '100200357', '六角螺栓‖M16*60', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3968, '100200358', '防松垫片‖不锈钢材质；外径21mm；1000/盒', '0', '盒', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3969, '100200359', '组合垫‖内圈橡胶；外圈金属；内径10mm；外径16mm；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3970, '100200360', '橡胶O型平垫片‖内径60mm；外径85mm；厚度2.5mm；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3971, '100200361', '螺丝钉+膨胀管‖6*30；50套/盒', '0', '盒', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3972, '100200362', '自攻螺丝‖3*12mm', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3973, '100200350', '防松螺母‖m16；304不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3974, '100200351', '抽芯铆钉‖4mm*10mm；铝制；1000个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3975, '100200352', '抽芯铆钉‖5mm*12mm；铝制；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3976, '100200353', '抽芯铆钉‖6mm*12mm；铝制；250个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3977, '100200354', '拉铆钉‖M6*40mm；不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3978, '100200346', '外六角螺栓‖304不锈钢；全牙；M8*20；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3979, '100200347', '外六角螺栓‖M8*60；304不锈钢一级镀锌；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3980, '100200348', '螺栓‖M20*370*120；一级镀锌', '0', '根', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3981, '100200349', '外六角螺栓‖M8*45；304不锈钢一级镀锌；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3982, '100200340', '螺栓‖外六角；M5*35；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3983, '100200341', '外六角螺栓‖蓝白锌；M8*12；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3984, '100200342', '外六角螺栓‖M4*30；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3985, '100200343', '十字沉头螺丝‖304不锈钢；M3*6；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3986, '100200344', '外六角螺栓‖M16*60；304不锈钢一级镀锌；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3987, '100200345', '螺栓‖M20*400*100；一级镀锌', '0', '根', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3988, '100200332', '螺栓‖外六角；M4*15；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3989, '100200333', '螺栓‖外六角；M5*14；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3990, '100200334', '外六角螺栓‖M8*30；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3991, '100200335', '螺栓‖外六角；M4*20；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3992, '100200336', '螺栓‖外六角；M5*25；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3993, '100200337', '外六角螺栓‖蓝白锌；M8*35；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3994, '100200338', '螺栓‖外六角；M4*25；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3995, '100200339', '螺栓‖外六角；M5*12；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3996, '100200325', '螺栓‖元宝形；M6*20；304不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3997, '100200326', '平垫片‖M4；蓝白锌锌；10.9级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3998, '100200327', '螺栓‖外六角；M3*15；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (3999, '100200328', '螺栓‖外六角；M5*30；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4000, '100200329', '螺栓‖外六角；M3*30；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4001, '100200330', '平垫片‖M6；蓝白锌锌；10.9级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4002, '100200331', '螺栓‖外六角；M4*12；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4003, '100200318', '外六角螺栓‖蓝白锌；M8*20；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4004, '100200319', '螺母‖外六角；M6；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4005, '100200320', '外六角螺母‖M8；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4006, '100200321', '螺栓‖元宝形；M4*16；304不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4007, '100200322', '螺栓‖外六角；M3*12；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4008, '100200323', '螺栓‖外六角；M3*20；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4009, '100200324', '螺母‖外六角；M12；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4010, '100200310', '平垫片‖M8；蓝白锌锌；10.9级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4011, '100200311', '平垫片‖蓝白锌；M10；10.9级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4012, '100200312', '螺栓‖外六角；M5*20；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4013, '100200313', '螺母‖元宝形；M8；304不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4014, '100200314', '螺栓‖盘头十字；M3*12；不锈钢；硬度8.8级（须配弹垫和平垫）', '0', '套', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4015, '100200315', '螺母‖外六角；M3；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4016, '100200316', '外六角螺母‖M4；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4017, '100200317', '螺母‖外六角；M5；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4018, '100200304', '弹簧垫圈‖蓝白锌；M12；10.9级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4019, '100200305', '螺栓‖外六角；M5*15；蓝白锌锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4020, '100200306', '螺母‖元宝形；M6；304不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4021, '100200307', '螺栓‖元宝形；M5*16；304不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4022, '100200308', '平垫片‖M3；蓝白锌锌；10.9级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4023, '100200309', '平垫片‖M5；蓝白锌锌；10.9级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4024, '100200298', '螺母‖元宝形；M5；304不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4025, '100200299', '螺栓‖元宝形；M8*20；304不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4026, '100200300', '外六角螺栓‖蓝白锌；M8*15；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4027, '100200301', '弹簧垫圈‖M8；蓝白锌锌；10.9级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4028, '100200302', '外六角螺栓‖M8*25；蓝白锌；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4029, '100200303', '弹簧垫圈‖蓝白锌；M10；10.9级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4030, '100200290', '螺丝‖十字沉头平尾；M4*16；304不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4031, '100200291', '螺丝‖十字沉头平尾；M5*16；304不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4032, '100200292', '平垫片‖白镀锌；M12*24*2；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4033, '620700168', '平垫片‖M12；蓝白锌锌；10.9级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4034, '100200293', '螺母‖元宝形；M4；304不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4035, '100200294', '螺栓‖外六角；M5*30；蓝白锌锌8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4036, '100200295', '弹簧垫圈‖M3；蓝白锌锌10.9级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4037, '100200296', '弹簧垫圈‖M4；蓝白锌锌10.9级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4038, '100200297', '弹簧垫圈‖M5；蓝白锌锌10.9级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4039, '100200283', '盘形螺母‖304不锈钢；华司可活动；M10；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4040, '100200284', '盘形螺母‖304不锈钢；华司可活动；M14；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4041, '100200285', '盘形螺母‖304不锈钢；华司可活动；M18；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4042, '100200286', '外六角螺栓‖304不绣钢；全牙；M8*40mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4043, '100200287', '外六角螺栓‖304不绣钢；全牙；M10*50mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4044, '100200288', '全牙螺杆‖M8*45mm；304不锈钢；100根/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4045, '100200289', '盘头十字螺丝螺钉‖不锈钢304；M5*8；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4046, '100200276', '外六角螺栓‖304不绣钢；全牙；M12*60mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4047, '100200277', '外六角螺栓‖304不绣钢；全牙；M20*50mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4048, '100200278', '外六角螺栓‖304不绣钢；全牙；M16*80mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4049, '100200279', '盘形螺母‖304不锈钢；华司可活动；M8；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4050, '100200280', '盘形螺母‖304不锈钢；华司可活动；M12；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4051, '100200281', '盘形螺母‖304不锈钢；华司可活动；M16；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4052, '100200282', '盘形螺母‖304不锈钢；华司可活动；M20；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4053, '100200269', '外六角螺栓‖304不绣钢；全牙；M20*90mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4054, '100200270', '外六角螺栓‖304不绣钢；全牙；M8*20mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4055, '100200271', '外六角螺栓‖304不绣钢；全牙；M10*20mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4056, '100200272', '外六角螺栓‖304不绣钢；全牙；M12*20mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4057, '100200273', '外六角螺栓‖304不绣钢；全牙；M14*25mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4058, '100200274', '外六角螺栓‖304不绣钢；全牙；M16*30mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4059, '100200275', '外六角螺栓‖304不绣钢；全牙；M18*40mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4060, '100200262', '十字自攻螺钉‖304不锈钢；M5*16；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4061, '100200263', '加大加厚平垫片‖不锈钢304；M16*50*3；200个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4062, '100200265', '内六角螺栓‖蓝白锌8.8级；M5*10；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4063, '100200266', '外六角螺杆‖M8*16；螺纹直径5mm；不锈钢316；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4064, '100200267', '外六角螺栓‖304不绣钢；全牙；M14*70mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4065, '100200268', '外六角螺栓‖304不绣钢；全牙；M18*90mm；100套/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4066, '100200253', '加大盘头十字螺栓‖304不锈钢；M4*10；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4067, '100200254', '内六角螺栓‖蓝白锌；M6*15；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4068, '100200255', '加大加厚平垫片‖不锈钢304；M10*30*2.5；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4069, '100200256', '加大盘头内六角螺丝‖304不锈钢；M6*20；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4070, '100200257', '内六角螺栓‖蓝白锌8.8级；M6*20； 500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4071, '100200258', '平垫片‖不锈钢304；M12*37*3；200个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4072, '100200259', '十字自攻螺钉‖304不锈钢；M5*12；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4073, '100200260', '加大盘头内六角螺丝‖304不锈钢；M6*25；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4074, '100200261', '平垫片‖不锈钢304；M14*44*3；200个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4075, '100200244', '内六角螺栓‖蓝白锌8.8级；M6*12；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4076, '100200245', '弹簧垫片‖304不锈钢；M6*1.7；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4077, '100200246', '弹簧垫片‖304不锈钢；M10*2.75；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4078, '100200247', '加大加厚平垫片‖不锈钢304；M3*12*1；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4079, '100200248', '加大加厚平垫片‖不锈钢304；M5*15*1.2；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4080, '100200249', '加大盘头十字螺栓‖304不锈钢；M3*15；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4081, '100200250', '加大盘头内六角螺丝‖304不锈钢；M6*16；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4082, '100200251', '平垫片‖不锈钢304；M8*24*2mm；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4083, '100200252', '加大盘头内六角螺丝‖304不锈钢；M6*10；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4084, '100200236', '球头钢珠紧定螺钉‖不锈钢304；M8*10；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4085, '100200237', '螺丝‖304不锈钢；十字沉头；M3*8；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4086, '100200238', '内六角螺栓‖蓝白锌；8.8级；M16*50；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4087, '100200239', '平垫片‖304不锈钢；M5*10*1mm；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4088, '100200240', '球头钢珠紧定螺钉‖不锈钢304；M5*10；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4089, '100200241', '弹簧垫片‖304不锈钢；M3*0.9；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4090, '100200242', '内六角螺栓‖蓝白锌8.8级；M8*20；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4091, '100200243', '弹簧垫片‖M4*1.2；304不锈钢；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4092, '100200227', '盘头十字螺栓‖304不锈钢；M3*6；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4093, '100200228', '内六角螺栓‖蓝白锌；M5*50；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4094, '100200231', '内六角螺栓‖蓝白锌；M12*30；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4095, '100200233', '球头钢珠紧定螺钉‖不锈钢304；M6*12；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4096, '100200234', '内六角螺栓‖蓝白锌；M12*50；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4097, '100200235', '平垫片‖304不锈钢；M3*7*0.5；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4098, '100200221', '弹簧垫片‖304不锈钢；M8*2.2；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4099, '100200222', '弹簧垫片‖304不锈钢；M12*3.25；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4100, '100200223', '平垫片‖不锈钢304；M4*12*1mm；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4101, '100200224', '平垫片‖不锈钢304；M6*18*1.5；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4102, '100200225', '盘头内六角螺丝‖304不锈钢；M6*35；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4103, '100200226', '盘头十字螺栓‖304不锈钢；M4*15；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4104, '100200214', '内六角螺栓‖蓝白锌8.8级；M16*40；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4105, '100200215', '内六角螺栓‖M8*12；100颗/包；蓝白锌', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4106, '100200216', '内六角螺栓‖M8*25；100颗/包；蓝白锌', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4107, '100200220', '弹簧垫片‖304不锈钢；M5*1.4；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4108, '100200206', '外六角螺栓‖M12*60；100个/包；镀锌', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4109, '100200207', '外六角螺栓‖全螺纹；A2-70；M10*30；200个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4110, '100200208', '沉头实心铆钉‖规格5*13；材质2A-01；铝；200/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4111, '100200209', '加大盘头十字螺栓‖304不锈钢；M3*10；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4112, '100200210', '加大盘头十字螺栓‖304不锈钢；M4*6；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4113, '100200211', '内六角螺栓‖蓝白锌8.8级；M5*15；500颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4114, '100200212', '内六角螺栓‖蓝白锌8.8级；M12*20；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4115, '100200213', '内六角螺栓‖蓝白锌8.8级；M12*40；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4116, '100200197', '外六角螺栓‖M16*100；碳钢；发黑；8.8级；25个/包；全牙', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4117, '100200198', '六角螺母‖M16；碳钢；发黑；8级；50个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4118, '100200199', '弹簧垫圈‖M5；不锈钢304；本色；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4119, '100200200', '十字槽盘头机螺钉‖M5；L40碳钢；蓝白锌；4.8级；200个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4120, '100200201', '六角头开槽螺母‖8.8级；M16；A2-70 NF E25-411；PMG13K1600431‖浦镇', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4121, '100200202', '外六角螺丝‖全牙；M16*80；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4122, '100200203', '十字沉头螺栓‖304不锈钢平头；M4*30；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4123, '100200204', '六角螺母‖M12；8级；100个/包；镀锌', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4124, '100200205', '弹簧垫片‖M12*24*2；100个/包；镀锌', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4125, '100200188', '弹簧垫圈‖不锈钢304；M8；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4126, '100200189', '螺栓‖外六角；304不锈钢；M8*20mm；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4127, '100200190', '膨胀螺栓‖不锈钢304；M12*80；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4128, '100200191', '外六角螺栓‖不锈钢304；M8*45；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4129, '100200192', '全牙外六角螺栓‖M10*55；304不锈钢；8.8级；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4130, '100200193', '十字槽盘头机螺钉‖M3*40；碳钢；蓝白锌；4.8级；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4131, '100200194', '平垫圈‖M16；碳钢；蓝白锌；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4132, '100200195', '平垫圈‖M5；不锈钢304；本色；500个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4133, '100200196', '十字槽盘头机螺钉‖M4；L40；碳钢；蓝白锌；4.8级；200个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4134, '100200183', '内六角堵头‖3/4；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4135, '100200184', '内六角堵头‖1\"；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4136, '100200185', '内六角堵头‖1.2；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4137, '100200186', '弹簧垫圈‖M8；SUS304', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4138, '100200187', '弹簧垫圈‖M10；SUS304', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4139, '100200179', '内六角堵头‖1/8；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4140, '100200180', '内六角堵头‖1/4；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4141, '100200181', '内六角堵头‖3/8；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4142, '100200182', '内六角堵头‖1/2；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4143, '100200175', '内六角堵头‖M18*1.5；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4144, '100200176', '内六角堵头‖M20*1.5；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4145, '100200177', '内六角堵头‖M22*1.5；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4146, '100200178', '内六角堵头‖1/16；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4147, '100200171', '内六角堵头‖M10*1.5；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4148, '100200172', '内六角堵头‖M12*1.5；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4149, '100200173', '内六角堵头‖M14*1.5；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4150, '100200174', '内六角堵头‖M16*1.5；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4151, '100200167', '沉头螺栓‖十字；304不锈钢；M3*5；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4152, '100200168', '内六角螺栓‖电镀高强度；M3*12；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4153, '100200169', '内六角堵头‖M8*1；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4154, '100200170', '内六角堵头‖M10*1；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4155, '100200161', '内六角凹端紧定螺丝‖M5*5mm；100颗/包；304不锈钢', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4156, '100200162', '拉爆膨胀螺丝‖M6*50；不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4157, '100200163', '内迫壁虎膨胀螺丝‖M6*25；不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4158, '100200164', '沉头螺栓‖十字；304不锈钢；M5*12mm', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4159, '100200165', '膨胀螺栓‖拉爆膨胀螺栓；M12*200；不锈钢', '0', '套', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4160, '100200166', '内六角螺丝钉‖沉头；M5*10；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4161, '100200160', '内六角尖端紧定螺丝‖M6*8mm；100颗/包；304不锈钢', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4162, '100200148', '外六角螺丝‖M14*40mm；不锈钢；100颗/包；全牙', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4163, '100200142', '外六角螺丝‖M10*40mm；不锈钢；100颗/包；8.8级；全牙', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4164, '100200143', '外六角螺丝‖M12*25mm；不锈钢；100颗/包 8.8级；全牙', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4165, '100200144', '外六角螺丝‖M12*30mm；不锈钢；100颗/包 8.8级；全牙', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4166, '100200145', '外六角螺丝‖M12*40mm；不锈钢；100颗/包 8.8级；全牙', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4167, '100200146', '外六角螺丝‖M14*25mm；不锈钢；100颗/包；全牙', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4168, '100200147', '外六角螺丝‖M14*30mm；不锈钢；100颗/包；全牙', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4169, '100200135', '螺栓‖公制螺纹A2不锈钢；内六角；M5*20mm；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4170, '100200136', '平机螺丝(沉头)‖平头；M2*25mm；不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4171, '100200137', '平机螺丝(沉头)‖平头；M2*30mm；不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4172, '100200138', '平机螺丝(沉头)‖尖头；M3*25mm；不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4173, '100200139', '平机螺丝(沉头)‖尖头；M3*30mm；不锈钢；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4174, '100200140', '外六角螺丝‖M10*25mm；不锈钢；100颗/包；8.8级；全牙', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4175, '100200141', '外六角螺丝‖M10*30mm；不锈钢；100颗/包；8.8级；全牙', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4176, '100200129', '螺栓‖公制螺纹A2不锈钢；内六角；M3*12mm；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4177, '100200130', '螺栓‖公制螺纹A2不锈钢；内六角；M3*20mm；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4178, '100200131', '螺栓‖公制螺纹A2不锈钢；内六角；M4*12mm；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4179, '100200132', '螺栓‖公制螺纹A2不锈钢；内六角；M4*16mm；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4180, '100200133', '螺栓‖公制螺纹A2不锈钢；内六角；M4*20mm；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4181, '100200134', '螺栓‖公制螺纹A2不锈钢；内六角；M5*12mm；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4182, '100200128', '螺栓‖公制螺纹A2不锈钢；内六角；M3*6mm；100颗/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4183, '100200113', '平垫圈‖M5；碳钢 蓝白锌', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4184, '100200086', '膨胀螺丝‖沉头；M6*40；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4185, '100200087', '膨胀螺丝‖沉头；M6*60；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4186, '100200088', '膨胀螺丝‖沉头；M8*40；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4187, '100200089', '膨胀螺丝‖沉头；M8*60；304不锈钢', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4188, '100200077', '膨胀螺栓‖M8*60mm；304不锈钢', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4189, '100200078', '塑料膨胀管‖M6*35mm；黄色', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4190, '100200079', '圆头螺丝、螺帽、垫片‖304不锈钢；M7*30；十字；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4191, '100200080', '五角螺母‖10mm；100颗/包‖宁波鸿钢', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4192, '100200081', '十字螺栓‖平头不锈钢；硬度8.8；M3*10；须配弹垫和平垫', '0', '套', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4193, '100200082', '十字螺栓‖平头不锈钢；硬度8.8；M3*15；须配弹垫和平垫', '0', '套', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4194, '100200083', '十字螺栓‖平头不锈钢；硬度8.8；M4*10；须配弹垫和平垫', '0', '套', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4195, '100200084', '螺栓‖平头不锈钢十字；M4*15；硬度8.8；须配弹垫和平垫', '0', '套', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4196, '100200085', '螺栓‖平头不锈钢十字；M5*15；硬度8.8；须配弹垫和平垫', '0', '套', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4197, '100200071', '圆头螺丝+螺帽+垫片‖M3*25；304不锈钢；十字；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4198, '100200072', '圆头螺丝+螺帽+垫片‖304不锈钢；M4*30；十字；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4199, '100200073', '圆头螺丝+螺帽+垫片‖304不锈钢；M5*30；十字；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4200, '100200074', '圆头螺丝+螺帽+垫片‖304不锈钢；M6*30；十字；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4201, '100200075', '圆头螺丝+螺帽+垫片‖304不锈钢；M8*30十字100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4202, '100200076', '圆头螺丝+螺帽+垫片‖304不锈钢；M10*30；十字；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4203, '100200064', '膨胀螺丝‖M8*70；不锈钢304', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4204, '100200065', '膨胀螺丝‖M10*90；不锈钢', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4205, '100200066', '尼龙防松螺母‖M6；不锈钢316；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4206, '100200067', '尼龙防松螺母‖M8；不锈钢316材质；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4207, '100200068', '尼龙防松螺母‖M10；不锈钢316材质；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4208, '100200070', '尼龙防松螺母‖M14；不锈钢304；100个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4209, '100200058', '自攻钉‖十字槽盘头；d1=ST2.9mm；L=16mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4210, '100200059', '自攻钉‖十字槽盘头；d1=ST3.5mm；L=22mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4211, '100200060', '膨胀螺栓‖M14*120mm；304不锈钢', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4212, '100200061', '膨胀螺丝‖M12*110', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4213, '100200062', 'U螺丝组件‖不锈钢；U33；M10；每一套含螺栓一套螺母2件；平垫2件；弹簧垫片各2件', '0', '套', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4214, '100200063', 'U螺丝组件‖不锈钢；U42；M12；（每一套含螺栓一套螺母2件；平垫2件；弹簧垫片各3件', '0', '套', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4215, '100200055', '双面齿防松垫圈‖M8；不锈钢；碟形防滑垫圈', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4216, '100200056', '双面齿防松垫圈‖M10；不锈钢；碟形防滑垫圈', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4217, '100200057', '双面齿防松垫圈‖M12；不锈钢；碟形防滑垫圈', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4218, '100200048', '平垫片‖M18；304不锈钢；厚度：3mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4219, '100200049', '平垫片‖M20；304不锈钢；厚度：3mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4220, '100200050', '平垫片‖M22；304不锈钢', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4221, '100200051', '平垫片‖M24；304不锈钢', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4222, '100200052', '平垫片‖M30；304不锈钢', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4223, '100200053', '防松垫圈‖M4；不锈钢双面齿碟形防滑垫圈', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4224, '100200054', '防松垫圈‖M6；不锈钢双面齿碟形防滑垫圈', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4225, '100200041', 'T字螺栓‖M16*65；8.8级；304不锈钢；半牙', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4226, '100200042', '平垫片‖M4；不锈钢304；厚度：0.8mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4227, '100200043', '平垫片‖M6；不锈钢304；厚度：1.6mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4228, '100200044', '平垫片‖M8；不锈钢304；厚度：1.6mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4229, '100200045', '平垫片‖M10；不锈钢304；厚度：2mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4230, '100200046', '平垫片‖M12；不锈钢；304厚度：2.5mmGB/T97.1-DIN125', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4231, '100200047', '平垫片‖M16；304不锈钢；厚度：3mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4232, '100200035', '螺母‖304不锈钢；M16；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4233, '100200036', '螺母‖304不锈钢；M18；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4234, '100200037', '螺母‖304不锈钢；M20；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4235, '100200038', '螺母‖304不锈钢；M22；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4236, '100200039', '螺母‖304不锈钢；M24；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4237, '100200040', '螺母‖304不锈钢；M30；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4238, '100200028', '外六角螺栓‖304不锈钢全牙；M4*20；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4239, '100200029', '外六角螺栓‖304不锈钢全牙；M18*85；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4240, '100200030', '外六角螺栓‖304不锈钢全牙；M20*270；螺距1.5；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4241, '100200031', '外六角螺栓‖304不锈钢全牙；M12*120；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4242, '100200032', '螺母‖304不锈钢；M4；8.8级；厚度：3.2mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4243, '100200033', '螺母‖304不锈钢；M8；8.8级；厚度：6.8mm', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4244, '100200034', '螺母‖304不锈钢；M12；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4245, '100200022', '全牙外六角螺栓‖M12*50；304不锈钢；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4246, '100200023', '外六角螺栓‖304不锈钢全牙；M20*40；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4247, '100200024', '外六角螺栓‖304不锈钢全牙；M22*80；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4248, '100200025', '外六角螺栓‖304不锈钢全牙；M24*80；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4249, '100200026', '外六角螺栓‖304不锈钢全牙；M30*100；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4250, '100200027', '全牙外六角螺栓‖M8*30；304不锈钢', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4251, '100200016', '外六角螺栓‖304不锈钢全牙；M12*40；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4252, '100200017', '螺栓‖M10*20；304不锈钢；全牙；外六角；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4253, '100200018', '外六角螺栓‖304不锈钢全牙；M16*55；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4254, '100200019', '外六角螺栓‖304不锈钢全牙；M12*30；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4255, '100200020', '外六角螺栓‖304不锈钢全牙；M12*20；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4256, '100200021', '外六角螺栓‖304不锈钢全牙；M16*50；8.8级', '0', '个', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4257, '100200014', '十字沉头自攻螺丝‖M4*30；不锈钢；200个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4258, '100200015', '自攻螺丝胶塞‖M6*30mm；200个/包', '0', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4259, '101000087', 'USB延长线‖长度2米‖绿联', '0', '根', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4260, '421200026', '碗形钢丝刷轮‖100型；孔16mm', '0', '只', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4261, '421200024', '电池‖4LR44；6V', '0', '颗', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4262, '620800062', '直流断路器‖C65H-DC；2P；C4A 订货号A9N22073‖施耐德', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4263, '621200033', '断路器‖5SY51067CC 6A‖西门子', '不可维修', '件', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4264, '621200034', '断路器‖5SY51167CC 16A‖西门子', '不可维修', '件', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4265, '120600072', '润滑脂‖XHP 222；Special  16kg=35磅/桶', '不可维修', '桶', NULL, '通用', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4266, '120600090', '润滑油‖lagermeister；3000；plus；15kg/桶‖福斯', '不可维修', '桶', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4267, '120500040', '车用填充腻子‖规格20g/支', '不可维修', '支', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4268, '621800009', '救援及防护枕木‖490*200*100mm', '不可维修', '块', NULL, '电客车-救援辅材', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4269, '621800010', '小枕木‖200*150*15mm', '不可维修', '块', NULL, '电客车-救援辅材', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4270, '621800011', '救援橡胶垫块‖150*150*15mm', '不可维修', '块', NULL, '电客车-救援辅材', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4271, '621800012', '救援橡胶垫块‖200*150*15mm', '不可维修', '块', NULL, '电客车-救援辅材', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4272, '621800006', '救援及防护枕木‖490*200*30mm', '不可维修', '块', NULL, '电客车-救援辅材', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4273, '620700162', '镀锌钢丝‖YB/T 5294-2009；Φ1.2；15公斤/卷', '不可维修', '卷', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4274, '621800007', '救援及防护枕木‖590*300*200mm', '不可维修', '块', NULL, '电客车-救援辅材', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4275, '621800008', '救援及防护枕木‖490*200*150mm', '不可维修', '块', NULL, '电客车-救援辅材', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4276, '621800002', '救援及防护枕木‖590*300*150mm', '不可维修', '块', NULL, '电客车-救援辅材', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4277, '621800003', '救援及防护枕木‖590*300*100mm', '不可维修', '块', NULL, '电客车-救援辅材', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4278, '621800004', '救援及防护枕木‖590*300*30mm', '不可维修', '块', NULL, '电客车-救援辅材', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4279, '621800005', '救援及防护枕木‖590*300*10mm', '不可维修', '块', NULL, '电客车-救援辅材', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4280, '620700160', '温度贴‖40-71度(十格A)；10张/包', '不可维修', '包', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4281, '620700161', '温度贴‖71-110度(八格B)；10张/包', '不可维修', '包', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4282, '621800001', '小枕木‖150*150*15mm', '不可维修', '块', NULL, '电客车-救援辅材', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4283, '620700185', '开口销‖φ2.5*30（GB/T91-2000）；不锈钢', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4284, '620700184', '开口销‖4X24；不锈钢', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4285, '100300001', '尼龙扎带‖白色5*650mm；100根/包', '不可维修', '包', NULL, '通用', '0', NULL);
+INSERT INTO `wms_goods` VALUES (4286, '101000140', '熔断器‖3.6*10/2A；250V‖利勃海尔', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4287, '101000135', '小型断路器‖C65N；3P；D50A；A9F19350‖施耐德', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4288, '101000113', '小型空气断路器‖EA9RN2C1030C；2P；C10A；30mA‖施耐德', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4289, '620700159', '接线端子‖TD（AZ1)/30A/660V‖浦厂', '不可维修', '套', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4290, '620700156', '接线鼻子‖sc50-12‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4291, '620700157', '接线鼻子‖sc50-8‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4292, '620700158', '接线鼻子‖sc50-10‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4293, '620100181', '液晶屏清洁套装‖', '不可维修', '套', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4294, '620800061', '空调机组‖DL37‖利勃海尔', '可维修', '台', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4295, '220100123', 'TeSys辅助触点模块‖LADN20 C‖施耐德', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4296, '620300034', '受电弓碳滑条‖CY280-HZL1P1；纯碳‖摩根', '不可维修', '根', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4297, '620300035', '浸金属碳滑条‖SK1204‖崇德', '不可维修', '条', NULL, '01049-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (4298, '620700182', '垫圈‖10；PMG15D1000C11‖浦厂', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4299, '620700153', '螺母‖六角头开槽；M12；全金属；PMG13K1200811‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4300, '620700154', '垫圈‖12；PMG15D1200C11‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4301, '620100179', '螺栓‖M12*40；ISO4017；PMG11M1240B11‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4302, '620100180', '螺栓‖M10*70；ISO4017；PMG11M1070B11‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4303, '620700183', '弹簧垫圈‖M10；不锈钢', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4304, '620300030', '受电弓电机罩壳‖QGD100-080025‖天海', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4305, '620300031', '受电弓软连线B组合‖QG-120(B)-000200‖天海', '不可维修', '条', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4306, '620300032', '受电弓软连线C组合‖QG-120(B)-000300‖天海', '不可维修', '条', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4307, '620100178', '螺栓‖M10*40；ISO4017；PMG11M1040B11‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4308, '620700152', '螺母‖六角头开槽；M10；全金属；PMG13K1000811‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4309, '620300028', '防尘套‖QGD100-080020‖天海', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4310, '620300023', '受电弓软接线A组合‖QG-120(B)-000100‖天海', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4311, '620300012', '插销‖φ2.5*30', '不可维修', '个', NULL, '01001-01048', '服务关键物料C2', NULL);
+INSERT INTO `wms_goods` VALUES (4312, '620300008', '波纹管‖AD21.2*720mm', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4313, '620400020', '上护板安装座‖UFD62-07-00-03L/R；尼龙‖欧特美', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4314, '620300004', '渡板连杆‖UFD62-09-00-00‖欧特美', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4315, '620400021', '下护板安装座‖UFD62-05-00-00‖欧特美', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4316, '620400022', '侧护板连杆‖UFD85-02-03-00‖欧特美', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4317, '620700151', '齿轮箱‖QGD100-090100‖浦厂', '可维修', '个', NULL, '01001-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4318, '620300005', '左球窝接头‖外螺纹；M16', '不可维修', '个', NULL, '01001-01048', '服务关键物料C2', NULL);
+INSERT INTO `wms_goods` VALUES (4319, '620400016', '连接框密封胶条‖EPDM；UFD63-00-00-02‖欧特美', '不可维修', '根', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4320, '620400017', '关节轴承（贯通道顶板）‖GB9163-GE12‖欧特美', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4321, '620400018', '折棚保护绳‖UFD26-16-00-00‖欧特美', '不可维修', '根', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4322, '620400019', '锁舌‖UFD62-06-01-00L/R‖欧特美', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4323, '620700181', '弹簧垫圈‖M10；不锈钢', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4324, '620400013', '锁连杆组成‖UFD56-06-02-00‖欧特美', '不可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4325, '620400014', '侧翼磨耗条‖UFD62-07-00-03L/R；尼龙‖欧特美', '不可维修', '根', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4326, '620400015', '合页‖UFD62-07-00-01；不锈钢‖欧特美', '不可维修', '根', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4327, '620300003', '渡板弹簧‖UFD26-06-07-00；不锈钢‖欧特美', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4328, '620400011', '毡带‖UFD62-02-03-01‖欧特美', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4329, '620400012', '边护板裙边(左)‖UFD62-03-02-01L‖欧特美', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4330, '620700179', '平垫圈‖Φ8；不锈钢', '不可维修', '片', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4331, '620700180', '弹簧垫圈‖M8；不锈钢', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4332, '620400005', '顶板组成(安装框一侧顶板)‖UFD62-02-00-00‖欧特美', '可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4333, '620400006', '侧护板组成(滑动侧墙)‖UFD62-03-00-00‖欧特美', '可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4334, '620400007', '间隙盖板‖UFD98-07-02-02‖欧特美', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4335, '620400008', '中央磨耗条‖UFD62-07-00-02‖欧特美', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4336, '620400009', '套管‖UFD71-02-00-04‖欧特美', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4337, '620400010', '垫片‖UFD62-02-03-02‖欧特美', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4338, '620700150', '耐克森‖E 250 S 0.93平方毫米‖浦镇、杭州中车', '不可维修', '米', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4339, '621100093', '针脚‖FE 470-1-1针脚；不含继电器座‖利奇', '不可维修', '颗', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4340, '620400001', '贯通道总成1‖UFD62-00-00-00‖欧特美', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4341, '620400002', '车体安装框组成(收紧框总成)‖UFD62-06-00-00', '可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4342, '620400003', '渡板组成(安装框一侧渡板总成)‖UFD62-07-00-00‖欧特美', '可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4343, '620400004', '踏板组成(收紧框一侧总成)‖UFD62-08-00-00‖欧特美', '可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4344, '621100092', 'MTR插片式‖接0.34-1.5平方毫米线；被接端子宽度6.3mm；后部孔径3.6mm‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4345, '621700002', '蓄电池温度传感器探头‖NTC10KOHM‖荷贝克', '不可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4346, '621100097', '电子集成模块1551‖TNY268PN；4N750A；6.28mm*9.53mm', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4347, '621100098', '带引脚电解电容‖250V；4.7uf；WH105℃；12.5mm*Φ8.20mm‖AiSHi', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4348, '621100099', '带引脚电解电容‖35V；220uf；RR105℃；12.3mm*Φ8.19mm‖AiSHi', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4349, '621100100', '带引脚金属膜色环电阻‖220欧；6mm*1.75mm', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4350, '620800060', '空调三相检测继电器‖CM-PVS.41S‖ABB', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4351, '621100091', '插片式端子‖+2.5平方毫米线；端子宽度6.3mm；后部孔径6.8mm；PMG7420000787‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4352, '620500081', '线夹‖半径6mm；0309020009‖康尼', '不可维修', '只', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4353, '620700149', '管状端子‖I/2.5；长21.5mm；后部孔径7.9mm；PMG7420000786‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4354, '620800058', '万能转换开关‖LW12-16F/4.5075.1-P1‖上海核工双', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4355, '620800059', '功率继电器（司机室足部加热器）‖JQX-30F‖Asiaon亚洲龙', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4356, '621100085', '端子‖C6D8；PMG7410500981‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4357, '621100086', '端子‖I/0.5/8；PMG7420100181‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4358, '621100087', '端子‖I/0.75/2.8；PMG7420000281‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4359, '621100088', '端子‖I/1.0/8；PMG7420000383‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4360, '621100089', '端子‖C70D8；PMG7410501581‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4361, '621100090', '二极管‖PMGTD20000083‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4362, '621100079', '端子‖C2.5D6/12；PMG7410000782‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4363, '621100080', '端子‖F1.5/3/0.75；PMG7400000681‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4364, '621100081', '端子‖F1.5/6.3/4.1；PMG742000068D‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4365, '621100082', '端子‖F2.5/3.9/0.8；PMG7420000783‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4366, '621100083', '端子‖F2.5/6.3/4.9；PMG7420000789‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4367, '621100084', '端子‖C6D6/8.8；PMG7410400982‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4368, '620100174', '制动缓解旁路开关‖KCE604080A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4369, '620700147', '线缆‖E 1.34 NF F 63-808 187 NEXANS FLAMEX 18 12‖浦厂', '不可维修', '米', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4370, '620700148', '线缆‖E 0.93 NF F 63-808 187 NEXANS FLAMEX 18 12‖浦厂', '不可维修', '米', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4371, '621100076', '端子‖C1.5D4/6.6；PMG7410000681‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4372, '621100077', '端子‖C1.5D6/11.6；PMG7410000683‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4373, '621100078', '端子‖C2.5D5/9.5；PMG7410000781‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4374, '620100168', '门模式选择开关‖KCE604075A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4375, '620100169', '头灯明暗调节开关‖KCE604056A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4376, '620100170', '客室照明开关‖自复位三档开关KCM310718B1s‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4377, '620100171', '司机室照明灯开关‖自锁二档开关KCM310704B1‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4378, '620100172', '门使能旁路开关‖KCE604079A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4379, '620100173', '强迫缓解开关‖自锁二档开关KCM310706B1a‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4380, '620100162', '门关好旁路开关‖KCE310705B1a‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4381, '620100163', '警惕、无车间电源、升弓允许、强迫缓解、零速、回库下载旁路开关‖KCE604058A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4382, '620100164', '升弓允许旁路开关‖自锁二档开关KCM310706B1a‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4383, '620100165', '零速旁路开关‖自锁二档开关KCM310706B1a‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4384, '620100166', 'ATC模式开关1‖自锁五档开关KCM310707B1‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4385, '620100167', 'ATC模式开关2‖KCE604061A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4386, '620700146', '连接器‖CW04VCUX2；PM0GD07221209011‖天台永贵', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4387, '620100158', '列车唤醒/睡眠控制开关‖KCE604031A0‖诺和', '不可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4388, '620100159', '车钩监视旁路开关‖KCE604072A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4389, '620100160', '紧急牵引/拖行开关‖KCE604060A0‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4390, '620100161', '洗车模式开关‖自锁二档开关KCM310704B1‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4391, '621100071', '继电器座‖SFE472-1-1；PMG75A5000012‖浦厂；利奇', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4392, '621100072', '继电器座‖SFE670-1-1‖利奇', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4393, '621100073', '继电器‖D8-U204-LQ-Y；PMG75124402F2‖浦厂；施密特', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4394, '621100074', '继电器‖D-U204-QL;PMG75124001F2‖施密特;浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4395, '621100075', '继电器指示模块‖RE0015-APE-110；PM0GD07331209052‖浦厂；利奇', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4396, '621100065', '继电器座‖V93BR_EU；PMG75A2AU01F2‖浦厂；施密特', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4397, '621100066', '继电器座‖V92BR_EU；PMG75A2AU01F4‖浦厂；施密特', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4398, '621100067', '继电器座‖V93BR_AV；PMG75A2AV01F2‖浦厂；施密特', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4399, '621100068', '继电器座‖V22BR_BZ；PMG75A2BZ01F7‖浦厂；施密特', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4400, '621100069', '继电器座‖V23BR_CS；PMG75A2CS01F1‖浦厂；施密特', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4401, '621100070', '继电器座‖SFE470-1-1；PMG75A5000011‖浦厂；利奇', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4402, '621100058', '功率延时继电器‖TDE4N-U72-230V AC/DC-C 0-100S（30S）‖施密特', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4403, '621100059', '延时模块继电器‖THLOR-110H4-ZYW；PMG7535001111‖浦厂；利奇', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4404, '621100060', '继电器‖CU-U204-GE；PMG75522001F1‖浦厂；施密特', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4405, '621100061', '低压检测继电器‖UMD-81-MTDV4-U204-KC/0.5S/0.5S-84/90V+V23BR‖施密特', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4406, '621100062', '继电器座‖V10+A109_A；PMG75A2A001F3‖浦厂；施密特', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4407, '621100063', '继电器座‖V23BR_AS；PMG75A2AS01F1‖浦厂；施密特', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4408, '621100064', '继电器座‖V23BR_ET；PMG75A2AT01F1‖浦厂；施密特', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4409, '621300018', '车门外部指示灯‖黄橙；SHD06-05C-L0-DC110V/≤1W‖恒之源', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4410, '621300019', '车门外部指示灯‖红；SHD06-05C-LR-DC110V/≤1W‖恒之源', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4411, '621100055', '单层编织线‖裸线长度L=250 D1=6.5 D2=6.5（15平方毫米）；PM0GD07511209141‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4412, '621100056', '单层编织线‖中间裸线长度L=300 D1=12 D2=9（120平方毫米）；PM0GD07511209128‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4413, '621100057', '延时模块继电器‖THLAO-110H4-YWV；PMG7525001111‖浦厂；利奇', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4414, '620700145', '螺母‖M20；LNB；PMG7367000A20‖睿宝', '不可维修', '件', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4415, '620100155', '金属戈兰头‖HSM-M25‖睿宝', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4416, '620100156', '电缆夹件‖PM0KD27411200400‖浦厂；中电', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4417, '620100157', '金属戈兰头‖HSM-M27；PMG73700000S‖浦厂；睿宝', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4418, '620100150', '金属戈兰头‖HSM-M20‖睿宝', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4419, '620100151', '金属戈兰头‖HSM-M32‖睿宝', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4420, '620700143', '波纹软管‖PMG7320000003‖浦厂；睿宝', '不可维修', '米', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4421, '620700144', '波纹软管‖PMG7320000009‖浦厂；睿宝', '不可维修', '米', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4422, '620100147', '连接器‖CM04XP02；PM0GD07511209066‖浦厂；天台永贵', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4423, '620100148', '连接器‖CM02WLANSX2；PM0GD07231209044‖浦厂；天台永贵', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4424, '620700142', '波纹软管‖PMG7320000002‖浦厂；睿宝', '不可维修', '米', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4425, '620100144', '连接器‖FCI；PM0GD07251209021‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4426, '620100145', '连接器‖FCI；PM0GD07251209022‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4427, '621100051', 'AB连接器‖PM0GD07251209023‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4428, '621100052', 'AB连接器‖PM0GD07251209025‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4429, '621100053', 'AB连接器‖PM0GD07251209026‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4430, '620100146', '连接器‖CKB；PM0GD07331209036‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4431, '620100138', '连接器‖PM0GD07251209015‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4432, '620100139', '连接器‖PM0GD07251209016‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4433, '620100140', '连接器‖PM0GD07251209017‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4434, '620100141', '连接器‖PM0GD07251209018‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4435, '620100142', '连接器‖PM0GD07251209019‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4436, '620100143', '连接器‖FCI；PM0GD07251209020‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4437, '620100136', '连接器‖PM0GD07251209022‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4438, '620100137', '电压表‖PMG7C12100082‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4439, '621300017', '司机室顶棚灯（司机室照明灯）‖LPD131-00-000‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4440, '621100049', '低压检测继电器‖UMD-81-MTDV4-U204-KC/0.5S/0.5S-84/90V‖施密特', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4441, '621100050', 'AB连接器‖PM0GD07251209014‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4442, '620700141', '防爬器‖PM0KD12660102000‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4443, '620100131', 'LC22按钮（LC22旋钮）‖KRT+TG22GSW+MHR3+MTI ‖诺和', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4444, '620100132', 'ATO/IATP/ATB 发车按钮‖K30STZ38850‖诺和', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4445, '620100133', 'LC22旋钮（强迫泵风按钮）‖KRT+TG22GSW+MHR3+MTI+MF ‖诺和', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4446, '620100134', 'LC22旋钮（车端监控按钮）‖KRTKLMTIL110‖诺和', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4447, '620100135', '司机室阅读灯‖LPD138-00-000‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4448, '621100045', '55PTS-N(HE302连接器)‖PM0GD07441209007‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4449, '621100046', 'HE302连接器‖PM0GD07441209008‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4450, '621100047', 'FCI (连接器)‖PM0GD07441209009‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4451, '620100129', '连接器‖PM0GD07511209080‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4452, '621100048', 'AB(连接器)‖PM0GD07251209027‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4453, '620100130', '遮阳帘‖JL-S自锁式；含32个配件||久立', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4454, '621100040', '端子排‖TB01C1BI REP 102；TB04C2LD_22‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4455, '621100041', '端子排‖TB01C2AL；TB04C2LD_23‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4456, '621100042', '端子排‖TB01C2AL；TB04C2LD_24‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4457, '620100128', '连接器‖CKB；PM0GD07251209023‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4458, '621100043', '端子排‖TBO2LIV；TB04C2LD_31‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4459, '621100044', 'AB 32A-13(连接器)‖PM0GD07441209006‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4460, '621100034', '刮雨器控制开关‖KCE604076A0‖诺和', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4461, '621100035', '低液位检测继电器‖F470-H4V-XUV；PMG7515004111‖浦厂；利奇', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4462, '621100036', '端子排‖TB02C1AI；TB04C2LD_13‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4463, '621100037', '端子排‖TB06C1BL；TB05C2LD_11‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4464, '621100038', '门紧急使能开关‖KCE604051A0‖诺和', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4465, '621100039', '端子排‖TB01C1BI REP 101；TB04C2LD_21‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4466, '621100029', '端子排‖TB04LVB_3‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4467, '621100030', 'LC22旋钮‖KRTRTMTIIIIL110‖诺和', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4468, '620100127', 'C22右侧关门按钮KRT+TG22KL+MHR5+MTI+MTO+MTO+ML+FZR9-130+BSKU‖诺和', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4469, '621100031', '端子排‖TB01DD；TB04C2LD_34‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4470, '621100032', '端子排‖TB05LVB‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4471, '621100033', '端子排‖TB02LP1A；TB02C1LD‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4472, '620700137', '管接头‖UF-AC 15 G1/4 B/Y；PMG6166151B11‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4473, '620700138', '管接头‖AMA-C 22-1\" B/Y；PMG61P6221211‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4474, '620700139', '管接头‖15B/Y；PMG6126151201‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4475, '620700140', '管接头‖15G1\"；PMG6146122231‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4476, '621100026', '隔离开关‖KCM310702B1‖诺和', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4477, '621100027', '端子排‖TB03UDD；TB04LVB_1‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4478, '621100028', '端子排‖TB04UDD；TB04LVB_2‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4479, '620700131', '管接头‖15-G1/4B；PMG6166121B11‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4480, '620700132', '管接头‖15G3/8；PMG6146121C11‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4481, '620700133', '管接头‖12G1/4；PMG6116121201‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4482, '620700134', '管接头‖12G1/4；PMG6146223B11‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4483, '620700135', '管接头‖15G1/2；PMG6146221A11‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4484, '620700136', '管接头‖22G3/4；PMG61P6151211‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4485, '621100025', '插入式适配器‖UM AC 22-G3/4B Y BX；PMG61N6152631‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4486, '620100126', '可旋转定位角块‖12-M12*1；PMG6116181801‖浦厂', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4487, '620700127', '阳性塞头‖BO M AC G3/8B Y BX；PMG6176121B11‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4488, '620700128', '管接头‖G3/4-G3/4B；PMG61C6121201‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4489, '620700129', '管接头‖AMA-C 15；PMG6126151201‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4490, '620700130', '管接头‖15-G1/2B；PMG6146151C11‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4491, '620700121', '带有垫圈的阳性塞头‖G1/2B；PMG61K61C0001‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4492, '620700122', '缩小接头转接器‖22-15；PMG61H6121231‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4493, '620700123', '缩小接头转接器‖ AUR AC 18-12 Y BX；PMG61P6151211‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4494, '620700124', '阳接头‖UM AC 12-G1/4B Y BX；PMG6176121B11‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4495, '620700125', '缩小接头转接器 ‖AUR AC 22-18 Y IB；PMG6146181C11‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4496, '620700126', '阳性转接器（插头）‖AM AC 12-G1/4 Y BX；PMG6146121B11‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4497, '621100024', '继电器‖D-U204-LQ-Y‖施密特', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4498, '620700116', '接头‖EA-C 22 Y IB；PMG61A6151501‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4499, '620700117', '接头‖EA-C 12 Y IB；PMG6116222201‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4500, '620700118', '接头‖EA-C 15 Y/B；PMG61A6151501‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4501, '620700119', '接头‖EA-C 16 Y/B；PMG61A6222201‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4502, '620700120', '制动管接件‖缩小 22-12；PMG61P6221211‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4503, '621300014', '头尾灯‖左；LPQZD22-01-00-000‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4504, '621300015', '头尾灯‖右；LPQZD22-01-00-000‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4505, '621300016', '安定器‖XLD CK G4 CAN-BUS 9-32V 35W‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4506, '621100022', '继电器‖F470-H4V-XUV； 110V；PMG7515004111‖浦厂；利奇', '不可维修', '件', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4507, '621100023', '继电器‖D8-U204-LQ‖施密特', '不可维修', '件', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4508, '621300008', '门切除指示灯‖LPQZD33-03-000‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4509, '621300009', '整流器‖LPDM-2203540 AC220V‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4510, '621300010', '氙气灯泡‖H4 35W 4200K‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4511, '621300011', '标志灯LED板‖白；图号LPQZD22-02-04-000‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4512, '621300012', '标志灯LED板‖红；图号LPQZD22-02-03-000‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4513, '621300013', '头灯电源模块组成‖LPQZD22A-01-03-000‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4514, '621300002', '光源组件‖LPCY87-01-01-200（L或R）‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4515, '621300003', 'LED整流器‖LPDC-1103540；DC110V‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4516, '621300004', '灯具（客室灯带）‖MP车‖兰普', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4517, '621300005', '筒灯(过道灯)‖LPD45-00-000‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4518, '621300006', '驱动（司机室顶灯直流电子转换器）‖LPDC-1103520D‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4519, '621300007', '内部门指示灯‖黄橙；LPQZD33-04-000‖兰普', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4520, '621400048', '动态地图贴膜‖PC+3M背胶，尺寸：1390mmX170mm‖定制', '不可维修', '张', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4521, '621400049', 'VGA编码板‖BY-VGAEn8500-OPin-11‖20800EN850000‖国联', '可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4522, '621400050', '电源模块（PSU)‖SZ03GLA1005B-PSU‖21001005BSZ03‖国联', '可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4523, '621400051', '上接口板‖HZ01PD0111B111-MPD304E-V1.0带音频加贴标签‖203180304E110‖国联', '不可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4524, '621400052', '下接口板‖HZ01-PD0111B012-MPD304E-V1.0‖203180304E010‖国联', '不可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4525, '621400053', '动态地图灯板‖HZ01MAPPART0V1.1 PA1114B011‖203HZ01MAP011‖国联', '不可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4526, '621300001', '灯具（客室灯带）‖TC车‖兰普', '不可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4527, '621400042', '复合线缆‖CCTV-L1-BJYZ;L=7.5M;DB15M+3芯电缆+DB9F‖605V100750000‖国联', '不可维修', '条', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4528, '621400043', 'LED终点站灯板‖FZ01 GLD1001 PD0100A211 V1.1‖203PD0100A211‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4529, '621400044', 'i5新版PIDS/CCTV主机主板‖SYS76989VGGA‖20376989VGGA0‖国联', '可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4530, '621400045', '媒体服务器硬盘‖1TB；5900转；64MB；ST1000VX005‖希捷', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4531, '621400046', '交换机电源‖YZ01;PD0311A010-GL208E‖203PD0311A010‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4532, '621400047', '客室解码分屏器电源模块‖WD40-110S12M1‖203POWER40W13‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4533, '621400036', '广播主机DVAR数字录放模块SD卡罩‖GZ06-GLA1002G-FP-B02‖81523001002G1‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4534, '621400037', '广播分机LCU客室控制模块‖HZ01;GLA1001B1‖2101001E1HZ01‖国联', '不可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4535, '621400038', '通用媒体网关8口普通交换机‖GL2320 MW0323A211 V1.0‖20300GL232010‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4536, '621400039', '广播分机AMP功放模块‖HZ01;GLA1006B1-AMP‖国联', '不可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4537, '621400040', '广播主机CAPU音频处理模块‖HZ01;GLA1002B CAPU‖21001002EZH01‖国联', '可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4538, '621400041', '广播控制盒手持麦克风‖ODC-3‖204000000SZ03‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4539, '621400030', '广播主机DVAR数字录放模块‖HZ01;GLA1003E-DVAR‖21001003EHZ01‖国联', '不可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4540, '621400031', '广播主机DVAR数字录放模块SD卡‖16GB‖品牌:SanDisk‖63910000016GB‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4541, '621400032', '广播主机PISC架驾室控制模块‖HZ01;GLA1001E-PISC‖21001001EHZ01‖国联', '可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4542, '621400033', '动态地图控制板‖HZ01;GLA1011E;PA1114B410‖203PA1114B410‖国联', '不可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4543, '621400034', '动态地图电源‖YZ01;GLA1011-01;PA1111B011;POWER;V1.1‖2030010110111‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4544, '621400035', '司机室交换机‖HZ01;GL-208E‖10100208EHZ01‖国联', '可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4545, '621400024', 'LED显示器控制板‖LCXLED-PEN;3010-3-20‖20801003E0000‖国联', '可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4546, '621400025', '内存条‖DDR2；KVR800D2N6/2G‖金士顿', '不可维修', '条', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4547, '621400026', 'CF卡‖8GB；AP-CF008GL9FS-NR‖宇瞻', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4548, '621400027', '司机室交换机交换板‖SWITCH;V1.4;CV0012B014;QP96968B‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4549, '621400028', '分屏器解码板‖BY-VGA;DN8500-OPin-11‖20800DN850000‖国联', '不可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4550, '621400029', '广播主机MVB模块‖HZ01;GLA1009B-MVB‖21001009BHZ01‖国联', '可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4551, '621400018', '17寸LCD显示器‖HZ01 PDS-1701A‖10701701AHZ01‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4552, '621400019', '广播分机ICU对讲处理模块‖HZ01;GLA1007E1-ICU‖2101007E1HZ01‖国联', '不可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4553, '621400020', '媒体网关电源‖HZ01;MGW500E-4R;CV0005B013;V1.3‖203CV0005B013‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4554, '621400021', 'LED显示屏电源盒‖110D40S5‖2090041100053‖国联', '可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4555, '621400022', '媒体服务器电源盒‖WDK150-110S12‖2091501100120‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4556, '621400023', '客室解码分屏器‖HZ01;MGW304D‖11700304DHZ01‖国联', '不可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4557, '621400012', '媒体播放主机‖HZ01 G002D（SYS76989VGGA主板）‖10205002DHZ01‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4558, '621400013', '12〞触摸屏‖PDS-1201A‖10501201AHZ01‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4559, '621400014', '2路媒体网关‖MGW500ED2‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4560, '621400015', '视频编码板‖GZ06 GLINK HI3520D NVP6114‖20323VP611411‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4561, '621400016', '司机室摄像机‖GL423W/TA-2.5‖106042370HZ01‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4562, '621400017', '客室摄像机‖GL423W/TA-6‖106042340HZ01‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4563, '621400005', '客室广播分机‖GLA1000D1‖1091000D1HZ01‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4564, '621400006', 'LED动态线路图总成‖GLA1011E‖11201011BHZ01‖国联', '不可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4565, '621400007', '乘客紧急对讲单元‖GLA1010E‖11101010EHZ01‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4566, '621400008', '客室LED显示器‖GLD1003E‖107D1003EHZ01‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4567, '621400009', '噪声检测模块‖GLA1005E‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4568, '621400010', '客室扬声器‖GLY1001E1‖1141001E1HZ01‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4569, '621400011', 'CCTV主机‖HZ01 G002D（SYS76989VGGA主板）‖101125002HZ01‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4570, '621400001', '司机室广播主机‖GLA1000D‖10801000DHZ01‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4571, '621400002', '广播控制盒‖GLA1004E‖11001004EHZ01‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4572, '621400003', '司机室扬声器‖HZ01 GLY1001E‖11401001EHZ01‖国联', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4573, '621400004', '终点站LED显示器‖GLD1001E‖10701001EHZ01‖国联', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4574, '620800050', '控制电源继电器‖C65H-DC-2P-C4A‖施耐德', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4575, '620800051', '电客车空调机组排水管‖内径30*外径37‖利勃海尔', '不可维修', '米', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4576, '620800052', '中间继电器‖PLC-RSP-24DC/21‖菲尼克斯', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4577, '620800053', 'S1空调模式转换旋钮‖LW12-16/4.6431.2-P1‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4578, '620800054', 'S2空调温度选择旋钮‖LW12-16/4.4506.1-P1‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4579, '620800055', '足部加热器延时继电器‖MIND ST3PF‖明达', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4580, '620800044', '看门狗继电器‖CAD-32BDC‖施耐德', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4581, '620800045', '空调单向阀‖NRV19s Danfoss‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4582, '620800046', '检测继电器组件‖线圈/继电器座/夹子/二极管‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4583, '620800047', '视液镜‖SGN16S Danfoss‖丹佛斯', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4584, '620800048', '时间继电器‖RE17 RMX MU‖施耐德', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4585, '620800049', '接触器‖LC1-D18BLC‖施耐德', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4586, '620800038', '密封胶垫‖丁睛/PVC橡胶', '不可维修', '米', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4587, '620800039', '电气连接器‖YG81系列‖利勃海尔', '不可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4588, '620800040', '六角螺栓‖用于空调盖板；M8*20；A2-70', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4589, '620800041', '接驳胶粒‖BV1.25‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4590, '620800043', '空调机组电加热器‖LZT16.06.00.00.00 380V 1KW‖利勃海尔', '可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4591, '620800032', '空调气液分离器‖LZT19.11.00.00.00‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4592, '620800033', '直流转换器‖MZC300-110S24‖利勃海尔', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4593, '620800035', '热磁断路器‖C65N-C 6A/3P‖施耐德', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4594, '620800036', '空气断路器‖GV2-ME07C‖施耐德', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4595, '620800037', '接线端子‖STTB 2.5', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4596, '620800026', '冷凝器2‖LZT15.12.00.00.00‖利勃海尔', '不可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4597, '620800027', '通风单元风嘴‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4598, '620800028', '通风单元转换开关‖LW12-16F/4.5495.2-P1‖上海核工双虹', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4599, '620800030', '右侧通风机（客室送风机）‖DKF-2.7 SHR2‖利勃海尔', '可维修', '台', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4600, '620800031', '回风滤网框架‖LZT15.20.00.00.00‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4601, '620800021', '接触器‖LC1-D09BLC‖施耐德', '不可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4602, '620800022', '新风过滤网‖LZT15.13.00.00.00 DIN EN 779-G2 等级‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4603, '120300007', '制冷剂‖R407C；10KG/桶', '不可维修', '千克', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4604, '620800024', '电动回风调节阀2‖LZT15.18.00.00.00‖利勃海尔', '不可维修', '台', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4605, '620800025', '蒸发器2‖LZT15.10.00.00.00‖利勃海尔', '不可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4606, '620800014', '电动回风调节阀1‖LZT15.17.00.00.00‖利勃海尔', '不可维修', '台', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4607, '620800015', '电动新风调节阀1‖LZT15.19.00.00.00‖利勃海尔', '不可维修', '台', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4608, '620800016', '回风/新风调节器执行器‖Belimo；利勃海尔', '不可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4609, '620800017', '减振器‖LZT/Q 4027-2009‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4610, '620800018', '通风机（司机室送风机）‖EKHR 250-2SW.060.4FF‖利勃海尔', '可维修', '台', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4611, '620800019', '风机调速器‖MTS-300‖利勃海尔', '不可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4612, '620800008', '电阻丝加热器1‖04.01.01.008;3KW‖利勃海尔', '不可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4613, '620800009', '干燥过滤器‖DML165S‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4614, '620800010', '高压压力开关‖ACB-PB194‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4615, '620800011', '低压压力开关‖LCB-PA153‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4616, '620800012', '电磁阀线圈‖RXM 2AB2BD‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4617, '620800013', '新风温度传感器（新、回风温度传感器）‖902004 NTC‖利勃海尔', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4618, '620800003', '压缩机‖G700DL-120DT‖利勃海尔', '不可维修', '台', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4619, '620800004', '冷凝器1‖LZT15.11.00.00.00‖利勃海尔', '不可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4620, '620800005', '蒸发器1‖LZT15.09.00.00.00‖利勃海尔', '不可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4621, '620800006', '冷凝风机‖KT32‖利勃海尔', '可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4622, '620800007', '左侧通风机（客室送风机）‖DKF-2.7 SHL2', '可维修', '台', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4623, '620700114', '动车转向架管路‖Mp车‖浦厂', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4624, '620700115', '锥型橡胶弹簧‖TMT；；B0KMD21000001‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4625, '621100018', '单层编织线‖中间裸线长度L=200 D1=10.5 D2=10.5（150平方毫米）；PM0GD07511209131‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4626, '621100019', '单层编织线‖中间裸线长度L=220  D1=10.5  D2=10.5（95平方毫米）；PM0GD07511209153‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4627, '621100020', '单层编织线‖中间裸线长度L=300 D1=10.5 D2=12（150平方毫米）；PM0GD07511209143‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4628, '620700108', '垂直减震器‖B0KMD31000004‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4629, '620700109', '水平减震器‖B0KMD31000005‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4630, '620700110', '带节点的抗侧滚扭杆‖B0KMD33000003‖浦厂', '可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4631, '620700111', '抗侧滚扭杆连杆‖B0KMD33100001‖浦厂', '可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4632, '620700112', '横行止档‖B0KMD32000010‖浦厂', '可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4633, '620700113', '动车转向架管路‖TC车‖浦厂', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4634, '621100017', '单层编织线‖中间裸线长度L=300 D1=10.5 D2=10.5（150平方毫米）；PM0GD07511209132‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4635, '621000055', '制动电阻风扇（风机组件3）‖DEGXF4.6C‖上海吉泰', '可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4636, '621000056', '制动电阻温控板‖CCSTPITTL-000‖上海吉泰', '可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4637, '621200012', '蓄电池‖FN232MR；82节一套‖荷贝克', '可维修', '套', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4638, '620700106', '锥型橡胶弹簧‖B0KMD21000001；MTC‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4639, '620700107', '空气弹簧‖B0GMD3110000001‖浦厂', '不可维修', '件', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4640, '621000052', 'VITREOUS RESISTOR解耦二极管保护电阻‖S075755', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4641, '621200010', '辅助逆变器熔断器‖160A；160A CC 20 gRE 302 QF 0160‖西门子/纵横', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4642, '621200011', '辅助逆变器100A熔断器‖Q075753', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4643, '620700100', '接地碳刷回流装置‖B0GMD24100001‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4644, '620700101', '回流电刷20*40-单层类型‖B0GMD24100002‖浦厂', '不可维修', '件', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4645, '620700102', '摩擦盘‖B0GMD24100003‖浦厂', '不可维修', '件', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4646, '620700103', '接地线（电流回流）‖长54cm', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4647, '620700104', '密封环‖15037', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4648, '621000043', '牵引电机国外部分‖ITB2010-1GA02‖西门子', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (4649, '621000044', '牵引电机国内部分‖ITB2010-1GA03‖西门子', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (4650, '620300002', '避雷器‖3EB4 020-7DS42-0D', '不可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (4651, '621000023', '电流传感器‖LT 1005-S/SP26', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4652, '621100015', '单层编织线‖中间裸线长度L=350 D1=10.5 D2=10.5（150平方毫米）；PM0GD07511209126‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4653, '620900051', '连接器（GV阀）‖J80247/198‖克诺尔', '不可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4654, '620900052', '连接器（SV阀）‖J80247/204‖克诺尔', '不可维修', '套', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4655, '621100094', '滑石绝缘子‖ISSTE50M10；50*50；M10‖Steatite insulator', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4656, '621100014', '滑石绝缘子‖ISSTE60M10；60*60；M10‖上海吉泰', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4657, '621100011', '单层编织线‖中间裸线长度L=250 D1=10.5 D2=10.5（150平方毫米）；PM0GD07511209127‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4658, '621100012', '单层编织线‖中间裸线长度L=390 D1=10.5 D2=10.5（120平方毫米）；PM0GD07511209140‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4659, '621100013', '单层编织线‖中间裸线长度L=500 D1=6.5 D2=6.5（30平方毫米）；PM0GD07511209142‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4660, '620900028', '制动闸瓦‖C141551/121‖克诺尔', '不可维修', '个', NULL, '01001-01080', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4661, '620900058', '过渡座‖A66269', '可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4662, '620900013', '密封环‖453858‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4663, '620900014', '密封环‖453799‖克诺尔', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4664, '620700096', '轮对检测电子标签‖LY-DTDZBQ/300‖成都主导科技', '不可维修', '块', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4665, '620700091', '自锁垫圈‖M20；镀达克罗；ISO7089；300HV；（法标）；100248‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4666, '620700092', '轮缘润滑喷嘴‖Φ6*25-Φ1.2‖莱伯斯', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4667, '620700093', '轮缘润滑分配器‖TLT2‖莱伯斯', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4668, '620700094', '轮缘润滑油箱‖莱伯斯', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4669, '620700095', '轮缘润滑喷嘴软管‖L=550mm‖莱伯斯', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4670, '620700087', '螺栓‖六角；M36*90；8.8；39167‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4671, '620700088', '弹簧垫圈‖8；TYPE3L；31153‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4672, '620100125', '螺栓‖97007‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4673, '620700178', '垫片‖106724‖浦厂', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4674, '620700089', '螺栓‖外六角半牙；M20*208；镀达克罗；法标12.9；137242‖浦镇', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4675, '620700090', '螺母‖M20；镀达克罗；10级；HFR法标:FP6；最大高度21；71273‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4676, '620700177', '垫圈‖30445‖浦厂', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4677, '620100124', '螺栓‖29466‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4678, '620700083', '螺母‖M12；29156‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4679, '620700084', '螺栓‖六角头；M24*60；ISO4017 8.8；29127‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4680, '620700085', '螺母‖14222‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4681, '620700086', '弹性销‖φ10*30；100241‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4682, '620100119', '螺栓‖M12*55；34042‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4683, '620100120', '螺栓‖M6*50；8.8；29797‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4684, '620700081', '螺母‖M10；29478‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4685, '620100121', '螺栓‖M8*35；ISO 4017；27778‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4686, '620100122', '螺栓‖M24*110；94262‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4687, '620700082', '螺母‖M20；71273‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4688, '620100123', '螺栓‖M16*45；27952‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4689, '620700079', '自锁垫圈‖NL36；120651‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4690, '620700175', '垫圈‖NL24；107109‖浦厂', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4691, '620100117', '螺栓‖M10*65；35700‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4692, '620100118', '螺栓‖M16*65；28169‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4693, '620700176', '垫片‖118071‖浦厂', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4694, '620700080', '静态弹性垫圈‖12；5537‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4695, '620100113', '螺栓‖M12*60；29722‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4696, '620100114', '螺栓‖M12*35；28155‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4697, '620700078', '垫圈‖36；90143‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4698, '620100115', '螺栓‖M12*80；ISO 4017；8.8级；29781‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4699, '620700174', '垫片‖L8；16823‖浦厂', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4700, '620100116', '螺栓‖M20*100；35685‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4701, '620100108', '螺栓‖M10*40；28327‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4702, '620100109', '螺栓‖M12*30-8.8；29617‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4703, '620100110', '螺栓‖M16*50；27943‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4704, '620700173', '垫圈‖19717‖浦厂', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4705, '620100111', '螺栓‖M20*260；153746‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4706, '620100112', '螺栓‖M10*20；ISO4017；8.8级；29257‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4707, '620700077', '螺栓‖自锁；LOCKING BOLT NORD-LOCK；97873‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4708, '620100105', '螺栓‖M20*50；29580‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4709, '620100106', '螺栓‖M24*120；92475‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4710, '620700076', '垫圈‖20；101567‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4711, '620700172', '垫圈‖L10；17820‖浦厂', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4712, '620100107', '螺栓‖M12*40；28744‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4713, '620100100', '螺母‖M8；29796‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4714, '620700075', '螺母‖M16；27938‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4715, '620100101', '螺栓‖16056‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4716, '620700171', '垫圈‖26376‖浦厂', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4717, '620100102', '螺栓‖M8*60；ISO4014；27808‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4718, '620100103', '螺栓‖M16*30；ISO4017；28165‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4719, '620100104', '螺栓‖M8*90；93288‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4720, '620100096', '螺栓‖28470‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4721, '620100097', '螺栓‖29469‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4722, '620100098', '螺栓‖28168‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4723, '620700074', '自锁垫圈‖20；100248‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4724, '620700170', '垫圈‖8；16825‖浦厂', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4725, '620100099', '螺栓‖M8*30；ISO4017；8.8级；28480‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4726, '620700071', '密封圈‖PM055T1512100004‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4727, '620700072', 'O型橡胶密封圈‖PMG4040020990‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4728, '620100093', '螺钉‖开槽沉头；M4*30；PMG1430430731‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4729, '620700073', '接地碳刷‖B0KMD24100000‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4730, '620100094', '螺栓‖M16*80；29189‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4731, '620100095', '螺栓‖28471‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4732, '620700064', 'O型圈‖92705‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4733, '620700065', 'O型圈‖W15037‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4734, '620700066', 'O型圈‖NF R 93-920；15037‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4735, '620700067', 'O型圈‖211*φ4；PB071M1123000006‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4736, '620700068', 'O型橡胶密封圈‖PM0KD18710107000‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4737, '620700069', '转向架接线盒封盖密封圈‖PM056T1311122405‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4738, '620700070', '密封圈‖A27*32；PM060T1512100004‖浦厂', '不可维修', '个', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4739, '620700059', '插式调整垫片‖7mm；B0GMD31000003-7‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4740, '620700060', '插式调整垫片‖5mm；B0GMD31000003-5‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4741, '620700061', '插式调整垫片‖3mm；B0GMD31000003-3‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4742, '620700062', '插式调整垫片‖1mm；B0GMD31000003-1‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4743, '621100010', '单层编织线‖裸线长300；4平方毫米；ATC连接器；PM0GD07511209162‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4744, '620700063', '轮缘润滑箱盖‖B40ML‖莱伯斯', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4745, '620700053', '垫圈‖CLNFE25-51012-24（空簧安装座）；19717‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4746, '620700054', '一系垂向减震器安全垫圈‖VS12-垂向；横向减震器；30448‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4747, '620700055', '自锁垫圈‖NL16（抗侧滚扭杆）；95464‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4748, '620700056', '安全垫圈‖加厚VS型（牵引中心）；36；30614‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4749, '620700057', '插式调整垫片‖12mm；轮缘磨耗调整垫片；96535‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4750, '620700058', '插式调整垫片‖10mm；B0GMD31000003-10‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4751, '620700049', '轴箱内的O型环‖91705‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4752, '620700169', '卡箍‖13mm带宽不锈钢304无孔卡箍；碳钢螺栓；紧固范围80-100mm', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4753, '620100092', '螺栓‖M12*50；ISO4014；29689‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4754, '620700051', '垫圈‖10；加厚VS型；高度阀；30446‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4755, '620700052', '安全垫圈‖加厚VS型；20；防过冲止档；30457‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4756, '620700043', '抗侧滚扭杆/水平‖B0KMD33000003‖浦厂', '可维修', '件', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4757, '620700044', '牵引销‖B0GMD32000001‖浦厂', '可维修', '件', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4758, '620700045', '牵引中心‖B0GMD32000002‖浦厂', '不可维修', '件', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4759, '620700046', '弹性套（中心座/牵引中心）‖B0GMD3200001101‖浦厂', '可维修', '件', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4760, '620700047', '轴箱内的轴承‖B0GMD22200007‖浦厂', '不可维修', '件', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4761, '620700048', '轴箱内的轴端部弹性档环‖B0KMD33100003‖浦厂', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4762, '620600024', '全自动车钩活塞‖PN：1-545984001‖西屋', '不可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4763, '620600025', '全自动车钩密封环‖PN：1-545994001‖西屋', '不可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4764, '620600026', '自动车钩‖Plug；P/N：1-546034001‖西屋', '不可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4765, '620700040', '动车轮对‖含轴箱＋含半个连轴节的齿轮箱；B0KMD22000000‖浦厂', '可维修', '对', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4766, '620700041', '拖车轮对（含轴箱）‖B0KTD22000000‖浦厂', '可维修', '对', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4767, '620700042', '轴箱体‖B0GMD22200001‖浦厂', '可维修', '件', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4768, '621100009', '单层编织线‖中间裸线长度L=500  D1=10.5 D2=10.5（50平方毫米）；PM0GD07511209150‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4769, '620700039', '顶杆阀垫圈‖PM0GD12700101006‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4770, '620600019', '半自动车钩‖1-543203001‖西屋金桥', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4771, '620600020', '全自动车钩‖1-543193001‖西屋金桥', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4772, '620600021', '半永久性牵引杆‖1-543213001‖西屋金桥', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4773, '620600022', '手动解钩限位装置‖定制‖浦镇、杭州中车', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4774, '620600023', '全自动车钩中心销钩舌处橡胶衬套‖定制‖西屋金桥', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4775, '620600014', '自动车钩缓冲装置‖1-543303001‖西屋金桥', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4776, '620600015', '全自动对中装置‖1-561383001‖西屋金桥', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4777, '620600093', '拉断螺栓、螺母‖1-555320100‖西屋', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4778, '620600017', '压溃管‖200mm；1-543554001‖西屋金桥', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4779, '620600018', '车钩橡胶密封圈‖GASKET垫圈；0087042‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4780, '621100008', '单层编织线‖中间裸线长度L=305 D1=10.5 D2=10.5（50平方毫米）；PM0GD07511209133‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4781, '620600009', '解钩风缸‖1-545973001‖西屋金桥', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4782, '620600010', '解钩管密封圈‖57738-4001‖西屋', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4783, '620600011', '主风管密封圈‖1-543500002‖西屋金桥', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4784, '620700038', '主风管阀‖054921-3010', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4785, '620600012', '电气触头（母）‖1-543523001‖西屋', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4786, '620600013', '压溃管‖100mm；1-543554002‖西屋金桥', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4787, '620600004', '橡胶垂向支撑‖半自动车钩；1-543403001‖西屋金桥', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4788, '620600005', '半永久车钩缓冲装置‖1-543303002‖西屋金桥', '可维修', '个', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4789, '620600006', '卡环紧固套件‖1*螺栓1-543460150；2*垫圈1-550770016；1*螺母06739650016‖西屋', '不可维修', '套', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4790, '620600007', '气路接头‖1-543500001‖西屋', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4791, '620600031', '安装螺母‖6739650016', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4792, '620600008', '半自动车钩缓冲装置‖1-543303001‖西屋金桥', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4793, '620600030', '安装螺母‖6739650030', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4794, '620600002', '橡胶垂向支撑‖全自动车钩；1-543403001‖西屋金桥', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4795, '620600003', '电气触头（公）‖1-543523001‖西屋', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4796, '620500073', '新标O型圈‖GB3452.1', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4797, '620500174', '螺钉‖内六角圆柱头；M5*10；白色、不锈钢；A2-70 GB/T70.1‖康尼', '不可维修', '个', NULL, '01049-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4798, '620200010', '间隔门门吸‖今创', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4799, '620500058', '螺钉‖十字槽沉头；M5*8；A2-70；100只/包', '不可维修', '包', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4800, '620500054', '螺钉‖十字槽半沉头；M5*30；A2-70；100只/包', '不可维修', '包', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4801, '620500173', '螺丝‖车门侧立柱紧固；梅花槽盘头；M5*14；不锈钢', '不可维修', '个', NULL, '01049-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4802, '620500047', '螺母‖车门挡销紧固；M10', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4803, '620500042', '门槛‖含安装附件；PM0KD18332400310‖今创', '不可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4804, '620500043', '防护罩（车内紧急装置）‖PM0KD18330400300‖浦镇', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4805, '620500044', '螺栓‖车门V型内六角；M10*25；不锈钢', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4806, '620500045', '螺栓‖车门V型内六角；M10*30；不锈钢', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4807, '620500029', '断路器‖S261-D3 AC 3A‖ABB', '不可维修', '个', NULL, '01001-01080', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (4808, '620500025', '蜂鸣器‖PK-27N29EP-110V', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4809, '620500020', '周边压条‖L=3300mm；PM0KD13334400700‖今创', '不可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4810, '620800002', '足部加热器‖CFH500B；制热量:500W；送风量:80立方米/h‖利勃海尔', '不可维修', '台', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4811, '620100269', '钢丝螺纹套‖M5*0.8；不锈钢', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4812, '620100270', '钢丝螺纹套‖M3*0.5；不锈钢', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4813, '620100271', '钢丝螺纹套‖M8*1.25；不锈钢', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4814, '620100272', '钢丝螺纹套‖M10*1.5；不锈钢', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4815, '620100088', '可调向接头‖22-G1B；用于风缸管接头‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4816, '620100089', '隐私贴膜（电客车专用）‖680*460mm‖3M', '不可维修', '片', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4817, '620100087', '开口编织网管‖8；PMG73F000000K‖浦厂', '不可维修', '米', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4818, '620700035', '密封贴片‖H1002；PMG4030020120‖浦厂', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4819, '620200008', '刮雨器转轴‖PMOKDO893019-100‖吉林恒辉', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4820, '620100266', '海绵胶条‖6*20*1155；EM410 C1(NF F 00-072)', '不可维修', '米', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4821, '620100267', '钢丝螺纹套‖M4*0.7；不锈钢', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4822, '620100268', '钢丝螺纹套‖M6*1；不锈钢', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4823, '620700033', '波纹管‖PACL28/BL；PMG7320000004‖浦厂', '不可维修', '米', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4824, '620700034', '波纹管‖PAFS10/BL；PMG732000000A‖浦厂', '不可维修', '米', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4825, '620100083', '开口编织网管‖13；PMG73F0000001‖浦厂', '不可维修', '米', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4826, '620100084', '开口编织网管‖19；PMG73F0000002‖浦厂', '不可维修', '米', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4827, '620100085', '开口编织网管‖25；PMG73F0000003‖浦厂', '不可维修', '米', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4828, '620100086', '开口编织网管‖5；PMG73F000000J‖浦厂', '不可维修', '米', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4829, '621100005', '单层编织线‖中间裸线长度L=220  D1=10.5  D2=10.5（200平方毫米）；PM0GD07511209152‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4830, '621100006', '单层编织线‖中间裸线长度L=300 D1=10.5 D2=10.5（200平方毫米）；PM0GD07511209151‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4831, '621100007', '单层编织线‖中间裸线长度L=250 D1=10.5 D2=10.5（50平方毫米）；PM0GD07511209129‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4832, '620700029', '波纹管‖PACL34/BL；PMG7320000001‖浦厂', '不可维修', '米', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4833, '620700030', '波纹管‖PAFL21/BL；PMG7320000008‖浦厂', '不可维修', '米', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4834, '620700031', '波纹管‖PAFL16/BL；PMG7320000003‖浦厂', '不可维修', '米', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4835, '620700032', '波纹管‖PAFL13/BL；PMG7320000002‖浦厂', '不可维修', '米', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4836, '620700025', '常用制动管路O型密封圈‖外径Φ20mm*Φ2mm（断面直径）‖浦厂', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4837, '620700026', '主风管路O型密封圈‖外径Φ24mm；断面直径Φ2mm‖浦厂', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4838, '620600001', '无润滑凸轮销钉‖1-543594001‖西屋', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4839, '620700027', 'O型环‖O-Ring 180*2 NBR 70', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4840, '620700028', 'O型环‖O-Ring 200*5 NBR 70', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4841, '621100004', '单层编织线‖中间裸线长度L=300 D1=10.5 D2=10.5（120平方毫米）；PM0GD07511209130‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4842, '620700022', '隔圈‖DIN1440；PM0KD06140010004‖浦厂', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4843, '620700023', '齿轮箱吊杆‖REACTION LINK 412*152*48‖安杰达', '可维修', '个', NULL, '01001-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4844, '620700024', '联轴节紧固件‖Ck45；12个螺栓带螺母；进口件；GLP0000570‖安杰达', '不可维修', '套', NULL, '01001-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4845, '620700019', '齿轮箱国内部分‖包含56项小备件‖浦厂', '可维修', '套', NULL, '01001-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4846, '621000010', '联轴节电机侧‖A5E00207062‖西门子', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4847, '620700020', '螺栓‖法兰头连接；M10*45；DIN609-10.9DAC；M57110045091095‖浦厂', '不可维修', '套', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4848, '620700021', '螺母‖法兰头连接；M10；980-10 DAC；M572010098015‖浦厂', '不可维修', '套', NULL, '01001-01072', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4849, '620200006', '司机室座椅‖PM0GD18660001000‖浦厂', '可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4850, '620200007', '副座椅‖PM0GD18570302000‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4851, '620700016', '齿轮箱国外部分‖-', '可维修', '套', NULL, '01001-01072', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4852, '621000008', 'Gear-KUPPLUNG联轴节齿轮箱侧‖A5E00191842‖西门子', '可维修', '个', NULL, '01001-01048', '服务关键物料C3', NULL);
+INSERT INTO `wms_goods` VALUES (4853, '620700017', 'O型圈‖O-RING；DIA85*2；O形环IGW；140500000008502', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4854, '620100077', '客室灭火器安装插销链钢丝绳‖PMOGD1874020100‖浦厂', '不可维修', '根', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4855, '620100078', '扶手拉环橡胶条‖PMOGD1871050‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4856, '620100079', '扶手拉环‖PM0GD18710501000‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4857, '620100080', '扶手拉环（不含金属件）‖物料编码23010117‖金字', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4858, '620100081', '端墙及柜‖PM0GD18510300000/PM0GD18510400000/PM0GD18520100000PM0GD18520200000‖今创', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4859, '620200005', '副座椅支架‖PM0GD18570301000‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4860, '620200004', '司机室隔间门门锁‖TK03-150-2‖今创', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4861, '620100072', '座椅-方案2-SST‖PM0GD18720501000 PM0GD18720509000/PM0GD18720505000‖浦厂', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4862, '620100073', '座椅箱‖PM0GD18210850100/PM0GD18210850200‖浦厂', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4863, '620100074', '门立柱罩‖PM0GD18330400100/PM0GD18330400200/PM0GD18330400300‖今创', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4864, '620100075', '扶手‖TC CAR‖浦厂', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4865, '620100076', '扶手‖MP CAR‖浦厂', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4866, '620100070', '转换开关保护盖‖透明；KCM310708BLA‖诺和君目', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4867, '620200002', '里程计‖PM0GD07251209028‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4868, '620800001', '足部加热器风机‖CFH500B；制热量500W；送风量80立方米/h‖浦镇', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4869, '620200003', '隔间门格栅组成‖PM0KD18510302300/6130940590‖今创', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4870, '620100265', '方孔锁套装‖含压缩锁+锁片；GPN985/0201', '不可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4871, '620100068', '所有停放制动缓解指示灯、所有制动缓解指示灯、所有制动施加指示灯‖K30SNZ38842‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4872, '621100001', '单层编织线‖中间裸线长度L=300  D1=6.5 D2=8.5（30平方毫米）；PM0GD07511209148‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4873, '621100002', '单层编织线‖中间裸线长度L=300 D1=6.5 D2=10.5（30平方毫米）；PM0GD07511209158‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4874, '621100003', '单层编织线‖中间裸线长度L=300 D1=6.5 D2=6.5（50平方毫米）；PM0GD07511209161‖浦厂', '不可维修', '条', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4875, '620200001', '雨刷用喷淋软管‖YS-RG-6/4‖浦厂', '不可维修', '米', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4876, '620100069', '按钮保护盖‖透明；KDKRT‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4877, '620100062', '按钮片‖加厚按片KF23；红色‖诺和(浦厂)', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4878, '620100063', '按钮片‖加厚按片KF23;绿色‖诺和(浦厂)', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4879, '620100064', '按钮片（黑色）‖T30FGSW‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4880, '620100065', '按钮指示灯（红色）‖357009‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4881, '620100066', '按钮指示灯（绿色）‖357008‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4882, '620100067', '按钮指示灯（白色）‖357006‖诺和', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4883, '620100056', '刮水片‖SP-800‖吉林恒辉', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4884, '620100057', '挡风玻璃刮雨器电机‖82ZY100-110‖吉林恒辉', '不可维修', '件', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4885, '620100058', '司机室扶手‖PM0GD18690101000‖浦厂', '不可维修', '件', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4886, '620100059', '司机室内装板‖YB224003A2', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4887, '620100060', '按钮座‖KRT‖诺和(浦厂)', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4888, '620100061', '按钮片‖加厚按片KF23;白色‖诺和(浦厂)', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4889, '620100052', '驾驶室前挡玻璃‖PM0GD18640101000‖浦厂', '不可维修', '块', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4890, '620100053', '司机室隔间门（含玻璃）‖PM0GD18510201000‖浦厂', '不可维修', '块', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4891, '620100054', '清洗泵‖GZL-XDB-DC110-30W‖吉林恒辉', '不可维修', '件', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4892, '620100055', '刮雨器臂组件‖GZL-DGDT-SZ‖吉林恒辉', '不可维修', '件', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4893, '620100049', '侧顶板‖TC CAR‖今创', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4894, '620100050', '中顶‖MP CAR‖今创', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4895, '620100051', '侧顶板‖MP CAR‖今创', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4896, '620100043', '客室侧窗玻璃‖6片/套', '不可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4897, '620100044', '侧墙板-GRP‖MP CAR‖今创', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4898, '620100045', 'TC车小盲窗‖定制；备注：545*1064', '不可维修', '块', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4899, '620100046', 'TC车大盲窗‖定制；备注：1064*1064', '不可维修', '块', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4900, '620100047', '窗侧单层玻璃‖定制；备注：616.5*1064‖今创', '不可维修', '块', NULL, '01001-01048', '安全关键物料', NULL);
+INSERT INTO `wms_goods` VALUES (4901, '620100048', '中顶‖TC CAR‖今创', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4902, '620100264', '螺栓套组‖十字盘头螺栓、平垫、螺母；M3*15；不锈钢', '不可维修', '套', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4903, '620100040', 'U型胶条‖0.5-1.5；PMG72YL000003‖浦厂', '不可维修', '米', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4904, '620100041', 'U型胶条‖PMG4040020570‖浦厂', '不可维修', '米', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4905, '620700015', '钢带复合U型胶条‖PMG73B0000008‖浦厂', '不可维修', '米', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4906, '620100042', '侧墙板-GRP‖TC CAR‖今创', '可维修', '套', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4907, '620700010', '螺栓‖六角头；M16*50；不锈钢；PMG11L1650731‖浦镇', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4908, '620700011', '弹簧垫圈‖M16；不锈钢；PM0GD27160000002‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4909, '620700012', '螺栓‖六角头全螺纹；M16*35；不锈钢A2-70；PM0GD27160000001‖浦镇', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4910, '620700013', '平垫圈‖M16；不锈钢；PM0GD27160000003‖浦厂', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4911, '620700014', '螺栓‖六角头；M16*80；钢；ISO 4014；PMG11L1680731‖浦镇', '不可维修', '个', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4912, '620100261', '螺栓‖六角头；M16*100；钢；ISO1014（特制）', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4913, '620700009', '平垫圈‖M16；GB/97.1', '不可维修', '颗', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4914, '620100262', '螺母‖六角头开槽；M5；A4-80 NF E 25-411', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4915, '620100263', '螺母‖六角头开槽；M3；A2-70 NF E 25-411', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4916, '620100258', '螺栓‖M6*21；铜＋不锈钢（垫片、螺栓、螺母）；接地', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4917, '620100259', '防松垫圈‖CS型；M10；镀锌；XC60', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4918, '620100260', '螺钉‖开槽盘头；M3*16；A2-70', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4919, '620100255', '螺母‖卡式；M5；不锈钢', '不可维修', '颗', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4920, '620100256', '滚花螺柱‖M6*12；不锈钢', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4921, '620100257', '螺钉‖十字沉头；M5*20；不锈钢', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4922, '620100251', '防松垫圈‖CS型；M3；A2-80', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4923, '620100252', '防松垫圈‖CS型；M10*45；不锈钢；A2-70', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4924, '620100253', '螺栓‖T型；M10*40；不锈钢 ISO3506（特制）', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4925, '620100254', '螺栓‖T型；M10*35；不锈钢 ISO3506', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4926, '620100246', '防松垫圈‖CS型；M5；钢', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4927, '620100247', '螺栓‖T型；M6*16；钢8.8', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4928, '620100248', '螺栓‖T型；M6*20；钢8.8', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4929, '620100249', '螺钉‖一字开槽圆柱头；M3*12；A2-70', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4930, '620100250', '螺母‖1型六角；M3；A2-70', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4931, '620100242', '螺栓‖T型；M8*30；不锈钢 ISO3506', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4932, '620100243', '垫圈‖M8；不锈钢', '不可维修', '片', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4933, '620100244', '大垫圈‖M24；钢；BN792‖浦厂', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4934, '620700008', '螺栓‖M24*140；钢；GB/T 70.1', '不可维修', '颗', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4935, '620100245', '螺母‖1型六角；M5；钢； GB/T 6170-2000', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4936, '620100239', '铆钉‖6.4*20；不锈钢', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4937, '620100240', '弹簧垫圈‖M5；弹簧钢；蓝白锌', '不可维修', '包', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4938, '620100241', '螺栓‖T型；M10*30；不锈钢 ISO3506', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4939, '620100235', '防松垫圈‖M12；A2-80；NF E25-511', '不可维修', '片', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4940, '620700007', '螺钉‖内六角沉头；M12*30；钢', '不可维修', '颗', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4941, '620100236', '铆钉‖4.8*10.8；不锈钢', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4942, '620100237', '铆钉‖5*26；铝+钢', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4943, '620100238', '螺钉‖M6*8；不锈钢', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4944, '620100231', '螺钉‖内六角圆柱头；M5*12；不锈钢；GB/T70.1-2000', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4945, '620100232', '螺钉‖内六角圆柱头；M4*16；不锈钢 GB/T70.1-2000', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4946, '620100233', '螺钉‖十字槽盘头；M8*30；不锈钢', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4947, '620100234', '螺母‖盖型；M12；A2-70 NF E27-453', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4948, '620100226', '螺钉‖十字槽盘头；M4*25；钢；GB/T818-2000', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4949, '620100227', '螺钉‖开槽沉头；M4*30；钢', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4950, '620100228', '螺母‖六角；M4；钢 GB/T 6170-2000', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4951, '620100229', '防松垫圈‖CS型；M4；钢', '不可维修', '片', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4952, '620100230', '螺钉‖内六角圆柱头；M4*20；不锈钢；GB/T70.1-2000', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4953, '620100224', '螺母‖卡式；M8；钢+不锈钢 BN 80350', '不可维修', '颗', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4954, '620100225', '螺钉‖内六角沉头；M5*10；钢', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4955, '620300001', '螺栓‖六角头全螺纹；M12*25；不锈钢', '不可维修', '颗', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4956, '620100221', '螺栓‖T型；M8*35；ISO3506 （特制）', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4957, '620100222', '螺钉‖开槽沉头；M6*20；钢', '不可维修', '颗', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4958, '620100223', '螺母‖卡式；M6；不锈钢 BN 80350', '不可维修', '颗', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4959, '620700003', '螺母‖M16；钢；ISO 4032‖浦厂', '不可维修', '颗', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4960, '620700004', '螺栓‖M12*70；钢；ISO 4762', '不可维修', '颗', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4961, '620700005', '螺母‖六角；M12；钢 GB/T 6170', '不可维修', '颗', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4962, '620700006', '螺栓‖M12*80；钢；ISO 4762', '不可维修', '颗', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4963, '620100220', '螺栓‖六角全螺纹；M10*25；不锈钢', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4964, '620100001', '螺丝‖客室中央立柱扶手紧固；不锈钢；PMG1470510B11‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4965, '620700001', '螺丝‖客室车门旁扶手紧固；不锈钢；PMG14C0820B11‖浦厂', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4966, '620100002', '螺栓‖不锈钢；PMG11M0620B11‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4967, '620700002', '螺栓‖M16*80；钢；ISO 4014', '不可维修', '颗', NULL, '01001-01048', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4968, '120100040', '铜基抗咬合剂-润滑剂-防咬死‖loctite51007‖浦厂', '不可维修', '瓶', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4969, '120100041', '多用途喷胶', '不可维修', '支', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4970, '120100042', '泰罗松4006‖TEROSTAT4006；310ML；PMG4020010040‖浦镇', '不可维修', '罐', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4971, '120100055', '平面密封剂‖SI 587‖乐泰', '不可维修', '支', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4972, '601000054', '模拟量输入输出模块‖ AXMe ZS826E-262-000‖株洲中车时代电气股份有限公司', '不可维修', '件', NULL, '01073-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4973, '620800068', '汽水分离器‖铝合金框架；过风面积375mm*200mm；‖浦厂', '不可维修', '个', NULL, '01001-01048', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4974, '620400025', '销轴‖UFD09-03-04-07B‖欧特美', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4975, '620400026', '轴套‖UFD09-03-04-09REV00‖欧特美', '不可维修', '个', NULL, '01001-01080', '主要物料', NULL);
+INSERT INTO `wms_goods` VALUES (4976, '620700195', '螺堵‖M22*1.5；29477‖浦厂', '不可维修', '个', NULL, '01001-01080', '一般物料', NULL);
+INSERT INTO `wms_goods` VALUES (4977, '620800069', '插销组件‖空调机组混合腔盖插销组件‖浦厂', '不可维修', '个', NULL, '01001-01072', '主要物料', NULL);
+
+-- ----------------------------
+-- Table structure for wms_goods_statistics
+-- ----------------------------
+DROP TABLE IF EXISTS `wms_goods_statistics`;
+CREATE TABLE `wms_goods_statistics`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `goods_id` int(11) NOT NULL COMMENT '物料ID',
+  `total_number` int(11) NOT NULL DEFAULT 0 COMMENT '总数（物资库）',
+  `out_number` int(11) NOT NULL DEFAULT 0 COMMENT '借出（物资库）',
+  `leave_number` int(11) NOT NULL DEFAULT 0 COMMENT '库余（物资库）',
+  `xianghu_number` int(11) NULL DEFAULT NULL COMMENT '湘湖（一线）',
+  `nanyang_number` int(11) NULL DEFAULT NULL COMMENT '南阳（一线）',
+  `qibao_number` int(11) NULL DEFAULT NULL COMMENT '七堡（一线）',
+  `fault_one_number` int(11) NULL DEFAULT NULL COMMENT '故障件（一线）',
+  `fault_two_number` int(11) NULL DEFAULT NULL COMMENT '故障件（二线）',
+  `reworking_number` int(11) NULL DEFAULT NULL COMMENT '返修中（二线）',
+  `rework_number` int(11) NULL DEFAULT NULL COMMENT '返修回（二线）',
+  `overhaul_number` int(11) NULL DEFAULT NULL COMMENT '大修拆回',
+  `scrap_number` int(11) NULL DEFAULT NULL COMMENT '报废',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '库存物料统计表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of wms_goods_statistics
+-- ----------------------------
+INSERT INTO `wms_goods_statistics` VALUES (1, 2545, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+INSERT INTO `wms_goods_statistics` VALUES (2, 3129, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+INSERT INTO `wms_goods_statistics` VALUES (3, 2643, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 -- ----------------------------
 -- Table structure for wms_operation_record
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_operation_record`;
-CREATE TABLE `wms_operation_record` (
+CREATE TABLE `wms_operation_record`  (
   `RECORD_ID` int(11) NOT NULL AUTO_INCREMENT,
   `USER_ID` int(11) NOT NULL,
-  `USER_NAME` varchar(50) NOT NULL,
-  `OPERATION_NAME` varchar(30) NOT NULL,
-  `OPERATION_TIME` datetime NOT NULL,
-  `OPERATION_RESULT` varchar(15) NOT NULL,
-  PRIMARY KEY (`RECORD_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8;
+  `USER_NAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `OPERATION_NAME` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `OPERATION_TIME` datetime(0) NOT NULL,
+  `OPERATION_RESULT` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`RECORD_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 158 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_operation_record
 -- ----------------------------
-INSERT INTO `wms_operation_record` VALUES ('1', '1001', 'admin', '添加库存记录', '2021-11-02 21:28:27', '失败');
-INSERT INTO `wms_operation_record` VALUES ('2', '1001', 'admin', '添加库存记录', '2021-11-02 21:29:09', '失败');
-INSERT INTO `wms_operation_record` VALUES ('3', '1001', 'admin', '添加库存记录', '2021-11-02 21:29:28', '失败');
-INSERT INTO `wms_operation_record` VALUES ('4', '1001', 'admin', '添加仓库管理员信息', '2021-11-02 21:33:29', '成功');
-INSERT INTO `wms_operation_record` VALUES ('5', '1001', 'admin', '删除仓库管理员信息', '2021-11-02 21:33:35', '成功');
-INSERT INTO `wms_operation_record` VALUES ('6', '1001', 'admin', '添加仓库管理员信息', '2021-11-03 20:26:30', '成功');
-INSERT INTO `wms_operation_record` VALUES ('7', '1001', 'admin', '删除仓库管理员信息', '2021-11-03 20:26:52', '成功');
-INSERT INTO `wms_operation_record` VALUES ('8', '1001', 'admin', '导出货物信息', '2021-11-03 20:46:51', '-');
-INSERT INTO `wms_operation_record` VALUES ('9', '1001', 'admin', '删除货物信息', '2021-11-03 21:30:09', '失败');
-INSERT INTO `wms_operation_record` VALUES ('10', '1001', 'admin', '删除货物信息', '2021-11-03 21:31:16', '失败');
-INSERT INTO `wms_operation_record` VALUES ('11', '1001', 'admin', '添加仓库信息', '2021-11-03 23:10:22', '成功');
-INSERT INTO `wms_operation_record` VALUES ('12', '1001', 'admin', '删除仓库信息', '2021-11-03 23:10:30', '成功');
-INSERT INTO `wms_operation_record` VALUES ('13', '1001', 'admin', '修改仓库信息', '2021-11-03 23:10:43', '成功');
-INSERT INTO `wms_operation_record` VALUES ('14', '1001', 'admin', '修改仓库信息', '2021-11-03 23:10:55', '成功');
-INSERT INTO `wms_operation_record` VALUES ('15', '1001', 'admin', '修改仓库信息', '2021-11-03 23:11:03', '成功');
-INSERT INTO `wms_operation_record` VALUES ('16', '1001', 'admin', '修改仓库信息', '2021-11-03 23:11:13', '成功');
-INSERT INTO `wms_operation_record` VALUES ('17', '1001', 'admin', '添加库存记录', '2021-11-04 20:11:14', '失败');
-INSERT INTO `wms_operation_record` VALUES ('18', '1001', 'admin', '添加货物信息', '2021-11-04 21:54:09', '失败');
-INSERT INTO `wms_operation_record` VALUES ('19', '1001', 'admin', '添加货物信息', '2021-11-04 22:04:35', '成功');
-INSERT INTO `wms_operation_record` VALUES ('20', '1001', 'admin', '修改货物信息', '2021-11-04 22:08:02', '成功');
-INSERT INTO `wms_operation_record` VALUES ('21', '1001', 'admin', '导入库存记录', '2021-11-05 19:59:39', '-');
-INSERT INTO `wms_operation_record` VALUES ('22', '1001', 'admin', '导出库存记录', '2021-11-05 22:46:20', '-');
-INSERT INTO `wms_operation_record` VALUES ('23', '1001', 'admin', '修改库存记录', '2021-11-05 23:23:14', '成功');
-INSERT INTO `wms_operation_record` VALUES ('24', '1001', 'admin', '修改库存记录', '2021-11-05 23:23:46', '成功');
-INSERT INTO `wms_operation_record` VALUES ('25', '1001', 'admin', '添加库存记录', '2021-11-06 00:27:20', '成功');
-INSERT INTO `wms_operation_record` VALUES ('26', '1001', 'admin', '修改库存记录', '2021-11-06 00:27:26', '成功');
-INSERT INTO `wms_operation_record` VALUES ('27', '1001', 'admin', '删除库存记录', '2021-11-06 00:27:55', '成功');
-INSERT INTO `wms_operation_record` VALUES ('28', '1001', 'admin', '导出仓库管理员信息', '2021-11-06 00:29:59', '-');
-INSERT INTO `wms_operation_record` VALUES ('29', '1001', 'admin', '导入库存记录', '2021-11-06 00:41:48', '-');
-INSERT INTO `wms_operation_record` VALUES ('30', '1001', 'admin', '导入库存记录', '2021-11-06 00:48:07', '-');
-INSERT INTO `wms_operation_record` VALUES ('31', '1001', 'admin', '导入库存记录', '2021-11-06 00:52:39', '-');
-INSERT INTO `wms_operation_record` VALUES ('32', '1001', 'admin', '导入库存记录', '2021-11-06 00:54:41', '-');
-INSERT INTO `wms_operation_record` VALUES ('33', '1001', 'admin', '添加库存记录', '2021-11-06 00:56:14', '失败');
-INSERT INTO `wms_operation_record` VALUES ('34', '1001', 'admin', '添加库存记录', '2021-11-06 00:57:05', '失败');
-INSERT INTO `wms_operation_record` VALUES ('35', '1001', 'admin', '添加库存记录', '2021-11-06 00:57:15', '成功');
-INSERT INTO `wms_operation_record` VALUES ('36', '1001', 'admin', '删除库存记录', '2021-11-06 00:57:20', '成功');
-INSERT INTO `wms_operation_record` VALUES ('37', '1001', 'admin', '添加库存记录', '2021-11-06 00:57:31', '成功');
-INSERT INTO `wms_operation_record` VALUES ('38', '1001', 'admin', '删除库存记录', '2021-11-06 00:57:45', '成功');
-INSERT INTO `wms_operation_record` VALUES ('39', '1001', 'admin', '添加库存记录', '2021-11-06 00:58:08', '成功');
-INSERT INTO `wms_operation_record` VALUES ('40', '1001', 'admin', '导出库存记录', '2021-11-06 00:58:23', '-');
-INSERT INTO `wms_operation_record` VALUES ('41', '1001', 'admin', '删除库存记录', '2021-11-06 00:59:21', '成功');
-INSERT INTO `wms_operation_record` VALUES ('42', '1001', 'admin', '导入库存记录', '2021-11-06 00:59:33', '-');
-INSERT INTO `wms_operation_record` VALUES ('43', '1001', 'admin', '导入库存记录', '2021-11-06 01:00:12', '-');
-INSERT INTO `wms_operation_record` VALUES ('44', '1001', 'admin', '导入库存记录', '2021-11-06 02:11:38', '-');
-INSERT INTO `wms_operation_record` VALUES ('45', '1001', 'admin', '导入库存记录', '2021-11-06 02:16:30', '-');
-INSERT INTO `wms_operation_record` VALUES ('46', '1001', 'admin', '删除库存记录', '2021-11-06 02:16:45', '成功');
-INSERT INTO `wms_operation_record` VALUES ('47', '1001', 'admin', '导入库存记录', '2021-11-06 02:18:32', '-');
-INSERT INTO `wms_operation_record` VALUES ('48', '1001', 'admin', '删除库存记录', '2021-11-06 02:19:35', '成功');
-INSERT INTO `wms_operation_record` VALUES ('49', '1001', 'admin', '导入仓库管理员信息', '2021-11-06 02:30:54', '-');
-INSERT INTO `wms_operation_record` VALUES ('50', '1001', 'admin', '导出仓库管理员信息', '2021-11-06 02:31:22', '-');
-INSERT INTO `wms_operation_record` VALUES ('51', '1001', 'admin', '删除仓库管理员信息', '2021-11-06 02:52:08', '成功');
-INSERT INTO `wms_operation_record` VALUES ('52', '1001', 'admin', '添加仓库管理员信息', '2021-11-06 03:02:05', '成功');
-INSERT INTO `wms_operation_record` VALUES ('53', '1001', 'admin', '删除仓库管理员信息', '2021-11-06 03:04:03', '成功');
-INSERT INTO `wms_operation_record` VALUES ('54', '1001', 'admin', '添加仓库管理员信息', '2021-11-06 03:10:06', '成功');
-INSERT INTO `wms_operation_record` VALUES ('55', '1001', 'admin', '删除仓库管理员信息', '2021-11-06 03:24:38', '成功');
-INSERT INTO `wms_operation_record` VALUES ('56', '1001', 'admin', '添加仓库管理员信息', '2021-11-06 03:25:20', '成功');
-INSERT INTO `wms_operation_record` VALUES ('57', '1001', 'admin', '删除仓库管理员信息', '2021-11-06 03:25:49', '成功');
-INSERT INTO `wms_operation_record` VALUES ('58', '1001', 'admin', '导入仓库管理员信息', '2021-11-06 03:26:29', '-');
-INSERT INTO `wms_operation_record` VALUES ('59', '1001', 'admin', '删除仓库管理员信息', '2021-11-06 03:27:15', '失败');
-INSERT INTO `wms_operation_record` VALUES ('60', '1001', 'admin', '删除仓库管理员信息', '2021-11-06 03:28:29', '成功');
-INSERT INTO `wms_operation_record` VALUES ('61', '1001', 'admin', '删除仓库管理员信息', '2021-11-06 03:28:33', '成功');
-INSERT INTO `wms_operation_record` VALUES ('62', '1001', 'admin', '删除仓库管理员信息', '2021-11-06 03:29:18', '成功');
-INSERT INTO `wms_operation_record` VALUES ('63', '1001', 'admin', '导出仓库管理员信息', '2021-11-06 03:29:27', '-');
-INSERT INTO `wms_operation_record` VALUES ('64', '1001', 'admin', '导出货物信息', '2021-11-06 03:30:39', '-');
-INSERT INTO `wms_operation_record` VALUES ('65', '1001', 'admin', '导出仓库信息', '2021-11-06 03:34:33', '-');
-INSERT INTO `wms_operation_record` VALUES ('66', '1001', 'admin', '导入货物信息', '2021-11-06 03:37:05', '-');
-INSERT INTO `wms_operation_record` VALUES ('67', '1001', 'admin', '导入货物信息', '2021-11-06 03:43:23', '-');
-INSERT INTO `wms_operation_record` VALUES ('68', '1001', 'admin', '添加货物信息', '2021-11-06 03:49:39', '成功');
-INSERT INTO `wms_operation_record` VALUES ('69', '1001', 'admin', '删除货物信息', '2021-11-06 03:49:42', '成功');
-INSERT INTO `wms_operation_record` VALUES ('70', '1001', 'admin', '导入货物信息', '2021-11-06 03:51:40', '-');
-INSERT INTO `wms_operation_record` VALUES ('71', '1001', 'admin', '删除货物信息', '2021-11-06 03:51:56', '成功');
-INSERT INTO `wms_operation_record` VALUES ('72', '1001', 'admin', '导入货物信息', '2021-11-06 03:53:15', '-');
-INSERT INTO `wms_operation_record` VALUES ('73', '1001', 'admin', '删除货物信息', '2021-11-06 03:53:22', '成功');
-INSERT INTO `wms_operation_record` VALUES ('74', '1001', 'admin', '添加货物信息', '2021-11-06 13:34:12', '成功');
-INSERT INTO `wms_operation_record` VALUES ('75', '1001', 'admin', '删除货物信息', '2021-11-06 13:34:18', '成功');
-INSERT INTO `wms_operation_record` VALUES ('76', '1001', 'admin', '添加货物信息', '2021-11-06 15:00:17', '成功');
-INSERT INTO `wms_operation_record` VALUES ('77', '1001', 'admin', '添加货物信息', '2021-11-06 19:38:12', '成功');
-INSERT INTO `wms_operation_record` VALUES ('78', '1001', 'admin', '删除货物信息', '2021-11-06 19:49:04', '成功');
-INSERT INTO `wms_operation_record` VALUES ('79', '1001', 'admin', '删除货物信息', '2021-11-06 19:49:07', '成功');
-INSERT INTO `wms_operation_record` VALUES ('80', '1001', 'admin', '添加货物信息', '2021-11-06 19:49:18', '成功');
-INSERT INTO `wms_operation_record` VALUES ('81', '1001', 'admin', '删除货物信息', '2021-11-06 19:59:56', '成功');
-INSERT INTO `wms_operation_record` VALUES ('82', '1001', 'admin', '添加货物信息', '2021-11-06 20:00:13', '成功');
-INSERT INTO `wms_operation_record` VALUES ('83', '1001', 'admin', '添加货物信息', '2021-11-06 23:11:55', '成功');
-INSERT INTO `wms_operation_record` VALUES ('84', '1001', 'admin', '删除货物信息', '2021-11-06 23:13:06', '成功');
-INSERT INTO `wms_operation_record` VALUES ('85', '1001', 'admin', '删除货物信息', '2021-11-06 23:13:12', '成功');
-INSERT INTO `wms_operation_record` VALUES ('86', '1001', 'admin', '添加货物信息', '2021-11-07 00:13:30', '成功');
-INSERT INTO `wms_operation_record` VALUES ('87', '1001', 'admin', '删除货物信息', '2021-11-07 02:52:58', '成功');
-INSERT INTO `wms_operation_record` VALUES ('88', '1001', 'admin', '添加货物信息', '2021-11-07 02:53:14', '成功');
-INSERT INTO `wms_operation_record` VALUES ('89', '1001', 'admin', '修改货物信息', '2021-11-07 14:38:26', '成功');
-INSERT INTO `wms_operation_record` VALUES ('90', '1001', 'admin', '修改货物信息', '2021-11-07 14:41:29', '成功');
-INSERT INTO `wms_operation_record` VALUES ('91', '1001', 'admin', '修改货物信息', '2021-11-07 14:44:39', '成功');
-INSERT INTO `wms_operation_record` VALUES ('92', '1001', 'admin', '删除货物信息', '2021-11-07 14:58:42', '成功');
-INSERT INTO `wms_operation_record` VALUES ('93', '1001', 'admin', '添加货物信息', '2021-11-07 14:59:04', '成功');
-INSERT INTO `wms_operation_record` VALUES ('94', '1001', 'admin', '删除货物信息', '2021-11-07 14:59:23', '成功');
-INSERT INTO `wms_operation_record` VALUES ('95', '1001', 'admin', '修改货物信息', '2021-11-07 14:59:36', '成功');
-INSERT INTO `wms_operation_record` VALUES ('96', '1001', 'admin', '修改货物信息', '2021-11-07 14:59:48', '成功');
-INSERT INTO `wms_operation_record` VALUES ('97', '1001', 'admin', '修改货物信息', '2021-11-07 15:02:45', '成功');
-INSERT INTO `wms_operation_record` VALUES ('98', '1001', 'admin', '修改货物信息', '2021-11-07 15:03:16', '成功');
-INSERT INTO `wms_operation_record` VALUES ('99', '1001', 'admin', '修改货物信息', '2021-11-07 15:03:52', '成功');
-INSERT INTO `wms_operation_record` VALUES ('100', '1001', 'admin', '修改货物信息', '2021-11-07 15:09:44', '成功');
-INSERT INTO `wms_operation_record` VALUES ('101', '1001', 'admin', '修改货物信息', '2021-11-07 15:09:57', '成功');
-INSERT INTO `wms_operation_record` VALUES ('102', '1001', 'admin', '删除货物信息', '2021-11-07 15:10:09', '成功');
-INSERT INTO `wms_operation_record` VALUES ('103', '1001', 'admin', '添加货物信息', '2021-11-07 15:10:34', '成功');
-INSERT INTO `wms_operation_record` VALUES ('104', '1001', 'admin', '修改货物信息', '2021-11-07 15:10:47', '成功');
-INSERT INTO `wms_operation_record` VALUES ('105', '1001', 'admin', '删除货物信息', '2021-11-07 15:10:56', '成功');
-INSERT INTO `wms_operation_record` VALUES ('106', '1001', 'admin', '添加货物信息', '2021-11-07 15:11:08', '成功');
-INSERT INTO `wms_operation_record` VALUES ('107', '1001', 'admin', '修改仓库管理员信息', '2021-11-08 01:07:57', '失败');
-INSERT INTO `wms_operation_record` VALUES ('108', '1001', 'admin', '修改仓库管理员信息', '2021-11-08 01:16:10', '失败');
-INSERT INTO `wms_operation_record` VALUES ('109', '1001', 'admin', '修改仓库管理员信息', '2021-11-08 01:22:30', '失败');
-INSERT INTO `wms_operation_record` VALUES ('110', '1001', 'admin', '修改仓库管理员信息', '2021-11-08 01:23:45', '失败');
-INSERT INTO `wms_operation_record` VALUES ('111', '1001', 'admin', '修改仓库管理员信息', '2021-11-08 01:26:49', '失败');
-INSERT INTO `wms_operation_record` VALUES ('112', '1001', 'admin', '修改仓库管理员信息', '2021-11-08 01:28:41', '失败');
-INSERT INTO `wms_operation_record` VALUES ('113', '1001', 'admin', '添加仓库管理员信息', '2021-11-08 01:31:08', '成功');
-INSERT INTO `wms_operation_record` VALUES ('114', '1001', 'admin', '修改仓库管理员信息', '2021-11-08 01:31:14', '失败');
-INSERT INTO `wms_operation_record` VALUES ('115', '1001', 'admin', '修改仓库管理员信息', '2021-11-08 01:33:36', '失败');
-INSERT INTO `wms_operation_record` VALUES ('116', '1001', 'admin', '删除仓库管理员信息', '2021-11-08 20:25:40', '成功');
-INSERT INTO `wms_operation_record` VALUES ('117', '1001', 'admin', '删除货物信息', '2021-11-08 20:28:49', '成功');
+INSERT INTO `wms_operation_record` VALUES (1, 1001, 'admin', '添加仓库管理员信息', '2021-11-02 16:31:05', '成功');
+INSERT INTO `wms_operation_record` VALUES (2, 1001, 'admin', '添加库存记录', '2021-11-02 17:07:27', '失败');
+INSERT INTO `wms_operation_record` VALUES (3, 1001, 'admin', '添加库存记录', '2021-11-02 17:15:45', '失败');
+INSERT INTO `wms_operation_record` VALUES (4, 1001, 'admin', '添加仓库管理员信息', '2021-11-03 10:08:18', '成功');
+INSERT INTO `wms_operation_record` VALUES (5, 1001, 'admin', '删除仓库管理员信息', '2021-11-03 10:09:06', '成功');
+INSERT INTO `wms_operation_record` VALUES (6, 1001, 'admin', '删除仓库管理员信息', '2021-11-03 10:09:09', '成功');
+INSERT INTO `wms_operation_record` VALUES (7, 1001, 'admin', '添加仓库管理员信息', '2021-11-03 10:12:09', '成功');
+INSERT INTO `wms_operation_record` VALUES (8, 1001, 'admin', '删除仓库管理员信息', '2021-11-03 10:12:21', '成功');
+INSERT INTO `wms_operation_record` VALUES (9, 1001, 'admin', '添加仓库管理员信息', '2021-11-03 11:38:05', '成功');
+INSERT INTO `wms_operation_record` VALUES (10, 1001, 'admin', '删除仓库管理员信息', '2021-11-03 11:38:13', '成功');
+INSERT INTO `wms_operation_record` VALUES (11, 1001, 'admin', '添加仓库管理员信息', '2021-11-03 11:52:55', '成功');
+INSERT INTO `wms_operation_record` VALUES (12, 1001, 'admin', '修改仓库信息', '2021-11-04 10:08:04', '成功');
+INSERT INTO `wms_operation_record` VALUES (13, 1001, 'admin', '修改仓库信息', '2021-11-04 10:08:21', '成功');
+INSERT INTO `wms_operation_record` VALUES (14, 1001, 'admin', '修改仓库信息', '2021-11-04 10:08:33', '成功');
+INSERT INTO `wms_operation_record` VALUES (15, 1001, 'admin', '添加仓库管理员信息', '2021-11-04 11:32:37', '失败');
+INSERT INTO `wms_operation_record` VALUES (16, 1001, 'admin', '添加仓库管理员信息', '2021-11-04 11:33:51', '失败');
+INSERT INTO `wms_operation_record` VALUES (17, 1001, 'admin', '添加仓库管理员信息', '2021-11-04 11:48:00', '失败');
+INSERT INTO `wms_operation_record` VALUES (18, 1001, 'admin', '添加仓库管理员信息', '2021-11-04 11:53:18', '失败');
+INSERT INTO `wms_operation_record` VALUES (19, 1001, 'admin', '添加仓库管理员信息', '2021-11-04 11:53:55', '失败');
+INSERT INTO `wms_operation_record` VALUES (20, 1001, 'admin', '添加仓库管理员信息', '2021-11-04 11:57:03', '失败');
+INSERT INTO `wms_operation_record` VALUES (21, 1001, 'admin', '添加仓库管理员信息', '2021-11-04 11:59:37', '失败');
+INSERT INTO `wms_operation_record` VALUES (22, 1001, 'admin', '添加仓库管理员信息', '2021-11-04 12:01:07', '失败');
+INSERT INTO `wms_operation_record` VALUES (23, 1001, 'admin', '添加仓库管理员信息', '2021-11-04 12:06:04', '失败');
+INSERT INTO `wms_operation_record` VALUES (24, 1001, 'admin', '添加仓库管理员信息', '2021-11-04 12:07:35', '成功');
+INSERT INTO `wms_operation_record` VALUES (25, 1001, 'admin', '删除仓库管理员信息', '2021-11-04 14:31:10', '成功');
+INSERT INTO `wms_operation_record` VALUES (26, 1001, 'admin', '货物入库', '2021-11-04 15:59:40', '失败');
+INSERT INTO `wms_operation_record` VALUES (27, 1001, 'admin', '货物入库', '2021-11-04 16:03:54', '成功');
+INSERT INTO `wms_operation_record` VALUES (28, 1001, 'admin', '添加仓库信息', '2021-11-04 18:05:34', '失败');
+INSERT INTO `wms_operation_record` VALUES (29, 1001, 'admin', '添加仓库信息', '2021-11-04 18:05:47', '失败');
+INSERT INTO `wms_operation_record` VALUES (30, 1001, 'admin', '添加仓库信息', '2021-11-04 18:07:17', '失败');
+INSERT INTO `wms_operation_record` VALUES (31, 1001, 'admin', '添加仓库信息', '2021-11-04 18:10:54', '成功');
+INSERT INTO `wms_operation_record` VALUES (32, 1001, 'admin', '删除仓库信息', '2021-11-04 18:11:56', '成功');
+INSERT INTO `wms_operation_record` VALUES (33, 1001, 'admin', '修改货物信息', '2021-11-05 10:37:42', '成功');
+INSERT INTO `wms_operation_record` VALUES (34, 1001, 'admin', '添加货物信息', '2021-11-05 11:31:32', '成功');
+INSERT INTO `wms_operation_record` VALUES (35, 1001, 'admin', '导出库存记录', '2021-11-05 15:55:36', '-');
+INSERT INTO `wms_operation_record` VALUES (36, 1001, 'admin', '导出库存记录', '2021-11-05 15:57:52', '-');
+INSERT INTO `wms_operation_record` VALUES (37, 1001, 'admin', '导出库存记录', '2021-11-05 16:12:05', '-');
+INSERT INTO `wms_operation_record` VALUES (38, 1001, 'admin', '导出库存记录', '2021-11-05 16:43:12', '-');
+INSERT INTO `wms_operation_record` VALUES (39, 1001, 'admin', '导出库存记录', '2021-11-05 17:02:03', '-');
+INSERT INTO `wms_operation_record` VALUES (40, 1001, 'admin', '导出库存记录', '2021-11-05 17:10:36', '-');
+INSERT INTO `wms_operation_record` VALUES (41, 1001, 'admin', '导出库存记录', '2021-11-05 17:13:09', '-');
+INSERT INTO `wms_operation_record` VALUES (42, 1001, 'admin', '导出库存记录', '2021-11-05 17:14:25', '-');
+INSERT INTO `wms_operation_record` VALUES (43, 1001, 'admin', '导出库存记录', '2021-11-05 17:15:29', '-');
+INSERT INTO `wms_operation_record` VALUES (44, 1001, 'admin', '导出库存记录', '2021-11-05 17:54:29', '-');
+INSERT INTO `wms_operation_record` VALUES (45, 1001, 'admin', '导出仓库管理员信息', '2021-11-05 18:13:11', '-');
+INSERT INTO `wms_operation_record` VALUES (46, 1001, 'admin', '导出仓库信息', '2021-11-05 18:13:55', '-');
+INSERT INTO `wms_operation_record` VALUES (47, 1001, 'admin', '导入仓库信息', '2021-11-05 18:21:24', '-');
+INSERT INTO `wms_operation_record` VALUES (48, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 09:57:54', '失败');
+INSERT INTO `wms_operation_record` VALUES (49, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 10:01:45', '失败');
+INSERT INTO `wms_operation_record` VALUES (50, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 10:04:23', '失败');
+INSERT INTO `wms_operation_record` VALUES (51, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 10:07:54', '失败');
+INSERT INTO `wms_operation_record` VALUES (52, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 10:09:53', '失败');
+INSERT INTO `wms_operation_record` VALUES (53, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 10:12:49', '失败');
+INSERT INTO `wms_operation_record` VALUES (54, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 10:15:15', '失败');
+INSERT INTO `wms_operation_record` VALUES (55, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 10:18:52', '失败');
+INSERT INTO `wms_operation_record` VALUES (56, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 10:18:52', '失败');
+INSERT INTO `wms_operation_record` VALUES (57, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 10:19:38', '失败');
+INSERT INTO `wms_operation_record` VALUES (58, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 10:24:36', '成功');
+INSERT INTO `wms_operation_record` VALUES (59, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 11:30:33', '成功');
+INSERT INTO `wms_operation_record` VALUES (60, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 13:39:22', '成功');
+INSERT INTO `wms_operation_record` VALUES (61, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 14:18:47', '成功');
+INSERT INTO `wms_operation_record` VALUES (62, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 14:54:03', '成功');
+INSERT INTO `wms_operation_record` VALUES (63, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 14:54:24', '成功');
+INSERT INTO `wms_operation_record` VALUES (64, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 14:54:35', '成功');
+INSERT INTO `wms_operation_record` VALUES (65, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 14:56:01', '成功');
+INSERT INTO `wms_operation_record` VALUES (66, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 14:56:12', '成功');
+INSERT INTO `wms_operation_record` VALUES (67, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 14:56:22', '成功');
+INSERT INTO `wms_operation_record` VALUES (68, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 14:56:37', '成功');
+INSERT INTO `wms_operation_record` VALUES (69, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 14:56:46', '成功');
+INSERT INTO `wms_operation_record` VALUES (70, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 14:57:50', '成功');
+INSERT INTO `wms_operation_record` VALUES (71, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 14:57:55', '成功');
+INSERT INTO `wms_operation_record` VALUES (72, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 16:45:19', '成功');
+INSERT INTO `wms_operation_record` VALUES (73, 1001, 'admin', '删除货物信息', '2021-11-08 17:01:49', '成功');
+INSERT INTO `wms_operation_record` VALUES (74, 1001, 'admin', '添加货物信息', '2021-11-08 17:02:10', '成功');
+INSERT INTO `wms_operation_record` VALUES (75, 1001, 'admin', '添加库存记录', '2021-11-08 17:25:51', '成功');
+INSERT INTO `wms_operation_record` VALUES (76, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 17:45:07', '成功');
+INSERT INTO `wms_operation_record` VALUES (77, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 17:45:17', '成功');
+INSERT INTO `wms_operation_record` VALUES (78, 1001, 'admin', '导出库存记录', '2021-11-08 17:45:42', '-');
+INSERT INTO `wms_operation_record` VALUES (79, 1001, 'admin', '添加货物信息', '2021-11-08 18:09:24', '成功');
+INSERT INTO `wms_operation_record` VALUES (80, 1001, 'admin', '添加仓库管理员信息', '2021-11-08 18:10:17', '成功');
+INSERT INTO `wms_operation_record` VALUES (81, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 18:10:35', '成功');
+INSERT INTO `wms_operation_record` VALUES (82, 1001, 'admin', '修改仓库管理员信息', '2021-11-08 18:10:46', '成功');
+INSERT INTO `wms_operation_record` VALUES (83, 1001, 'admin', '删除仓库管理员信息', '2021-11-08 18:11:27', '失败');
+INSERT INTO `wms_operation_record` VALUES (84, 1001, 'admin', '导出库存记录', '2021-11-08 18:11:54', '-');
+INSERT INTO `wms_operation_record` VALUES (85, 1001, 'admin', '导出库存记录', '2021-11-08 18:12:14', '-');
+INSERT INTO `wms_operation_record` VALUES (86, 1001, 'admin', '添加仓库信息', '2021-11-08 18:13:36', '成功');
+INSERT INTO `wms_operation_record` VALUES (87, 1001, 'admin', '添加仓库管理员信息', '2021-11-08 18:14:20', '成功');
+INSERT INTO `wms_operation_record` VALUES (88, 1001, 'admin', '添加货物信息', '2021-11-09 09:23:06', '成功');
+INSERT INTO `wms_operation_record` VALUES (89, 1001, 'admin', '删除货物信息', '2021-11-09 09:23:36', '成功');
+INSERT INTO `wms_operation_record` VALUES (90, 1001, 'admin', '删除货物信息', '2021-11-09 09:24:13', '成功');
+INSERT INTO `wms_operation_record` VALUES (91, 1001, 'admin', '修改仓库管理员信息', '2021-11-09 09:52:59', '成功');
+INSERT INTO `wms_operation_record` VALUES (92, 1001, 'admin', '修改仓库管理员信息', '2021-11-09 09:53:09', '成功');
+INSERT INTO `wms_operation_record` VALUES (93, 1001, 'admin', '修改仓库管理员信息', '2021-11-09 09:57:08', '成功');
+INSERT INTO `wms_operation_record` VALUES (94, 1001, 'admin', '修改仓库管理员信息', '2021-11-09 09:57:21', '成功');
+INSERT INTO `wms_operation_record` VALUES (95, 1001, 'admin', '修改仓库管理员信息', '2021-11-09 09:57:47', '成功');
+INSERT INTO `wms_operation_record` VALUES (96, 1001, 'admin', '删除仓库管理员信息', '2021-11-09 09:57:56', '成功');
+INSERT INTO `wms_operation_record` VALUES (97, 1001, 'admin', '删除仓库管理员信息', '2021-11-09 09:58:12', '失败');
+INSERT INTO `wms_operation_record` VALUES (98, 1001, 'admin', '导入货物信息', '2021-11-10 10:14:02', '-');
+INSERT INTO `wms_operation_record` VALUES (99, 1001, 'admin', '删除货物信息', '2021-11-10 10:17:17', '成功');
+INSERT INTO `wms_operation_record` VALUES (100, 1001, 'admin', '导入货物信息', '2021-11-10 10:19:36', '-');
+INSERT INTO `wms_operation_record` VALUES (101, 1001, 'admin', '删除货物信息', '2021-11-10 10:19:44', '成功');
+INSERT INTO `wms_operation_record` VALUES (102, 1001, 'admin', '导入货物信息', '2021-11-10 11:21:59', '-');
+INSERT INTO `wms_operation_record` VALUES (103, 1001, 'admin', '导入货物信息', '2021-11-10 11:26:13', '-');
+INSERT INTO `wms_operation_record` VALUES (104, 1001, 'admin', '导入货物信息', '2021-11-10 11:31:24', '-');
+INSERT INTO `wms_operation_record` VALUES (105, 1001, 'admin', '导入货物信息', '2021-11-10 11:51:47', '-');
+INSERT INTO `wms_operation_record` VALUES (106, 1001, 'admin', '删除货物信息', '2021-11-10 12:11:29', '失败');
+INSERT INTO `wms_operation_record` VALUES (107, 1001, 'admin', '删除货物信息', '2021-11-10 12:11:53', '失败');
+INSERT INTO `wms_operation_record` VALUES (108, 1001, 'admin', '删除库存记录', '2021-11-10 12:12:27', '成功');
+INSERT INTO `wms_operation_record` VALUES (109, 1001, 'admin', '删除货物信息', '2021-11-10 12:13:02', '成功');
+INSERT INTO `wms_operation_record` VALUES (110, 1001, 'admin', '删除库存记录', '2021-11-10 12:13:16', '成功');
+INSERT INTO `wms_operation_record` VALUES (111, 1001, 'admin', '删除库存记录', '2021-11-10 12:13:18', '成功');
+INSERT INTO `wms_operation_record` VALUES (112, 1001, 'admin', '删除库存记录', '2021-11-10 12:13:21', '成功');
+INSERT INTO `wms_operation_record` VALUES (113, 1001, 'admin', '删除货物信息', '2021-11-10 12:13:30', '失败');
+INSERT INTO `wms_operation_record` VALUES (114, 1001, 'admin', '删除货物信息', '2021-11-10 12:14:03', '成功');
+INSERT INTO `wms_operation_record` VALUES (115, 1001, 'admin', '删除货物信息', '2021-11-10 12:14:06', '失败');
+INSERT INTO `wms_operation_record` VALUES (116, 1001, 'admin', '删除货物信息', '2021-11-10 12:14:09', '失败');
+INSERT INTO `wms_operation_record` VALUES (117, 1001, 'admin', '删除货物信息', '2021-11-10 12:17:42', '成功');
+INSERT INTO `wms_operation_record` VALUES (118, 1001, 'admin', '删除货物信息', '2021-11-10 12:17:44', '成功');
+INSERT INTO `wms_operation_record` VALUES (119, 1001, 'admin', '导入货物信息', '2021-11-10 12:21:55', '-');
+INSERT INTO `wms_operation_record` VALUES (120, 1001, 'admin', '添加库存记录', '2021-11-10 17:59:10', '成功');
+INSERT INTO `wms_operation_record` VALUES (121, 1001, 'admin', '删除库存记录', '2021-11-10 17:59:52', '成功');
+INSERT INTO `wms_operation_record` VALUES (122, 1001, 'admin', '货物入库', '2021-11-11 09:45:31', '成功');
+INSERT INTO `wms_operation_record` VALUES (123, 1001, 'admin', '修改库存记录', '2021-11-11 10:07:27', '成功');
+INSERT INTO `wms_operation_record` VALUES (124, 1001, 'admin', '货物出库', '2021-11-11 15:22:15', '失败');
+INSERT INTO `wms_operation_record` VALUES (125, 1001, 'admin', '货物出库', '2021-11-11 15:23:00', '失败');
+INSERT INTO `wms_operation_record` VALUES (126, 1001, 'admin', '货物出库', '2021-11-11 15:31:02', '成功');
+INSERT INTO `wms_operation_record` VALUES (127, 1001, 'admin', '添加库存记录', '2021-11-15 10:27:25', '失败');
+INSERT INTO `wms_operation_record` VALUES (128, 1001, 'admin', '货物入库', '2021-11-15 10:31:31', '成功');
+INSERT INTO `wms_operation_record` VALUES (129, 1001, 'admin', '添加库存记录', '2021-11-15 11:39:06', '失败');
+INSERT INTO `wms_operation_record` VALUES (130, 1001, 'admin', '添加库存记录', '2021-11-15 11:39:33', '成功');
+INSERT INTO `wms_operation_record` VALUES (131, 1001, 'admin', '删除库存记录', '2021-11-15 11:39:38', '成功');
+INSERT INTO `wms_operation_record` VALUES (132, 1001, 'admin', '修改库存记录', '2021-11-15 11:43:01', '成功');
+INSERT INTO `wms_operation_record` VALUES (133, 1001, 'admin', '修改库存记录', '2021-11-15 11:43:06', '成功');
+INSERT INTO `wms_operation_record` VALUES (134, 1001, 'admin', '修改库存记录', '2021-11-15 11:43:10', '成功');
+INSERT INTO `wms_operation_record` VALUES (135, 1001, 'admin', '删除仓库信息', '2021-11-15 15:51:57', '成功');
+INSERT INTO `wms_operation_record` VALUES (136, 1001, 'admin', '修改仓库管理员信息', '2021-11-16 10:34:19', '成功');
+INSERT INTO `wms_operation_record` VALUES (137, 1001, 'admin', '修改仓库管理员信息', '2021-11-16 10:38:28', '成功');
+INSERT INTO `wms_operation_record` VALUES (138, 1001, 'admin', '修改仓库管理员信息', '2021-11-16 10:38:48', '成功');
+INSERT INTO `wms_operation_record` VALUES (139, 1001, 'admin', '修改仓库管理员信息', '2021-11-16 10:39:11', '成功');
+INSERT INTO `wms_operation_record` VALUES (140, 1001, 'admin', '修改仓库管理员信息', '2021-11-16 10:42:01', '成功');
+INSERT INTO `wms_operation_record` VALUES (141, 1001, 'admin', '修改仓库管理员信息', '2021-11-16 10:43:32', '成功');
+INSERT INTO `wms_operation_record` VALUES (142, 1001, 'admin', '修改仓库管理员信息', '2021-11-16 10:47:01', '成功');
+INSERT INTO `wms_operation_record` VALUES (143, 1001, 'admin', '修改仓库管理员信息', '2021-11-16 10:48:06', '成功');
+INSERT INTO `wms_operation_record` VALUES (144, 1001, 'admin', '添加库存记录', '2021-11-16 10:48:49', '失败');
+INSERT INTO `wms_operation_record` VALUES (145, 1001, 'admin', '添加库存记录', '2021-11-16 10:57:46', '成功');
+INSERT INTO `wms_operation_record` VALUES (146, 1001, 'admin', '删除库存记录', '2021-11-16 10:58:00', '成功');
+INSERT INTO `wms_operation_record` VALUES (147, 1001, 'admin', '修改库存记录', '2021-11-16 10:58:06', '成功');
+INSERT INTO `wms_operation_record` VALUES (148, 1001, 'admin', '货物入库', '2021-11-16 14:07:25', '成功');
+INSERT INTO `wms_operation_record` VALUES (149, 1001, 'admin', '导入库存记录', '2021-11-16 14:15:26', '-');
+INSERT INTO `wms_operation_record` VALUES (150, 1001, 'admin', '导入库存记录', '2021-11-16 14:27:47', '-');
+INSERT INTO `wms_operation_record` VALUES (151, 1001, 'admin', '修改仓库管理员信息', '2021-11-16 14:44:01', '成功');
+INSERT INTO `wms_operation_record` VALUES (152, 1001, 'admin', '删除库存记录', '2021-11-16 14:47:38', '成功');
+INSERT INTO `wms_operation_record` VALUES (153, 1001, 'admin', '修改仓库管理员信息', '2021-11-16 17:23:05', '成功');
+INSERT INTO `wms_operation_record` VALUES (154, 1001, 'admin', '添加库存记录', '2021-11-16 17:24:40', '失败');
+INSERT INTO `wms_operation_record` VALUES (155, 1001, 'admin', '货物入库', '2021-11-16 17:25:21', '成功');
+INSERT INTO `wms_operation_record` VALUES (156, 1001, 'admin', '货物出库', '2021-11-16 17:26:26', '成功');
+INSERT INTO `wms_operation_record` VALUES (157, 1001, 'admin', '导出仓库信息', '2021-11-16 17:28:29', '-');
 
 -- ----------------------------
 -- Table structure for wms_record_in
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_record_in`;
-CREATE TABLE `wms_record_in` (
+CREATE TABLE `wms_record_in`  (
   `RECORD_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `RECORD_SUPPLIERID` int(11) NOT NULL,
+  `RECORD_SUPPLIERID` int(11) NULL DEFAULT NULL,
   `RECORD_GOODID` int(11) NOT NULL,
   `RECORD_NUMBER` int(11) NOT NULL,
-  `RECORD_TIME` datetime NOT NULL,
-  `RECORD_PERSON` varchar(10) NOT NULL,
+  `RECORD_TIME` datetime(0) NOT NULL,
+  `RECORD_PERSON` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `RECORD_REPOSITORYID` int(11) NOT NULL,
-  PRIMARY KEY (`RECORD_ID`),
-  KEY `RECORD_SUPPLIERID` (`RECORD_SUPPLIERID`),
-  KEY `RECORD_GOODID` (`RECORD_GOODID`),
-  KEY `RECORD_REPOSITORYID` (`RECORD_REPOSITORYID`),
-  CONSTRAINT `wms_record_in_ibfk_1` FOREIGN KEY (`RECORD_SUPPLIERID`) REFERENCES `wms_supplier` (`SUPPLIER_ID`),
-  CONSTRAINT `wms_record_in_ibfk_2` FOREIGN KEY (`RECORD_GOODID`) REFERENCES `wms_goods` (`GOOD_ID`),
-  CONSTRAINT `wms_record_in_ibfk_3` FOREIGN KEY (`RECORD_REPOSITORYID`) REFERENCES `wms_respository` (`REPO_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+  `REMARK` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '入库备注',
+  PRIMARY KEY (`RECORD_ID`) USING BTREE,
+  INDEX `RECORD_SUPPLIERID`(`RECORD_SUPPLIERID`) USING BTREE,
+  INDEX `RECORD_GOODID`(`RECORD_GOODID`) USING BTREE,
+  INDEX `RECORD_REPOSITORYID`(`RECORD_REPOSITORYID`) USING BTREE,
+  CONSTRAINT `wms_record_in_ibfk_1` FOREIGN KEY (`RECORD_SUPPLIERID`) REFERENCES `wms_supplier` (`SUPPLIER_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `wms_record_in_ibfk_2` FOREIGN KEY (`RECORD_GOODID`) REFERENCES `wms_goods` (`GOOD_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `wms_record_in_ibfk_3` FOREIGN KEY (`RECORD_REPOSITORYID`) REFERENCES `wms_respository` (`REPO_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_record_in
 -- ----------------------------
-INSERT INTO `wms_record_in` VALUES ('15', '1015', '105', '1000', '2016-12-31 00:00:00', 'admin', '1004');
-INSERT INTO `wms_record_in` VALUES ('16', '1015', '105', '200', '2017-01-02 00:00:00', 'admin', '1004');
+INSERT INTO `wms_record_in` VALUES (18, NULL, 2545, 1, '2021-11-11 09:45:31', 'admin', 1004, NULL);
+INSERT INTO `wms_record_in` VALUES (19, NULL, 2545, 1, '2021-11-15 10:31:31', 'admin', 1004, '测试新增');
+INSERT INTO `wms_record_in` VALUES (20, NULL, 2545, 1, '2021-11-16 12:54:17', 'admin', 1003, NULL);
+INSERT INTO `wms_record_in` VALUES (21, NULL, 2545, 1, '2021-11-16 14:07:25', 'admin', 1003, '入库备注');
+INSERT INTO `wms_record_in` VALUES (22, NULL, 2545, 1, '2021-11-16 17:25:21', 'admin', 1003, '入库备注');
+INSERT INTO `wms_record_in` VALUES (23, NULL, 2545, 1, '2021-11-16 17:27:40', 'admin', 1004, NULL);
 
 -- ----------------------------
 -- Table structure for wms_record_out
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_record_out`;
-CREATE TABLE `wms_record_out` (
+CREATE TABLE `wms_record_out`  (
   `RECORD_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `RECORD_CUSTOMERID` int(11) NOT NULL,
+  `RECORD_CUSTOMERID` int(11) NULL DEFAULT NULL,
   `RECORD_GOODID` int(11) NOT NULL,
   `RECORD_NUMBER` int(11) NOT NULL,
-  `RECORD_TIME` datetime NOT NULL,
-  `RECORD_PERSON` varchar(10) NOT NULL,
+  `RECORD_TIME` datetime(0) NOT NULL,
+  `RECORD_PERSON` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `RECORD_REPOSITORYID` int(11) NOT NULL,
-  PRIMARY KEY (`RECORD_ID`),
-  KEY `RECORD_CUSTOMERID` (`RECORD_CUSTOMERID`),
-  KEY `RECORD_GOODID` (`RECORD_GOODID`),
-  KEY `RECORD_REPOSITORYID` (`RECORD_REPOSITORYID`),
-  CONSTRAINT `wms_record_out_ibfk_1` FOREIGN KEY (`RECORD_CUSTOMERID`) REFERENCES `wms_customer` (`CUSTOMER_ID`),
-  CONSTRAINT `wms_record_out_ibfk_2` FOREIGN KEY (`RECORD_GOODID`) REFERENCES `wms_goods` (`GOOD_ID`),
-  CONSTRAINT `wms_record_out_ibfk_3` FOREIGN KEY (`RECORD_REPOSITORYID`) REFERENCES `wms_respository` (`REPO_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  `REMARK` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '出库备注',
+  PRIMARY KEY (`RECORD_ID`) USING BTREE,
+  INDEX `RECORD_CUSTOMERID`(`RECORD_CUSTOMERID`) USING BTREE,
+  INDEX `RECORD_GOODID`(`RECORD_GOODID`) USING BTREE,
+  INDEX `RECORD_REPOSITORYID`(`RECORD_REPOSITORYID`) USING BTREE,
+  CONSTRAINT `wms_record_out_ibfk_1` FOREIGN KEY (`RECORD_CUSTOMERID`) REFERENCES `wms_customer` (`CUSTOMER_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `wms_record_out_ibfk_2` FOREIGN KEY (`RECORD_GOODID`) REFERENCES `wms_goods` (`GOOD_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `wms_record_out_ibfk_3` FOREIGN KEY (`RECORD_REPOSITORYID`) REFERENCES `wms_respository` (`REPO_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_record_out
 -- ----------------------------
-INSERT INTO `wms_record_out` VALUES ('7', '1214', '104', '750', '2016-12-31 00:00:00', 'admin', '1003');
+INSERT INTO `wms_record_out` VALUES (1, NULL, 2545, 1, '2021-11-11 15:31:02', 'admin', 1004, NULL);
+INSERT INTO `wms_record_out` VALUES (2, NULL, 2545, 1, '2021-11-16 12:54:17', 'admin', 1004, NULL);
+INSERT INTO `wms_record_out` VALUES (3, NULL, 2545, 1, '2021-11-16 17:26:26', 'admin', 1003, '出库备注');
+INSERT INTO `wms_record_out` VALUES (4, NULL, 2545, 1, '2021-11-16 17:27:40', 'admin', 1003, NULL);
 
 -- ----------------------------
 -- Table structure for wms_record_storage
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_record_storage`;
-CREATE TABLE `wms_record_storage` (
-  `RECORD_GOODID` int(11) NOT NULL AUTO_INCREMENT,
-  `RECORD_REPOSITORY` int(11) NOT NULL,
-  `RECORD_NUMBER` int(11) NOT NULL,
-  PRIMARY KEY (`RECORD_GOODID`),
-  KEY `RECORD_REPOSITORY` (`RECORD_REPOSITORY`),
-  CONSTRAINT `wms_record_storage_ibfk_1` FOREIGN KEY (`RECORD_GOODID`) REFERENCES `wms_goods` (`GOOD_ID`),
-  CONSTRAINT `wms_record_storage_ibfk_2` FOREIGN KEY (`RECORD_REPOSITORY`) REFERENCES `wms_respository` (`REPO_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
+CREATE TABLE `wms_record_storage`  (
+  `RECORD_GOODID` int(11) NOT NULL COMMENT '物料id',
+  `RECORD_REPOSITORY` int(11) NOT NULL COMMENT '仓库id',
+  `RECORD_NUMBER` int(11) NOT NULL COMMENT '库存数量',
+  `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '库存主键id',
+  PRIMARY KEY (`ID`) USING BTREE,
+  INDEX `RECORD_REPOSITORY`(`RECORD_REPOSITORY`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2606 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_record_storage
 -- ----------------------------
-INSERT INTO `wms_record_storage` VALUES ('103', '1005', '10000');
-INSERT INTO `wms_record_storage` VALUES ('104', '1003', '1750');
-INSERT INTO `wms_record_storage` VALUES ('105', '1004', '2000');
+INSERT INTO `wms_record_storage` VALUES (2545, 1004, 2, 2601);
+INSERT INTO `wms_record_storage` VALUES (2545, 1003, 1, 2603);
+INSERT INTO `wms_record_storage` VALUES (2545, 1004, 1, 2605);
 
 -- ----------------------------
 -- Table structure for wms_repo_admin
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_repo_admin`;
-CREATE TABLE `wms_repo_admin` (
+CREATE TABLE `wms_repo_admin`  (
   `REPO_ADMIN_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `REPO_ADMIN_USERNAME` varchar(20) NOT NULL COMMENT '仓库管理员用户名（用于账号登录）',
-  `REPO_ADMIN_NAME` varchar(10) NOT NULL,
-  `REPO_ADMIN_SEX` varchar(10) DEFAULT NULL,
-  `REPO_ADMIN_TEL` varchar(20) NOT NULL,
-  `REPO_ADMIN_ADDRESS` varchar(30) DEFAULT NULL,
-  `REPO_ADMIN_BIRTH` datetime DEFAULT NULL,
-  `REPO_ADMIN_REPOID` varchar(255) DEFAULT NULL COMMENT '所属仓库',
-  PRIMARY KEY (`REPO_ADMIN_ID`),
-  KEY `REPO_ADMIN_REPOID` (`REPO_ADMIN_REPOID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1021 DEFAULT CHARSET=utf8;
+  `REPO_ADMIN_USERNAME` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '仓库管理员用户名（用于账号登录）',
+  `REPO_ADMIN_NAME` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `REPO_ADMIN_SEX` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `REPO_ADMIN_TEL` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `REPO_ADMIN_ADDRESS` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `REPO_ADMIN_BIRTH` datetime(0) NULL DEFAULT NULL,
+  `REPO_ADMIN_REPOID` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所属仓库',
+  PRIMARY KEY (`REPO_ADMIN_ID`) USING BTREE,
+  INDEX `REPO_ADMIN_REPOID`(`REPO_ADMIN_REPOID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1031 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_repo_admin
 -- ----------------------------
-INSERT INTO `wms_repo_admin` VALUES ('1018', 'wanghao', '王皓', '女', '12345874526', '中国佛山', '2016-12-09 00:00:00', '1004');
-INSERT INTO `wms_repo_admin` VALUES ('1019', 'lifurong', '李富荣', '男', '1234', '广州', '2016-12-07 00:00:00', '1003');
+INSERT INTO `wms_repo_admin` VALUES (1018, 'wanghao', '王皓', '女', '12345874526', '中国佛山', '2016-12-09 00:00:00', NULL);
+INSERT INTO `wms_repo_admin` VALUES (1019, 'lifurong', '李富荣', '男', '1234', '广州', '2016-12-07 00:00:00', NULL);
+INSERT INTO `wms_repo_admin` VALUES (1029, 'user', '用户', NULL, '13522221111', NULL, NULL, NULL);
+INSERT INTO `wms_repo_admin` VALUES (1030, 'user1', '用户1', NULL, '15433331111', NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for wms_repo_repo_admin
+-- ----------------------------
+DROP TABLE IF EXISTS `wms_repo_repo_admin`;
+CREATE TABLE `wms_repo_repo_admin`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `repository_id` int(11) NOT NULL COMMENT '仓库id',
+  `repo_admin_id` int(11) NOT NULL COMMENT '仓库管理员id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '仓库与仓库管理员关联表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of wms_repo_repo_admin
+-- ----------------------------
+INSERT INTO `wms_repo_repo_admin` VALUES (1, 1003, 1018);
+INSERT INTO `wms_repo_repo_admin` VALUES (2, 1004, 1018);
+INSERT INTO `wms_repo_repo_admin` VALUES (12, 1004, 1019);
+INSERT INTO `wms_repo_repo_admin` VALUES (13, 1005, 1019);
+INSERT INTO `wms_repo_repo_admin` VALUES (14, 1004, 1030);
+INSERT INTO `wms_repo_repo_admin` VALUES (15, 1003, 1029);
+INSERT INTO `wms_repo_repo_admin` VALUES (16, 1004, 1029);
 
 -- ----------------------------
 -- Table structure for wms_respository
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_respository`;
-CREATE TABLE `wms_respository` (
+CREATE TABLE `wms_respository`  (
   `REPO_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `REPO_NAME` varchar(64) NOT NULL COMMENT '仓库名称',
-  `REPO_ADDRESS` varchar(64) NOT NULL,
-  `REPO_STATUS` varchar(20) NOT NULL,
-  `REPO_AREA` varchar(20) DEFAULT NULL,
-  `REPO_DESC` varchar(50) DEFAULT NULL,
-  `REPO_ADMIN_ID` int(11) DEFAULT NULL COMMENT '仓库管理员ID',
-  PRIMARY KEY (`REPO_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1006 DEFAULT CHARSET=utf8;
+  `REPO_NAME` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '仓库名称',
+  `REPO_ADDRESS` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `REPO_STATUS` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `REPO_AREA` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `REPO_DESC` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `REPO_ADMIN_ID` int(11) NULL DEFAULT NULL COMMENT '仓库管理员ID',
+  PRIMARY KEY (`REPO_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1008 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_respository
 -- ----------------------------
-INSERT INTO `wms_respository` VALUES ('1003', '北京顺义仓库', '北京顺义南彩工业园区彩祥西路9号', '可用', '11000㎡', '提供服务完整', null);
-INSERT INTO `wms_respository` VALUES ('1004', '广州白云仓库', '广州白云石井石潭路大基围工业区', '可用', '1000㎡', '物流极为便利', null);
-INSERT INTO `wms_respository` VALUES ('1005', '香港北区仓库', ' 香港北区文锦渡路（红桥新村）', '可用', '5000.00㎡', '', null);
-
--- ----------------------------
--- Table structure for wms_roles
--- ----------------------------
-DROP TABLE IF EXISTS `wms_roles`;
-CREATE TABLE `wms_roles` (
-  `ROLE_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ROLE_NAME` varchar(20) NOT NULL,
-  `ROLE_DESC` varchar(30) DEFAULT NULL,
-  `ROLE_URL_PREFIX` varchar(20) NOT NULL,
-  PRIMARY KEY (`ROLE_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of wms_roles
--- ----------------------------
-INSERT INTO `wms_roles` VALUES ('1', 'systemAdmin', null, 'systemAdmin');
-INSERT INTO `wms_roles` VALUES ('2', 'commonsAdmin', null, 'commonsAdmin');
+INSERT INTO `wms_respository` VALUES (1003, '北京顺义仓库', '北京顺义南彩工业园区彩祥西路9号', '可用', '11000㎡', '提供服务完整', 1029);
+INSERT INTO `wms_respository` VALUES (1004, '广州白云仓库', '广州白云石井石潭路大基围工业区', '可用', '1000㎡', '物流极为便利', 1018);
+INSERT INTO `wms_respository` VALUES (1005, ' 香港北区仓库', ' 香港北区文锦渡路（红桥新村）', '可用', '5000.00㎡', '', 1029);
 
 -- ----------------------------
 -- Table structure for wms_role_action
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_role_action`;
-CREATE TABLE `wms_role_action` (
+CREATE TABLE `wms_role_action`  (
   `ACTION_ID` int(11) NOT NULL,
   `ROLE_ID` int(11) NOT NULL,
-  PRIMARY KEY (`ACTION_ID`,`ROLE_ID`),
-  KEY `ROLE_ID` (`ROLE_ID`),
-  CONSTRAINT `wms_role_action_ibfk_1` FOREIGN KEY (`ROLE_ID`) REFERENCES `wms_roles` (`ROLE_ID`),
-  CONSTRAINT `wms_role_action_ibfk_2` FOREIGN KEY (`ACTION_ID`) REFERENCES `wms_action` (`ACTION_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`ACTION_ID`, `ROLE_ID`) USING BTREE,
+  INDEX `ROLE_ID`(`ROLE_ID`) USING BTREE,
+  CONSTRAINT `wms_role_action_ibfk_1` FOREIGN KEY (`ROLE_ID`) REFERENCES `wms_roles` (`ROLE_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `wms_role_action_ibfk_2` FOREIGN KEY (`ACTION_ID`) REFERENCES `wms_action` (`ACTION_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_role_action
 -- ----------------------------
-INSERT INTO `wms_role_action` VALUES ('1', '1');
-INSERT INTO `wms_role_action` VALUES ('2', '1');
-INSERT INTO `wms_role_action` VALUES ('3', '1');
-INSERT INTO `wms_role_action` VALUES ('4', '1');
-INSERT INTO `wms_role_action` VALUES ('5', '1');
-INSERT INTO `wms_role_action` VALUES ('6', '1');
-INSERT INTO `wms_role_action` VALUES ('7', '1');
-INSERT INTO `wms_role_action` VALUES ('8', '1');
-INSERT INTO `wms_role_action` VALUES ('9', '1');
-INSERT INTO `wms_role_action` VALUES ('10', '1');
-INSERT INTO `wms_role_action` VALUES ('11', '1');
-INSERT INTO `wms_role_action` VALUES ('12', '1');
-INSERT INTO `wms_role_action` VALUES ('13', '1');
-INSERT INTO `wms_role_action` VALUES ('14', '1');
-INSERT INTO `wms_role_action` VALUES ('15', '1');
-INSERT INTO `wms_role_action` VALUES ('16', '1');
-INSERT INTO `wms_role_action` VALUES ('17', '1');
-INSERT INTO `wms_role_action` VALUES ('18', '1');
-INSERT INTO `wms_role_action` VALUES ('19', '1');
-INSERT INTO `wms_role_action` VALUES ('20', '1');
-INSERT INTO `wms_role_action` VALUES ('21', '1');
-INSERT INTO `wms_role_action` VALUES ('22', '1');
-INSERT INTO `wms_role_action` VALUES ('23', '1');
-INSERT INTO `wms_role_action` VALUES ('24', '1');
-INSERT INTO `wms_role_action` VALUES ('25', '1');
-INSERT INTO `wms_role_action` VALUES ('26', '1');
-INSERT INTO `wms_role_action` VALUES ('27', '1');
-INSERT INTO `wms_role_action` VALUES ('28', '1');
-INSERT INTO `wms_role_action` VALUES ('29', '1');
-INSERT INTO `wms_role_action` VALUES ('30', '1');
-INSERT INTO `wms_role_action` VALUES ('31', '1');
-INSERT INTO `wms_role_action` VALUES ('32', '1');
-INSERT INTO `wms_role_action` VALUES ('33', '1');
-INSERT INTO `wms_role_action` VALUES ('34', '1');
-INSERT INTO `wms_role_action` VALUES ('35', '1');
-INSERT INTO `wms_role_action` VALUES ('36', '1');
-INSERT INTO `wms_role_action` VALUES ('37', '1');
-INSERT INTO `wms_role_action` VALUES ('39', '1');
-INSERT INTO `wms_role_action` VALUES ('40', '1');
-INSERT INTO `wms_role_action` VALUES ('41', '1');
-INSERT INTO `wms_role_action` VALUES ('42', '1');
-INSERT INTO `wms_role_action` VALUES ('43', '1');
-INSERT INTO `wms_role_action` VALUES ('44', '1');
-INSERT INTO `wms_role_action` VALUES ('45', '1');
-INSERT INTO `wms_role_action` VALUES ('46', '1');
-INSERT INTO `wms_role_action` VALUES ('47', '1');
-INSERT INTO `wms_role_action` VALUES ('48', '1');
-INSERT INTO `wms_role_action` VALUES ('4', '2');
-INSERT INTO `wms_role_action` VALUES ('38', '2');
-INSERT INTO `wms_role_action` VALUES ('43', '2');
+INSERT INTO `wms_role_action` VALUES (1, 1);
+INSERT INTO `wms_role_action` VALUES (2, 1);
+INSERT INTO `wms_role_action` VALUES (3, 1);
+INSERT INTO `wms_role_action` VALUES (4, 1);
+INSERT INTO `wms_role_action` VALUES (5, 1);
+INSERT INTO `wms_role_action` VALUES (6, 1);
+INSERT INTO `wms_role_action` VALUES (7, 1);
+INSERT INTO `wms_role_action` VALUES (8, 1);
+INSERT INTO `wms_role_action` VALUES (9, 1);
+INSERT INTO `wms_role_action` VALUES (10, 1);
+INSERT INTO `wms_role_action` VALUES (11, 1);
+INSERT INTO `wms_role_action` VALUES (12, 1);
+INSERT INTO `wms_role_action` VALUES (13, 1);
+INSERT INTO `wms_role_action` VALUES (14, 1);
+INSERT INTO `wms_role_action` VALUES (15, 1);
+INSERT INTO `wms_role_action` VALUES (16, 1);
+INSERT INTO `wms_role_action` VALUES (17, 1);
+INSERT INTO `wms_role_action` VALUES (18, 1);
+INSERT INTO `wms_role_action` VALUES (19, 1);
+INSERT INTO `wms_role_action` VALUES (20, 1);
+INSERT INTO `wms_role_action` VALUES (21, 1);
+INSERT INTO `wms_role_action` VALUES (22, 1);
+INSERT INTO `wms_role_action` VALUES (23, 1);
+INSERT INTO `wms_role_action` VALUES (24, 1);
+INSERT INTO `wms_role_action` VALUES (25, 1);
+INSERT INTO `wms_role_action` VALUES (26, 1);
+INSERT INTO `wms_role_action` VALUES (27, 1);
+INSERT INTO `wms_role_action` VALUES (28, 1);
+INSERT INTO `wms_role_action` VALUES (29, 1);
+INSERT INTO `wms_role_action` VALUES (30, 1);
+INSERT INTO `wms_role_action` VALUES (31, 1);
+INSERT INTO `wms_role_action` VALUES (32, 1);
+INSERT INTO `wms_role_action` VALUES (33, 1);
+INSERT INTO `wms_role_action` VALUES (34, 1);
+INSERT INTO `wms_role_action` VALUES (35, 1);
+INSERT INTO `wms_role_action` VALUES (36, 1);
+INSERT INTO `wms_role_action` VALUES (37, 1);
+INSERT INTO `wms_role_action` VALUES (39, 1);
+INSERT INTO `wms_role_action` VALUES (40, 1);
+INSERT INTO `wms_role_action` VALUES (41, 1);
+INSERT INTO `wms_role_action` VALUES (42, 1);
+INSERT INTO `wms_role_action` VALUES (43, 1);
+INSERT INTO `wms_role_action` VALUES (44, 1);
+INSERT INTO `wms_role_action` VALUES (45, 1);
+INSERT INTO `wms_role_action` VALUES (46, 1);
+INSERT INTO `wms_role_action` VALUES (47, 1);
+INSERT INTO `wms_role_action` VALUES (48, 1);
+INSERT INTO `wms_role_action` VALUES (4, 2);
+INSERT INTO `wms_role_action` VALUES (38, 2);
+INSERT INTO `wms_role_action` VALUES (43, 2);
+
+-- ----------------------------
+-- Table structure for wms_roles
+-- ----------------------------
+DROP TABLE IF EXISTS `wms_roles`;
+CREATE TABLE `wms_roles`  (
+  `ROLE_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ROLE_NAME` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `ROLE_DESC` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `ROLE_URL_PREFIX` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`ROLE_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of wms_roles
+-- ----------------------------
+INSERT INTO `wms_roles` VALUES (1, 'systemAdmin', NULL, 'systemAdmin');
+INSERT INTO `wms_roles` VALUES (2, 'commonsAdmin', NULL, 'commonsAdmin');
 
 -- ----------------------------
 -- Table structure for wms_supplier
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_supplier`;
-CREATE TABLE `wms_supplier` (
+CREATE TABLE `wms_supplier`  (
   `SUPPLIER_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `SUPPLIER_NAME` varchar(30) NOT NULL,
-  `SUPPLIER_PERSON` varchar(10) NOT NULL,
-  `SUPPLIER_TEL` varchar(20) NOT NULL,
-  `SUPPLIER_EMAIL` varchar(20) NOT NULL,
-  `SUPPLIER_ADDRESS` varchar(30) NOT NULL,
-  PRIMARY KEY (`SUPPLIER_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1016 DEFAULT CHARSET=utf8;
+  `SUPPLIER_NAME` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `SUPPLIER_PERSON` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `SUPPLIER_TEL` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `SUPPLIER_EMAIL` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `SUPPLIER_ADDRESS` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`SUPPLIER_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1016 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_supplier
 -- ----------------------------
-INSERT INTO `wms_supplier` VALUES ('1013', '浙江奇同电器有限公司', '王泽伟', '13777771126', '86827868@126.com', '中国 浙江 温州市龙湾区 龙湾区永强大道1648号');
-INSERT INTO `wms_supplier` VALUES ('1014', '醴陵春天陶瓷实业有限公司', '温仙容', '13974167256', '23267999@126.com', '中国 湖南 醴陵市 东正街15号');
-INSERT INTO `wms_supplier` VALUES ('1015', '洛阳嘉吉利饮品有限公司', '郑绮云', '26391678', '22390898@qq.com', '中国 广东 佛山市顺德区 北滘镇怡和路2号怡和中心14楼');
+INSERT INTO `wms_supplier` VALUES (1013, '浙江奇同电器有限公司', '王泽伟', '13777771126', '86827868@126.com', '中国 浙江 温州市龙湾区 龙湾区永强大道1648号');
+INSERT INTO `wms_supplier` VALUES (1014, '醴陵春天陶瓷实业有限公司', '温仙容', '13974167256', '23267999@126.com', '中国 湖南 醴陵市 东正街15号');
+INSERT INTO `wms_supplier` VALUES (1015, '洛阳嘉吉利饮品有限公司', '郑绮云', '26391678', '22390898@qq.com', '中国 广东 佛山市顺德区 北滘镇怡和路2号怡和中心14楼');
 
 -- ----------------------------
 -- Table structure for wms_user
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_user`;
-CREATE TABLE `wms_user` (
+CREATE TABLE `wms_user`  (
   `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `USER_USERNAME` varchar(30) NOT NULL,
-  `NAME` varchar(64) DEFAULT NULL COMMENT '用户名称',
-  `USER_PASSWORD` varchar(40) NOT NULL,
-  PRIMARY KEY (`USER_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1021 DEFAULT CHARSET=utf8;
+  `USER_USERNAME` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `NAME` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名称',
+  `USER_PASSWORD` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`USER_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1031 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_user
 -- ----------------------------
-INSERT INTO `wms_user` VALUES ('1001', 'admin', '系统管理员', 'c7122a1349c22cb3c009da3613d242ab');
-INSERT INTO `wms_user` VALUES ('1018', 'wanghao', '王皓', '76c63ff8380461f4e223b2690ff65cbb');
-INSERT INTO `wms_user` VALUES ('1019', 'lifurong', '李富荣', '4d95cdbee390c96b0d8364504c06e634');
+INSERT INTO `wms_user` VALUES (1001, 'admin', '超级管理员', 'c7122a1349c22cb3c009da3613d242ab');
+INSERT INTO `wms_user` VALUES (1018, '王皓', NULL, '50f202f4862360e55635b0a9616ded13');
+INSERT INTO `wms_user` VALUES (1019, '李富荣', NULL, 'c4b3af5a5ab3e3d5aac4c5a5436201b8');
+INSERT INTO `wms_user` VALUES (1029, 'user', NULL, '55e6aca7c76832362984fd643149bcda');
+INSERT INTO `wms_user` VALUES (1030, 'user1', NULL, 'd6944933069880146d53dc59884f78e7');
 
 -- ----------------------------
 -- Table structure for wms_user_role
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_user_role`;
-CREATE TABLE `wms_user_role` (
+CREATE TABLE `wms_user_role`  (
   `ROLE_ID` int(11) NOT NULL,
   `USER_ID` int(11) NOT NULL,
-  PRIMARY KEY (`ROLE_ID`,`USER_ID`),
-  KEY `USER_ID` (`USER_ID`),
-  CONSTRAINT `wms_user_role_ibfk_1` FOREIGN KEY (`ROLE_ID`) REFERENCES `wms_roles` (`ROLE_ID`),
-  CONSTRAINT `wms_user_role_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `wms_user` (`USER_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`ROLE_ID`, `USER_ID`) USING BTREE,
+  INDEX `USER_ID`(`USER_ID`) USING BTREE,
+  CONSTRAINT `wms_user_role_ibfk_1` FOREIGN KEY (`ROLE_ID`) REFERENCES `wms_roles` (`ROLE_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `wms_user_role_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `wms_user` (`USER_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_user_role
 -- ----------------------------
-INSERT INTO `wms_user_role` VALUES ('1', '1001');
-INSERT INTO `wms_user_role` VALUES ('2', '1018');
-INSERT INTO `wms_user_role` VALUES ('2', '1019');
+INSERT INTO `wms_user_role` VALUES (1, 1001);
+INSERT INTO `wms_user_role` VALUES (2, 1018);
+INSERT INTO `wms_user_role` VALUES (2, 1019);
+INSERT INTO `wms_user_role` VALUES (2, 1029);
+INSERT INTO `wms_user_role` VALUES (2, 1030);
+
+SET FOREIGN_KEY_CHECKS = 1;

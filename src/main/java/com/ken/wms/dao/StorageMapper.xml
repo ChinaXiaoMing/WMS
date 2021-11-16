@@ -7,7 +7,8 @@
 
     <!-- 结果映射 -->
     <resultMap type="com.ken.wms.domain.Storage" id="storage">
-        <id property="goodsID" column="goodsID"/>
+        <id property="id" column="ID" />
+        <result property="goodsID" column="goodsID"/>
         <result property="goodCode" column="goodCode"/>
         <result property="goodsName" column="goodsName"/>
         <result property="goodsSize" column="goodsSize"/>
@@ -173,4 +174,12 @@
         RECORD_GOODID = #{goodsID} and
         wms_record_storage.RECORD_REPOSITORY = #{repositoryID}
     </delete>
+
+    <select id="selectByGoodsIdAndRepoId" resultMap="storage">
+        select ID, RECORD_GOODID as goodsID, RECORD_REPOSITORY as repositoryID, RECORD_NUMBER as number
+        from wms_record_storage
+        where RECORD_GOODID = #{goodsId} and RECORD_REPOSITORY = #{repoId}
+        limit 1
+    </select>
+
 </mapper>

@@ -2,6 +2,7 @@ package com.ken.wms.common.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ken.wms.common.service.Interface.GoodsStatisticsService;
 import com.ken.wms.common.util.JsonUtils;
 import com.ken.wms.common.util.Response;
 import com.ken.wms.dao.GoodsStatisticsMapper;
@@ -21,7 +22,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +41,9 @@ import java.util.Map;
 public class GoodsStatisticsController {
 
     private final Logger log = LoggerFactory.getLogger(GoodsStatisticsController.class);
+
+    @Autowired
+    private GoodsStatisticsService goodsStatisticsService;
 
     @Autowired
     private GoodsStatisticsMapper goodsStatisticsMapper;
@@ -142,10 +149,9 @@ public class GoodsStatisticsController {
     @ResponseBody
     public Map<String, Object> moveGoods(@RequestBody MoveGoodsRequest moveGoodsRequest) {
         log.info("移库请求数据：{}", JsonUtils.jsonToString(moveGoodsRequest));
-        HashMap<String, Object> result = new HashMap<>(16);
-        result.put("result", "success");
-
-        return result;
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        log.info("request: {}", request);
+        return goodsStatisticsService.moveGoods(moveGoodsRequest, request);
     }
 
 }

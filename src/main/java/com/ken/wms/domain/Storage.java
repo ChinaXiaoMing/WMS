@@ -6,6 +6,11 @@ package com.ken.wms.domain;
 public class Storage {
 
     /**
+     * id
+     */
+    private Integer id;
+
+    /**
      * 货物ID
      */
     private Integer goodsID;
@@ -49,6 +54,14 @@ public class Storage {
      * 库存数量
      */
     private Long number;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getGoodsID() {
         return goodsID;

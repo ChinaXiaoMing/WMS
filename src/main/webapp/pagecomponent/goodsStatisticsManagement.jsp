@@ -293,7 +293,7 @@
                             msg = "移库操作成功";
                         } else if (response.result === "error") {
                             type = "error";
-                            msg = "移库操作失败"
+                            msg = response.data;
                         }
                         infoModal(type, msg);
                         tableRefresh();

@@ -12,6 +12,7 @@ import com.ken.wms.domain.Repository;
 import com.ken.wms.domain.Storage;
 import com.ken.wms.exception.StorageManageServiceException;
 import com.ken.wms.util.aop.UserOperation;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -416,25 +417,21 @@ public class StorageManageServiceImpl implements StorageManageService {
                     storage = (Storage) object;
 
                     // validate
-                    goods = goodsMapper.selectById(storage.getGoodsID());
+                    goods = goodsMapper.selectByName(storage.getGoodsName());
                     repository = repositoryMapper.selectByRepoName(storage.getRepoName());
                     log.info("导入仓库信息：{}", repository);
-                    if (goods == null) {
-                        isAvailable = false;
-                    }
-                    if (repository == null) {
-                        isAvailable = false;
-                    } else {
-                        List<Storage> temp = storageMapper.selectByGoodsIDAndRepositoryID(storage.getGoodsID(), repository.getId());
-                        if (!(temp != null && temp.isEmpty())) {
+                    if (goods != null && repository != null) {
+                        List<Storage> temp = storageMapper.selectByGoodsIDAndRepositoryID(goods.getId(), repository.getId());
+                        if (CollectionUtils.isNotEmpty(temp)) {
                             isAvailable = false;
                         }
                     }
-                    if (storage.getNumber() < 0) {
+                    if (goods == null || repository == null || storage.getNumber() < 0) {
                         isAvailable = false;
                     }
 
                     if (isAvailable) {
+                        storage.setGoodsID(goods.getId());
                         storage.setRepositoryID(repository.getId());
                         availableList.add(storage);
                     }

@@ -4,7 +4,6 @@ import com.ken.wms.domain.Storage;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-
 import java.util.List;
 
 /**
@@ -91,4 +90,13 @@ public interface StorageMapper {
      * @param repositoryID 仓库ID
      */
     void deleteByRepositoryIDAndGoodsID(@Param("goodsID") Integer goodsID, @Param("repositoryID") Integer repositoryID);
+
+    /**
+     * 根据物料id和仓库id查询库存信息
+     *
+     * @param goodsId 物料id
+     * @param repoId  仓库id
+     * @return 库存信息
+     */
+    Storage selectByGoodsIdAndRepoId(@Param("goodsId") Integer goodsId, @Param("repoId") Integer repoId);
 }

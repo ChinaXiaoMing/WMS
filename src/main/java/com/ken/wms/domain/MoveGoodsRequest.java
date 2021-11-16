@@ -26,7 +26,7 @@ public class MoveGoodsRequest {
     /**
      * 移库数量
      */
-    private Integer moveGoodsNumber;
+    private Long moveGoodsNumber;
 
     public Integer getGoodsId() {
         return goodsId;
@@ -52,11 +52,11 @@ public class MoveGoodsRequest {
         this.outRepoId = outRepoId;
     }
 
-    public Integer getMoveGoodsNumber() {
+    public Long getMoveGoodsNumber() {
         return moveGoodsNumber;
     }
 
-    public void setMoveGoodsNumber(Integer moveGoodsNumber) {
+    public void setMoveGoodsNumber(Long moveGoodsNumber) {
         this.moveGoodsNumber = moveGoodsNumber;
     }
 }

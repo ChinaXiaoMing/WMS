@@ -174,7 +174,10 @@
             })
             console.log(repoIdList);
             $(".selectpicker").selectpicker('val', repoIdList);
+        } else {
+            $(".selectpicker").selectpicker('val', '');
         }
+
     }
 
     function allRepository() {
@@ -282,12 +285,12 @@
                     data: JSON.stringify(data),
                     success: function (response) {
                         $('#edit_modal').modal("hide");
-                        var type;
-                        var msg;
-                        if (response.result == "success") {
+                        let type;
+                        let msg;
+                        if (response.result === "success") {
                             type = "success";
                             msg = "仓库管理员信息更新成功";
-                        } else if (resposne == "error") {
+                        } else if (response.result === "error") {
                             type = "error";
                             msg = "仓库管理员信息更新失败"
                         }
@@ -318,7 +321,7 @@
                     $('#deleteWarning_modal').modal("hide");
                     var type;
                     var msg;
-                    if (response.result == "success") {
+                    if (response.result === "success") {
                         type = "success";
                         msg = "仓库管理员信息删除成功";
                     } else {
