@@ -24,6 +24,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -110,11 +111,35 @@ public class GoodsStatisticsController {
             }
 
         }
+        List<GoodsStatisticsResponse> goodsStatisticsResponseList = new ArrayList<>();
         if (CollectionUtils.isNotEmpty(goodsStatisticsDTOList)) {
-            PageInfo<GoodsStatisticsDTO> pageInfo = new PageInfo<>(goodsStatisticsDTOList);
+            for (GoodsStatisticsDTO goodsStatisticsDTO : goodsStatisticsDTOList) {
+                GoodsStatisticsResponse goodsStatisticsResponse = new GoodsStatisticsResponse();
+                BeanUtils.copyProperties(goodsStatisticsDTO, goodsStatisticsResponse);
+                Integer availableNumber;
+                if ("可维修".equals(goodsStatisticsDTO.getType())) {
+                    // 可用 = 湘湖 + 七堡 + 南阳 + 物资库库余 + 二线返回
+                    availableNumber = goodsStatisticsDTO.getXianghuNumber() + goodsStatisticsDTO.getNanyangNumber() +
+                            goodsStatisticsDTO.getQibaoNumber() + goodsStatisticsDTO.getLeaveNumber() +
+                            goodsStatisticsDTO.getReworkNumber();
+                } else {
+                    // 可用 = 湘湖 + 七堡 + 南阳 + 物资库库余 + 二线返回 - 报废
+                    availableNumber = goodsStatisticsDTO.getXianghuNumber() + goodsStatisticsDTO.getNanyangNumber() +
+                            goodsStatisticsDTO.getQibaoNumber() + goodsStatisticsDTO.getLeaveNumber() +
+                            goodsStatisticsDTO.getReworkNumber() - goodsStatisticsDTO.getScrapNumber();
+                }
+                goodsStatisticsResponse.setAvailableNumber(availableNumber);
+                // 故障件 = 一线故障件 + 二线故障件
+                Integer faultNumber = goodsStatisticsDTO.getFaultOneNumber() + goodsStatisticsDTO.getFaultTwoNumber();
+                goodsStatisticsResponse.setFaultNumber(faultNumber);
+                // 总数 = 可用 + 故障件
+                goodsStatisticsResponse.setAllNumber(availableNumber + faultNumber);
+                goodsStatisticsResponseList.add(goodsStatisticsResponse);
+            }
+            PageInfo<GoodsStatisticsResponse> pageInfo = new PageInfo<>(goodsStatisticsResponseList);
             total = pageInfo.getTotal();
         }
-        resultMap.put("rows", goodsStatisticsDTOList);
+        resultMap.put("rows", goodsStatisticsResponseList);
         resultMap.put("total",total);
 
         return resultMap;

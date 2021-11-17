@@ -85,4 +85,15 @@ MODIFY COLUMN `RECORD_NUMBER` int(11) NOT NULL COMMENT '库存数量' AFTER `REC
 DROP PRIMARY KEY,
 ADD PRIMARY KEY (`ID`) USING BTREE;
 
+ALTER TABLE `wms_db`.`wms_goods_statistics`
+    MODIFY COLUMN `xianghu_number` int(11) NULL DEFAULT 0 COMMENT '湘湖（一线）' AFTER `leave_number`,
+    MODIFY COLUMN `nanyang_number` int(11) NULL DEFAULT 0 COMMENT '南阳（一线）' AFTER `xianghu_number`,
+    MODIFY COLUMN `qibao_number` int(11) NULL DEFAULT 0 COMMENT '七堡（一线）' AFTER `nanyang_number`,
+    MODIFY COLUMN `fault_one_number` int(11) NULL DEFAULT 0 COMMENT '故障件（一线）' AFTER `qibao_number`,
+    MODIFY COLUMN `fault_two_number` int(11) NULL DEFAULT 0 COMMENT '故障件（二线）' AFTER `fault_one_number`,
+    MODIFY COLUMN `reworking_number` int(11) NULL DEFAULT 0 COMMENT '返修中（二线）' AFTER `fault_two_number`,
+    MODIFY COLUMN `rework_number` int(11) NULL DEFAULT 0 COMMENT '返修回（二线）' AFTER `reworking_number`,
+    MODIFY COLUMN `overhaul_number` int(11) NULL DEFAULT 0 COMMENT '大修拆回' AFTER `rework_number`,
+    MODIFY COLUMN `scrap_number` int(11) NULL DEFAULT 0 COMMENT '报废' AFTER `overhaul_number`;
+
 

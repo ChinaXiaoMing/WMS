@@ -11,6 +11,7 @@
     var search_keyWord = "";
     var goods_type;
     var select_id;
+    var radioValue;
 
     $(function () {
         optionAction();
@@ -23,12 +24,14 @@
         moveStorageAction();
         deleteStorageAction();
         importStorageAction();
-        exportStorageAction()
+        exportStorageAction();
 
         // 物料数据初始化
-        goodsAutocomplete()
+        goodsAutocomplete();
         // 仓库下拉数据加载
-        repositorySelectorInit()
+        repositorySelectorInit();
+        triggerBtnGroup();
+        goodsRepoTableInit();
     })
 
     // 查询方式下拉框，为search_type_storage赋值，若为所有，搜索框不能编辑
@@ -121,7 +124,19 @@
         $('#search_button').click(function () {
             search_keyWord = $('#search_input_type').val();
             goods_type = $('#search_goods_type').val();
-            tableRefresh();
+            if (radioValue === '库存汇总') {
+                tableRefresh();
+            }
+            if (radioValue === '物资库') {
+                goodsRepoTableRefresh()
+            }
+            if (radioValue === '一线') {
+                firstRepoTableRefresh()
+            }
+            if (radioValue === '二线') {
+                secondRepoTableRefresh()
+            }
+
         })
     }
 
@@ -168,19 +183,20 @@
                             title: '物料属性'
                         },
                         {
-                            field: 'totalNumber',
+                            field: 'allNumber',
                             title: '总数'
                         },
                         {
-                            field: 'outNumber',
-                            title: '借出',
-                            formatter: function (value, row, index) {
-                                return row;
-                            }
+                            field: 'availableNumber',
+                            title: '可用'
                         },
                         {
-                            field: 'leaveNumber',
-                            title: '库余'
+                            field: 'faultNumber',
+                            title: '故障件'
+                        },
+                        {
+                            field: 'scrapNumber',
+                            title: '报废'
                         },
                         {
                             field: 'operation',
@@ -214,9 +230,104 @@
                 });
     }
 
+    // 表格初始化
+    function goodsRepoTableInit() {
+        $('#goodsRepoTable')
+                .bootstrapTable(
+                        {
+                            columns: [
+                                {
+                                    field: 'goodCode',
+                                    title: '物料编码'
+                                },
+                                {
+                                    field: 'name',
+                                    title: '物料描述'
+                                },
+                                {
+                                    field: 'size',
+                                    title: '单位'
+                                },
+                                {
+                                    field: 'carNumber',
+                                    title: '车号'
+                                },
+                                {
+                                    field: 'goodImportance',
+                                    title: '重要性'
+                                },
+                                {
+                                    field: 'type',
+                                    title: '物料属性'
+                                },
+                                {
+                                    field: 'allNumber',
+                                    title: '总数'
+                                },
+                                {
+                                    field: 'availableNumber',
+                                    title: '借出'
+                                },
+                                {
+                                    field: 'faultNumber',
+                                    title: '库余'
+                                },
+                                {
+                                    field: 'operation',
+                                    title: '操作',
+                                    formatter: function (value, row, index) {
+                                        var s = '<button class="btn btn-info btn-sm edit"><span>移库</span></button>';
+                                        var d = '<button class="btn btn-danger btn-sm delete"><span>删除</span></button>';
+                                        return s + ' ' + d;
+                                    },
+                                    events: {
+                                        // 操作列中编辑按钮的动作，rowEditOperation(row)，传入row
+                                        'click .edit': function (e, value, row, index) {
+                                            rowEditOperation(row);
+                                        },
+                                        'click .delete': function (e, value, row, index) {
+                                            select_id = row.id;
+                                            $('#deleteWarning_modal').modal('show');
+                                        }
+                                    }
+                                }],
+                            url: 'goodsStatistics/getGoodsStaticsList',
+                            method: 'GET',
+                            queryParams: queryParams,
+                            sidePagination: "server",
+                            dataType: 'json',
+                            pagination: true,
+                            pageNumber: 1,
+                            pageSize: 5,
+                            pageList: [5, 10, 25, 50, 100],
+                            clickToSelect: true
+                        });
+    }
+
     // 表格刷新
     function tableRefresh() {
         $('#goodsStaticsList').bootstrapTable('refresh', {
+            query: {}
+        });
+    }
+
+    // 表格刷新
+    function goodsRepoTableRefresh() {
+        $('#goodsRepoTable').bootstrapTable('refresh', {
+            query: {}
+        });
+    }
+
+    // 表格刷新
+    function firstRepoTableRefresh() {
+        $('#firstRepoTable').bootstrapTable('refresh', {
+            query: {}
+        });
+    }
+
+    // 表格刷新
+    function secondRepoTableRefresh() {
+        $('#secondRepoTable').bootstrapTable('refresh', {
             query: {}
         });
     }
@@ -545,11 +656,48 @@
         $('#info_content').text(msg);
         $('#info_modal').modal("show");
     }
+
+    // table切换
+    function triggerBtnGroup() {
+        $('.goodsStatics').addClass('hide');
+        $('#goodsStaticsList').removeClass('hide');
+        $('input[type=radio]').change(function () {
+            $('.goodsStatics').addClass('hide');
+            radioValue = $(this).val();
+            console.log(radioValue);
+            if (radioValue === '库存汇总') {
+                $('#goodsStaticsList').removeClass('hide');
+            }
+            if (radioValue === '物资库') {
+                $('#goodsRepoTable').removeClass('hide');
+            }
+            if (radioValue === '一线') {
+                $('#firstRepoTable').removeClass('hide');
+            }
+            if (radioValue === '二线') {
+                $('#secondRepoTable').removeClass('hide');
+            }
+        })
+    }
+
 </script>
 
 <div class="panel panel-default">
     <ol class="breadcrumb">
-        <li>库存汇总</li>
+        <div class="btn-group" role="group" data-toggle="buttons">
+            <label class="btn btn-default active">
+                <input type="radio" name="radioBtn" checked value="库存汇总">库存汇总
+            </label>
+            <label class="btn btn-default">
+                <input type="radio" name="radioBtn" value="物资库">物资库
+            </label>
+            <label class="btn btn-default">
+                <input type="radio" name="radioBtn" value="一线">一线
+            </label>
+            <label class="btn btn-default">
+                <input type="radio" name="radioBtn" value="二线">二线
+            </label>
+        </div>
     </ol>
     <div class="panel-body">
         <div class="row">
@@ -604,7 +752,10 @@
 
         <div class="row" style="margin-top: 15px">
             <div class="col-md-12">
-                <table id="goodsStaticsList" class="table table-striped"></table>
+                <table id="goodsStaticsList" class="table table-striped goodsStatics"></table>
+                <table id="goodsRepoTable" class="table table-striped goodsStatics"></table>
+                <table id="firstRepoTable" class="table table-striped goodsStatics"></table>
+                <table id="secondRepoTable" class="table table-striped goodsStatics"></table>
             </div>
         </div>
     </div>
@@ -667,7 +818,7 @@
                                     <span>总数：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" name="totalNumber" placeholder="请输入总数">
+                                    <input type="text" class="form-control" name="totalNumber" placeholder="请输入总数" />
                                 </div>
                             </div>
 
@@ -676,7 +827,7 @@
                                     <span>借出：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" name="outNumber" placeholder="请输入借出">
+                                    <input type="text" class="form-control" name="outNumber" placeholder="请输入借出" />
                                 </div>
                             </div>
 
@@ -685,7 +836,7 @@
                                     <span>库余：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" name="leaveNumber" placeholder="请输入库余">
+                                    <input type="text" class="form-control" name="leaveNumber" placeholder="请输入库余" />
                                 </div>
                             </div>
 
@@ -694,7 +845,7 @@
                                     <span>湖湘：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" name="xianghuNumber" placeholder="请输入湖湘">
+                                    <input type="text" class="form-control" name="xianghuNumber" placeholder="请输入湖湘" />
                                 </div>
                             </div>
 
@@ -703,7 +854,7 @@
                                     <span>南阳：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" name="nanyangNumber" placeholder="请输入南阳">
+                                    <input type="text" class="form-control" name="nanyangNumber" placeholder="请输入南阳" />
                                 </div>
                             </div>
 
@@ -712,7 +863,7 @@
                                     <span>七堡：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" name="qibaoNumber" placeholder="请输入七堡">
+                                    <input type="text" class="form-control" name="qibaoNumber" placeholder="请输入七堡" />
                                 </div>
                             </div>
 
@@ -721,7 +872,7 @@
                                     <span>故障件（一线）：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" name="faultOneNumber" placeholder="请输入故障件（一线）">
+                                    <input type="text" class="form-control" name="faultOneNumber" placeholder="请输入故障件（一线）" />
                                 </div>
                             </div>
 
@@ -730,7 +881,7 @@
                                     <span>故障件（二线）：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" name="faultTwoNumber" placeholder="请输入故障件（二线）">
+                                    <input type="text" class="form-control" name="faultTwoNumber" placeholder="请输入故障件（二线）" />
                                 </div>
                             </div>
 
@@ -739,7 +890,7 @@
                                     <span>返修中：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" name="reworkingNumber" placeholder="请输入返修中">
+                                    <input type="text" class="form-control" name="reworkingNumber" placeholder="请输入返修中" />
                                 </div>
                             </div>
 
@@ -748,7 +899,7 @@
                                     <span>返修回：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" name="reworkNumber" placeholder="请输入返修回">
+                                    <input type="text" class="form-control" name="reworkNumber" placeholder="请输入返修回" />
                                 </div>
                             </div>
 
@@ -757,7 +908,7 @@
                                     <span>大修拆回：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" name="overhaulNumber" placeholder="请输入大修拆回">
+                                    <input type="text" class="form-control" name="overhaulNumber" placeholder="请输入大修拆回" />
                                 </div>
                             </div>
 
@@ -766,7 +917,7 @@
                                     <span>报废：</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8">
-                                    <input type="text" class="form-control" name="scrapNumber" placeholder="请输入报废">
+                                    <input type="text" class="form-control" name="scrapNumber" placeholder="请输入报废" />
                                 </div>
                             </div>
                         </form>
